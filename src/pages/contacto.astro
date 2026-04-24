@@ -1,0 +1,159 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactForm from '@components/ContactForm.astro';
+
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
+const waMessage = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20conversar%20sobre%20marketing%20digital%20para%20mi%20negocio.';
+const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+---
+
+<BaseLayout
+  title="Contacto — Hablemos de tu negocio"
+  description="Cuéntanos en qué etapa está tu negocio y qué necesitas mejorar. Sin compromiso. Te respondemos en menos de 24 horas."
+>
+
+  <header class="contact-hero noise-bg">
+    <div class="container contact-hero-inner">
+      <p class="section-label section-label-light hero-anim-1">Contacto</p>
+      <h1 class="contact-h1 hero-anim-2">Hablemos de tu negocio</h1>
+      <p class="contact-lede hero-anim-3">
+        Sin compromiso. Sin presentaciones de 40 diapositivas. Solo una conversación honesta
+        sobre lo que tu negocio necesita y si podemos ayudarte.
+      </p>
+    </div>
+  </header>
+
+  <section class="section-py contact-body">
+    <div class="container contact-inner">
+
+      <div class="contact-form-wrap scroll-reveal">
+        <h2 class="contact-form-title">Escríbenos</h2>
+        <p class="contact-form-sub">
+          Completa el formulario y te respondemos en menos de 24 horas hábiles.
+        </p>
+        <ContactForm />
+      </div>
+
+      <aside class="contact-aside scroll-reveal scroll-reveal-delay-2">
+        <div class="contact-aside-block">
+          <p class="aside-label">¿Prefieres WhatsApp?</p>
+          <p class="aside-text">
+            Si lo tuyo es conversar en tiempo real, escríbenos directamente.
+            Estamos disponibles de lunes a viernes de 9:00 a 18:00.
+          </p>
+          <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn-primary aside-wa-btn">
+            Abrir WhatsApp
+          </a>
+        </div>
+
+        <div class="contact-aside-block">
+          <p class="aside-label">Correo directo</p>
+          <a href="mailto:contacto@agenciachucao.cl" class="aside-email">
+            contacto@agenciachucao.cl
+          </a>
+        </div>
+
+        <div class="contact-aside-block">
+          <p class="aside-label">Tiempo de respuesta</p>
+          <p class="aside-text">Menos de 24 horas hábiles, siempre.</p>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .contact-hero {
+    background: var(--color-forest);
+    color: var(--color-white);
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+  .contact-hero-inner { max-width: 64ch; }
+  .contact-h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-track);
+    line-height: var(--text-h1-leading);
+    color: var(--color-white);
+    margin-block: 1.25rem 1rem;
+  }
+  .contact-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede-size);
+    line-height: var(--text-lede-leading);
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 54ch;
+  }
+
+  .contact-body { background: var(--color-sage); }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .contact-inner { grid-template-columns: 1fr 300px; }
+  }
+
+  .contact-form-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    color: var(--color-forest);
+    margin-bottom: 0.5rem;
+  }
+  .contact-form-sub {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--color-olive);
+    margin-bottom: 2rem;
+  }
+
+  /* Aside */
+  .contact-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 5.5rem;
+  }
+
+  .contact-aside-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-moss);
+  }
+  .contact-aside-block:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .aside-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+  }
+  .aside-text {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-olive);
+  }
+  .aside-wa-btn { font-size: 13px; align-self: flex-start; }
+
+  .aside-email {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-forest);
+    text-decoration: none;
+    word-break: break-all;
+    transition: color 0.15s;
+  }
+  .aside-email:hover { color: var(--color-orange); }
+</style>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
+const waHref = `https://wa.me/${waNumber}?text=Hola%20%F0%9F%91%8B%20Llegu%C3%A9%20a%20una%20p%C3%A1gina%20que%20no%20existe%20en%20Agencia%20Chucao.%20%C2%BFMe%20pueden%20ayudar%3F`;
+---
+
+<BaseLayout
+  title="Página no encontrada"
+  description="Esta página no existe o fue movida. Vuelve al inicio o escríbenos por WhatsApp."
+>
+  <section class="not-found section-py">
+    <div class="container not-found-inner">
+      <span class="not-found-code" aria-hidden="true">404</span>
+      <h1 class="not-found-title">Esta página no existe</h1>
+      <p class="not-found-text">
+        Puede que haya sido movida, eliminada o que la URL tenga un error.
+        No te preocupes — desde aquí puedes volver al inicio o escribirnos directamente.
+      </p>
+      <div class="not-found-actions">
+        <a href="/" class="btn-primary">Volver al inicio</a>
+        <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn-ghost not-found-wa">
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    background: var(--color-forest);
+    color: var(--color-white);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+  .not-found-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 52ch;
+  }
+  .not-found-code {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: clamp(72px, 12vw, 120px);
+    color: var(--color-orange);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .not-found-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    color: var(--color-white);
+  }
+  .not-found-text {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .not-found-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .not-found-wa { color: var(--color-white); }
+</style>

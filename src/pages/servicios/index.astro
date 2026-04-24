@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import { featuredServices } from '@data/services';
+---
+
+<BaseLayout
+  title="Servicios de Marketing Digital"
+  description="SEO técnico, gestión de redes sociales, desarrollo web, Google Business Profile, creación de contenido y email marketing. Sin paquetes genéricos."
+>
+
+  <header class="svc-index-header noise-bg">
+    <div class="container svc-index-header-inner">
+      <p class="section-label section-label-light hero-anim-1">Servicios</p>
+      <h1 class="svc-index-h1 hero-anim-2">Todo lo que necesitas para crecer en digital</h1>
+      <p class="svc-index-lede hero-anim-3">
+        Sin paquetes genéricos. Sin promesas vacías. Elige el servicio que tu negocio necesita ahora.
+      </p>
+    </div>
+  </header>
+
+  <section class="section-py svc-index-body">
+    <div class="container">
+      <div class="svc-index-grid">
+        {featuredServices.map((service, i) => (
+          <div class="scroll-reveal" style={`transition-delay: ${i * 0.07}s`}>
+            <ServiceCard service={service} index={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .svc-index-header {
+    background: var(--color-forest);
+    color: var(--color-white);
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+  .svc-index-header-inner { max-width: 64ch; }
+
+  .svc-index-h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-track);
+    line-height: var(--text-h1-leading);
+    color: var(--color-white);
+    margin-block: 1.25rem 1rem;
+  }
+
+  .svc-index-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede-size);
+    line-height: var(--text-lede-leading);
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 54ch;
+  }
+
+  .svc-index-body { background: var(--color-sage); }
+
+  .svc-index-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px)  { .svc-index-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .svc-index-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

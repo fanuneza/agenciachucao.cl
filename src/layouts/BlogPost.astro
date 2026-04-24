@@ -1,0 +1,345 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import SocialShare from '@components/SocialShare.astro';
+import BlogCard from '@components/BlogCard.astro';
+import { services } from '@data/services';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Reading time
+const wordCount = entry.body.split(/\s+/).filter(Boolean).length;
+const readingTime = Math.ceil(wordCount / 200);
+
+// Service CTA mapping
+const serviceToId: Record<string, string> = {
+  'redes-sociales':  'gestion-de-redes-sociales',
+  'seo':             'seo-tecnico-y-posicionamiento',
+  'desarrollo-web':  'desarrollo-web',
+  'google-business': 'optimizacion-de-google-business-profile',
+  'contenido':       'creacion-de-contenido',
+  'email-marketing': 'email-marketing',
+  'publicidad':      'publicidad-en-google-y-meta',
+};
+
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
+const defaultMessage = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
+
+const serviceId = serviceToId[entry.data.service ?? 'default'];
+const matchedService = serviceId ? services.find((s) => s.id === serviceId) : null;
+
+const ctaLabel = matchedService?.cta.primary ?? 'Hablemos de tu negocio';
+const ctaMessage = matchedService?.cta.whatsappMessage ?? defaultMessage;
+const ctaHref = `https://wa.me/${waNumber}?text=${ctaMessage}`;
+
+// Related articles
+const allPosts = await getCollection('blog');
+const otherPosts = allPosts.filter((p) => p.slug !== entry.slug);
+
+let relatedPosts: CollectionEntry<'blog'>[] = [];
+if (entry.data.relatedSlugs?.length) {
+  relatedPosts = entry.data.relatedSlugs
+    .map((slug) => otherPosts.find((p) => p.slug === slug))
+    .filter((p): p is CollectionEntry<'blog'> => p !== undefined)
+    .slice(0, 3);
+} else if (entry.data.tags?.length) {
+  relatedPosts = otherPosts
+    .filter((p) => p.data.tags?.some((t) => entry.data.tags!.includes(t)))
+    .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+    .slice(0, 3);
+}
+
+// Article JSON-LD
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: entry.data.title,
+  description: entry.data.description,
+  author: { '@type': 'Person', name: entry.data.author },
+  datePublished: entry.data.publishDate.toISOString().split('T')[0],
+  image: entry.data.heroImage ?? '/images/og/og-default.webp',
+};
+
+const publishDateFormatted = entry.data.publishDate.toLocaleDateString('es-CL', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.heroImage}
+  schema={articleSchema}
+>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container post-header-inner">
+        <div class="post-meta">
+          <time datetime={entry.data.publishDate.toISOString()} class="post-date">
+            {publishDateFormatted}
+          </time>
+          <span class="post-dot" aria-hidden="true">·</span>
+          <span class="post-read">{readingTime} min de lectura</span>
+          <span class="post-dot" aria-hidden="true">·</span>
+          <span class="post-author">Por {entry.data.author}</span>
+        </div>
+        <h1 class="post-title">{entry.data.title}</h1>
+        <p class="post-lede">{entry.data.description}</p>
+      </div>
+    </header>
+
+    <div class="container post-body-wrap">
+      <div class="post-body prose">
+        <Content />
+      </div>
+
+      <aside class="post-aside">
+        <!-- Service CTA sidebar -->
+        <div class="aside-cta scroll-reveal">
+          <p class="aside-cta-label">¿Te interesa este servicio?</p>
+          <p class="aside-cta-text">{ctaLabel}</p>
+          <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="btn-primary aside-cta-btn">
+            Conversemos →
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <div class="container post-footer-wrap">
+      <SocialShare title={entry.data.title} url={currentUrl} />
+
+      <!-- Bottom CTA -->
+      <div class="post-bottom-cta scroll-reveal">
+        <p class="bottom-cta-text">{ctaLabel}</p>
+        <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Hablemos por WhatsApp →
+        </a>
+      </div>
+
+      <!-- Related articles -->
+      {relatedPosts.length > 0 && (
+        <section class="related-posts">
+          <h2 class="related-title">Artículos relacionados</h2>
+          <div class="related-grid">
+            {relatedPosts.map((post) => <BlogCard post={post} />)}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  // blog_scroll_depth events at 25 / 50 / 75 / 100%
+  const milestones = new Set<number>();
+  const articleTitle = document.title;
+
+  window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    const scrollTop = el.scrollTop || document.body.scrollTop;
+    const scrollHeight = el.scrollHeight - el.clientHeight;
+    if (scrollHeight <= 0) return;
+    const pct = (scrollTop / scrollHeight) * 100;
+
+    [25, 50, 75, 100].forEach((m) => {
+      if (pct >= m && !milestones.has(m)) {
+        milestones.add(m);
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'blog_scroll_depth', { article_title: articleTitle, depth: m });
+        }
+      }
+    });
+  }, { passive: true });
+</script>
+
+<style>
+  /* Header */
+  .post-header {
+    background: var(--color-forest);
+    color: var(--color-white);
+    padding-block: var(--section-pad-md);
+  }
+  .post-header-inner { max-width: 72ch; }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .post-date,
+  .post-read,
+  .post-author {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .post-dot { color: rgba(255, 255, 255, 0.25); }
+
+  .post-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    line-height: var(--text-h2-leading);
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .post-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede-size);
+    line-height: var(--text-lede-leading);
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* Body layout */
+  .post-body-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-block: var(--section-pad-md);
+  }
+  @media (min-width: 1024px) {
+    .post-body-wrap { grid-template-columns: 1fr 280px; }
+  }
+
+  /* Prose */
+  .prose {
+    max-width: 72ch;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-black);
+  }
+  .prose :global(h2) {
+    font-family: var(--font-sans);
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    letter-spacing: var(--text-h3-track);
+    color: var(--color-forest);
+    margin-block: 2.5rem 1rem;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-sans);
+    font-size: var(--text-h4-size);
+    font-weight: var(--text-h4-weight);
+    color: var(--color-forest);
+    margin-block: 2rem 0.75rem;
+  }
+  .prose :global(p) { margin-bottom: 1.25rem; }
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .prose :global(strong) { font-weight: 700; color: var(--color-forest); }
+  .prose :global(em) { font-style: italic; }
+  .prose :global(a) {
+    color: var(--color-orange);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose :global(a:hover) { color: var(--color-orange-dark); }
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--color-orange);
+    margin-left: 0;
+    padding-left: 1.25rem;
+    color: var(--color-olive);
+    font-style: italic;
+  }
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-moss);
+    padding: 2px 5px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Aside */
+  .post-aside { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .aside-cta {
+    background: var(--color-sage);
+    border: 1px solid var(--color-moss);
+    border-radius: var(--radius-sm);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    position: sticky;
+    top: 5rem;
+  }
+  .aside-cta-label {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+  }
+  .aside-cta-text {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-forest);
+    line-height: 1.35;
+  }
+  .aside-cta-btn { font-size: 12px; text-align: center; justify-content: center; }
+
+  /* Footer wrap */
+  .post-footer-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-bottom: var(--section-pad-md);
+  }
+
+  /* Bottom CTA */
+  .post-bottom-cta {
+    background: var(--color-forest);
+    border-radius: var(--radius-sm);
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .bottom-cta-text {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-white);
+    max-width: 40ch;
+  }
+
+  /* Related */
+  .related-posts { display: flex; flex-direction: column; gap: 1.5rem; }
+  .related-title {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-forest);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .related-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Política de Cookies"
+  description="Información sobre las cookies que usa Agencia Chucao y cómo gestionarlas."
+  noindex={true}
+>
+  <article class="cookie-policy section-py">
+    <div class="container cookie-policy-inner">
+
+      <header class="policy-header">
+        <p class="section-label">Legal</p>
+        <h1 class="policy-title">Política de Cookies</h1>
+        <p class="policy-meta">Última actualización: abril 2026</p>
+      </header>
+
+      <div class="policy-body">
+
+        <section class="policy-section">
+          <h2>¿Qué son las cookies?</h2>
+          <p>
+            Las cookies son pequeños archivos de texto que un sitio web guarda en tu navegador
+            cuando lo visitas. Se usan para recordar tus preferencias y analizar el uso del sitio.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Cookies que usamos</h2>
+          <div class="policy-table-wrap">
+            <table class="policy-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Finalidad</th>
+                  <th>Duración</th>
+                  <th>Tipo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>chucao_consent</code></td>
+                  <td>Guarda tu elección sobre las cookies de analítica (aceptar o rechazar).</td>
+                  <td>12 meses</td>
+                  <td>Necesaria / preferencias</td>
+                </tr>
+                <tr>
+                  <td><code>_ga</code>, <code>_ga_*</code></td>
+                  <td>Google Analytics 4 — analiza el tráfico de forma agregada (páginas vistas, duración de visita, etc.). Solo se activa si aceptas cookies.</td>
+                  <td>Hasta 2 años</td>
+                  <td>Analítica (opcional)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="policy-section">
+          <h2>Cómo gestionamos tu consentimiento</h2>
+          <p>
+            Al visitar este sitio por primera vez, verás un aviso que te pide elegir entre
+            <strong>Aceptar</strong> o <strong>Rechazar</strong> las cookies de analítica.
+          </p>
+          <ul>
+            <li><strong>Si aceptas:</strong> activamos Google Analytics para entender cómo se usa el sitio. Tu elección se guarda en la cookie <code>chucao_consent=accepted</code>.</li>
+            <li><strong>Si rechazas:</strong> Google Analytics no se activa. Tu elección se guarda en <code>chucao_consent=rejected</code>.</li>
+          </ul>
+          <p>
+            En ningún caso compartimos datos personales con terceros con fines publicitarios.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Retirar o cambiar tu consentimiento</h2>
+          <p>
+            Puedes cambiar tu elección en cualquier momento haciendo clic en
+            <strong>"Gestionar preferencias de cookies"</strong> en el pie de página de este sitio.
+            Esto eliminará la cookie <code>chucao_consent</code> y volverá a mostrarte el aviso.
+          </p>
+          <p>
+            También puedes eliminar todas las cookies desde la configuración de privacidad
+            de tu navegador (Chrome, Firefox, Safari, Edge).
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Base legal (Ley 21.719 — Chile)</h2>
+          <p>
+            Esta política cumple con los requisitos de la Ley N° 21.719 sobre protección
+            de datos personales de Chile. Las cookies de analítica solo se activan con
+            tu consentimiento explícito.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>Contacto</h2>
+          <p>
+            Si tienes preguntas sobre esta política escríbenos a
+            <a href="mailto:contacto@agenciachucao.cl">contacto@agenciachucao.cl</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .cookie-policy { background: var(--color-sage); }
+  .cookie-policy-inner { max-width: 72ch; }
+
+  .policy-header { margin-bottom: 3rem; }
+  .policy-title {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-track);
+    color: var(--color-forest);
+    margin-block: 0.75rem 0.5rem;
+  }
+  .policy-meta {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-olive);
+  }
+
+  .policy-body { display: flex; flex-direction: column; gap: 3rem; }
+
+  .policy-section { display: flex; flex-direction: column; gap: 1rem; }
+  .policy-section h2 {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-forest);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-moss);
+  }
+  .policy-section p,
+  .policy-section li {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-black);
+  }
+  .policy-section ul {
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .policy-section strong { color: var(--color-forest); }
+  .policy-section a { color: var(--color-orange); }
+  .policy-section code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-moss);
+    padding: 2px 5px;
+    border-radius: var(--radius-sm);
+  }
+
+  .policy-table-wrap { overflow-x: auto; }
+  .policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: 13px;
+  }
+  .policy-table th {
+    background: var(--color-forest);
+    color: var(--color-white);
+    font-weight: 700;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .policy-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-moss);
+    color: var(--color-black);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .policy-table tr:last-child td { border-bottom: none; }
+  .policy-table tr:nth-child(even) td { background: var(--color-sage); }
+</style>

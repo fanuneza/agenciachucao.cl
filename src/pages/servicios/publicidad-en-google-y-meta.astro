@@ -1,0 +1,7 @@
+---
+import ServicePage from '@components/ServicePage.astro';
+import { getService } from '@data/services';
+
+const service = getService('publicidad-en-google-y-meta')!;
+---
+<ServicePage service={service} />

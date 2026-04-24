@@ -1,0 +1,223 @@
+---
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
+const waFallback = `https://wa.me/${waNumber}?text=Hola%20%F0%9F%91%8B%20Intent%C3%A9%20contactarme%20por%20el%20formulario%20pero%20tuve%20un%20problema.%20%C2%BFPodr%C3%ADan%20ayudarme%3F`;
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+---
+
+<form class="contact-form" id="contact-form" novalidate>
+  <!-- Web3Forms access key -->
+  <input type="hidden" name="access_key" value={web3Key} />
+  <!-- Honeypot — must stay empty -->
+  <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label" for="nombre">Nombre completo</label>
+      <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" required />
+      <span class="field-error" id="err-nombre"></span>
+    </div>
+    <div class="form-group">
+      <label class="field-label" for="email">Correo electrónico</label>
+      <input class="form-field" type="email" id="email" name="email" autocomplete="email" required />
+      <span class="field-error" id="err-email"></span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="field-label" for="telefono">Teléfono</label>
+      <input class="form-field" type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="+56 9 1234 5678" required />
+      <span class="field-error" id="err-telefono"></span>
+    </div>
+    <div class="form-group">
+      <label class="field-label" for="cargo">Cargo o rol</label>
+      <input class="form-field" type="text" id="cargo" name="cargo" placeholder="Dueño, gerente, encargado…" required />
+      <span class="field-error" id="err-cargo"></span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label" for="sitio_web">Sitio web de tu negocio</label>
+    <input class="form-field" type="url" id="sitio_web" name="sitio_web" autocomplete="url" placeholder="https://tunegocio.cl" required />
+    <span class="field-error" id="err-sitio_web"></span>
+  </div>
+
+  <div id="form-status" class="form-status" aria-live="polite"></div>
+
+  <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
+    Enviar mensaje
+  </button>
+</form>
+
+<div class="form-wa-fallback" id="form-wa-fallback" hidden>
+  <p class="fallback-text">¿Problemas con el formulario?</p>
+  <a href={waFallback} target="_blank" rel="noopener noreferrer" class="btn-primary">
+    Escríbenos por WhatsApp
+  </a>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const statusEl = document.getElementById('form-status');
+  const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement | null;
+  const waFallback = document.getElementById('form-wa-fallback');
+
+  function showError(fieldId: string, msg: string) {
+    const el = document.getElementById(`err-${fieldId}`);
+    if (el) { el.textContent = msg; el.classList.add('visible'); }
+    const field = document.getElementById(fieldId) as HTMLInputElement | null;
+    field?.classList.add('invalid');
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach((el) => {
+      el.textContent = '';
+      el.classList.remove('visible');
+    });
+    document.querySelectorAll('.form-field').forEach((el) => el.classList.remove('invalid'));
+  }
+
+  function validate(data: FormData): boolean {
+    let valid = true;
+
+    const nombre = (data.get('nombre') as string)?.trim();
+    if (!nombre) { showError('nombre', 'Por favor ingresa tu nombre.'); valid = false; }
+
+    const email = (data.get('email') as string)?.trim();
+    if (!email) { showError('email', 'Por favor ingresa tu correo.'); valid = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('email', 'El correo no parece válido.'); valid = false;
+    }
+
+    const telefono = (data.get('telefono') as string)?.trim();
+    if (!telefono) { showError('telefono', 'Por favor ingresa tu teléfono.'); valid = false; }
+    else if (!/^[\+\d\s\-\(\)]{7,}$/.test(telefono)) {
+      showError('telefono', 'El teléfono no parece válido.'); valid = false;
+    }
+
+    const cargo = (data.get('cargo') as string)?.trim();
+    if (!cargo) { showError('cargo', 'Por favor indica tu cargo.'); valid = false; }
+
+    const sitio = (data.get('sitio_web') as string)?.trim();
+    if (!sitio) { showError('sitio_web', 'Por favor ingresa la URL de tu sitio.'); valid = false; }
+    else if (!/^https?:\/\/.+/.test(sitio)) {
+      showError('sitio_web', 'La URL debe comenzar con http:// o https://'); valid = false;
+    }
+
+    return valid;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const data = new FormData(form);
+
+    if (!validate(data)) return;
+
+    submitBtn!.disabled = true;
+    submitBtn!.textContent = 'Enviando…';
+    if (statusEl) statusEl.textContent = '';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        form.reset();
+        form.hidden = true;
+        if (statusEl) {
+          statusEl.textContent = 'Tu mensaje fue enviado. Te contactaremos pronto.';
+          statusEl.classList.add('success');
+        }
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'contact_form_submit', { page_url: window.location.href });
+        }
+      } else {
+        throw new Error(json.message ?? 'Error desconocido');
+      }
+    } catch {
+      if (statusEl) {
+        statusEl.textContent = 'Hubo un problema al enviar el formulario. Por favor intenta de nuevo.';
+        statusEl.classList.add('error');
+      }
+      if (waFallback) waFallback.hidden = false;
+      submitBtn!.disabled = false;
+      submitBtn!.textContent = 'Enviar mensaje';
+    }
+  });
+</script>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .form-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .field-error {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-orange);
+    display: none;
+  }
+  .field-error.visible { display: block; }
+
+  .form-field.invalid {
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 3px rgba(204, 75, 58, 0.12);
+  }
+
+  .form-status {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    display: none;
+  }
+  .form-status:not(:empty) { display: block; }
+  .form-status.success {
+    background: rgba(28, 46, 26, 0.08);
+    color: var(--color-forest);
+    border: 1px solid var(--color-moss);
+  }
+  .form-status.error {
+    background: var(--color-orange-pale);
+    color: var(--color-orange-dark);
+    border: 1px solid var(--color-orange);
+  }
+
+  .form-submit { align-self: flex-start; font-size: 14px; padding: 1rem 2rem; }
+  .form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+  .form-wa-fallback {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .fallback-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--color-olive);
+  }
+</style>

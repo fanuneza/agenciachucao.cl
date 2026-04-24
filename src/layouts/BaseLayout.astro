@@ -1,0 +1,104 @@
+---
+import SEO from '@components/SEO.astro';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import CookieConsent from '@components/CookieConsent.astro';
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  schema?: object;
+}
+
+const { title, description, image, canonical, noindex, schema } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Font preloads — critical above-the-fold weights -->
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/montserrat-latin-900-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/montserrat-latin-800-normal.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2"
+      href="/fonts/lora-latin-400-normal.woff2" crossorigin />
+
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+      noindex={noindex}
+      schema={schema}
+    />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <Nav />
+
+    <main>
+      <slot />
+    </main>
+
+    <WhatsAppButton />
+    <CookieConsent />
+    <Footer />
+
+    <!-- Scroll-reveal + stat-counter boot -->
+    <script>
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('.scroll-reveal').forEach((el) => observer.observe(el));
+
+      // Stat counter — animates data-target numbers on enter
+      function animateCounter(el: Element) {
+        const target = parseInt((el as HTMLElement).dataset.target ?? '0', 10);
+        const duration = 1800;
+        const start = performance.now();
+        function step(now: number) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target).toLocaleString('es-CL');
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = target.toLocaleString('es-CL');
+        }
+        requestAnimationFrame(step);
+      }
+
+      const statObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              statObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      document.querySelectorAll('.stat-counter[data-target]').forEach((el) =>
+        statObserver.observe(el)
+      );
+    </script>
+  </body>
+</html>

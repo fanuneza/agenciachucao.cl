@@ -1,0 +1,309 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Agencia Chucao',
+  url: 'https://agenciachucao.cl',
+  telephone: '+56922218674',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Santiago',
+    addressRegion: 'Región Metropolitana',
+    addressCountry: 'CL',
+  },
+  serviceType: [
+    'Marketing Digital',
+    'SEO Técnico',
+    'Desarrollo Web',
+    'Gestión de Redes Sociales',
+    'Email Marketing',
+    'Creación de Contenido',
+    'Google Business Profile',
+  ],
+};
+---
+
+<BaseLayout
+  title="Sobre Nosotros — Quiénes somos"
+  description="Somos periodistas y comunicadores. Agencia Chucao nació para hacer marketing digital con criterio editorial real — sin humo, sin promesas vacías."
+  schema={localBusinessSchema}
+>
+
+  <!-- Hero -->
+  <header class="about-hero noise-bg">
+    <div class="container about-hero-inner">
+      <p class="section-label section-label-light hero-anim-1">Sobre nosotros</p>
+      <h1 class="about-h1 hero-anim-2">
+        Marketing digital hecho por periodistas.<br />
+        <em class="accent-italic">Para negocios que merecen más que humo.</em>
+      </h1>
+    </div>
+  </header>
+
+  <!-- Founders -->
+  <section class="section-py founders-section">
+    <div class="container founders-inner">
+      <div class="founders-grid">
+
+        <div class="founder-card scroll-reveal">
+          <div class="founder-img-wrap">
+            <img
+              src="/images/founders/fabian-placeholder.webp"
+              alt="Fabián — cofundador de Agencia Chucao"
+              width="400"
+              height="400"
+              loading="lazy"
+              class="founder-img"
+            />
+          </div>
+          <div class="founder-info">
+            <h2 class="founder-name">Fabián</h2>
+            <p class="founder-role">Estrategia y desarrollo</p>
+            <p class="founder-bio">
+              Periodista de formación con más de una década en comunicación estratégica y marketing digital.
+              Construye sitios web y estrategias digitales que funcionan porque entiende que el marketing
+              efectivo empieza con un mensaje claro, no con una herramienta.
+            </p>
+          </div>
+        </div>
+
+        <div class="founder-card scroll-reveal scroll-reveal-delay-2">
+          <div class="founder-img-wrap">
+            <img
+              src="/images/founders/partner-placeholder.webp"
+              alt="Equipo Agencia Chucao"
+              width="400"
+              height="400"
+              loading="lazy"
+              class="founder-img"
+            />
+          </div>
+          <div class="founder-info">
+            <h2 class="founder-name">El equipo</h2>
+            <p class="founder-role">Contenido y comunidad</p>
+            <p class="founder-bio">
+              Un equipo pequeño con formación en periodismo, comunicación y diseño editorial.
+              Creemos que el marketing digital funciona mejor cuando está anclado en comunicación honesta
+              y criterio editorial real, no en fórmulas genéricas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission / values -->
+  <section class="section-py values-section">
+    <div class="container values-inner">
+
+      <header class="values-header scroll-reveal">
+        <p class="section-label">Por qué existimos</p>
+        <h2 class="values-title">Una agencia pequeña con un criterio claro</h2>
+      </header>
+
+      <div class="values-grid">
+
+        <div class="value-item scroll-reveal">
+          <span class="value-num">01</span>
+          <h3 class="value-name">Sin humo</h3>
+          <p class="value-desc">
+            No prometemos el primer lugar en Google la próxima semana. No garantizamos
+            viralizaciones ni seguidores mágicos. Te decimos lo que se puede hacer, lo que
+            toma tiempo y lo que no depende de nosotros.
+          </p>
+        </div>
+
+        <div class="value-item scroll-reveal scroll-reveal-delay-1">
+          <span class="value-num">02</span>
+          <h3 class="value-name">Acceso directo</h3>
+          <p class="value-desc">
+            Somos una agencia pequeña a propósito. La persona que diseña tu estrategia es la
+            misma que la ejecuta y la misma que te responde cuando tienes una duda.
+            Sin cuentas ejecutivas. Sin intermediarios.
+          </p>
+        </div>
+
+        <div class="value-item scroll-reveal scroll-reveal-delay-2">
+          <span class="value-num">03</span>
+          <h3 class="value-name">Formación editorial</h3>
+          <p class="value-desc">
+            Venimos del periodismo. Sabemos investigar, estructurar mensajes y crear contenido
+            que la gente quiere leer. Eso hace una diferencia real en SEO, redes sociales y
+            todo lo que depende de comunicar bien.
+          </p>
+        </div>
+
+        <div class="value-item scroll-reveal scroll-reveal-delay-3">
+          <span class="value-num">04</span>
+          <h3 class="value-name">Resultados, no métricas de vanidad</h3>
+          <p class="value-desc">
+            Medimos lo que importa para tu negocio: contactos generados, posiciones ganadas,
+            conversiones reales. No likes, no impresiones, no números que se ven bien en una
+            presentación pero no dicen nada.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta noise-bg">
+    <div class="container about-cta-inner scroll-reveal">
+      <h2 class="about-cta-title">¿Conversamos?</h2>
+      <p class="about-cta-lede">
+        Sin presentaciones de 40 diapositivas. Solo una conversación honesta sobre
+        lo que tu negocio necesita y si podemos ayudarte.
+      </p>
+      <a href="/contacto/" class="btn-primary about-cta-btn">Ir a contacto</a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .about-hero {
+    background: var(--color-forest);
+    color: var(--color-white);
+    padding-block: clamp(4rem, 10vw, 7rem);
+  }
+  .about-hero-inner { max-width: 72ch; }
+  .about-h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-track);
+    line-height: var(--text-h1-leading);
+    color: var(--color-white);
+    margin-top: 1.25rem;
+  }
+
+  /* Founders */
+  .founders-section { background: var(--color-sage); }
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 768px) {
+    .founders-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  }
+
+  .founder-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .founder-img-wrap {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-moss);
+  }
+  .founder-img { width: 100%; height: 100%; object-fit: cover; }
+
+  .founder-name {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    color: var(--color-forest);
+    margin-bottom: 0.25rem;
+  }
+  .founder-role {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-orange);
+    margin-bottom: 0.875rem;
+  }
+  .founder-bio {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-olive);
+    max-width: 48ch;
+  }
+
+  /* Values */
+  .values-section { background: var(--color-white); }
+  .values-header { margin-bottom: 3rem; }
+  .values-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    color: var(--color-forest);
+    margin-top: 0.5rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 640px) {
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .value-item {
+    padding: 2.5rem;
+    border-top: 1px solid var(--color-moss);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .value-item:nth-child(even) { border-left: 1px solid var(--color-moss); }
+  }
+
+  .value-num {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--color-orange);
+  }
+  .value-name {
+    font-size: var(--text-h4-size);
+    font-weight: var(--text-h4-weight);
+    color: var(--color-forest);
+  }
+  .value-desc {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-olive);
+  }
+
+  /* CTA */
+  .about-cta {
+    background: var(--color-forest);
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .about-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 60ch;
+  }
+  .about-cta-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    color: var(--color-white);
+  }
+  .about-cta-lede {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .about-cta-btn { font-size: 14px; padding: 1rem 2rem; }
+</style>

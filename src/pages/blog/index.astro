@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import BlogCard from '@components/BlogCard.astro';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+---
+
+<BaseLayout
+  title="Blog — Marketing Digital para Negocios Chilenos"
+  description="Artículos sobre SEO, redes sociales, desarrollo web y estrategia digital. Escritos por periodistas para negocios que quieren entender lo que están haciendo."
+>
+  <section class="blog-index section-py">
+    <div class="container">
+      <header class="blog-index-header scroll-reveal">
+        <p class="section-label">Blog</p>
+        <h1 class="blog-index-title">Marketing digital sin humo</h1>
+        <p class="blog-index-lede">
+          Artículos escritos con criterio periodístico sobre SEO, redes sociales, desarrollo web y estrategia digital.
+          Para negocios que quieren entender lo que están haciendo.
+        </p>
+      </header>
+
+      {posts.length > 0 ? (
+        <div class="blog-grid">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+      ) : (
+        <p class="blog-empty">Los artículos llegarán pronto.</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-index-header {
+    max-width: 60ch;
+    margin-bottom: 3.5rem;
+  }
+
+  .blog-index-title {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-track);
+    line-height: var(--text-h1-leading);
+    color: var(--color-forest);
+    margin-bottom: 1rem;
+  }
+
+  .blog-index-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede-size);
+    line-height: var(--text-lede-leading);
+    color: var(--color-olive);
+    max-width: 56ch;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .blog-empty {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--color-olive);
+    padding: 4rem 0;
+  }
+</style>

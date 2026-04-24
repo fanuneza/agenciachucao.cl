@@ -1,0 +1,317 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import PortfolioCard from '@components/PortfolioCard.astro';
+import BlogCard from '@components/BlogCard.astro';
+import { featuredServices } from '@data/services';
+import { portfolio } from '@data/portfolio';
+
+// Blog preview — 3 most recent
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+
+// Portfolio preview — first 3 real projects (no comingSoon)
+const previewProjects = portfolio.filter((p) => !p.comingSoon).slice(0, 3);
+
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
+const waMessage = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
+const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Agencia Chucao',
+  url: 'https://agenciachucao.cl',
+  telephone: '+56922218674',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Santiago',
+    addressRegion: 'Región Metropolitana',
+    addressCountry: 'CL',
+  },
+  serviceType: [
+    'Marketing Digital',
+    'SEO Técnico',
+    'Desarrollo Web',
+    'Gestión de Redes Sociales',
+    'Email Marketing',
+    'Creación de Contenido',
+    'Google Business Profile',
+  ],
+};
+
+const stats = [
+  { value: 30, suffix: '+', label: 'Clientes atendidos' },
+  { value: 50, suffix: '+', label: 'Proyectos entregados' },
+  { value: 5,  suffix: '+', label: 'Años de experiencia' },
+  { value: 100, suffix: '%', label: 'Proyectos entregados a tiempo' },
+];
+---
+
+<BaseLayout
+  title="Agencia de Marketing Digital en Chile"
+  description="Agencia Chucao — estrategia digital, SEO técnico, desarrollo web y gestión de redes sociales para negocios chilenos que quieren resultados reales."
+  schema={localBusinessSchema}
+>
+
+  <!-- 1. Hero -->
+  <Hero />
+
+  <!-- 2. Services -->
+  <section class="section-py services-section">
+    <div class="container">
+      <header class="section-header scroll-reveal">
+        <p class="section-label">Servicios</p>
+        <h2 class="section-title">Todo lo que necesitas para crecer en digital</h2>
+        <p class="section-lede">
+          Sin paquetes genéricos. Sin promesas vacías. Elige el servicio que tu negocio necesita ahora.
+        </p>
+      </header>
+
+      <div class="services-grid">
+        {featuredServices.map((service, i) => (
+          <div class="scroll-reveal" style={`transition-delay: ${i * 0.07}s`}>
+            <ServiceCard service={service} index={i} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map(({ value, suffix, label }) => (
+          <div class="stat-cell scroll-reveal">
+            <span class="stat-counter" data-target={value}>{value}</span><span class="stat-suffix">{suffix}</span>
+            <p class="stat-label">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Portfolio preview -->
+  <section class="section-py portfolio-preview">
+    <div class="container">
+      <header class="section-header scroll-reveal">
+        <p class="section-label">Portafolio</p>
+        <h2 class="section-title">Proyectos reales, resultados reales</h2>
+      </header>
+
+      <div class="portfolio-grid">
+        {previewProjects.map((project) => (
+          <div class="scroll-reveal">
+            <PortfolioCard project={project} />
+          </div>
+        ))}
+      </div>
+
+      <div class="section-cta scroll-reveal">
+        <a href="/portafolio/" class="btn-primary">Ver portafolio completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Blog preview -->
+  {recentPosts.length > 0 && (
+    <section class="section-py blog-preview">
+      <div class="container">
+        <header class="section-header scroll-reveal">
+          <p class="section-label">Blog</p>
+          <h2 class="section-title">Marketing digital sin humo</h2>
+          <p class="section-lede">
+            Artículos escritos con criterio periodístico. Para entender lo que estás haciendo, no solo para parecer que lo sabes.
+          </p>
+        </header>
+
+        <div class="blog-preview-grid">
+          {recentPosts.map((post) => (
+            <div class="scroll-reveal">
+              <BlogCard post={post} />
+            </div>
+          ))}
+        </div>
+
+        <div class="section-cta scroll-reveal">
+          <a href="/blog/" class="btn-primary">Ver todos los artículos</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 6. Bottom CTA -->
+  <section class="bottom-cta noise-bg">
+    <div class="container bottom-cta-inner scroll-reveal">
+      <div class="bottom-cta-text-wrap">
+        <p class="section-label section-label-light">¿Listo para empezar?</p>
+        <h2 class="bottom-cta-title">Hablemos de tu negocio</h2>
+        <p class="bottom-cta-lede">
+          Sin compromiso. Sin presentación de 40 diapositivas. Solo una conversación honesta sobre lo que tu negocio necesita.
+        </p>
+      </div>
+      <a
+        href={waHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary bottom-cta-btn"
+        id="bottom-cta-wa-btn"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="bottom-wa-icon">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Hablemos por WhatsApp
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  document.getElementById('bottom-cta-wa-btn')?.addEventListener('click', () => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'whatsapp_click_inline', {
+        page_url: window.location.href,
+        cta_label: 'Hablemos por WhatsApp',
+        service: 'home-bottom-cta',
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Section shared */
+  .section-header { max-width: 60ch; margin-bottom: 3rem; }
+  .section-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    line-height: var(--text-h2-leading);
+    color: var(--color-forest);
+    margin-bottom: 0.875rem;
+  }
+  .section-lede {
+    font-family: var(--font-serif);
+    font-size: var(--text-lede-size);
+    line-height: var(--text-lede-leading);
+    color: var(--color-olive);
+    max-width: 56ch;
+  }
+  .section-cta { margin-top: 2.5rem; }
+
+  /* Services */
+  .services-section { background: var(--color-sage); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px)  { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Stats */
+  .stats-section {
+    background: var(--color-forest);
+    padding-block: 4rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .stat-cell {
+    background: var(--color-forest);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .stat-suffix {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--color-orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 0.25rem;
+  }
+
+  /* Portfolio preview */
+  .portfolio-preview { background: var(--color-white); }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Blog preview */
+  .blog-preview { background: var(--color-sage); }
+  .blog-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px)  { .blog-preview-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .blog-preview-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Bottom CTA */
+  .bottom-cta {
+    background: var(--color-forest);
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .bottom-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .bottom-cta-text-wrap { max-width: 52ch; }
+  .bottom-cta-title {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    color: var(--color-white);
+    margin-block: 0.75rem 1rem;
+  }
+  .bottom-cta-lede {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .bottom-cta-btn { font-size: 14px; padding: 1rem 2rem; white-space: nowrap; }
+  .bottom-wa-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+</style>

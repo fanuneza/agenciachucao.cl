@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /politica-de-cookies/
+
+Sitemap: https://agenciachucao.cl/sitemap-index.xml

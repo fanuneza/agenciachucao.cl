@@ -1,0 +1,112 @@
+---
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+---
+
+<div class="cookie-banner" id="cookie-banner" aria-live="polite" role="region" aria-label="Aviso de cookies">
+  <div class="cookie-inner">
+    <p class="cookie-text">
+      Usamos cookies propias para analizar el tráfico de nuestra web (Google Analytics). Puedes aceptar o rechazar su uso.
+      <a href="/politica-de-cookies/" class="cookie-policy-link">Más información</a>
+    </p>
+    <div class="cookie-actions">
+      <button class="btn-primary cookie-btn" id="cookie-accept">Aceptar</button>
+      <button class="btn-ghost cookie-btn" id="cookie-reject">Rechazar</button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ ga4Id }}>
+  function getCookie(name) {
+    return document.cookie.split('; ').find((row) => row.startsWith(name + '='))?.split('=')[1];
+  }
+
+  function setCookie(name, value) {
+    document.cookie = `${name}=${value}; max-age=31536000; path=/; SameSite=Lax`;
+  }
+
+  function initGA4() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', ga4Id);
+  }
+
+  const banner = document.getElementById('cookie-banner');
+  const consent = getCookie('chucao_consent');
+
+  if (consent === 'accepted') {
+    initGA4();
+    banner?.remove();
+  } else if (consent === 'rejected') {
+    banner?.remove();
+  }
+  // else: no cookie → banner stays visible
+
+  document.getElementById('cookie-accept')?.addEventListener('click', () => {
+    setCookie('chucao_consent', 'accepted');
+    initGA4();
+    banner?.remove();
+  });
+
+  document.getElementById('cookie-reject')?.addEventListener('click', () => {
+    setCookie('chucao_consent', 'rejected');
+    banner?.remove();
+  });
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: var(--color-forest);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem var(--container-pad);
+  }
+
+  .cookie-inner {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cookie-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .cookie-policy-link {
+    color: var(--color-orange);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-left: 0.375rem;
+    transition: color 0.15s;
+  }
+  .cookie-policy-link:hover { color: var(--color-white); }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-btn {
+    font-size: 12px;
+    padding: 0.625rem 1.25rem;
+  }
+</style>
