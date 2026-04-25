@@ -31,7 +31,7 @@ Esto incluye estrategia editorial (definimos qué publicar, para quién y con qu
 Lo que no hacemos: prometerte números mágicos en 30 días. Las redes sociales bien gestionadas construyen presencia con el tiempo.`,
     cta: {
       primary: 'Cotiza la gestión de tus redes',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20cotizar%20la%20gesti%C3%B3n%20de%20redes%20sociales%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20cotizar%20la%20gesti%C3%B3n%20de%20redes%20sociales%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -52,7 +52,7 @@ Con ese diagnóstico en mano, construimos una estrategia de posicionamiento basa
 El trabajo incluye auditoría técnica con prioridades claras, estrategia de palabras clave, optimización on-page y seguimiento con reportes que explican lo que está cambiando y por qué.`,
     cta: {
       primary: 'Pide tu auditoría SEO gratuita',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20una%20auditor%C3%ADa%20SEO%20gratuita%20para%20mi%20sitio%20web%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20una%20auditor%C3%ADa%20SEO%20gratuita%20para%20mi%20sitio%20web%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -73,7 +73,7 @@ El trabajo incluye diseño y estructura (páginas organizadas en torno a lo que 
 No subcontratamos el desarrollo. Quien habla contigo es quien construye tu sitio.`,
     cta: {
       primary: 'Cuéntanos tu proyecto',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Quiero%20conversar%20sobre%20un%20proyecto%20de%20desarrollo%20web%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20quiero%20conversar%20sobre%20un%20proyecto%20de%20desarrollo%20web%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -92,7 +92,7 @@ El resultado es invisible pero costoso. Google interpreta una ficha descuidada c
 El trabajo incluye auditoría y configuración inicial (categorías, información de contacto, horarios), optimización de contenido (descripción, servicios detallados, categorías principales y secundarias), gestión de reseñas con protocolo de respuesta, publicaciones y actualizaciones periódicas, y seguimiento de métricas de visibilidad local.`,
     cta: {
       primary: 'Mejora tu ficha de Google hoy',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20optimizar%20mi%20perfil%20de%20Google%20Business%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20optimizar%20mi%20perfil%20de%20Google%20Business%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -113,7 +113,7 @@ El trabajo incluye artículos de blog optimizados para SEO, textos de páginas w
 Lo que no hacemos: contenido generado automáticamente, artículos de relleno ni textos que podrían pertenecer a cualquier negocio del mundo.`,
     cta: {
       primary: 'Solicita una muestra de contenido',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20solicitar%20una%20muestra%20de%20contenido%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20solicitar%20una%20muestra%20de%20contenido%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -134,7 +134,7 @@ El trabajo incluye auditoría y estrategia, gestión de lista y segmentación (u
 El email bien hecho es uno de los pocos canales digitales que no depende de un algoritmo para llegar a tu audiencia.`,
     cta: {
       primary: 'Cotiza tu estrategia de email',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20cotizar%20una%20estrategia%20de%20email%20marketing%20con%20Agencia%20Chucao.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20cotizar%20una%20estrategia%20de%20email%20marketing%20con%20Agencia%20Chucao.',
       secondary: 'Ver portafolio',
     },
     featured: true,
@@ -155,7 +155,7 @@ El trabajo incluye auditoría de campañas existentes, configuración estratégi
 Lo que no prometemos: un costo por lead fijo antes de conocer tu negocio. Cualquier agencia que te dé ese número sin hacer preguntas te está mintiendo.`,
     cta: {
       primary: 'Revisa si tus avisos están funcionando',
-      whatsappMessage: 'Hola%20%F0%9F%91%8B%20Me%20interesa%20que%20Agencia%20Chucao%20revise%20el%20rendimiento%20de%20mi%20publicidad%20en%20Google%20o%20Meta.',
+      whatsappMessage: 'Hola%2C%20me%20interesa%20que%20Agencia%20Chucao%20revise%20el%20rendimiento%20de%20mi%20publicidad%20en%20Google%20o%20Meta.',
       secondary: 'Ver portafolio',
     },
     featured: false,

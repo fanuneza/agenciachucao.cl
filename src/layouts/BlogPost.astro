@@ -105,7 +105,7 @@ const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
 
       <aside class="post-aside">
         <!-- Service CTA sidebar -->
-        <div class="aside-cta scroll-reveal">
+        <div class="aside-cta">
           <p class="aside-cta-label">¿Te interesa este servicio?</p>
           <p class="aside-cta-text">{ctaLabel}</p>
           <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="btn-primary aside-cta-btn">
@@ -270,7 +270,14 @@ const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
   }
 
   /* Aside */
-  .post-aside { display: flex; flex-direction: column; gap: 1.5rem; }
+  .post-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-self: start;
+    position: sticky;
+    top: 5.5rem;
+  }
 
   .aside-cta {
     background: var(--color-sage);
@@ -280,8 +287,6 @@ const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
-    position: sticky;
-    top: 5rem;
   }
   .aside-cta-label {
     font-family: var(--font-sans);

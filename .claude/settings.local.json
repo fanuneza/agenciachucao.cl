@@ -17,7 +17,8 @@
       "Bash(cp __TRACKED_VAR__/montserrat/files/montserrat-latin-700-normal.woff2 __TRACKED_VAR__/)",
       "Bash(cp __TRACKED_VAR__/montserrat/files/montserrat-latin-800-normal.woff2 __TRACKED_VAR__/)",
       "Bash(grep -rn '#[0-9A-Fa-f]\\\\{3,6\\\\}' src/ --include=\"*.css\" --include=\"*.astro\" --include=\"*.ts\")",
-      "Bash(node *)"
+      "Bash(node *)",
+      "mcp__jcodemunch__register_edit"
     ]
   }
 }

@@ -18,7 +18,7 @@ const recentPosts = allPosts
 const previewProjects = portfolio.filter((p) => !p.comingSoon).slice(0, 3);
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waMessage = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
+const waMessage = 'Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
 const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
 
 const localBusinessSchema = {
@@ -45,10 +45,10 @@ const localBusinessSchema = {
 };
 
 const stats = [
-  { value: 30, suffix: '+', label: 'Clientes atendidos' },
-  { value: 50, suffix: '+', label: 'Proyectos entregados' },
-  { value: 5,  suffix: '+', label: 'Años de experiencia' },
-  { value: 100, suffix: '%', label: 'Proyectos entregados a tiempo' },
+  { value: 14, suffix: '', label: 'Años en tecnología digital' },
+  { value: 10, suffix: '', label: 'Años en medios de comunicación' },
+  { value: 5,  suffix: '', label: 'Proyectos entregados' },
+  { value: 4,  suffix: '', label: 'Clientes atendidos' },
 ];
 ---
 
@@ -93,6 +93,9 @@ const stats = [
           </div>
         ))}
       </div>
+      <p class="stats-context scroll-reveal">
+        Periodistas de la Pontificia Universidad Católica de Chile con trayectoria en Prey, ArchDaily, TVN y La Tercera.
+      </p>
     </div>
   </section>
 
@@ -257,6 +260,15 @@ const stats = [
     margin-top: 0.25rem;
   }
 
+  .stats-context {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+  }
+
   /* Portfolio preview */
   .portfolio-preview { background: var(--color-white); }
   .portfolio-grid {
@@ -270,6 +282,7 @@ const stats = [
   @media (min-width: 1024px) {
     .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
   }
+  .portfolio-grid > .scroll-reveal { display: flex; flex-direction: column; }
 
   /* Blog preview */
   .blog-preview { background: var(--color-sage); }
@@ -280,6 +293,7 @@ const stats = [
   }
   @media (min-width: 640px)  { .blog-preview-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1024px) { .blog-preview-grid { grid-template-columns: repeat(3, 1fr); } }
+  .blog-preview-grid > .scroll-reveal { display: flex; flex-direction: column; }
 
   /* Bottom CTA */
   .bottom-cta {

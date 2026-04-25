@@ -13,17 +13,19 @@ const posts = allPosts.sort(
   title="Blog — Marketing Digital para Negocios Chilenos"
   description="Artículos sobre SEO, redes sociales, desarrollo web y estrategia digital. Escritos por periodistas para negocios que quieren entender lo que están haciendo."
 >
-  <section class="blog-index section-py">
-    <div class="container">
-      <header class="blog-index-header scroll-reveal">
-        <p class="section-label">Blog</p>
-        <h1 class="blog-index-title">Marketing digital sin humo</h1>
-        <p class="blog-index-lede">
-          Artículos escritos con criterio periodístico sobre SEO, redes sociales, desarrollo web y estrategia digital.
-          Para negocios que quieren entender lo que están haciendo.
-        </p>
-      </header>
+  <header class="blog-hero noise-bg">
+    <div class="container blog-hero-inner">
+      <p class="section-label section-label-light hero-anim-1">Blog</p>
+      <h1 class="blog-h1 hero-anim-2">Marketing digital sin humo</h1>
+      <p class="blog-lede hero-anim-3">
+        Artículos escritos con criterio periodístico sobre SEO, redes sociales, desarrollo web y estrategia digital.
+        Para negocios que quieren entender lo que están haciendo.
+      </p>
+    </div>
+  </header>
 
+  <section class="blog-body section-py">
+    <div class="container">
       {posts.length > 0 ? (
         <div class="blog-grid">
           {posts.map((post) => <BlogCard post={post} />)}
@@ -36,27 +38,31 @@ const posts = allPosts.sort(
 </BaseLayout>
 
 <style>
-  .blog-index-header {
-    max-width: 60ch;
-    margin-bottom: 3.5rem;
+  .blog-hero {
+    background: var(--color-forest);
+    color: var(--color-white);
+    padding-block: clamp(4rem, 8vw, 6rem);
   }
+  .blog-hero-inner { max-width: 64ch; }
 
-  .blog-index-title {
-    font-size: var(--text-h1-size);
+  .blog-h1 {
+    font-size: clamp(40px, 5vw, 68px);
     font-weight: var(--text-h1-weight);
     letter-spacing: var(--text-h1-track);
     line-height: var(--text-h1-leading);
-    color: var(--color-forest);
-    margin-bottom: 1rem;
+    color: var(--color-white);
+    margin-block: 1.25rem 1rem;
   }
 
-  .blog-index-lede {
+  .blog-lede {
     font-family: var(--font-serif);
     font-size: var(--text-lede-size);
     line-height: var(--text-lede-leading);
-    color: var(--color-olive);
-    max-width: 56ch;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 54ch;
   }
+
+  .blog-body { background: var(--color-sage); }
 
   .blog-grid {
     display: grid;

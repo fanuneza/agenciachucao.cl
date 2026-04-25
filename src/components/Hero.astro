@@ -1,6 +1,6 @@
 ---
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const message = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
+const message = 'Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
 const waHref = `https://wa.me/${waNumber}?text=${message}`;
 ---
 
@@ -13,13 +13,12 @@ const waHref = `https://wa.me/${waNumber}?text=${message}`;
 
       <h1 class="hero-h1 hero-anim-2">
         Presencia digital<br />
-        que <em class="accent-italic">trae clientes</em>,<br />
+        que <em class="accent-italic">trae clientes</em><br />
         no solo likes.
       </h1>
 
       <p class="hero-lede hero-anim-3">
-        Estrategia de contenido, SEO técnico y desarrollo web para negocios chilenos
-        que quieren resultados reales. Sin humo. Sin métricas de vanidad.
+        Gestión de redes sociales, estrategia de contenido, SEO técnico y desarrollo web para negocios chilenos que quieren resultados reales. Sin humo.
       </p>
 
       <div class="hero-actions hero-anim-4">
@@ -93,7 +92,7 @@ const waHref = `https://wa.me/${waNumber}?text=${message}`;
   .hero-content { max-width: 64ch; }
 
   .hero-h1 {
-    font-size: var(--text-h1-size);
+    font-size: clamp(40px, 5vw, 68px);
     font-weight: var(--text-h1-weight);
     letter-spacing: var(--text-h1-track);
     line-height: var(--text-h1-leading);

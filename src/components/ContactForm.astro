@@ -1,6 +1,6 @@
 ---
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waFallback = `https://wa.me/${waNumber}?text=Hola%20%F0%9F%91%8B%20Intent%C3%A9%20contactarme%20por%20el%20formulario%20pero%20tuve%20un%20problema.%20%C2%BFPodr%C3%ADan%20ayudarme%3F`;
+const waFallback = `https://wa.me/${waNumber}?text=Hola%2C%20intent%C3%A9%20contactarme%20por%20el%20formulario%20pero%20tuve%20un%20problema.%20%C2%BFPodr%C3%ADan%20ayudarme%3F`;
 const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
@@ -38,7 +38,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="sitio_web">Sitio web de tu negocio</label>
-    <input class="form-field" type="url" id="sitio_web" name="sitio_web" autocomplete="url" placeholder="https://tunegocio.cl" required />
+    <input class="form-field" type="text" id="sitio_web" name="sitio_web" autocomplete="url" placeholder="tunegocio.cl" required />
     <span class="field-error" id="err-sitio_web"></span>
   </div>
 
@@ -50,10 +50,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 </form>
 
 <div class="form-wa-fallback" id="form-wa-fallback" hidden>
-  <p class="fallback-text">¿Problemas con el formulario?</p>
-  <a href={waFallback} target="_blank" rel="noopener noreferrer" class="btn-primary">
-    Escríbenos por WhatsApp
-  </a>
+  <p class="fallback-text">
+    ¿Problemas con el formulario? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link">Escríbenos por WhatsApp</a>.
+  </p>
 </div>
 
 <script>
@@ -100,8 +99,8 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
     const sitio = (data.get('sitio_web') as string)?.trim();
     if (!sitio) { showError('sitio_web', 'Por favor ingresa la URL de tu sitio.'); valid = false; }
-    else if (!/^https?:\/\/.+/.test(sitio)) {
-      showError('sitio_web', 'La URL debe comenzar con http:// o https://'); valid = false;
+    else if (!/^(https?:\/\/)?[^\s]+\.[^\s]{2,}$/.test(sitio)) {
+      showError('sitio_web', 'La URL no parece válida. Ejemplo: tunegocio.cl'); valid = false;
     }
 
     return valid;
@@ -210,14 +209,17 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   .form-wa-fallback {
     margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
   }
   .fallback-text {
     font-family: var(--font-sans);
     font-size: 13px;
     color: var(--color-olive);
   }
+  .fallback-link {
+    color: var(--color-forest);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+  }
+  .fallback-link:hover { color: var(--color-orange); }
 </style>
