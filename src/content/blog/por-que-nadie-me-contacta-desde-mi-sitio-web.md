@@ -64,7 +64,7 @@ Una [auditoría técnica de tu sitio](/servicios/seo-tecnico-y-posicionamiento/)
 
 En Chucao hacemos este proceso con cada cliente que llega con un sitio que "no funciona". La mayoría de las veces, los cambios necesarios no son una reconstrucción completa sino ajustes específicos en los puntos donde se pierde la atención. Lo hemos visto con abogados, consultores y coaches que tenían buenos sitios visualmente pero con problemas de fondo que ningún diseñador les había señalado.
 
-> **¿Tu sitio recibe visitas pero no genera contactos?** Si llevas semanas o meses mirando un sitio que no te trae nada, ya es momento de entender exactamente por qué. [Cuéntanos tu caso por WhatsApp](https://wa.me/56922218674?text=Hola%20%F0%9F%91%8B%20Me%20interesa%20solicitar%20una%20auditor%C3%ADa%20de%20mi%20sitio%20web%20con%20Agencia%20Chucao.) — una conversación de 20 minutos suele ser suficiente para tener un diagnóstico claro.
+> **¿Tu sitio recibe visitas pero no genera contactos?** Si llevas semanas o meses mirando un sitio que no te trae nada, ya es momento de entender exactamente por qué. [Cuéntanos tu caso por WhatsApp](https://wa.me/56922218674?text=Hola%2C%20me%20interesa%20solicitar%20una%20auditor%C3%ADa%20de%20mi%20sitio%20web%20con%20Agencia%20Chucao.) — una conversación de 20 minutos suele ser suficiente para tener un diagnóstico claro.
 
 ---
 

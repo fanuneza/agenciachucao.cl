@@ -41,6 +41,10 @@ const ordinal = String(index + 1).padStart(2, '0');
     transform: translateY(-4px);
     box-shadow: 0 20px 48px rgba(28, 46, 26, 0.1);
   }
+  .service-card:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
 
   .svc-bar {
     position: absolute;

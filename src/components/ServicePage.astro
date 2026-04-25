@@ -16,7 +16,10 @@ const secondaryHref = '/portafolio/';
 const problemaParagraphs = service.problema.split(/\n\n+/).filter(Boolean);
 const solucionParagraphs = service.solucion.split(/\n\n+/).filter(Boolean);
 
-const pageDescription = `${service.headline} ${solucionParagraphs[0] ?? ''}`.slice(0, 158) + '…';
+const rawDesc = `${service.headline} ${solucionParagraphs[0] ?? ''}`;
+const pageDescription = rawDesc.length > 158
+  ? rawDesc.slice(0, rawDesc.lastIndexOf(' ', 158)) + '…'
+  : rawDesc;
 ---
 
 <BaseLayout title={service.name} description={pageDescription}>
@@ -126,7 +129,8 @@ const pageDescription = `${service.headline} ${solucionParagraphs[0] ?? ''}`.sli
   .svc-hero {
     background: var(--color-forest);
     color: var(--color-white);
-    padding-block: clamp(4rem, 10vw, 7rem);
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: clamp(3.5rem, 8vw, 6rem);
   }
   .svc-hero-inner { max-width: 72ch; }
 

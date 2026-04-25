@@ -29,7 +29,7 @@ const serviceToId: Record<string, string> = {
 };
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const defaultMessage = 'Hola%20%F0%9F%91%8B%20Vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F';
+const defaultMessage = 'Hola%2C%20le%C3%AD%20un%20art%C3%ADculo%20en%20el%20blog%20de%20Agencia%20Chucao%20y%20tengo%20una%20consulta%20sobre%20marketing%20digital%20para%20mi%20negocio.';
 
 const serviceId = serviceToId[entry.data.service ?? 'default'];
 const matchedService = serviceId ? services.find((s) => s.id === serviceId) : null;
@@ -167,7 +167,8 @@ const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
   .post-header {
     background: var(--color-forest);
     color: var(--color-white);
-    padding-block: var(--section-pad-md);
+    padding-top: var(--section-pad-sm);
+    padding-bottom: var(--section-pad-md);
   }
   .post-header-inner { max-width: 72ch; }
 

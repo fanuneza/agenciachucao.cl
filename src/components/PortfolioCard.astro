@@ -96,6 +96,10 @@ const { project } = Astro.props;
     transform: translateY(-4px);
     box-shadow: 0 20px 48px rgba(28, 46, 26, 0.1);
   }
+  .port-card:not(.port-card--soon):focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
 
   /* Soon card */
   .port-card--soon {

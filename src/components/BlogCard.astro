@@ -60,6 +60,10 @@ const date = post.data.publishDate.toLocaleDateString('es-CL', {
     transform: translateY(-4px);
     box-shadow: 0 20px 48px rgba(28, 46, 26, 0.08);
   }
+  .blog-card:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 2px;
+  }
 
   .blog-card-meta {
     display: flex;

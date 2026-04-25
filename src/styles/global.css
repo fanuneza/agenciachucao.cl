@@ -170,7 +170,7 @@ a { color: inherit; }
   color: var(--color-orange);
   line-height: 1;
   letter-spacing: -0.02em;
-  tabular-nums: tabular;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Buttons ────────────────────────────────────────────── */
@@ -226,6 +226,7 @@ a { color: inherit; }
   transform: translateY(-2px);
 }
 .btn-ghost:active { transform: translateY(0) scale(0.98); }
+.btn-ghost:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.6); outline-offset: 3px; }
 
 /* ── Text utilities ─────────────────────────────────────── */
 .eyebrow {
@@ -310,6 +311,23 @@ a { color: inherit; }
 .hero-anim-3 { animation: fadeUp 0.9s var(--ease-spring) 0.35s both; }
 .hero-anim-4 { animation: fadeUp 0.9s var(--ease-spring) 0.50s both; }
 .hero-anim-5 { animation: fadeUp 0.9s var(--ease-spring) 0.65s both; }
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-anim-1,
+  .hero-anim-2,
+  .hero-anim-3,
+  .hero-anim-4,
+  .hero-anim-5 {
+    animation: none;
+    opacity: 1;
+  }
+}
 
 /* ── Form inputs ────────────────────────────────────────── */
 .form-field {

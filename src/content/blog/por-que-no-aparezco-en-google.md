@@ -60,7 +60,7 @@ Lo que sí es cierto es que **cada semana que pasa sin trabajar el SEO es una se
 
 Cuando trabajamos [SEO técnico y posicionamiento](/servicios/seo-tecnico-y-posicionamiento/) con un cliente en Chucao, lo primero que hacemos es una auditoría técnica del sitio y de su ficha de Google. Eso nos da un mapa claro de dónde están los problemas reales antes de tocar nada. No tiene sentido publicar contenido o pedir reseñas si el sitio tiene errores de base que Google ya detectó.
 
-> **¿Llevas tiempo siendo invisible en Google?** Una auditoría SEO te da una respuesta concreta, sin diagnósticos vagos ni promesas sin fundamento. [Pídela gratis por WhatsApp](https://wa.me/56922218674?text=Hola%20%F0%9F%91%8B%20Me%20interesa%20una%20auditor%C3%ADa%20SEO%20gratuita%20para%20mi%20sitio%20web%20con%20Agencia%20Chucao.) — revisamos tu sitio y te decimos exactamente qué está pasando.
+> **¿Llevas tiempo siendo invisible en Google?** Una auditoría SEO te da una respuesta concreta, sin diagnósticos vagos ni promesas sin fundamento. [Pídela gratis por WhatsApp](https://wa.me/56922218674?text=Hola%2C%20me%20interesa%20una%20auditor%C3%ADa%20SEO%20gratuita%20para%20mi%20sitio%20web%20con%20Agencia%20Chucao.) — revisamos tu sitio y te decimos exactamente qué está pasando.
 
 ---
 

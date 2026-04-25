@@ -54,7 +54,7 @@ const stats = [
 
 <BaseLayout
   title="Agencia de Marketing Digital en Chile"
-  description="Agencia Chucao — estrategia digital, SEO técnico, desarrollo web y gestión de redes sociales para negocios chilenos que quieren resultados reales."
+  description="Estrategia digital, SEO técnico, desarrollo web y gestión de redes sociales para negocios chilenos que quieren resultados reales."
   schema={localBusinessSchema}
 >
 
@@ -88,7 +88,7 @@ const stats = [
       <div class="stats-grid">
         {stats.map(({ value, suffix, label }) => (
           <div class="stat-cell scroll-reveal">
-            <span class="stat-counter" data-target={value}>{value}</span><span class="stat-suffix">{suffix}</span>
+            <span class="stat-counter" data-target={value}>0</span><span class="stat-suffix">{suffix}</span>
             <p class="stat-label">{label}</p>
           </div>
         ))}
