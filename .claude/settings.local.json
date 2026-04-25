@@ -20,7 +20,10 @@
       "Bash(node *)",
       "mcp__jcodemunch__register_edit",
       "mcp__jcodemunch__get_repo_outline",
-      "mcp__jcodemunch__index_folder"
+      "mcp__jcodemunch__index_folder",
+      "mcp__jcodemunch__get_symbol_source",
+      "Bash(npx astro *)",
+      "Bash(npm info *)"
     ]
   }
 }

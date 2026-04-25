@@ -29,7 +29,7 @@ const date = post.data.publishDate.toLocaleDateString('es-CL', {
 });
 ---
 
-<a href={`/blog/${post.slug}/`} class="blog-card">
+<a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="blog-card">
   <div class="blog-card-meta">
     <span class="blog-card-badge">{badge}</span>
     <span class="blog-card-date">{date}</span>

@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import SocialShare from '@components/SocialShare.astro';
 import BlogCard from '@components/BlogCard.astro';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 // Reading time
 const wordCount = entry.body.split(/\s+/).filter(Boolean).length;
@@ -40,12 +40,12 @@ const ctaHref = `https://wa.me/${waNumber}?text=${ctaMessage}`;
 
 // Related articles
 const allPosts = await getCollection('blog');
-const otherPosts = allPosts.filter((p) => p.slug !== entry.slug);
+const otherPosts = allPosts.filter((p) => p.id !== entry.id);
 
 let relatedPosts: CollectionEntry<'blog'>[] = [];
 if (entry.data.relatedSlugs?.length) {
   relatedPosts = entry.data.relatedSlugs
-    .map((slug) => otherPosts.find((p) => p.slug === slug))
+    .map((slug) => otherPosts.find((p) => p.id.replace(/\.md$/, '') === slug))
     .filter((p): p is CollectionEntry<'blog'> => p !== undefined)
     .slice(0, 3);
 } else if (entry.data.tags?.length) {
@@ -72,7 +72,7 @@ const publishDateFormatted = entry.data.publishDate.toLocaleDateString('es-CL', 
   day: 'numeric',
 });
 
-const currentUrl = new URL(`/blog/${entry.slug}/`, Astro.site).href;
+const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site).href;
 ---
 
 <BaseLayout
