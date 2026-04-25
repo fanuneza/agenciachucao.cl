@@ -13,7 +13,8 @@ const current = Astro.url.pathname;
   <div class="container nav-inner">
     <!-- Wordmark -->
     <a href="/" class="wordmark" aria-label="Agencia Chucao — inicio">
-      <span class="wordmark-light">Agencia</span><span class="wordmark-bold">Chucao</span>
+      <img src="/images/assets/chucao-logo.svg" alt="" aria-hidden="true" class="wordmark-logo" width="28" height="28" />
+      <span class="wordmark-name"><span class="wordmark-light">agencia</span><span class="wordmark-bold">chucao</span></span>
     </a>
 
     <!-- Desktop nav -->
@@ -89,21 +90,28 @@ const current = Astro.url.pathname;
   /* Wordmark */
   .wordmark {
     display: flex;
-    align-items: baseline;
-    gap: 0;
+    align-items: center;
+    gap: 0.5rem;
     text-decoration: none;
     flex-shrink: 0;
   }
+  .wordmark-logo {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    display: block;
+  }
+  .wordmark-name { display: inline; }
   .wordmark-light {
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 17px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 0.75);
   }
   .wordmark-bold {
     font-family: var(--font-sans);
     font-weight: 800;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--color-orange);
   }
 
