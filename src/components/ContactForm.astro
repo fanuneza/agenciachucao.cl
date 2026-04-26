@@ -10,15 +10,17 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   <!-- Honeypot — must stay empty -->
   <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
+  <p class="form-note">Todos los campos son obligatorios.</p>
+
   <div class="form-row">
     <div class="form-group">
-      <label class="field-label" for="nombre">Nombre completo</label>
-      <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" required />
+      <label class="field-label" for="nombre">Tu nombre y apellido</label>
+      <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Eloísa Díaz" required />
       <span class="field-error" id="err-nombre"></span>
     </div>
     <div class="form-group">
       <label class="field-label" for="email">Correo electrónico</label>
-      <input class="form-field" type="email" id="email" name="email" autocomplete="email" required />
+      <input class="form-field" type="email" id="email" name="email" autocomplete="email" placeholder="nombre@tunegocio.cl" required />
       <span class="field-error" id="err-email"></span>
     </div>
   </div>
@@ -37,9 +39,37 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   </div>
 
   <div class="form-group">
-    <label class="field-label" for="sitio_web">Sitio web de tu negocio</label>
-    <input class="form-field" type="text" id="sitio_web" name="sitio_web" autocomplete="url" placeholder="tunegocio.cl" required />
+    <label class="field-label" for="sitio_web">Sitio web o nombre de tu negocio</label>
+    <input class="form-field" type="text" id="sitio_web" name="sitio_web" autocomplete="url" placeholder='tunegocio.cl o "Ferretería González"' required />
     <span class="field-error" id="err-sitio_web"></span>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label" for="servicio">¿Qué servicio te interesa?</label>
+    <select class="form-field form-select" id="servicio" name="servicio" required>
+      <option value="">Selecciona una opción…</option>
+      <option value="Gestión de Redes Sociales">Gestión de Redes Sociales</option>
+      <option value="SEO Técnico y Posicionamiento">SEO Técnico y Posicionamiento</option>
+      <option value="Desarrollo Web">Desarrollo Web</option>
+      <option value="Optimización de Google Business Profile">Optimización de Google Business Profile</option>
+      <option value="Creación de Contenido">Creación de Contenido</option>
+      <option value="Email Marketing">Email Marketing</option>
+      <option value="No estoy seguro/a">No estoy seguro/a</option>
+    </select>
+    <span class="field-error" id="err-servicio"></span>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label" for="mensaje">¿En qué podemos ayudarte?</label>
+    <textarea
+      class="form-field form-textarea"
+      id="mensaje"
+      name="mensaje"
+      rows="4"
+      placeholder="Cuéntanos brevemente en qué etapa está tu negocio y qué quieres mejorar."
+      required
+    ></textarea>
+    <span class="field-error" id="err-mensaje"></span>
   </div>
 
   <div id="form-status" class="form-status" aria-live="polite"></div>
@@ -98,10 +128,13 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     if (!cargo) { showError('cargo', 'Por favor indica tu cargo.'); valid = false; }
 
     const sitio = (data.get('sitio_web') as string)?.trim();
-    if (!sitio) { showError('sitio_web', 'Por favor ingresa la URL de tu sitio.'); valid = false; }
-    else if (!/^(https?:\/\/)?[^\s]+\.[^\s]{2,}$/.test(sitio)) {
-      showError('sitio_web', 'La URL no parece válida. Ejemplo: tunegocio.cl'); valid = false;
-    }
+    if (!sitio) { showError('sitio_web', 'Por favor ingresa tu sitio web o el nombre de tu negocio.'); valid = false; }
+
+    const servicio = (data.get('servicio') as string)?.trim();
+    if (!servicio) { showError('servicio', 'Por favor selecciona el servicio que te interesa.'); valid = false; }
+
+    const mensaje = (data.get('mensaje') as string)?.trim();
+    if (!mensaje) { showError('mensaje', 'Por favor cuéntanos en qué podemos ayudarte.'); valid = false; }
 
     return valid;
   }
@@ -202,6 +235,26 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     background: var(--color-orange-pale);
     color: var(--color-orange-dark);
     border: 1px solid var(--color-orange);
+  }
+
+  .form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6b57' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .form-note {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-olive);
+    margin-bottom: 0.25rem;
   }
 
   .form-submit { align-self: flex-start; font-size: 14px; padding: 1rem 2rem; }

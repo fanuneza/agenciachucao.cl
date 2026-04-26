@@ -88,7 +88,9 @@ const stats = [
       <div class="stats-grid">
         {stats.map(({ value, suffix, label }) => (
           <div class="stat-cell scroll-reveal">
-            <span class="stat-counter" data-target={value}>0</span><span class="stat-suffix">{suffix}</span>
+            <div class="stat-number-row">
+              <span class="stat-counter" data-target={value}>0</span><span class="stat-suffix">{suffix}</span>
+            </div>
             <p class="stat-label">{label}</p>
           </div>
         ))}
@@ -243,6 +245,12 @@ const stats = [
     align-items: center;
     gap: 0.5rem;
   }
+  .stat-number-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.05em;
+  }
+
   .stat-suffix {
     font-family: var(--font-sans);
     font-weight: 900;
