@@ -1,7 +1,8 @@
 ---
-import ServicePage from '@components/ServicePage.astro';
-import { getService } from '@data/services';
+import ServicePage from "@components/ServicePage.astro";
+import { getService } from "@data/services";
 
-const service = getService('desarrollo-web')!;
+const service = getService("desarrollo-web")!;
 ---
+
 <ServicePage service={service} />

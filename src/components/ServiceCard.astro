@@ -1,5 +1,5 @@
 ---
-import type { Service } from '@data/services';
+import type { Service } from "@data/services";
 
 interface Props {
   service: Service;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { service, index } = Astro.props;
-const ordinal = String(index + 1).padStart(2, '0');
+const ordinal = String(index + 1).padStart(2, "0");
 ---
 
 <a href={`/servicios/${service.id}/`} class="service-card">
@@ -35,7 +35,9 @@ const ordinal = String(index + 1).padStart(2, '0');
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    transition:
+      transform 0.3s var(--ease-spring),
+      box-shadow 0.3s;
   }
   .service-card:hover {
     transform: translateY(-4px);
@@ -55,7 +57,9 @@ const ordinal = String(index + 1).padStart(2, '0');
     background: var(--color-orange);
     transition: background-color 0.3s;
   }
-  .service-card:hover .svc-bar { background: var(--color-forest); }
+  .service-card:hover .svc-bar {
+    background: var(--color-forest);
+  }
 
   .svc-ghost-num {
     position: absolute;
@@ -108,8 +112,14 @@ const ordinal = String(index + 1).padStart(2, '0');
     margin-top: 0.75rem;
     transition: gap 0.2s;
   }
-  .service-card:hover .svc-link { gap: 0.65rem; }
+  .service-card:hover .svc-link {
+    gap: 0.65rem;
+  }
 
-  .svc-arrow { transition: transform 0.2s var(--ease-spring); }
-  .service-card:hover .svc-arrow { transform: translateX(3px); }
+  .svc-arrow {
+    transition: transform 0.2s var(--ease-spring);
+  }
+  .service-card:hover .svc-arrow {
+    transform: translateX(3px);
+  }
 </style>

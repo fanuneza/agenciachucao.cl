@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -9,7 +9,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 >
   <article class="cookie-policy section-py">
     <div class="container cookie-policy-inner">
-
       <header class="policy-header">
         <p class="section-label">Legal</p>
         <h1 class="policy-title">Política de Cookies</h1>
@@ -17,12 +16,11 @@ import BaseLayout from '@layouts/BaseLayout.astro';
       </header>
 
       <div class="policy-body">
-
         <section class="policy-section">
           <h2>¿Qué son las cookies?</h2>
           <p>
-            Las cookies son pequeños archivos de texto que un sitio web guarda en tu navegador
-            cuando lo visitas. Se usan para recordar tus preferencias y analizar el uso del sitio.
+            Las cookies son pequeños archivos de texto que un sitio web guarda en tu navegador cuando lo visitas. Se
+            usan para recordar tus preferencias y analizar el uso del sitio.
           </p>
         </section>
 
@@ -47,7 +45,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
                 </tr>
                 <tr>
                   <td><code>_ga</code>, <code>_ga_*</code></td>
-                  <td>Google Analytics 4 — analiza el tráfico de forma agregada (páginas vistas, duración de visita, etc.). Solo se activa si aceptas cookies.</td>
+                  <td
+                    >Google Analytics 4 — analiza el tráfico de forma agregada (páginas vistas, duración de visita,
+                    etc.). Solo se activa si aceptas cookies.</td
+                  >
                   <td>Hasta 2 años</td>
                   <td>Analítica (opcional)</td>
                 </tr>
@@ -63,33 +64,37 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <strong>Aceptar</strong> o <strong>Rechazar</strong> las cookies de analítica.
           </p>
           <ul>
-            <li><strong>Si aceptas:</strong> activamos Google Analytics para entender cómo se usa el sitio. Tu elección se guarda en la cookie <code>chucao_consent=accepted</code>.</li>
-            <li><strong>Si rechazas:</strong> Google Analytics no se activa. Tu elección se guarda en <code>chucao_consent=rejected</code>.</li>
+            <li>
+              <strong>Si aceptas:</strong> activamos Google Analytics para entender cómo se usa el sitio. Tu elección se guarda
+              en la cookie <code>chucao_consent=accepted</code>.
+            </li>
+            <li>
+              <strong>Si rechazas:</strong> Google Analytics no se activa. Tu elección se guarda en <code
+                >chucao_consent=rejected</code
+              >.
+            </li>
           </ul>
-          <p>
-            En ningún caso compartimos datos personales con terceros con fines publicitarios.
-          </p>
+          <p>En ningún caso compartimos datos personales con terceros con fines publicitarios.</p>
         </section>
 
         <section class="policy-section">
           <h2>Retirar o cambiar tu consentimiento</h2>
           <p>
             Puedes cambiar tu elección en cualquier momento haciendo clic en
-            <strong>"Gestionar preferencias de cookies"</strong> en el pie de página de este sitio.
-            Esto eliminará la cookie <code>chucao_consent</code> y volverá a mostrarte el aviso.
+            <strong>"Gestionar preferencias de cookies"</strong> en el pie de página de este sitio. Esto eliminará la cookie
+            <code>chucao_consent</code> y volverá a mostrarte el aviso.
           </p>
           <p>
-            También puedes eliminar todas las cookies desde la configuración de privacidad
-            de tu navegador (Chrome, Firefox, Safari, Edge).
+            También puedes eliminar todas las cookies desde la configuración de privacidad de tu navegador (Chrome,
+            Firefox, Safari, Edge).
           </p>
         </section>
 
         <section class="policy-section">
           <h2>Base legal (Ley 21.719 — Chile)</h2>
           <p>
-            Esta política cumple con los requisitos de la Ley N° 21.719 sobre protección
-            de datos personales de Chile. Las cookies de analítica solo se activan con
-            tu consentimiento explícito.
+            Esta política cumple con los requisitos de la Ley N° 21.719 sobre protección de datos personales de Chile.
+            Las cookies de analítica solo se activan con tu consentimiento explícito.
           </p>
         </section>
 
@@ -100,17 +105,22 @@ import BaseLayout from '@layouts/BaseLayout.astro';
             <a href="mailto:contacto@agenciachucao.cl">contacto@agenciachucao.cl</a>.
           </p>
         </section>
-
       </div>
     </div>
   </article>
 </BaseLayout>
 
 <style>
-  .cookie-policy { background: var(--color-sage); }
-  .cookie-policy-inner { max-width: 72ch; }
+  .cookie-policy {
+    background: var(--color-sage);
+  }
+  .cookie-policy-inner {
+    max-width: 72ch;
+  }
 
-  .policy-header { margin-bottom: 3rem; }
+  .policy-header {
+    margin-bottom: 3rem;
+  }
   .policy-title {
     font-size: var(--text-h1-size);
     font-weight: var(--text-h1-weight);
@@ -124,9 +134,17 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     color: var(--color-olive);
   }
 
-  .policy-body { display: flex; flex-direction: column; gap: 3rem; }
+  .policy-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
-  .policy-section { display: flex; flex-direction: column; gap: 1rem; }
+  .policy-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   .policy-section h2 {
     font-size: var(--text-h3-size);
     font-weight: var(--text-h3-weight);
@@ -147,8 +165,12 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     flex-direction: column;
     gap: 0.5rem;
   }
-  .policy-section strong { color: var(--color-forest); }
-  .policy-section a { color: var(--color-orange); }
+  .policy-section strong {
+    color: var(--color-forest);
+  }
+  .policy-section a {
+    color: var(--color-orange);
+  }
   .policy-section code {
     font-family: var(--font-mono);
     font-size: 0.875em;
@@ -157,7 +179,9 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     border-radius: var(--radius-sm);
   }
 
-  .policy-table-wrap { overflow-x: auto; }
+  .policy-table-wrap {
+    overflow-x: auto;
+  }
   .policy-table {
     width: 100%;
     border-collapse: collapse;
@@ -181,6 +205,10 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     vertical-align: top;
     line-height: 1.5;
   }
-  .policy-table tr:last-child td { border-bottom: none; }
-  .policy-table tr:nth-child(even) td { background: var(--color-sage); }
+  .policy-table tr:last-child td {
+    border-bottom: none;
+  }
+  .policy-table tr:nth-child(even) td {
+    background: var(--color-sage);
+  }
 </style>

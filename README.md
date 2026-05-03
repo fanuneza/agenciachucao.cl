@@ -18,18 +18,18 @@ Sitio estático desarrollado con Astro para Agencia Chucao, agencia de marketing
 
 ## Comandos
 
-| Comando                   | Descripción                                                         |
-| ------------------------- | ------------------------------------------------------------------- |
-| `npm install`             | Instala las dependencias del proyecto.                              |
-| `npm run dev`             | Levanta el entorno local de desarrollo.                             |
-| `npm run build`           | Genera la versión de producción en `dist/`.                         |
-| `npm run preview`         | Sirve localmente la compilación de producción.                      |
-| `npm run test:lighthouse` | Ejecuta Lighthouse CI sobre `dist/`.                                |
-| `npm run capture:local`   | Ejecuta capturas visuales con Playwright.                           |
-| `npm run capture:home`    | Ejecuta capturas visuales de la página de inicio.                   |
-| `npm run capture:blog`    | Ejecuta capturas visuales de páginas del blog.                      |
-| `npm run capture:servicios` | Ejecuta capturas visuales de páginas de servicios.                |
-| `npm run capture:portafolio` | Ejecuta capturas visuales de la página de portafolio.             |
+| Comando                      | Descripción                                           |
+| ---------------------------- | ----------------------------------------------------- |
+| `npm install`                | Instala las dependencias del proyecto.                |
+| `npm run dev`                | Levanta el entorno local de desarrollo.               |
+| `npm run build`              | Genera la versión de producción en `dist/`.           |
+| `npm run preview`            | Sirve localmente la compilación de producción.        |
+| `npm run test:lighthouse`    | Ejecuta Lighthouse CI sobre `dist/`.                  |
+| `npm run capture:local`      | Ejecuta capturas visuales con Playwright.             |
+| `npm run capture:home`       | Ejecuta capturas visuales de la página de inicio.     |
+| `npm run capture:blog`       | Ejecuta capturas visuales de páginas del blog.        |
+| `npm run capture:servicios`  | Ejecuta capturas visuales de páginas de servicios.    |
+| `npm run capture:portafolio` | Ejecuta capturas visuales de la página de portafolio. |
 
 ## Estructura del proyecto
 

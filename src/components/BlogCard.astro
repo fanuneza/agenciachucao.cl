@@ -1,35 +1,35 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
 
 const serviceBadge: Record<string, string> = {
-  'redes-sociales':  'Redes Sociales',
-  'seo':             'SEO',
-  'desarrollo-web':  'Desarrollo Web',
-  'google-business': 'Google Business',
-  'contenido':       'Contenido',
-  'email-marketing': 'Email Marketing',
-  'publicidad':      'Publicidad',
-  'default':         'Marketing Digital',
+  "redes-sociales": "Redes Sociales",
+  seo: "SEO",
+  "desarrollo-web": "Desarrollo Web",
+  "google-business": "Google Business",
+  contenido: "Contenido",
+  "email-marketing": "Email Marketing",
+  publicidad: "Publicidad",
+  default: "Marketing Digital",
 };
 
-const wordCount = post.body.split(/\s+/).filter(Boolean).length;
+const wordCount = (post.body ?? "").split(/\s+/).filter(Boolean).length;
 const readingTime = Math.ceil(wordCount / 200);
-const badge = serviceBadge[post.data.service ?? 'default'] ?? 'Marketing Digital';
+const badge = serviceBadge[post.data.service ?? "default"] ?? "Marketing Digital";
 
-const date = post.data.publishDate.toLocaleDateString('es-CL', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const date = post.data.publishDate.toLocaleDateString("es-CL", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 ---
 
-<a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="blog-card">
+<a href={`/blog/${post.id.replace(/\.md$/, "")}/`} class="blog-card">
   <div class="blog-card-meta">
     <span class="blog-card-badge">{badge}</span>
     <span class="blog-card-date">{date}</span>
@@ -54,7 +54,9 @@ const date = post.data.publishDate.toLocaleDateString('es-CL', {
     padding: 2rem;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    transition:
+      transform 0.3s var(--ease-spring),
+      box-shadow 0.3s;
   }
   .blog-card:hover {
     transform: translateY(-4px);
@@ -128,5 +130,7 @@ const date = post.data.publishDate.toLocaleDateString('es-CL', {
     color: var(--color-orange);
     transition: transform 0.2s var(--ease-spring);
   }
-  .blog-card:hover .blog-card-arrow { transform: translateX(4px); }
+  .blog-card:hover .blog-card-arrow {
+    transform: translateX(4px);
+  }
 </style>

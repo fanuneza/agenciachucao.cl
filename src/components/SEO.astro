@@ -11,13 +11,13 @@ interface Props {
 const {
   title,
   description,
-  image = '/images/og/og-image.webp',
+  image = "/images/og/og-image.webp",
   canonical = Astro.url.href,
   noindex = false,
   schema,
 } = Astro.props;
 
-const siteName = 'Agencia Chucao';
+const siteName = "Agencia Chucao";
 const ogImage = new URL(image, Astro.site).href;
 ---
 
@@ -43,6 +43,4 @@ const ogImage = new URL(image, Astro.site).href;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
-{schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-)}
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

@@ -1,6 +1,6 @@
 ---
-import type { Service } from '@data/services';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import type { Service } from "@data/services";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 interface Props {
   service: Service;
@@ -10,20 +10,17 @@ const { service } = Astro.props;
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waHref = `https://wa.me/${waNumber}?text=${service.cta.whatsappMessage}`;
-const secondaryHref = '/portafolio/';
+const secondaryHref = "/portafolio/";
 
 // Split multi-paragraph copy into <p> blocks
 const problemaParagraphs = service.problema.split(/\n\n+/).filter(Boolean);
 const solucionParagraphs = service.solucion.split(/\n\n+/).filter(Boolean);
 
-const rawDesc = `${service.headline} ${solucionParagraphs[0] ?? ''}`;
-const pageDescription = rawDesc.length > 158
-  ? rawDesc.slice(0, rawDesc.lastIndexOf(' ', 158)) + '…'
-  : rawDesc;
+const rawDesc = `${service.headline} ${solucionParagraphs[0] ?? ""}`;
+const pageDescription = rawDesc.length > 158 ? rawDesc.slice(0, rawDesc.lastIndexOf(" ", 158)) + "…" : rawDesc;
 ---
 
 <BaseLayout title={service.name} description={pageDescription}>
-
   <!-- Hero -->
   <header class="svc-hero noise-bg">
     <div class="container svc-hero-inner">
@@ -40,9 +37,13 @@ const pageDescription = rawDesc.length > 158
         >
           {service.cta.primary}
         </a>
-        {service.cta.secondary && (
-          <a href={secondaryHref} class="btn-ghost">{service.cta.secondary}</a>
-        )}
+        {
+          service.cta.secondary && (
+            <a href={secondaryHref} class="btn-ghost">
+              {service.cta.secondary}
+            </a>
+          )
+        }
       </div>
     </div>
   </header>
@@ -54,9 +55,7 @@ const pageDescription = rawDesc.length > 158
         <p class="section-label">El problema</p>
       </div>
       <div class="svc-col-body scroll-reveal">
-        {problemaParagraphs.map((para) => (
-          <p class="svc-body-text">{para}</p>
-        ))}
+        {problemaParagraphs.map((para) => <p class="svc-body-text">{para}</p>)}
       </div>
     </div>
   </section>
@@ -68,9 +67,7 @@ const pageDescription = rawDesc.length > 158
         <p class="section-label">Lo que hacemos</p>
       </div>
       <div class="svc-col-body scroll-reveal">
-        {solucionParagraphs.map((para) => (
-          <p class="svc-body-text">{para}</p>
-        ))}
+        {solucionParagraphs.map((para) => <p class="svc-body-text">{para}</p>)}
       </div>
     </div>
   </section>
@@ -99,24 +96,23 @@ const pageDescription = rawDesc.length > 158
       </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <script define:vars={{ serviceName: service.name }}>
   // service_page_view on load
-  document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'service_page_view', { service_name: serviceName });
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "service_page_view", { service_name: serviceName });
     }
   });
 
   // whatsapp_click_inline on CTA clicks
-  ['svc-wa-btn', 'svc-bottom-wa-btn'].forEach((id) => {
-    document.getElementById(id)?.addEventListener('click', () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'whatsapp_click_inline', {
+  ["svc-wa-btn", "svc-bottom-wa-btn"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", () => {
+      if (typeof gtag !== "undefined") {
+        gtag("event", "whatsapp_click_inline", {
           page_url: window.location.href,
-          cta_label: document.getElementById(id)?.textContent?.trim() ?? '',
+          cta_label: document.getElementById(id)?.textContent?.trim() ?? "",
           service: serviceName,
         });
       }
@@ -132,7 +128,9 @@ const pageDescription = rawDesc.length > 158
     padding-top: clamp(2rem, 5vw, 4rem);
     padding-bottom: clamp(3.5rem, 8vw, 6rem);
   }
-  .svc-hero-inner { max-width: 72ch; }
+  .svc-hero-inner {
+    max-width: 72ch;
+  }
 
   .svc-h1 {
     font-size: var(--text-h1-size);
@@ -149,11 +147,18 @@ const pageDescription = rawDesc.length > 158
     gap: 1rem;
     flex-wrap: wrap;
   }
-  .svc-cta-btn { font-size: 14px; padding: 1rem 2rem; }
+  .svc-cta-btn {
+    font-size: 14px;
+    padding: 1rem 2rem;
+  }
 
   /* Two-column body layout */
-  .svc-section { background: var(--color-sage); }
-  .svc-solucion { background: var(--color-white); }
+  .svc-section {
+    background: var(--color-sage);
+  }
+  .svc-solucion {
+    background: var(--color-white);
+  }
 
   .svc-two-col {
     display: grid;
@@ -168,7 +173,9 @@ const pageDescription = rawDesc.length > 158
     }
   }
 
-  .svc-col-label { padding-top: 0.25rem; }
+  .svc-col-label {
+    padding-top: 0.25rem;
+  }
 
   .svc-col-body {
     display: flex;
@@ -196,7 +203,9 @@ const pageDescription = rawDesc.length > 158
     gap: 3rem;
     flex-wrap: wrap;
   }
-  .svc-cta-text { max-width: 52ch; }
+  .svc-cta-text {
+    max-width: 52ch;
+  }
   .svc-cta-title {
     font-size: var(--text-h2-size);
     font-weight: var(--text-h2-weight);

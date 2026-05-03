@@ -1,5 +1,5 @@
 ---
-import type { PortfolioProject } from '@data/portfolio';
+import type { PortfolioProject } from "@data/portfolio";
 
 interface Props {
   project: PortfolioProject;
@@ -8,72 +8,73 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-{project.comingSoon ? (
-  <div class="port-card port-card--soon">
-    <div class="port-soon-badge">Próximamente</div>
-    <div class="port-soon-body">
-      <span class="port-category">{project.category}</span>
-      <p class="port-soon-text">Nuevo proyecto en camino</p>
+{
+  project.comingSoon ? (
+    <div class="port-card port-card--soon">
+      <div class="port-soon-badge">Próximamente</div>
+      <div class="port-soon-body">
+        <span class="port-category">{project.category}</span>
+        <p class="port-soon-text">Nuevo proyecto en camino</p>
+      </div>
     </div>
-  </div>
-) : project.url ? (
-  <a
-    href={project.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="port-card"
-    data-project={project.name}
-    id={`port-${project.name.toLowerCase().replace(/\s+/g, '-')}`}
-  >
-    <div class="port-img-wrap">
-      {project.screenshot && (
-        <img
-          src={project.screenshot}
-          alt={`Captura de pantalla de ${project.name}`}
-          width="600"
-          height="400"
-          loading="lazy"
-          class="port-img"
-        />
-      )}
+  ) : project.url ? (
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="port-card"
+      data-project={project.name}
+      id={`port-${project.name.toLowerCase().replace(/\s+/g, "-")}`}
+    >
+      <div class="port-img-wrap">
+        {project.screenshot && (
+          <img
+            src={project.screenshot}
+            alt={`Captura de pantalla de ${project.name}`}
+            width="600"
+            height="400"
+            loading="lazy"
+            class="port-img"
+          />
+        )}
+      </div>
+      <div class="port-body">
+        <span class="port-category">{project.category}</span>
+        <h3 class="port-name">{project.name}</h3>
+        <p class="port-desc">{project.description}</p>
+        <span class="port-link">
+          Ver proyecto <span aria-hidden="true">↗</span>
+        </span>
+      </div>
+    </a>
+  ) : (
+    <div class="port-card" id={`port-${project.name.toLowerCase().replace(/\s+/g, "-")}`}>
+      <div class="port-img-wrap">
+        {project.screenshot && (
+          <img
+            src={project.screenshot}
+            alt={`Captura de pantalla de ${project.name}`}
+            width="600"
+            height="400"
+            loading="lazy"
+            class="port-img"
+          />
+        )}
+      </div>
+      <div class="port-body">
+        <span class="port-category">{project.category}</span>
+        <h3 class="port-name">{project.name}</h3>
+        <p class="port-desc">{project.description}</p>
+      </div>
     </div>
-    <div class="port-body">
-      <span class="port-category">{project.category}</span>
-      <h3 class="port-name">{project.name}</h3>
-      <p class="port-desc">{project.description}</p>
-      <span class="port-link">Ver proyecto <span aria-hidden="true">↗</span></span>
-    </div>
-  </a>
-) : (
-  <div
-    class="port-card"
-    id={`port-${project.name.toLowerCase().replace(/\s+/g, '-')}`}
-  >
-    <div class="port-img-wrap">
-      {project.screenshot && (
-        <img
-          src={project.screenshot}
-          alt={`Captura de pantalla de ${project.name}`}
-          width="600"
-          height="400"
-          loading="lazy"
-          class="port-img"
-        />
-      )}
-    </div>
-    <div class="port-body">
-      <span class="port-category">{project.category}</span>
-      <h3 class="port-name">{project.name}</h3>
-      <p class="port-desc">{project.description}</p>
-    </div>
-  </div>
-)}
+  )
+}
 
 <script>
-  document.querySelectorAll<HTMLAnchorElement>('.port-card[data-project]').forEach((card) => {
-    card.addEventListener('click', () => {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'portfolio_link_click', { project_name: card.dataset.project });
+  document.querySelectorAll<HTMLAnchorElement>(".port-card[data-project]").forEach((card) => {
+    card.addEventListener("click", () => {
+      if (typeof gtag !== "undefined") {
+        gtag("event", "portfolio_link_click", { project_name: card.dataset.project });
       }
     });
   });
@@ -90,7 +91,9 @@ const { project } = Astro.props;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    transition:
+      transform 0.3s var(--ease-spring),
+      box-shadow 0.3s;
   }
   .port-card:not(.port-card--soon):hover {
     transform: translateY(-4px);
@@ -144,7 +147,9 @@ const { project } = Astro.props;
     object-fit: cover;
     transition: transform 0.4s var(--ease-spring);
   }
-  .port-card:hover .port-img { transform: scale(1.03); }
+  .port-card:hover .port-img {
+    transform: scale(1.03);
+  }
 
   /* Body */
   .port-body {

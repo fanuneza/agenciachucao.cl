@@ -15,12 +15,28 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   <div class="form-row">
     <div class="form-group">
       <label class="field-label" for="nombre">Tu nombre y apellido</label>
-      <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Eloísa Díaz" required />
+      <input
+        class="form-field"
+        type="text"
+        id="nombre"
+        name="nombre"
+        autocomplete="name"
+        placeholder="Eloísa Díaz"
+        required
+      />
       <span class="field-error" id="err-nombre"></span>
     </div>
     <div class="form-group">
       <label class="field-label" for="email">Correo electrónico</label>
-      <input class="form-field" type="email" id="email" name="email" autocomplete="email" placeholder="nombre@tunegocio.cl" required />
+      <input
+        class="form-field"
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        placeholder="nombre@tunegocio.cl"
+        required
+      />
       <span class="field-error" id="err-email"></span>
     </div>
   </div>
@@ -28,7 +44,15 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   <div class="form-row">
     <div class="form-group">
       <label class="field-label" for="telefono">Teléfono</label>
-      <input class="form-field" type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="+56 9 1234 5678" required />
+      <input
+        class="form-field"
+        type="tel"
+        id="telefono"
+        name="telefono"
+        autocomplete="tel"
+        placeholder="+56 9 1234 5678"
+        required
+      />
       <span class="field-error" id="err-telefono"></span>
     </div>
     <div class="form-group">
@@ -40,7 +64,15 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="sitio_web">Sitio web o nombre de tu negocio</label>
-    <input class="form-field" type="text" id="sitio_web" name="sitio_web" autocomplete="url" placeholder='tunegocio.cl o "Ferretería González"' required />
+    <input
+      class="form-field"
+      type="text"
+      id="sitio_web"
+      name="sitio_web"
+      autocomplete="url"
+      placeholder='tunegocio.cl o "Ferretería González"'
+      required
+    />
     <span class="field-error" id="err-sitio_web"></span>
   </div>
 
@@ -67,79 +99,102 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       name="mensaje"
       rows="4"
       placeholder="Cuéntanos brevemente en qué etapa está tu negocio y qué quieres mejorar."
-      required
-    ></textarea>
+      required></textarea>
     <span class="field-error" id="err-mensaje"></span>
   </div>
 
   <div id="form-status" class="form-status" aria-live="polite"></div>
 
-  <button type="submit" class="btn-primary form-submit" id="form-submit-btn">
-    Enviar mensaje
-  </button>
+  <button type="submit" class="btn-primary form-submit" id="form-submit-btn"> Enviar mensaje </button>
 </form>
 
 <div class="form-wa-fallback" id="form-wa-fallback" hidden>
   <p class="fallback-text">
-    ¿Problemas con el formulario? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link">Escríbenos por WhatsApp</a>.
+    ¿Problemas con el formulario? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
+      >Escríbenos por WhatsApp</a
+    >.
   </p>
 </div>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const statusEl = document.getElementById('form-status');
-  const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement | null;
-  const waFallback = document.getElementById('form-wa-fallback');
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const statusEl = document.getElementById("form-status");
+  const submitBtn = document.getElementById("form-submit-btn") as HTMLButtonElement | null;
+  const waFallback = document.getElementById("form-wa-fallback");
 
   function showError(fieldId: string, msg: string) {
     const el = document.getElementById(`err-${fieldId}`);
-    if (el) { el.textContent = msg; el.classList.add('visible'); }
+    if (el) {
+      el.textContent = msg;
+      el.classList.add("visible");
+    }
     const field = document.getElementById(fieldId) as HTMLInputElement | null;
-    field?.classList.add('invalid');
+    field?.classList.add("invalid");
   }
 
   function clearErrors() {
-    document.querySelectorAll('.field-error').forEach((el) => {
-      el.textContent = '';
-      el.classList.remove('visible');
+    document.querySelectorAll(".field-error").forEach((el) => {
+      el.textContent = "";
+      el.classList.remove("visible");
     });
-    document.querySelectorAll('.form-field').forEach((el) => el.classList.remove('invalid'));
+    document.querySelectorAll(".form-field").forEach((el) => el.classList.remove("invalid"));
   }
 
   function validate(data: FormData): boolean {
     let valid = true;
 
-    const nombre = (data.get('nombre') as string)?.trim();
-    if (!nombre) { showError('nombre', 'Por favor ingresa tu nombre.'); valid = false; }
-
-    const email = (data.get('email') as string)?.trim();
-    if (!email) { showError('email', 'Por favor ingresa tu correo.'); valid = false; }
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError('email', 'El correo no parece válido.'); valid = false;
+    const nombre = (data.get("nombre") as string)?.trim();
+    if (!nombre) {
+      showError("nombre", "Por favor ingresa tu nombre.");
+      valid = false;
     }
 
-    const telefono = (data.get('telefono') as string)?.trim();
-    if (!telefono) { showError('telefono', 'Por favor ingresa tu teléfono.'); valid = false; }
-    else if (!/^[\+\d\s\-\(\)]{7,}$/.test(telefono)) {
-      showError('telefono', 'El teléfono no parece válido.'); valid = false;
+    const email = (data.get("email") as string)?.trim();
+    if (!email) {
+      showError("email", "Por favor ingresa tu correo.");
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("email", "El correo no parece válido.");
+      valid = false;
     }
 
-    const cargo = (data.get('cargo') as string)?.trim();
-    if (!cargo) { showError('cargo', 'Por favor indica tu cargo.'); valid = false; }
+    const telefono = (data.get("telefono") as string)?.trim();
+    if (!telefono) {
+      showError("telefono", "Por favor ingresa tu teléfono.");
+      valid = false;
+    } else if (!/^[\+\d\s\-\(\)]{7,}$/.test(telefono)) {
+      showError("telefono", "El teléfono no parece válido.");
+      valid = false;
+    }
 
-    const sitio = (data.get('sitio_web') as string)?.trim();
-    if (!sitio) { showError('sitio_web', 'Por favor ingresa tu sitio web o el nombre de tu negocio.'); valid = false; }
+    const cargo = (data.get("cargo") as string)?.trim();
+    if (!cargo) {
+      showError("cargo", "Por favor indica tu cargo.");
+      valid = false;
+    }
 
-    const servicio = (data.get('servicio') as string)?.trim();
-    if (!servicio) { showError('servicio', 'Por favor selecciona el servicio que te interesa.'); valid = false; }
+    const sitio = (data.get("sitio_web") as string)?.trim();
+    if (!sitio) {
+      showError("sitio_web", "Por favor ingresa tu sitio web o el nombre de tu negocio.");
+      valid = false;
+    }
 
-    const mensaje = (data.get('mensaje') as string)?.trim();
-    if (!mensaje) { showError('mensaje', 'Por favor cuéntanos en qué podemos ayudarte.'); valid = false; }
+    const servicio = (data.get("servicio") as string)?.trim();
+    if (!servicio) {
+      showError("servicio", "Por favor selecciona el servicio que te interesa.");
+      valid = false;
+    }
+
+    const mensaje = (data.get("mensaje") as string)?.trim();
+    if (!mensaje) {
+      showError("mensaje", "Por favor cuéntanos en qué podemos ayudarte.");
+      valid = false;
+    }
 
     return valid;
   }
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearErrors();
 
@@ -148,12 +203,12 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     if (!validate(data)) return;
 
     submitBtn!.disabled = true;
-    submitBtn!.textContent = 'Enviando…';
-    if (statusEl) statusEl.textContent = '';
+    submitBtn!.textContent = "Enviando…";
+    if (statusEl) statusEl.textContent = "";
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         body: data,
       });
       const json = await res.json();
@@ -162,23 +217,23 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
         form.reset();
         form.hidden = true;
         if (statusEl) {
-          statusEl.textContent = 'Tu mensaje fue enviado. Te contactaremos pronto.';
-          statusEl.classList.add('success');
+          statusEl.textContent = "Tu mensaje fue enviado. Te contactaremos pronto.";
+          statusEl.classList.add("success");
         }
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'contact_form_submit', { page_url: window.location.href });
+        if (typeof gtag !== "undefined") {
+          gtag("event", "contact_form_submit", { page_url: window.location.href });
         }
       } else {
-        throw new Error(json.message ?? 'Error desconocido');
+        throw new Error(json.message ?? "Error desconocido");
       }
     } catch {
       if (statusEl) {
-        statusEl.textContent = 'Hubo un problema al enviar el formulario. Por favor intenta de nuevo.';
-        statusEl.classList.add('error');
+        statusEl.textContent = "Hubo un problema al enviar el formulario. Por favor intenta de nuevo.";
+        statusEl.classList.add("error");
       }
       if (waFallback) waFallback.hidden = false;
       submitBtn!.disabled = false;
-      submitBtn!.textContent = 'Enviar mensaje';
+      submitBtn!.textContent = "Enviar mensaje";
     }
   });
 </script>
@@ -196,7 +251,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     gap: 1.25rem;
   }
   @media (min-width: 640px) {
-    .form-row { grid-template-columns: repeat(2, 1fr); }
+    .form-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .form-group {
@@ -211,7 +268,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     color: var(--color-orange);
     display: none;
   }
-  .field-error.visible { display: block; }
+  .field-error.visible {
+    display: block;
+  }
 
   .form-field.invalid {
     border-color: var(--color-orange);
@@ -225,7 +284,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     border-radius: var(--radius-md);
     display: none;
   }
-  .form-status:not(:empty) { display: block; }
+  .form-status:not(:empty) {
+    display: block;
+  }
   .form-status.success {
     background: rgba(28, 46, 26, 0.08);
     color: var(--color-forest);
@@ -257,8 +318,15 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     margin-bottom: 0.25rem;
   }
 
-  .form-submit { align-self: flex-start; font-size: 14px; padding: 1rem 2rem; }
-  .form-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+  .form-submit {
+    align-self: flex-start;
+    font-size: 14px;
+    padding: 1rem 2rem;
+  }
+  .form-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
 
   .form-wa-fallback {
     margin-top: 1.5rem;
@@ -274,5 +342,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     text-underline-offset: 2px;
     transition: color 0.15s;
   }
-  .fallback-link:hover { color: var(--color-orange); }
+  .fallback-link:hover {
+    color: var(--color-orange);
+  }
 </style>

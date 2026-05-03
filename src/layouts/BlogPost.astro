@@ -1,52 +1,53 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { getCollection, render } from 'astro:content';
-import BaseLayout from './BaseLayout.astro';
-import SocialShare from '@components/SocialShare.astro';
-import BlogCard from '@components/BlogCard.astro';
-import { services } from '@data/services';
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import SocialShare from "@components/SocialShare.astro";
+import BlogCard from "@components/BlogCard.astro";
+import { services } from "@data/services";
 
 interface Props {
-  entry: CollectionEntry<'blog'>;
+  entry: CollectionEntry<"blog">;
 }
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 // Reading time
-const wordCount = entry.body.split(/\s+/).filter(Boolean).length;
+const wordCount = (entry.body ?? "").split(/\s+/).filter(Boolean).length;
 const readingTime = Math.ceil(wordCount / 200);
 
 // Service CTA mapping
 const serviceToId: Record<string, string> = {
-  'redes-sociales':  'gestion-de-redes-sociales',
-  'seo':             'seo-tecnico-y-posicionamiento',
-  'desarrollo-web':  'desarrollo-web',
-  'google-business': 'optimizacion-de-google-business-profile',
-  'contenido':       'creacion-de-contenido',
-  'email-marketing': 'email-marketing',
-  'publicidad':      'publicidad-en-google-y-meta',
+  "redes-sociales": "gestion-de-redes-sociales",
+  seo: "seo-tecnico-y-posicionamiento",
+  "desarrollo-web": "desarrollo-web",
+  "google-business": "optimizacion-de-google-business-profile",
+  contenido: "creacion-de-contenido",
+  "email-marketing": "email-marketing",
+  publicidad: "publicidad-en-google-y-meta",
 };
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const defaultMessage = 'Hola%2C%20le%C3%AD%20un%20art%C3%ADculo%20en%20el%20blog%20de%20Agencia%20Chucao%20y%20tengo%20una%20consulta%20sobre%20marketing%20digital%20para%20mi%20negocio.';
+const defaultMessage =
+  "Hola%2C%20le%C3%AD%20un%20art%C3%ADculo%20en%20el%20blog%20de%20Agencia%20Chucao%20y%20tengo%20una%20consulta%20sobre%20marketing%20digital%20para%20mi%20negocio.";
 
-const serviceId = serviceToId[entry.data.service ?? 'default'];
+const serviceId = serviceToId[entry.data.service ?? "default"];
 const matchedService = serviceId ? services.find((s) => s.id === serviceId) : null;
 
-const ctaLabel = matchedService?.cta.primary ?? 'Hablemos de tu negocio';
+const ctaLabel = matchedService?.cta.primary ?? "Hablemos de tu negocio";
 const ctaMessage = matchedService?.cta.whatsappMessage ?? defaultMessage;
 const ctaHref = `https://wa.me/${waNumber}?text=${ctaMessage}`;
 
 // Related articles
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection("blog");
 const otherPosts = allPosts.filter((p) => p.id !== entry.id);
 
-let relatedPosts: CollectionEntry<'blog'>[] = [];
+let relatedPosts: CollectionEntry<"blog">[] = [];
 if (entry.data.relatedSlugs?.length) {
   relatedPosts = entry.data.relatedSlugs
-    .map((slug) => otherPosts.find((p) => p.id.replace(/\.md$/, '') === slug))
-    .filter((p): p is CollectionEntry<'blog'> => p !== undefined)
+    .map((slug) => otherPosts.find((p) => p.id.replace(/\.md$/, "") === slug))
+    .filter((p): p is CollectionEntry<"blog"> => p !== undefined)
     .slice(0, 3);
 } else if (entry.data.tags?.length) {
   relatedPosts = otherPosts
@@ -57,22 +58,22 @@ if (entry.data.relatedSlugs?.length) {
 
 // Article JSON-LD
 const articleSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
+  "@context": "https://schema.org",
+  "@type": "Article",
   headline: entry.data.title,
   description: entry.data.description,
-  author: { '@type': 'Person', name: entry.data.author },
-  datePublished: entry.data.publishDate.toISOString().split('T')[0],
-  image: entry.data.heroImage ?? '/images/og/og-default.webp',
+  author: { "@type": "Person", name: entry.data.author },
+  datePublished: entry.data.publishDate.toISOString().split("T")[0],
+  image: entry.data.heroImage ?? "/images/og/og-default.webp",
 };
 
-const publishDateFormatted = entry.data.publishDate.toLocaleDateString('es-CL', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const publishDateFormatted = entry.data.publishDate.toLocaleDateString("es-CL", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
-const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site).href;
+const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, "")}/`, Astro.site).href;
 ---
 
 <BaseLayout
@@ -121,20 +122,22 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
       <!-- Bottom CTA -->
       <div class="post-bottom-cta scroll-reveal">
         <p class="bottom-cta-text">{ctaLabel}</p>
-        <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Hablemos por WhatsApp →
-        </a>
+        <a href={ctaHref} target="_blank" rel="noopener noreferrer" class="btn-primary"> Hablemos por WhatsApp → </a>
       </div>
 
       <!-- Related articles -->
-      {relatedPosts.length > 0 && (
-        <section class="related-posts">
-          <h2 class="related-title">Artículos relacionados</h2>
-          <div class="related-grid">
-            {relatedPosts.map((post) => <BlogCard post={post} />)}
-          </div>
-        </section>
-      )}
+      {
+        relatedPosts.length > 0 && (
+          <section class="related-posts">
+            <h2 class="related-title">Artículos relacionados</h2>
+            <div class="related-grid">
+              {relatedPosts.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          </section>
+        )
+      }
     </div>
   </article>
 </BaseLayout>
@@ -144,22 +147,26 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
   const milestones = new Set<number>();
   const articleTitle = document.title;
 
-  window.addEventListener('scroll', () => {
-    const el = document.documentElement;
-    const scrollTop = el.scrollTop || document.body.scrollTop;
-    const scrollHeight = el.scrollHeight - el.clientHeight;
-    if (scrollHeight <= 0) return;
-    const pct = (scrollTop / scrollHeight) * 100;
+  window.addEventListener(
+    "scroll",
+    () => {
+      const el = document.documentElement;
+      const scrollTop = el.scrollTop || document.body.scrollTop;
+      const scrollHeight = el.scrollHeight - el.clientHeight;
+      if (scrollHeight <= 0) return;
+      const pct = (scrollTop / scrollHeight) * 100;
 
-    [25, 50, 75, 100].forEach((m) => {
-      if (pct >= m && !milestones.has(m)) {
-        milestones.add(m);
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'blog_scroll_depth', { article_title: articleTitle, depth: m });
+      [25, 50, 75, 100].forEach((m) => {
+        if (pct >= m && !milestones.has(m)) {
+          milestones.add(m);
+          if (typeof gtag !== "undefined") {
+            gtag("event", "blog_scroll_depth", { article_title: articleTitle, depth: m });
+          }
         }
-      }
-    });
-  }, { passive: true });
+      });
+    },
+    { passive: true }
+  );
 </script>
 
 <style>
@@ -170,7 +177,9 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     padding-top: var(--section-pad-sm);
     padding-bottom: var(--section-pad-md);
   }
-  .post-header-inner { max-width: 72ch; }
+  .post-header-inner {
+    max-width: 72ch;
+  }
 
   .post-meta {
     display: flex;
@@ -186,7 +195,9 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     font-size: 12px;
     color: rgba(255, 255, 255, 0.55);
   }
-  .post-dot { color: rgba(255, 255, 255, 0.25); }
+  .post-dot {
+    color: rgba(255, 255, 255, 0.25);
+  }
 
   .post-title {
     font-size: var(--text-h2-size);
@@ -212,7 +223,9 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     padding-block: var(--section-pad-md);
   }
   @media (min-width: 1024px) {
-    .post-body-wrap { grid-template-columns: 1fr 280px; }
+    .post-body-wrap {
+      grid-template-columns: 1fr 280px;
+    }
   }
 
   /* Prose */
@@ -238,7 +251,9 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     color: var(--color-forest);
     margin-block: 2rem 0.75rem;
   }
-  .prose :global(p) { margin-bottom: 1.25rem; }
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+  }
   .prose :global(ul),
   .prose :global(ol) {
     padding-left: 1.5rem;
@@ -247,14 +262,21 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     flex-direction: column;
     gap: 0.5rem;
   }
-  .prose :global(strong) { font-weight: 700; color: var(--color-forest); }
-  .prose :global(em) { font-style: italic; }
+  .prose :global(strong) {
+    font-weight: 700;
+    color: var(--color-forest);
+  }
+  .prose :global(em) {
+    font-style: italic;
+  }
   .prose :global(a) {
     color: var(--color-orange);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
-  .prose :global(a:hover) { color: var(--color-orange-dark); }
+  .prose :global(a:hover) {
+    color: var(--color-orange-dark);
+  }
   .prose :global(blockquote) {
     border-left: 3px solid var(--color-orange);
     margin-left: 0;
@@ -304,7 +326,11 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     color: var(--color-forest);
     line-height: 1.35;
   }
-  .aside-cta-btn { font-size: 12px; text-align: center; justify-content: center; }
+  .aside-cta-btn {
+    font-size: 12px;
+    text-align: center;
+    justify-content: center;
+  }
 
   /* Footer wrap */
   .post-footer-wrap {
@@ -334,7 +360,11 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
   }
 
   /* Related */
-  .related-posts { display: flex; flex-direction: column; gap: 1.5rem; }
+  .related-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .related-title {
     font-size: var(--text-h3-size);
     font-weight: var(--text-h3-weight);
@@ -346,6 +376,8 @@ const currentUrl = new URL(`/blog/${entry.id.replace(/\.md$/, '')}/`, Astro.site
     gap: 1.25rem;
   }
   @media (min-width: 640px) {
-    .related-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .related-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
   }
 </style>

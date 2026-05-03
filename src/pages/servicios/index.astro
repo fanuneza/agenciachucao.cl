@@ -1,14 +1,13 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import ServiceCard from '@components/ServiceCard.astro';
-import { featuredServices } from '@data/services';
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ServiceCard from "@components/ServiceCard.astro";
+import { featuredServices } from "@data/services";
 ---
 
 <BaseLayout
   title="Servicios de Marketing Digital"
   description="SEO técnico, gestión de redes sociales, desarrollo web, Google Business Profile, creación de contenido y email marketing. Sin paquetes genéricos."
 >
-
   <header class="svc-index-header noise-bg">
     <div class="container svc-index-header-inner">
       <p class="section-label section-label-light hero-anim-1">Servicios</p>
@@ -22,15 +21,16 @@ import { featuredServices } from '@data/services';
   <section class="section-py svc-index-body">
     <div class="container">
       <div class="svc-index-grid">
-        {featuredServices.map((service, i) => (
-          <div class="scroll-reveal" style={`transition-delay: ${i * 0.07}s`}>
-            <ServiceCard service={service} index={i} />
-          </div>
-        ))}
+        {
+          featuredServices.map((service, i) => (
+            <div class="scroll-reveal" style={`transition-delay: ${i * 0.07}s`}>
+              <ServiceCard service={service} index={i} />
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <style>
@@ -40,7 +40,9 @@ import { featuredServices } from '@data/services';
     padding-top: clamp(2rem, 4vw, 3.5rem);
     padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
   }
-  .svc-index-header-inner { max-width: 64ch; }
+  .svc-index-header-inner {
+    max-width: 64ch;
+  }
 
   .svc-index-h1 {
     font-size: clamp(40px, 5vw, 68px);
@@ -59,13 +61,23 @@ import { featuredServices } from '@data/services';
     max-width: 54ch;
   }
 
-  .svc-index-body { background: var(--color-sage); }
+  .svc-index-body {
+    background: var(--color-sage);
+  }
 
   .svc-index-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  @media (min-width: 640px)  { .svc-index-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .svc-index-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 640px) {
+    .svc-index-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .svc-index-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 </style>
