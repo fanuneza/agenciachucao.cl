@@ -17,6 +17,9 @@
     "capture:servicios": "playwright test --config playwright.config.ts --grep @servicios",
     "capture:portafolio": "playwright test --config playwright.config.ts --grep @portafolio"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.2",
