@@ -1,7 +1,34 @@
-/Site 1/
-/Site 2/
+# Dependencies
 node_modules/
+
+# Build output
 dist/
+
+# Astro
 .astro/
+
+# Environment variables
 .env
 .env.local
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local agent / IDE settings
+.claude/
+
+# Agent workflow instructions (local only)
+AGENTS.md
+CLAUDE.md
+
+# Internal planning docs (local only)
+docs/
+process-notes.md
