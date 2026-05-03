@@ -1,5 +1,8 @@
 # Dependencies
 node_modules/
+.npm/
+.pnpm-store/
+.yarn-integrity
 
 # Build output
 dist/
@@ -9,7 +12,8 @@ dist/
 
 # Environment variables
 .env
-.env.local
+.env.*
+!.env.example
 
 # IDE / Editor
 .vscode/
@@ -21,6 +25,33 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test artifacts
+.cache/
+test-results/
+playwright-report/
+lhci-reports/
+
+# Lighthouse CI
+.lighthouseci/
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Caches
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Package managers
+*.tgz
+.pnp.*
 
 # Local agent / IDE settings
 .claude/
@@ -32,3 +63,9 @@ CLAUDE.md
 # Internal planning docs (local only)
 docs/
 process-notes.md
+
+# Backup files
+*.md.bak
+
+# Local dev documentation
+PLAYWRIGHT_VISUAL_CAPTURE.md
