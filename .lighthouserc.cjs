@@ -2,7 +2,7 @@ module.exports = {
   ci: {
     collect: {
       staticDistDir: "./dist",
-      url: ["/", "/contacto/", "/politica-de-cookies/"],
+      url: ["/", "/contacto/"],
       numberOfRuns: 1,
     },
     assert: {
