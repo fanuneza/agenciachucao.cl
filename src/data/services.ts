@@ -7,7 +7,7 @@ export const offerComponents: OfferComponent[] = [
   {
     label: "Google Search Ads",
     description:
-      "Captamos demanda activa de personas buscando implantes, ortodoncia o rehabilitación en Santiago. Solo búsquedas con intención real — sin audiencias frías.",
+      "Captamos demanda activa de personas buscando implantes, ortodoncia o rehabilitación en Santiago. Solo búsquedas con intención real, sin audiencias frías.",
   },
   {
     label: "Landing de conversión",

@@ -2,16 +2,7 @@ module.exports = {
   ci: {
     collect: {
       staticDistDir: "./dist",
-      url: [
-        "/",
-        "/blog/",
-        "/blog/por-que-no-aparezco-en-google/",
-        "/servicios/",
-        "/servicios/desarrollo-web/",
-        "/portafolio/",
-        "/sobre-nosotros/",
-        "/contacto/",
-      ],
+      url: ["/", "/contacto/", "/politica-de-cookies/"],
       numberOfRuns: 1,
     },
     assert: {
