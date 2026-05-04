@@ -13,9 +13,7 @@
     "test:lighthouse": "lhci autorun",
     "capture:local": "playwright test --config playwright.config.ts",
     "capture:home": "playwright test --config playwright.config.ts --grep @home",
-    "capture:blog": "playwright test --config playwright.config.ts --grep @blog",
-    "capture:servicios": "playwright test --config playwright.config.ts --grep @servicios",
-    "capture:portafolio": "playwright test --config playwright.config.ts --grep @portafolio"
+    "capture:contacto": "playwright test --config playwright.config.ts --grep @contacto"
   },
   "engines": {
     "node": ">=22"
