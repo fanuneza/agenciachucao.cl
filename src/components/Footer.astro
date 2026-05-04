@@ -1,14 +1,5 @@
 ---
 const year = new Date().getFullYear();
-
-const services = [
-  { label: "Gestión de Redes Sociales", href: "/servicios/gestion-de-redes-sociales/" },
-  { label: "SEO Técnico", href: "/servicios/seo-tecnico-y-posicionamiento/" },
-  { label: "Desarrollo Web", href: "/servicios/desarrollo-web/" },
-  { label: "Google Business Profile", href: "/servicios/optimizacion-de-google-business-profile/" },
-  { label: "Creación de Contenido", href: "/servicios/creacion-de-contenido/" },
-  { label: "Email Marketing", href: "/servicios/email-marketing/" },
-];
 ---
 
 <footer class="footer">
@@ -29,7 +20,7 @@ const services = [
         >
       </a>
       <p class="footer-tagline">
-        Agencia de marketing digital para negocios que quieren resultados reales. Santiago, Chile.
+        Lead Engine para clínicas dentales de alto ticket en Santiago. Captación medible, sin contratos largos.
       </p>
       <div class="footer-soc">
         <a
@@ -61,25 +52,11 @@ const services = [
       </div>
     </div>
 
-    <!-- Col 2: services -->
-    <nav class="footer-nav" aria-label="Servicios">
-      <p class="footer-col-label">Servicios</p>
-      <ul>
-        {
-          services.map(({ label, href }) => (
-            <li>
-              <a href={href}>{label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-
-    <!-- Col 3: contact + legal -->
+    <!-- Col 2: contact + legal -->
     <div class="footer-contact">
       <p class="footer-col-label">Contacto</p>
-      <a href="/contacto/" class="footer-contact-link">Escríbenos →</a>
-      <a href={`mailto:contacto@agenciachucao.cl`} class="footer-email">contacto@agenciachucao.cl</a>
+      <a href="/contacto/" class="footer-contact-link">Solicitar auditoría →</a>
+      <a href="mailto:contacto@agenciachucao.cl" class="footer-email">contacto@agenciachucao.cl</a>
     </div>
   </div>
 
@@ -89,7 +66,7 @@ const services = [
       <p>© {year} Agencia Chucao. Todos los derechos reservados.</p>
       <div class="footer-legal-links">
         <a href="/politica-de-cookies/">Política de cookies</a>
-        <button class="cookie-manage-btn" id="cookie-manage-btn"> Gestionar preferencias de cookies </button>
+        <button class="cookie-manage-btn" id="cookie-manage-btn">Gestionar preferencias de cookies</button>
       </div>
     </div>
   </div>
@@ -116,7 +93,7 @@ const services = [
   }
   @media (min-width: 768px) {
     .footer-inner {
-      grid-template-columns: 1.5fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       gap: 3rem;
     }
   }
@@ -156,10 +133,10 @@ const services = [
     font-size: 14px;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.45);
-    max-width: 30ch;
+    max-width: 36ch;
   }
 
-  /* Nav columns */
+  /* Column label */
   .footer-col-label {
     font-family: var(--font-sans);
     font-weight: 700;
@@ -168,24 +145,6 @@ const services = [
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
     margin-bottom: 1rem;
-  }
-
-  .footer-nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-  .footer-nav a {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .footer-nav a:hover {
-    color: var(--color-white);
   }
 
   /* Contact */

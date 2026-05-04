@@ -1,73 +1,67 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ContactForm from "@components/ContactForm.astro";
-
-const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waMessage =
-  "Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20conversar%20sobre%20marketing%20digital%20para%20mi%20negocio.";
-const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+import WhatsAppButton from "@components/WhatsAppButton.astro";
 ---
 
 <BaseLayout
-  title="Contacto"
-  description="Cuéntanos en qué etapa está tu negocio y qué necesitas mejorar. Sin compromiso. Te respondemos en menos de 24 horas."
+  title="Solicita tu auditoría gratuita | Agencia Chucao"
+  description="Cuéntanos de tu clínica. Revisamos dónde se están perdiendo evaluaciones y te mostramos cómo medirlo."
+  canonical="https://agenciachucao.cl/contacto/"
 >
-  <header class="contact-hero noise-bg">
-    <div class="container contact-hero-inner">
-      <p class="section-label section-label-light hero-anim-1">Contacto</p>
-      <h1 class="contact-h1 hero-anim-2">Hablemos de tu negocio</h1>
-      <p class="contact-lede hero-anim-3">
-        Sin compromiso. Sin presentaciones de 40 diapositivas. Solo una conversación honesta sobre lo que tu negocio
-        necesita y si podemos ayudarte.
+  <section class="audit-hero noise-bg">
+    <div class="container audit-hero-inner">
+      <p class="section-label section-label-light hero-anim-1">Auditoría gratuita</p>
+      <h1 class="audit-h1 hero-anim-2">Cuéntanos de tu clínica.</h1>
+      <p class="audit-lede hero-anim-3">
+        Revisamos dónde se están perdiendo evaluaciones y te mostramos cómo medirlo. Sin compromiso, sin presentación.
+        Solo números.
       </p>
     </div>
-  </header>
+  </section>
 
-  <section class="section-py contact-body">
-    <div class="container contact-inner">
-      <div class="contact-form-wrap scroll-reveal">
-        <h2 class="contact-form-title">Escríbenos</h2>
-        <p class="contact-form-sub">Completa el formulario y te respondemos en menos de 24 horas hábiles.</p>
+  <section class="audit-body">
+    <div class="container audit-inner">
+      <div class="audit-form-wrap">
         <ContactForm />
       </div>
 
-      <aside class="contact-aside scroll-reveal scroll-reveal-delay-2">
-        <div class="contact-aside-block">
-          <p class="aside-label">¿Prefieres WhatsApp?</p>
-          <p class="aside-text">
-            Si lo tuyo es conversar en tiempo real, escríbenos directamente. Estamos disponibles de lunes a viernes de
-            9:00 a 18:00.
-          </p>
-          <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn-primary aside-wa-btn">
-            Abrir WhatsApp
-          </a>
-        </div>
-
-        <div class="contact-aside-block">
-          <p class="aside-label">Correo directo</p>
-          <a href="mailto:contacto@agenciachucao.cl" class="aside-email"> contacto@agenciachucao.cl </a>
-        </div>
-
-        <div class="contact-aside-block">
+      <aside class="audit-aside">
+        <div class="aside-block">
           <p class="aside-label">Tiempo de respuesta</p>
-          <p class="aside-text">Menos de 24 horas hábiles, siempre.</p>
+          <p class="aside-text">Menos de 24 horas hábiles.</p>
+        </div>
+
+        <div class="aside-block">
+          <p class="aside-label">Qué pasa después</p>
+          <p class="aside-text">
+            Revisamos tu sitio, tu perfil en Google y tu presencia en directorios. Te enviamos una auditoría breve con
+            los puntos de fuga que encontramos. Sin cobrarte nada.
+          </p>
+        </div>
+
+        <div class="aside-block">
+          <p class="aside-label">Correo directo</p>
+          <a href="mailto:contacto@agenciachucao.cl" class="aside-email">contacto@agenciachucao.cl</a>
         </div>
       </aside>
     </div>
   </section>
+
+  <WhatsAppButton />
 </BaseLayout>
 
 <style>
-  .contact-hero {
+  .audit-hero {
     background: var(--color-forest);
     color: var(--color-white);
     padding-top: clamp(2rem, 4vw, 3.5rem);
     padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
   }
-  .contact-hero-inner {
+  .audit-hero-inner {
     max-width: 64ch;
   }
-  .contact-h1 {
+  .audit-h1 {
     font-size: var(--text-h1-size);
     font-weight: var(--text-h1-weight);
     letter-spacing: var(--text-h1-track);
@@ -75,7 +69,7 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     color: var(--color-white);
     margin-block: 1.25rem 1rem;
   }
-  .contact-lede {
+  .audit-lede {
     font-family: var(--font-serif);
     font-size: var(--text-lede-size);
     line-height: var(--text-lede-leading);
@@ -83,38 +77,24 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     max-width: 54ch;
   }
 
-  .contact-body {
+  .audit-body {
     background: var(--color-sage);
+    padding-block: clamp(3rem, 6vw, 5rem);
   }
 
-  .contact-inner {
+  .audit-inner {
     display: grid;
     grid-template-columns: 1fr;
     gap: 4rem;
     align-items: start;
   }
   @media (min-width: 1024px) {
-    .contact-inner {
-      grid-template-columns: 1fr 300px;
+    .audit-inner {
+      grid-template-columns: 1fr 280px;
     }
   }
 
-  .contact-form-title {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
-    color: var(--color-forest);
-    margin-bottom: 0.5rem;
-  }
-  .contact-form-sub {
-    font-family: var(--font-serif);
-    font-size: 16px;
-    color: var(--color-olive);
-    margin-bottom: 2rem;
-  }
-
-  /* Aside */
-  .contact-aside {
+  .audit-aside {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -122,14 +102,14 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     top: 5.5rem;
   }
 
-  .contact-aside-block {
+  .aside-block {
     display: flex;
     flex-direction: column;
-    gap: 0.625rem;
+    gap: 0.5rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--color-moss);
   }
-  .contact-aside-block:last-child {
+  .aside-block:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
@@ -142,15 +122,12 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     text-transform: uppercase;
     color: var(--color-olive);
   }
+
   .aside-text {
     font-family: var(--font-serif);
     font-size: 15px;
     line-height: 1.7;
     color: var(--color-olive);
-  }
-  .aside-wa-btn {
-    font-size: 13px;
-    align-self: flex-start;
   }
 
   .aside-email {

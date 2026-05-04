@@ -1,0 +1,129 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  timeline: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<section class="how section-pad">
+  <div class="container">
+    <p class="section-label how-reveal">El proceso</p>
+    <h2 class="how-h2 how-reveal">Qué pasa después<br />de que firmas.</h2>
+
+    <ol class="how-steps" role="list">
+      {
+        steps.map((step, i) => (
+          <li class={`how-step how-reveal how-reveal-delay-${i}`}>
+            <span class="step-bg-num" aria-hidden="true">{step.number}</span>
+            <div class="step-content">
+              <p class="step-timeline">{step.timeline}</p>
+              <p class="step-title">{step.title}</p>
+              <p class="step-desc">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--color-white);
+  }
+
+  .how-h2 {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    line-height: var(--text-h2-leading);
+    color: var(--color-forest);
+    margin-block: 0 4rem;
+  }
+
+  .how-steps {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .how-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .how-steps {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .how-step {
+    position: relative;
+    background: var(--color-sage);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-bg-num {
+    position: absolute;
+    top: -0.2em;
+    right: -0.05em;
+    font-family: var(--font-sans);
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-orange);
+    opacity: 0.08;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .step-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex: 1;
+  }
+
+  .step-timeline {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-orange);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .step-title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-forest);
+    line-height: 1.35;
+  }
+
+  .step-desc {
+    font-family: var(--font-serif);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    color: var(--color-olive);
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+</style>

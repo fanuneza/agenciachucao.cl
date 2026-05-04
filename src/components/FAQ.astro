@@ -1,0 +1,165 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="faq section-pad">
+  <div class="container faq-inner">
+    <div class="faq-header faq-reveal">
+      <p class="section-label">Preguntas frecuentes</p>
+      <h2 class="faq-h2">Las dudas que no<br />quieres llevar a la llamada.</h2>
+    </div>
+
+    <dl class="faq-list">
+      {
+        items.map((item, i) => (
+          <div class={`faq-item faq-reveal faq-reveal-delay-${Math.min(i, 4)}`}>
+            <dt>
+              <button
+                class="faq-question"
+                aria-expanded="false"
+                aria-controls={`faq-answer-${i}`}
+                id={`faq-btn-${i}`}
+              >
+                <span class="faq-question-text">{item.question}</span>
+                <span class="faq-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path class="faq-icon-v" d="M9 4v10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                    <path d="M4 9h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </button>
+            </dt>
+            <dd class="faq-answer" id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} hidden>
+              <p>{item.answer}</p>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      const answerId = btn.getAttribute("aria-controls");
+      const answer = answerId ? document.getElementById(answerId) : null;
+      const icon = btn.querySelector<SVGPathElement>(".faq-icon-v");
+
+      btn.setAttribute("aria-expanded", String(!expanded));
+      if (icon) icon.style.opacity = expanded ? "1" : "0";
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background: var(--color-sage);
+  }
+
+  .faq-inner {
+    display: grid;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .faq-inner {
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+    }
+  }
+
+  .faq-h2 {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    letter-spacing: var(--text-h2-track);
+    line-height: var(--text-h2-leading);
+    color: var(--color-forest);
+    margin-block: 0;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-moss);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-moss);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.375rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-body-size);
+    color: var(--color-forest);
+    line-height: 1.4;
+    transition: color 0.15s;
+  }
+  .faq-question:hover {
+    color: var(--color-orange);
+  }
+  .faq-question[aria-expanded="true"] {
+    color: var(--color-orange);
+  }
+
+  .faq-question-text {
+    flex: 1;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    color: var(--color-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-orange-pale);
+    transition: background 0.15s;
+  }
+  .faq-question:hover .faq-icon,
+  .faq-question[aria-expanded="true"] .faq-icon {
+    background: var(--color-orange);
+    color: var(--color-white);
+  }
+
+  .faq-icon-v {
+    transition: opacity 0.2s;
+  }
+
+  .faq-answer {
+    padding-bottom: 1.5rem;
+  }
+  .faq-answer p {
+    font-family: var(--font-serif);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    color: var(--color-olive);
+    max-width: 64ch;
+  }
+</style>

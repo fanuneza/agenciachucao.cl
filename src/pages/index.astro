@@ -1,24 +1,111 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/Hero.astro";
-import ServiceCard from "@components/ServiceCard.astro";
-import PortfolioCard from "@components/PortfolioCard.astro";
-import BlogCard from "@components/BlogCard.astro";
-import { featuredServices } from "@data/services";
-import { portfolio } from "@data/portfolio";
-
-// Blog preview — 3 most recent
-const allPosts = await getCollection("blog");
-const recentPosts = allPosts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()).slice(0, 3);
-
-// Portfolio preview — first 3 real projects (no comingSoon)
-const previewProjects = portfolio.filter((p) => !p.comingSoon).slice(0, 3);
+import ProblemSection from "@components/ProblemSection.astro";
+import OfferSection from "@components/OfferSection.astro";
+import HowItWorks from "@components/HowItWorks.astro";
+import IncludesExcludes from "@components/IncludesExcludes.astro";
+import PricingSection from "@components/PricingSection.astro";
+import FoundingOffer from "@components/FoundingOffer.astro";
+import FAQ from "@components/FAQ.astro";
+import CTAFinal from "@components/CTAFinal.astro";
+import WhatsAppButton from "@components/WhatsAppButton.astro";
+import { offerComponents } from "@data/services";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waMessage =
-  "Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20mejorar%20la%20presencia%20digital%20de%20mi%20negocio.%20%C2%BFTienen%20disponibilidad%20para%20conversar%3F";
+  "Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20el%20Lead%20Engine%20para%20mi%20cl%C3%ADnica%20dental.%20%C2%BFTienen%20disponibilidad%3F";
 const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+const howSteps = [
+  {
+    number: "01",
+    title: "Setup",
+    timeline: "Días 1–7",
+    description:
+      "Configuramos tracking, creamos la landing de conversión por tratamiento y conectamos todos los canales. Al final de la semana, el sistema está instrumentado.",
+  },
+  {
+    number: "02",
+    title: "Tráfico",
+    timeline: "Semana 2",
+    description:
+      "Activamos las campañas de Google Search. Capturamos demanda existente de pacientes buscando activamente tu tratamiento en Santiago.",
+  },
+  {
+    number: "03",
+    title: "Primeros leads",
+    timeline: "Días 10–21",
+    description:
+      "Si hay demanda activa en tu zona y tratamiento, los primeros leads llegan en esta ventana. Activamos el protocolo de seguimiento por WhatsApp.",
+  },
+  {
+    number: "04",
+    title: "Medición y ajuste",
+    timeline: "Día 30–45",
+    description:
+      "Primera revisión con datos reales: costo por lead, costo por evaluación, tasa de contacto. Ajustamos lo que muestre señales débiles.",
+  },
+];
+
+const included = [
+  "Google Search Ads (configuración, gestión y optimización)",
+  "Landing de conversión por tratamiento",
+  "Tracking completo GA4 + GTM",
+  "Protocolo de seguimiento por WhatsApp",
+  "SEO local + optimización de Google Business Profile",
+  "Optimización de perfil en Doctoralia y directorios",
+  "Remarketing mínimo (Meta como apoyo, no como canal principal)",
+  "Reunión mensual de revisión",
+  "Reporte mensual de CPL y costo por evaluación",
+];
+
+const excluded = [
+  "Community management y gestión de redes sociales",
+  "Producción de reels, videos o piezas creativas",
+  "Desarrollo web completo o rediseño del sitio",
+  "Branding e identidad visual",
+  "Pauta publicitaria (va aparte, pagada por el cliente a Google)",
+  "Calendario de contenidos y publicaciones periódicas",
+  "Más de una reunión mensual incluida",
+];
+
+const extras = [
+  "Nueva landing por tratamiento adicional",
+  "Segunda sede",
+  "Nueva categoría de tratamiento",
+  "Integraciones técnicas adicionales",
+  "Copy adicional",
+  "Correcciones de sitio heredado fuera del embudo",
+];
+
+const faqItems = [
+  {
+    question: "¿Por qué CLP $1.000.000 si hay agencias más baratas?",
+    answer:
+      "Caro respecto de qué. Dos cierres de implante medio cubren el fee. Lo caro es seguir pagando clics sin saber cuántas evaluaciones reales salen de ahí. Una agencia a $300.000 que no puede mostrarte costo por evaluación no es más barata: es más opaca.",
+  },
+  {
+    question: "Ya tenemos agencia.",
+    answer:
+      "La pregunta no es si tienen agencia. Es si hoy pueden mostrar costo por evaluación y costo por tratamiento cerrado, por canal. Si no lo tienen, están comprando actividad, no control. Esa es la diferencia.",
+  },
+  {
+    question: "¿Cuánto demora en verse resultados?",
+    answer:
+      "Setup completo en 7–14 días. Primeros leads en 10–21 días si hay demanda activa en tu zona y tratamiento. Primeras conclusiones serias a los 30–45 días. Para juzgar sostenibilidad, necesitas 90 días de datos.",
+  },
+  {
+    question: "¿Qué pasa si no funciona?",
+    answer:
+      "No hay permanencia larga. El setup cubre instrumentación y aprendizaje inicial. A los 45 días hacemos una revisión con datos reales: si hay fuga identificable, la corregimos. Si el mercado no tiene demanda activa suficiente, te lo decimos directamente.",
+  },
+  {
+    question: "¿Qué no incluye el fee?",
+    answer:
+      "Community management, redes sociales, reels, desarrollo web, branding y pauta publicitaria. La pauta la paga el cliente directamente a Google. Tampoco incluimos más de una reunión mensual ni landings adicionales para nuevos tratamientos o sedes.",
+  },
+];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -26,375 +113,50 @@ const localBusinessSchema = {
   name: "Agencia Chucao",
   url: "https://agenciachucao.cl",
   telephone: "+56922218674",
+  description:
+    "Lead Engine para clínicas dentales de alto ticket en Santiago. Convertimos búsquedas activas en evaluaciones agendadas.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Santiago",
     addressRegion: "Región Metropolitana",
     addressCountry: "CL",
   },
-  serviceType: [
-    "Marketing Digital",
-    "SEO Técnico",
-    "Desarrollo Web",
-    "Gestión de Redes Sociales",
-    "Email Marketing",
-    "Creación de Contenido",
-    "Google Business Profile",
-  ],
+  serviceType: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversión web"],
 };
-
-const stats = [
-  { value: 14, suffix: "", label: "Años en tecnología digital" },
-  { value: 10, suffix: "", label: "Años en medios de comunicación" },
-  { value: 5, suffix: "", label: "Proyectos entregados" },
-  { value: 4, suffix: "", label: "Clientes atendidos" },
-];
 ---
 
 <BaseLayout
-  title="Agencia de Marketing Digital en Chile"
-  description="Estrategia digital, SEO técnico, desarrollo web y gestión de redes sociales para negocios chilenos que quieren resultados reales."
+  title="Lead Engine para clínicas dentales en Santiago | Agencia Chucao"
+  description="Convertimos búsquedas activas en evaluaciones agendadas. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
   schema={localBusinessSchema}
 >
-  <!-- 1. Hero -->
-  <Hero />
+  <Hero
+    headline="Convierte búsquedas en evaluaciones agendadas."
+    subheadline="Instalamos un sistema de captación medible para clínicas de implantología, ortodoncia y rehabilitación en Santiago. En 30 días tienes tres números visibles: costo por lead, costo por evaluación y costo por tratamiento."
+    ctaText="Solicita tu auditoría gratuita"
+    ctaHref="/contacto/"
+  />
 
-  <!-- 2. Services -->
-  <section class="section-py services-section">
-    <div class="container">
-      <header class="section-header scroll-reveal">
-        <p class="section-label">Servicios</p>
-        <h2 class="section-title">Todo lo que necesitas para crecer en digital</h2>
-        <p class="section-lede">
-          Sin paquetes genéricos. Sin promesas vacías. Elige el servicio que tu negocio necesita ahora.
-        </p>
-      </header>
+  <ProblemSection />
 
-      <div class="services-grid">
-        {
-          featuredServices.map((service, i) => (
-            <div class="scroll-reveal" style={`transition-delay: ${i * 0.07}s`}>
-              <ServiceCard service={service} index={i} />
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <OfferSection components={offerComponents} />
 
-  <!-- 3. Stats -->
-  <section class="stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        {
-          stats.map(({ value, suffix, label }) => (
-            <div class="stat-cell scroll-reveal">
-              <div class="stat-number-row">
-                <>
-                  <span class="stat-counter" data-target={value}>
-                    0
-                  </span>
-                  <span class="stat-suffix">{suffix}</span>
-                </>
-              </div>
-              <p class="stat-label">{label}</p>
-            </div>
-          ))
-        }
-      </div>
-      <p class="stats-context scroll-reveal">
-        Periodistas de la Pontificia Universidad Católica de Chile con trayectoria en Prey, ArchDaily, TVN y La Tercera.
-      </p>
-    </div>
-  </section>
+  <HowItWorks steps={howSteps} />
 
-  <!-- 4. Portfolio preview -->
-  <section class="section-py portfolio-preview">
-    <div class="container">
-      <header class="section-header scroll-reveal">
-        <p class="section-label">Portafolio</p>
-        <h2 class="section-title">Proyectos reales, resultados reales</h2>
-      </header>
+  <IncludesExcludes included={included} excluded={excluded} extras={extras} />
 
-      <div class="portfolio-grid">
-        {
-          previewProjects.map((project) => (
-            <div class="scroll-reveal">
-              <PortfolioCard project={project} />
-            </div>
-          ))
-        }
-      </div>
+  <PricingSection />
 
-      <div class="section-cta scroll-reveal">
-        <a href="/portafolio/" class="btn-primary">Ver portafolio completo</a>
-      </div>
-    </div>
-  </section>
+  <FoundingOffer spotsTotal={2} ctaHref="/contacto/" />
 
-  <!-- 5. Blog preview -->
-  {
-    recentPosts.length > 0 && (
-      <section class="section-py blog-preview">
-        <div class="container">
-          <header class="section-header scroll-reveal">
-            <p class="section-label">Blog</p>
-            <h2 class="section-title">Marketing digital sin humo</h2>
-            <p class="section-lede">
-              Artículos escritos con criterio periodístico. Para entender lo que estás haciendo, no solo para parecer
-              que lo sabes.
-            </p>
-          </header>
+  <FAQ items={faqItems} />
 
-          <div class="blog-preview-grid">
-            {recentPosts.map((post) => (
-              <div class="scroll-reveal">
-                <BlogCard post={post} />
-              </div>
-            ))}
-          </div>
+  <CTAFinal
+    headline="¿Tu clínica necesita un sistema de captación medible?"
+    ctaText="Solicita tu auditoría gratuita"
+    ctaHref="/contacto/"
+    whatsappHref={waHref}
+  />
 
-          <div class="section-cta scroll-reveal">
-            <a href="/blog/" class="btn-primary">
-              Ver todos los artículos
-            </a>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  <!-- 6. Bottom CTA -->
-  <section class="bottom-cta noise-bg">
-    <div class="container bottom-cta-inner scroll-reveal">
-      <div class="bottom-cta-text-wrap">
-        <p class="section-label section-label-light">¿Listo para empezar?</p>
-        <h2 class="bottom-cta-title">Hablemos de tu negocio</h2>
-        <p class="bottom-cta-lede">
-          Sin compromiso. Sin presentación de 40 diapositivas. Solo una conversación honesta sobre lo que tu negocio
-          necesita.
-        </p>
-      </div>
-      <a
-        href={waHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-primary bottom-cta-btn"
-        id="bottom-cta-wa-btn"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="bottom-wa-icon">
-          <path
-            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-          ></path>
-        </svg>
-        Hablemos por WhatsApp
-      </a>
-    </div>
-  </section>
+  <WhatsAppButton />
 </BaseLayout>
-
-<script>
-  document.getElementById("bottom-cta-wa-btn")?.addEventListener("click", () => {
-    if (typeof gtag !== "undefined") {
-      gtag("event", "whatsapp_click_inline", {
-        page_url: window.location.href,
-        cta_label: "Hablemos por WhatsApp",
-        service: "home-bottom-cta",
-      });
-    }
-  });
-</script>
-
-<style>
-  /* Section shared */
-  .section-header {
-    max-width: 60ch;
-    margin-bottom: 3rem;
-  }
-  .section-title {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
-    line-height: var(--text-h2-leading);
-    color: var(--color-forest);
-    margin-bottom: 0.875rem;
-  }
-  .section-lede {
-    font-family: var(--font-serif);
-    font-size: var(--text-lede-size);
-    line-height: var(--text-lede-leading);
-    color: var(--color-olive);
-    max-width: 56ch;
-  }
-  .section-cta {
-    margin-top: 2.5rem;
-  }
-
-  /* Services */
-  .services-section {
-    background: var(--color-sage);
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 640px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  /* Stats */
-  .stats-section {
-    background: var(--color-forest);
-    padding-block: 4rem;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-  }
-  @media (min-width: 640px) {
-    .stats-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  .stat-cell {
-    background: var(--color-forest);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .stat-number-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.05em;
-  }
-
-  .stat-suffix {
-    font-family: var(--font-sans);
-    font-weight: 900;
-    font-size: clamp(28px, 4vw, 42px);
-    color: var(--color-orange);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
-    margin-top: 0.25rem;
-  }
-
-  .stats-context {
-    margin-top: 2rem;
-    text-align: center;
-    font-family: var(--font-serif);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.4);
-    font-style: italic;
-  }
-
-  /* Portfolio preview */
-  .portfolio-preview {
-    background: var(--color-white);
-  }
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 640px) {
-    .portfolio-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .portfolio-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .portfolio-grid > .scroll-reveal {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Blog preview */
-  .blog-preview {
-    background: var(--color-sage);
-  }
-  .blog-preview-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 640px) {
-    .blog-preview-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1024px) {
-    .blog-preview-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .blog-preview-grid > .scroll-reveal {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Bottom CTA */
-  .bottom-cta {
-    background: var(--color-forest);
-    padding-block: clamp(4rem, 8vw, 7rem);
-  }
-  .bottom-cta-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    flex-wrap: wrap;
-  }
-  .bottom-cta-text-wrap {
-    max-width: 52ch;
-  }
-  .bottom-cta-title {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
-    color: var(--color-white);
-    margin-block: 0.75rem 1rem;
-  }
-  .bottom-cta-lede {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.6);
-  }
-  .bottom-cta-btn {
-    font-size: 14px;
-    padding: 1rem 2rem;
-    white-space: nowrap;
-  }
-  .bottom-wa-icon {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
-    flex-shrink: 0;
-  }
-</style>

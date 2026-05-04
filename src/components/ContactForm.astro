@@ -5,114 +5,72 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
 <form class="contact-form" id="contact-form" novalidate>
-  <!-- Web3Forms access key -->
   <input type="hidden" name="access_key" value={web3Key} />
-  <!-- Honeypot — must stay empty -->
   <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <p class="form-note">Todos los campos son obligatorios.</p>
-
-  <div class="form-row">
-    <div class="form-group">
-      <label class="field-label" for="nombre">Tu nombre y apellido</label>
-      <input
-        class="form-field"
-        type="text"
-        id="nombre"
-        name="nombre"
-        autocomplete="name"
-        placeholder="Eloísa Díaz"
-        required
-      />
-      <span class="field-error" id="err-nombre"></span>
-    </div>
-    <div class="form-group">
-      <label class="field-label" for="email">Correo electrónico</label>
-      <input
-        class="form-field"
-        type="email"
-        id="email"
-        name="email"
-        autocomplete="email"
-        placeholder="nombre@tunegocio.cl"
-        required
-      />
-      <span class="field-error" id="err-email"></span>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group">
-      <label class="field-label" for="telefono">Teléfono</label>
-      <input
-        class="form-field"
-        type="tel"
-        id="telefono"
-        name="telefono"
-        autocomplete="tel"
-        placeholder="+56 9 1234 5678"
-        required
-      />
-      <span class="field-error" id="err-telefono"></span>
-    </div>
-    <div class="form-group">
-      <label class="field-label" for="cargo">Cargo o rol</label>
-      <input class="form-field" type="text" id="cargo" name="cargo" placeholder="Dueño, gerente, encargado…" required />
-      <span class="field-error" id="err-cargo"></span>
-    </div>
-  </div>
-
   <div class="form-group">
-    <label class="field-label" for="sitio_web">Sitio web o nombre de tu negocio</label>
+    <label class="field-label" for="nombre">Tu nombre</label>
     <input
       class="form-field"
       type="text"
-      id="sitio_web"
-      name="sitio_web"
-      autocomplete="url"
-      placeholder='tunegocio.cl o "Ferretería González"'
+      id="nombre"
+      name="nombre"
+      autocomplete="name"
+      placeholder="Nombre y apellido"
       required
     />
-    <span class="field-error" id="err-sitio_web"></span>
+    <span class="field-error" id="err-nombre"></span>
   </div>
 
   <div class="form-group">
-    <label class="field-label" for="servicio">¿Qué servicio te interesa?</label>
-    <select class="form-field form-select" id="servicio" name="servicio" required>
+    <label class="field-label" for="clinica">Nombre de tu clínica</label>
+    <input
+      class="form-field"
+      type="text"
+      id="clinica"
+      name="clinica"
+      placeholder="Clínica Dental..."
+      required
+    />
+    <span class="field-error" id="err-clinica"></span>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label" for="phone">Teléfono o WhatsApp</label>
+    <input
+      class="form-field"
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      placeholder="+56 9 1234 5678"
+      required
+    />
+    <span class="field-error" id="err-phone"></span>
+  </div>
+
+  <div class="form-group">
+    <label class="field-label" for="tratamiento">Tratamiento principal</label>
+    <select class="form-field form-select" id="tratamiento" name="tratamiento" required>
       <option value="">Selecciona una opción…</option>
-      <option value="Gestión de Redes Sociales">Gestión de Redes Sociales</option>
-      <option value="SEO Técnico y Posicionamiento">SEO Técnico y Posicionamiento</option>
-      <option value="Desarrollo Web">Desarrollo Web</option>
-      <option value="Optimización de Google Business Profile">Optimización de Google Business Profile</option>
-      <option value="Creación de Contenido">Creación de Contenido</option>
-      <option value="Email Marketing">Email Marketing</option>
-      <option value="No estoy seguro/a">No estoy seguro/a</option>
+      <option value="Implantología">Implantología</option>
+      <option value="Ortodoncia">Ortodoncia</option>
+      <option value="Rehabilitación oral">Rehabilitación oral</option>
+      <option value="Otro">Otro</option>
     </select>
-    <span class="field-error" id="err-servicio"></span>
-  </div>
-
-  <div class="form-group">
-    <label class="field-label" for="mensaje">¿En qué podemos ayudarte?</label>
-    <textarea
-      class="form-field form-textarea"
-      id="mensaje"
-      name="mensaje"
-      rows="4"
-      placeholder="Cuéntanos brevemente en qué etapa está tu negocio y qué quieres mejorar."
-      required></textarea>
-    <span class="field-error" id="err-mensaje"></span>
+    <span class="field-error" id="err-tratamiento"></span>
   </div>
 
   <div id="form-status" class="form-status" aria-live="polite"></div>
 
-  <button type="submit" class="btn-primary form-submit" id="form-submit-btn"> Enviar mensaje </button>
+  <button type="submit" class="btn-primary form-submit" id="form-submit-btn">Solicitar auditoría</button>
 </form>
 
-<div class="form-wa-fallback" id="form-wa-fallback" hidden>
+<div class="form-wa-fallback">
   <p class="fallback-text">
-    ¿Problemas con el formulario? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
-      >Escríbenos por WhatsApp</a
-    >.
+    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
+      >Escríbenos directamente →</a
+    >
   </p>
 </div>
 
@@ -120,7 +78,6 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const statusEl = document.getElementById("form-status");
   const submitBtn = document.getElementById("form-submit-btn") as HTMLButtonElement | null;
-  const waFallback = document.getElementById("form-wa-fallback");
 
   function showError(fieldId: string, msg: string) {
     const el = document.getElementById(`err-${fieldId}`);
@@ -149,45 +106,24 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       valid = false;
     }
 
-    const email = (data.get("email") as string)?.trim();
-    if (!email) {
-      showError("email", "Por favor ingresa tu correo.");
-      valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError("email", "El correo no parece válido.");
+    const clinica = (data.get("clinica") as string)?.trim();
+    if (!clinica) {
+      showError("clinica", "Por favor ingresa el nombre de tu clínica.");
       valid = false;
     }
 
-    const telefono = (data.get("telefono") as string)?.trim();
-    if (!telefono) {
-      showError("telefono", "Por favor ingresa tu teléfono.");
+    const phone = (data.get("phone") as string)?.trim();
+    if (!phone) {
+      showError("phone", "Por favor ingresa tu teléfono.");
       valid = false;
-    } else if (!/^[\+\d\s\-\(\)]{7,}$/.test(telefono)) {
-      showError("telefono", "El teléfono no parece válido.");
-      valid = false;
-    }
-
-    const cargo = (data.get("cargo") as string)?.trim();
-    if (!cargo) {
-      showError("cargo", "Por favor indica tu cargo.");
+    } else if (!/^[\+\d\s\-\(\)]{7,}$/.test(phone)) {
+      showError("phone", "El teléfono no parece válido.");
       valid = false;
     }
 
-    const sitio = (data.get("sitio_web") as string)?.trim();
-    if (!sitio) {
-      showError("sitio_web", "Por favor ingresa tu sitio web o el nombre de tu negocio.");
-      valid = false;
-    }
-
-    const servicio = (data.get("servicio") as string)?.trim();
-    if (!servicio) {
-      showError("servicio", "Por favor selecciona el servicio que te interesa.");
-      valid = false;
-    }
-
-    const mensaje = (data.get("mensaje") as string)?.trim();
-    if (!mensaje) {
-      showError("mensaje", "Por favor cuéntanos en qué podemos ayudarte.");
+    const tratamiento = (data.get("tratamiento") as string)?.trim();
+    if (!tratamiento) {
+      showError("tratamiento", "Por favor selecciona el tratamiento principal.");
       valid = false;
     }
 
@@ -199,7 +135,6 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     clearErrors();
 
     const data = new FormData(form);
-
     if (!validate(data)) return;
 
     submitBtn!.disabled = true;
@@ -217,23 +152,22 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
         form.reset();
         form.hidden = true;
         if (statusEl) {
-          statusEl.textContent = "Tu mensaje fue enviado. Te contactaremos pronto.";
+          statusEl.textContent = "Recibimos tu solicitud. Te contactamos en menos de 24 horas.";
           statusEl.classList.add("success");
         }
         if (typeof gtag !== "undefined") {
-          gtag("event", "contact_form_submit", { page_url: window.location.href });
+          gtag("event", "form_submit", { form: "audit_request" });
         }
       } else {
         throw new Error(json.message ?? "Error desconocido");
       }
     } catch {
       if (statusEl) {
-        statusEl.textContent = "Hubo un problema al enviar el formulario. Por favor intenta de nuevo.";
+        statusEl.textContent = "Hubo un problema al enviar. Por favor intenta de nuevo o usa WhatsApp.";
         statusEl.classList.add("error");
       }
-      if (waFallback) waFallback.hidden = false;
       submitBtn!.disabled = false;
-      submitBtn!.textContent = "Enviar mensaje";
+      submitBtn!.textContent = "Solicitar auditoría";
     }
   });
 </script>
@@ -243,17 +177,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 640px) {
-    .form-row {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    margin-bottom: 1.5rem;
   }
 
   .form-group {
@@ -306,18 +230,6 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     padding-right: 2.5rem;
   }
 
-  .form-textarea {
-    resize: vertical;
-    min-height: 110px;
-  }
-
-  .form-note {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    color: var(--color-olive);
-    margin-bottom: 0.25rem;
-  }
-
   .form-submit {
     align-self: flex-start;
     font-size: 14px;
@@ -329,7 +241,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   }
 
   .form-wa-fallback {
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
   }
   .fallback-text {
     font-family: var(--font-sans);

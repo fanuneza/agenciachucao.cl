@@ -3,12 +3,6 @@ import AxeBuilder from "@axe-core/playwright";
 
 const pages = [
   { name: "home", path: "/" },
-  { name: "blog", path: "/blog/" },
-  { name: "blog-detail", path: "/blog/por-que-no-aparezco-en-google/" },
-  { name: "servicios", path: "/servicios/" },
-  { name: "servicio-detail", path: "/servicios/desarrollo-web/" },
-  { name: "portafolio", path: "/portafolio/" },
-  { name: "sobre-nosotros", path: "/sobre-nosotros/" },
   { name: "contacto", path: "/contacto/" },
   { name: "politica-de-cookies", path: "/politica-de-cookies/" },
   { name: "404", path: "/404" },

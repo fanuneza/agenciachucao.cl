@@ -5,12 +5,6 @@ import { expect, test } from "@playwright/test";
 const outputDir = path.resolve(".cache", "parity");
 const pages = [
   { name: "home", path: "/", tag: "@home" },
-  { name: "blog", path: "/blog/", tag: "@blog" },
-  { name: "blog-detail", path: "/blog/por-que-no-aparezco-en-google/", tag: "@blog" },
-  { name: "servicios", path: "/servicios/", tag: "@servicios" },
-  { name: "servicio-detail", path: "/servicios/desarrollo-web/", tag: "@servicios" },
-  { name: "portafolio", path: "/portafolio/", tag: "@portafolio" },
-  { name: "sobre-nosotros", path: "/sobre-nosotros/", tag: "@sobre-nosotros" },
   { name: "contacto", path: "/contacto/", tag: "@contacto" },
   { name: "politica-de-cookies", path: "/politica-de-cookies/", tag: "@legal" },
   { name: "404", path: "/404", tag: "@404" },

@@ -150,16 +150,19 @@ a {
   padding-inline: var(--container-pad);
 }
 
-.section-py {
+.section-py,
+.section-pad {
   padding-block: var(--section-pad-sm);
 }
 @media (min-width: 640px) {
-  .section-py {
+  .section-py,
+  .section-pad {
     padding-block: var(--section-pad-md);
   }
 }
 @media (min-width: 1024px) {
-  .section-py {
+  .section-py,
+  .section-pad {
     padding-block: var(--section-pad-lg);
   }
 }
