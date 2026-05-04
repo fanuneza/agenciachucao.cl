@@ -20,28 +20,40 @@ const { included, excluded, extras } = Astro.props;
       <div class="inex-col inex-reveal">
         <p class="inex-col-label inex-col-label--in">Incluido en el fee mensual</p>
         <ul class="inex-list" role="list">
-          {included.map((item) => (
-            <li class="inex-item inex-item--in">
-              <span class="inex-check" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              {item}
-            </li>
-          ))}
+          {
+            included.map((item) => (
+              <li class="inex-item inex-item--in">
+                <span class="inex-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path
+                      d="M2.5 7L5.5 10L11.5 4"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="inex-col inex-reveal inex-reveal-delay-1">
         <p class="inex-col-label inex-col-label--out">No incluido</p>
         <ul class="inex-list" role="list">
-          {excluded.map((item) => (
-            <li class="inex-item inex-item--out">
-              <span class="inex-dash" aria-hidden="true">—</span>
-              {item}
-            </li>
-          ))}
+          {
+            excluded.map((item) => (
+              <li class="inex-item inex-item--out">
+                <span class="inex-dash" aria-hidden="true">
+                  —
+                </span>
+                {item}
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
@@ -49,14 +61,13 @@ const { included, excluded, extras } = Astro.props;
     <div class="inex-extras inex-reveal">
       <p class="inex-extras-label">Fuera del alcance estándar · se cotiza aparte</p>
       <div class="inex-extras-chips">
-        {extras.map((item) => (
-          <span class="extras-chip">{item}</span>
-        ))}
+        {extras.map((item) => <span class="extras-chip">{item}</span>)}
       </div>
     </div>
 
     <p class="inex-note inex-reveal">
-      La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee — así mantenemos las cuentas en manos del cliente y sin opacidad.
+      La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee —
+      así mantenemos las cuentas en manos del cliente y sin opacidad.
     </p>
   </div>
 </section>
