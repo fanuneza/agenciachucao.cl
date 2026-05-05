@@ -2,16 +2,15 @@
 const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 ---
 
-<div class="cookie-banner" id="cookie-banner" aria-live="polite" role="region" aria-label="Aviso de cookies">
-  <div class="cookie-inner">
+<div class="cookie-banner" id="cookie-banner" hidden aria-live="polite" role="region" aria-label="Aviso de cookies">
+  <div class="cookie-inner wrap">
     <p class="cookie-text">
-      Usamos cookies propias para analizar el tráfico de nuestra web (Google Analytics). Puedes aceptar o rechazar su
-      uso.
-      <a href="/politica-de-cookies/" class="cookie-policy-link">Ver política de cookies</a>
+      Usamos cookies propias para analizar el tráfico de nuestra web (Google Analytics). Puedes aceptar o rechazar su uso.
+      <a href="/politica-de-cookies/" class="cookie-link">Ver política de cookies</a>
     </p>
     <div class="cookie-actions">
-      <button class="btn-primary cookie-btn" id="cookie-accept">Aceptar</button>
-      <button class="btn-ghost cookie-btn" id="cookie-reject">Rechazar</button>
+      <button class="btn cookie-btn" id="cookie-accept">Aceptar</button>
+      <button class="btn btn-secondary cookie-btn" id="cookie-reject">Rechazar</button>
     </div>
   </div>
 </div>
@@ -35,9 +34,7 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
+    function gtag() { window.dataLayer.push(arguments); }
     window.gtag = gtag;
     gtag("js", new Date());
     gtag("config", ga4Id);
@@ -48,11 +45,9 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
 
   if (consent === "accepted") {
     initGA4();
-    banner?.remove();
-  } else if (consent === "rejected") {
-    banner?.remove();
+  } else if (!consent) {
+    banner?.removeAttribute("hidden");
   }
-  // else: no cookie → banner stays visible
 
   document.getElementById("cookie-accept")?.addEventListener("click", () => {
     setCookie("chucao_consent", "accepted");
@@ -72,40 +67,37 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 60;
-    background: var(--color-forest);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.25rem var(--container-pad);
+    z-index: 50;
+    background: var(--ink);
+    border-top: 1px solid var(--ink-line);
   }
 
   .cookie-inner {
-    max-width: var(--container-max);
-    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
+    padding-block: 1.25rem;
   }
 
   .cookie-text {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--f-text);
+    font-size: var(--t-sm);
+    color: var(--muted-dark);
     line-height: 1.6;
     max-width: 60ch;
+    margin: 0;
   }
 
-  .cookie-policy-link {
-    color: var(--color-orange);
+  .cookie-link {
+    color: var(--vermilion);
     text-decoration: underline;
     text-underline-offset: 2px;
     margin-left: 0.375rem;
-    transition: color 0.15s;
+    transition: color 160ms var(--ease-out);
   }
-  .cookie-policy-link:hover {
-    color: var(--color-white);
-  }
+  .cookie-link:hover { color: var(--bone); }
 
   .cookie-actions {
     display: flex;
@@ -114,7 +106,19 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
   }
 
   .cookie-btn {
-    font-size: 12px;
-    padding: 0.625rem 1.25rem;
+    font-size: var(--t-xs);
+    padding: 0.6rem 1rem;
+    min-height: 36px;
+  }
+
+  /* Secondary button on dark banner */
+  .cookie-btn.btn-secondary {
+    --fg: var(--bone);
+    --bd: rgba(178, 174, 164, 0.35);
+  }
+  .cookie-btn.btn-secondary:hover {
+    --bg: var(--bone);
+    --fg: var(--ink);
+    border-color: var(--bone);
   }
 </style>

@@ -23,7 +23,7 @@ const howSteps = [
     title: "Setup",
     timeline: "Días 1–7",
     description:
-      "Configuramos tracking, creamos la landing de conversión por tratamiento y conectamos todos los canales. Al final de la semana, el sistema está instrumentado.",
+      "Instalamos el seguimiento de conversiones, creamos la página por tratamiento y activamos todos los canales. Al final de la semana, el sistema está listo.",
   },
   {
     number: "02",
@@ -44,20 +44,20 @@ const howSteps = [
     title: "Medición y ajuste",
     timeline: "Día 30–45",
     description:
-      "Primera revisión con datos reales: costo por lead, costo por evaluación, tasa de contacto. Ajustamos lo que muestre señales débiles.",
+      "Primera revisión con datos reales: gasto por evaluación, tasa de contacto, fuentes que funcionan. Ajustamos lo que muestre señales débiles.",
   },
 ];
 
 const included = [
   "Google Search Ads (configuración, gestión y optimización)",
   "Landing de conversión por tratamiento",
-  "Tracking completo GA4 + GTM",
-  "Protocolo de seguimiento por WhatsApp",
+  "Seguimiento de conversiones completo (Google Analytics + Tag Manager)",
+  "Protocolo de respuesta por WhatsApp",
   "SEO local + optimización de Google Business Profile",
   "Optimización de perfil en Doctoralia y directorios",
-  "Remarketing mínimo (Meta como apoyo, no como canal principal)",
+  "Remarketing en Meta como canal de apoyo",
   "Reunión mensual de revisión",
-  "Reporte mensual de CPL y costo por evaluación",
+  "Reporte mensual de gasto por lead y por evaluación",
 ];
 
 const excluded = [
@@ -83,12 +83,12 @@ const faqItems = [
   {
     question: "¿Por qué CLP $1.000.000 si hay agencias más baratas?",
     answer:
-      "Caro respecto de qué. Dos cierres de implante medio cubren el fee. Lo caro es seguir pagando clics sin saber cuántas evaluaciones reales salen de ahí. Una agencia a $300.000 que no puede mostrarte costo por evaluación no es más barata: es más opaca.",
+      "Depende de qué estás midiendo. Dos cierres de implante al mes ya cubren el fee. La pregunta más útil es cuánto te cuesta hoy conseguir cada paciente nuevo, contando todo: pauta, tiempo y esfuerzo. Si no tienes ese número, cualquier comparación de precios es arbitraria.",
   },
   {
     question: "Ya tenemos agencia.",
     answer:
-      "La pregunta no es si tienen agencia. Es si hoy pueden mostrar costo por evaluación y costo por tratamiento cerrado, por canal. Si no lo tienen, están comprando actividad, no control. Esa es la diferencia.",
+      "Puede que funcione bien. Lo que vale la pena revisar es si hoy puedes ver cuánto te costó el último paciente de implante, desde que buscó en Google hasta que pagó. Si ese dato existe y es claro, probablemente no necesitas nada más. Si no está, hay algo concreto que se puede mejorar.",
   },
   {
     question: "¿Cuánto demora en verse resultados?",
@@ -98,7 +98,7 @@ const faqItems = [
   {
     question: "¿Qué pasa si no funciona?",
     answer:
-      "No hay permanencia larga. El setup cubre instrumentación y aprendizaje inicial. A los 45 días hacemos una revisión con datos reales: si hay fuga identificable, la corregimos. Si el mercado no tiene demanda activa suficiente, te lo decimos directamente.",
+      "No hay permanencia larga. El setup cubre la instalación y el aprendizaje inicial. A los 45 días revisamos con datos reales: si hay algo que optimizar, lo hacemos. Si hay razones estructurales por las que el canal no funciona para tu clínica o zona, te lo decimos con claridad.",
   },
   {
     question: "¿Qué no incluye el fee?",
@@ -114,7 +114,7 @@ const localBusinessSchema = {
   url: "https://agenciachucao.cl",
   telephone: "+56922218674",
   description:
-    "Lead Engine para clínicas dentales de alto ticket en Santiago. Convertimos búsquedas activas en evaluaciones agendadas.",
+    "Lead Engine para clínicas dentales de alto ticket en Santiago. Convertimos búsquedas activas en pacientes agendados.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Santiago",
@@ -127,12 +127,12 @@ const localBusinessSchema = {
 
 <BaseLayout
   title="Lead Engine para clínicas dentales en Santiago | Agencia Chucao"
-  description="Convertimos búsquedas activas en evaluaciones agendadas. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
+  description="Convertimos búsquedas activas en pacientes agendados. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
   schema={localBusinessSchema}
 >
   <Hero
-    headline="Convierte búsquedas en evaluaciones agendadas."
-    subheadline="Instalamos un sistema de captación medible para clínicas de implantología, ortodoncia y rehabilitación en Santiago. En 30 días tienes tres números visibles: costo por lead, costo por evaluación y costo por tratamiento."
+    headline="Convierte búsquedas en agendamientos."
+    subheadline="Instalamos Google Ads, una página de conversión y seguimiento por WhatsApp para clínicas dentales en Santiago. En 30 días sabes cuánto te cuesta cada paciente nuevo, de dónde viene y qué tratamiento buscó."
     ctaText="Solicita tu auditoría gratuita"
     ctaHref="/contacto/"
   />
@@ -152,7 +152,7 @@ const localBusinessSchema = {
   <FAQ items={faqItems} />
 
   <CTAFinal
-    headline="¿Tu clínica necesita un sistema de captación medible?"
+    headline="¿Quieres saber cuánto te cuesta conseguir cada paciente nuevo desde Google?"
     ctaText="Solicita tu auditoría gratuita"
     ctaHref="/contacto/"
     whatsappHref={waHref}

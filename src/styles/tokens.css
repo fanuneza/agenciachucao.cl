@@ -1,77 +1,47 @@
 :root {
-  /* ── Colors ─────────────────────────────────────────────── */
-  --color-orange: #cc4b3a;
-  --color-orange-dark: #a33c2d;
-  --color-orange-pale: #f9edeb;
-  --color-forest: #1c2e1a;
-  --color-forest-mid: #2a4427;
-  --color-olive: #5c6b57;
-  --color-moss: #dde3d8;
-  --color-sage: #f4f6f1;
-  --color-white: #fff;
-  --color-black: #111;
-  --color-whatsapp: #25d366;
-  --color-linkedin: #0077b5;
-  --color-facebook: #1877f2;
+  /* ── color: bone / ink / vermilion ── */
+  --bone:        #F2EEE6;
+  --bone-2:      #E8E2D4;
+  --bone-line:   #D9D2C0;
+  --ink:         #0E0E0C;
+  --ink-2:       #1A1A17;
+  --ink-line:    #2A2A24;
+  --graphite:    #4A4943;
+  --muted:       #7A7770;
+  --muted-dark:  #B8B2A4;
+  --vermilion:   #D24A2A;
+  --vermilion-d: #B83D1F;
+  --white:       #FFFFFF;
+  --focus-ring:  #D24A2A;
 
-  /* ── Font families ──────────────────────────────────────── */
-  --font-sans: "Montserrat", sans-serif;
-  --font-serif: "Lora", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, menlo, monospace;
+  /* ── type ── */
+  --f-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --f-text:    "Geist", ui-sans-serif, system-ui, sans-serif;
+  --f-mono:    "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* ── Type scale ─────────────────────────────────────────── */
-  --text-h1-size: clamp(40px, 5vw, 80px);
-  --text-h1-weight: 900;
-  --text-h1-track: -0.03em;
-  --text-h1-leading: 1.02;
+  /* ── scale (clamps) ── */
+  --t-7xl: clamp(3.25rem, 6vw + 1rem, 6.75rem);
+  --t-6xl: clamp(2.5rem, 4.4vw + 0.5rem, 4.75rem);
+  --t-4xl: clamp(1.75rem, 1.4vw + 1.2rem, 2.5rem);
+  --t-2xl: clamp(1.25rem, 0.6vw + 1.05rem, 1.5rem);
+  --t-xl:  1.125rem;
+  --t-lg:  1rem;
+  --t-md:  0.9375rem;
+  --t-sm:  0.8125rem;
+  --t-xs:  0.6875rem;
 
-  --text-h2-size: clamp(28px, 3.5vw, 44px);
-  --text-h2-weight: 800;
-  --text-h2-track: -0.02em;
-  --text-h2-leading: 1.15;
+  /* ── spacing ── */
+  --gutter:    clamp(1.25rem, 2vw, 2rem);
+  --maxw:      1280px;
+  --section-y: clamp(5rem, 9vw, 9rem);
 
-  --text-h3-size: clamp(20px, 2.5vw, 28px);
-  --text-h3-weight: 700;
-  --text-h3-track: -0.01em;
-  --text-h3-leading: 1.25;
+  /* ── motion ── */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  --text-h4-size: 18px;
-  --text-h4-weight: 700;
-  --text-h4-leading: 1.35;
+  /* ── accent font ── */
+  --f-serif: "Instrument Serif", Georgia, serif;
 
-  --text-h5-size: 15px;
-  --text-h5-weight: 700;
-  --text-h5-track: 0.04em;
-
-  --text-h6-size: 13px;
-  --text-h6-weight: 700;
-  --text-h6-track: 0.08em;
-
-  --text-body-size: 16px;
-  --text-body-leading: 1.75;
-
-  --text-lede-size: 19px;
-  --text-lede-leading: 1.7;
-
-  /* ── Layout ─────────────────────────────────────────────── */
-  --container-max: 1240px;
-  --container-pad: 1.5rem;
-  --section-pad-lg: 7rem;
-  --section-pad-md: 5rem;
-  --section-pad-sm: 3.5rem;
-
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-
-  /* ── Animation ──────────────────────────────────────────── */
-  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* ── Semantic aliases (for new section components) ──────── */
-  --color-ink: var(--color-black);
-  --color-ink-secondary: var(--color-olive);
-  --color-ink-muted: rgba(92, 107, 87, 0.65);
-  --color-border: var(--color-moss);
-  --color-surface: var(--color-sage);
-  --color-surface-alt: var(--color-white);
+  /* ── brand colors ── */
+  --color-wa:    #2BB36B;
+  --color-wa-bg: rgba(43, 179, 107, 0.18);
 }

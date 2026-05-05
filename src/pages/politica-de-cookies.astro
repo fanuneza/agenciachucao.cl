@@ -10,7 +10,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   <article class="cookie-policy section-py">
     <div class="container cookie-policy-inner">
       <header class="policy-header">
-        <p class="section-label">Legal</p>
+        <p class="eyebrow">Legal</p>
         <h1 class="policy-title">Política de Cookies</h1>
         <p class="policy-meta">Última actualización: abril 2026</p>
       </header>
@@ -112,7 +112,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 <style>
   .cookie-policy {
-    background: var(--color-sage);
+    background: var(--color-cream);
   }
   .cookie-policy-inner {
     max-width: 72ch;
@@ -122,16 +122,13 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     margin-bottom: 3rem;
   }
   .policy-title {
-    font-size: var(--text-h1-size);
-    font-weight: var(--text-h1-weight);
-    letter-spacing: var(--text-h1-track);
-    color: var(--color-forest);
+    color: var(--color-ink);
     margin-block: 0.75rem 0.5rem;
   }
   .policy-meta {
     font-family: var(--font-sans);
     font-size: 12px;
-    color: var(--color-olive);
+    color: var(--color-ink-mid);
   }
 
   .policy-body {
@@ -146,18 +143,15 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     gap: 1rem;
   }
   .policy-section h2 {
-    font-size: var(--text-h3-size);
-    font-weight: var(--text-h3-weight);
-    color: var(--color-forest);
+    color: var(--color-ink);
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-moss);
+    border-bottom: 1px solid var(--color-border);
   }
   .policy-section p,
   .policy-section li {
-    font-family: var(--font-serif);
     font-size: 16px;
     line-height: 1.8;
-    color: var(--color-black);
+    color: var(--color-ink);
   }
   .policy-section ul {
     padding-left: 1.5rem;
@@ -166,15 +160,16 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     gap: 0.5rem;
   }
   .policy-section strong {
-    color: var(--color-forest);
+    color: var(--color-ink);
+    font-weight: 600;
   }
   .policy-section a {
-    color: var(--color-orange);
+    color: var(--color-gold);
   }
   .policy-section code {
     font-family: var(--font-mono);
     font-size: 0.875em;
-    background: var(--color-moss);
+    background: var(--color-border);
     padding: 2px 5px;
     border-radius: var(--radius-sm);
   }
@@ -189,9 +184,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     font-size: 13px;
   }
   .policy-table th {
-    background: var(--color-forest);
+    background: var(--color-slate);
     color: var(--color-white);
-    font-weight: 700;
+    font-weight: 600;
     text-align: left;
     padding: 0.75rem 1rem;
     font-size: 11px;
@@ -200,8 +195,8 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   }
   .policy-table td {
     padding: 0.875rem 1rem;
-    border-bottom: 1px solid var(--color-moss);
-    color: var(--color-black);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-ink);
     vertical-align: top;
     line-height: 1.5;
   }
@@ -209,6 +204,6 @@ import BaseLayout from "@layouts/BaseLayout.astro";
     border-bottom: none;
   }
   .policy-table tr:nth-child(even) td {
-    background: var(--color-sage);
+    background: var(--color-cream);
   }
 </style>

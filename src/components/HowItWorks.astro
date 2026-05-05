@@ -13,119 +13,83 @@ interface Props {
 const { steps } = Astro.props;
 ---
 
-<section class="how section-pad">
-  <div class="container">
-    <p class="section-label how-reveal">El proceso</p>
-    <h2 class="how-h2 how-reveal">Qué pasa después<br />de que firmas.</h2>
+<section class="section how" id="proceso" aria-labelledby="how-h2">
+  <div class="wrap">
+    <div class="tray">
+      <span class="serial">§ 03 / Procedimiento</span>
+      <span class="meta">45 días · cuatro fases</span>
+    </div>
 
-    <ol class="how-steps" role="list">
-      {
-        steps.map((step, i) => (
-          <li class={`how-step how-reveal how-reveal-delay-${i}`}>
-            <span class="step-bg-num" aria-hidden="true">
-              {step.number}
-            </span>
-            <div class="step-content">
-              <p class="step-timeline">{step.timeline}</p>
-              <p class="step-title">{step.title}</p>
-              <p class="step-desc">{step.description}</p>
-            </div>
-          </li>
-        ))
-      }
+    <h2 id="how-h2">Qué pasa después<br/>de que <em>firmas</em>.</h2>
+
+    <ol class="steps" role="list">
+      {steps.map((step) => (
+        <li class="step">
+          <span class="num">{step.number}</span>
+          <div class="body">
+            <span class="timeline">{step.timeline}</span>
+            <p class="title">{step.title}</p>
+            <p class="desc">{step.description}</p>
+          </div>
+        </li>
+      ))}
     </ol>
   </div>
 </section>
 
 <style>
-  .how {
-    background: var(--color-white);
-  }
-
-  .how-h2 {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
-    line-height: var(--text-h2-leading);
-    color: var(--color-forest);
-    margin-block: 0 4rem;
-  }
-
-  .how-steps {
+  .steps {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--bone-line);
     list-style: none;
     padding: 0;
+  }
+
+  .step {
     display: grid;
-    gap: 1.5rem;
+    grid-template-columns: 90px 1fr;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+    border-bottom: 1px solid var(--bone-line);
+    align-items: baseline;
   }
-  @media (min-width: 640px) {
-    .how-steps {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  @media (min-width: 720px) {
+    .step { grid-template-columns: 90px 180px 1fr; }
   }
-  @media (min-width: 1024px) {
-    .how-steps {
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-    }
-  }
-
-  .how-step {
-    position: relative;
-    background: var(--color-sage);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  @media (max-width: 480px) {
+    .step { grid-template-columns: 1fr; gap: 0.5rem; }
   }
 
-  .step-bg-num {
-    position: absolute;
-    top: -0.2em;
-    right: -0.05em;
-    font-family: var(--font-sans);
-    font-weight: 900;
-    font-size: 96px;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--color-orange);
-    opacity: 0.08;
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .step-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    flex: 1;
-  }
-
-  .step-timeline {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--color-orange);
+  .step .num {
+    font-family: var(--f-display);
+    font-size: clamp(2rem, 3vw, 3rem);
     font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+  }
+
+  .step .body { display: grid; gap: 0.5rem; }
+
+  .step .timeline {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    color: var(--vermilion);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0;
   }
-
-  .step-title {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--color-forest);
-    line-height: 1.35;
+  .step .title {
+    font-family: var(--f-display);
+    font-size: var(--t-xl);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0;
   }
-
-  .step-desc {
-    font-family: var(--font-serif);
-    font-size: var(--text-body-size);
-    line-height: var(--text-body-leading);
-    color: var(--color-olive);
-    margin-top: auto;
-    padding-top: 0.75rem;
+  .step .desc {
+    color: var(--graphite);
+    max-width: 56ch;
+    margin: 0;
   }
 </style>

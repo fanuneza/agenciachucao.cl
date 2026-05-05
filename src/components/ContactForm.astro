@@ -10,15 +10,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="nombre">Tu nombre</label>
-    <input
-      class="form-field"
-      type="text"
-      id="nombre"
-      name="nombre"
-      autocomplete="name"
-      placeholder="Nombre y apellido"
-      required
-    />
+    <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Nombre y apellido" required />
     <span class="field-error" id="err-nombre"></span>
   </div>
 
@@ -30,15 +22,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="phone">Teléfono o WhatsApp</label>
-    <input
-      class="form-field"
-      type="tel"
-      id="phone"
-      name="phone"
-      autocomplete="tel"
-      placeholder="+56 9 1234 5678"
-      required
-    />
+    <input class="form-field" type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+56 9 1234 5678" required />
     <span class="field-error" id="err-phone"></span>
   </div>
 
@@ -56,14 +40,12 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div id="form-status" class="form-status" aria-live="polite"></div>
 
-  <button type="submit" class="btn-primary form-submit" id="form-submit-btn">Solicitar auditoría</button>
+  <button type="submit" class="btn form-submit" id="form-submit-btn">Solicitar auditoría <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
 </form>
 
 <div class="form-wa-fallback">
   <p class="fallback-text">
-    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
-      >Escríbenos directamente →</a
-    >
+    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link">Escríbenos directamente →</a>
   </p>
 </div>
 
@@ -74,59 +56,33 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   function showError(fieldId: string, msg: string) {
     const el = document.getElementById(`err-${fieldId}`);
-    if (el) {
-      el.textContent = msg;
-      el.classList.add("visible");
-    }
+    if (el) { el.textContent = msg; el.classList.add("visible"); }
     const field = document.getElementById(fieldId) as HTMLInputElement | null;
     field?.classList.add("invalid");
   }
 
   function clearErrors() {
-    document.querySelectorAll(".field-error").forEach((el) => {
-      el.textContent = "";
-      el.classList.remove("visible");
-    });
+    document.querySelectorAll(".field-error").forEach((el) => { el.textContent = ""; el.classList.remove("visible"); });
     document.querySelectorAll(".form-field").forEach((el) => el.classList.remove("invalid"));
   }
 
   function validate(data: FormData): boolean {
     let valid = true;
-
     const nombre = (data.get("nombre") as string)?.trim();
-    if (!nombre) {
-      showError("nombre", "Por favor ingresa tu nombre.");
-      valid = false;
-    }
-
+    if (!nombre) { showError("nombre", "Por favor ingresa tu nombre."); valid = false; }
     const clinica = (data.get("clinica") as string)?.trim();
-    if (!clinica) {
-      showError("clinica", "Por favor ingresa el nombre de tu clínica.");
-      valid = false;
-    }
-
+    if (!clinica) { showError("clinica", "Por favor ingresa el nombre de tu clínica."); valid = false; }
     const phone = (data.get("phone") as string)?.trim();
-    if (!phone) {
-      showError("phone", "Por favor ingresa tu teléfono.");
-      valid = false;
-    } else if (!/^[\+\d\s\-\(\)]{7,}$/.test(phone)) {
-      showError("phone", "El teléfono no parece válido.");
-      valid = false;
-    }
-
+    if (!phone) { showError("phone", "Por favor ingresa tu teléfono."); valid = false; }
+    else if (!/^[\+\d\s\-\(\)]{7,}$/.test(phone)) { showError("phone", "El teléfono no parece válido."); valid = false; }
     const tratamiento = (data.get("tratamiento") as string)?.trim();
-    if (!tratamiento) {
-      showError("tratamiento", "Por favor selecciona el tratamiento principal.");
-      valid = false;
-    }
-
+    if (!tratamiento) { showError("tratamiento", "Por favor selecciona el tratamiento principal."); valid = false; }
     return valid;
   }
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearErrors();
-
     const data = new FormData(form);
     if (!validate(data)) return;
 
@@ -135,30 +91,18 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     if (statusEl) statusEl.textContent = "";
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: data,
-      });
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: data });
       const json = await res.json();
-
       if (res.ok && json.success) {
         form.reset();
         form.hidden = true;
-        if (statusEl) {
-          statusEl.textContent = "Recibimos tu solicitud. Te contactamos en menos de 24 horas.";
-          statusEl.classList.add("success");
-        }
-        if (typeof gtag !== "undefined") {
-          gtag("event", "form_submit", { form: "audit_request" });
-        }
+        if (statusEl) { statusEl.textContent = "Recibimos tu solicitud. Te contactamos en menos de 24 horas."; statusEl.classList.add("success"); }
+        if (typeof gtag !== "undefined") { gtag("event", "form_submit", { form: "audit_request" }); }
       } else {
         throw new Error(json.message ?? "Error desconocido");
       }
     } catch {
-      if (statusEl) {
-        statusEl.textContent = "Hubo un problema al enviar. Por favor intenta de nuevo o usa WhatsApp.";
-        statusEl.classList.add("error");
-      }
+      if (statusEl) { statusEl.textContent = "Hubo un problema al enviar. Por favor intenta de nuevo o usa WhatsApp."; statusEl.classList.add("error"); }
       submitBtn!.disabled = false;
       submitBtn!.textContent = "Solicitar auditoría";
     }
@@ -180,44 +124,40 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   }
 
   .field-error {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    color: var(--color-orange);
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    color: var(--vermilion);
     display: none;
   }
-  .field-error.visible {
-    display: block;
-  }
+  .field-error.visible { display: block; }
 
   .form-field.invalid {
-    border-color: var(--color-orange);
-    box-shadow: 0 0 0 3px rgba(204, 75, 58, 0.12);
+    border-color: var(--vermilion);
+    box-shadow: 0 0 0 3px rgba(210, 74, 42, 0.12);
   }
 
   .form-status {
-    font-family: var(--font-sans);
-    font-size: 14px;
+    font-family: var(--f-text);
+    font-size: var(--t-md);
     padding: 0.875rem 1rem;
-    border-radius: var(--radius-md);
+    border: 1px solid var(--bone-line);
     display: none;
   }
-  .form-status:not(:empty) {
-    display: block;
-  }
+  .form-status:not(:empty) { display: block; }
   .form-status.success {
-    background: rgba(28, 46, 26, 0.08);
-    color: var(--color-forest);
-    border: 1px solid var(--color-moss);
+    background: var(--bone-2);
+    color: var(--ink);
+    border-color: var(--bone-line);
   }
   .form-status.error {
-    background: var(--color-orange-pale);
-    color: var(--color-orange-dark);
-    border: 1px solid var(--color-orange);
+    background: var(--bone-2);
+    color: var(--vermilion-d);
+    border-color: var(--vermilion);
   }
 
   .form-select {
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6b57' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A4943' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     padding-right: 2.5rem;
@@ -225,29 +165,21 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   .form-submit {
     align-self: flex-start;
-    font-size: 14px;
-    padding: 1rem 2rem;
   }
-  .form-submit:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
+  .form-submit:disabled { opacity: 0.45; cursor: not-allowed; }
 
-  .form-wa-fallback {
-    margin-top: 0.5rem;
-  }
+  .form-wa-fallback { margin-top: 0.5rem; }
   .fallback-text {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: var(--color-olive);
+    font-family: var(--f-text);
+    font-size: var(--t-sm);
+    color: var(--graphite);
+    margin: 0;
   }
   .fallback-link {
-    color: var(--color-forest);
+    color: var(--ink);
     text-decoration: underline;
     text-underline-offset: 2px;
-    transition: color 0.15s;
+    transition: color 160ms var(--ease-out);
   }
-  .fallback-link:hover {
-    color: var(--color-orange);
-  }
+  .fallback-link:hover { color: var(--vermilion); }
 </style>

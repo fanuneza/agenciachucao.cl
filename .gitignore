@@ -35,6 +35,12 @@ yarn-error.log*
 test-results/
 playwright-report/
 lhci-reports/
+.playwright-mcp/
+
+# Root-level screenshots (dev/QA captures)
+/*.png
+/*.jpg
+/*.jpeg
 
 # Lighthouse CI
 .lighthouseci/

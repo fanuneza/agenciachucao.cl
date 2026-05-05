@@ -18,7 +18,7 @@ const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%2
         inicio o escribirnos directamente.
       </p>
       <div class="not-found-actions">
-        <a href="/" class="btn-primary">Volver al inicio</a>
+        <a href="/" class="btn-primary-gold">Volver al inicio</a>
         <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn-ghost not-found-wa">
           Escribir por WhatsApp
         </a>
@@ -29,7 +29,7 @@ const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%2
 
 <style>
   .not-found {
-    background: var(--color-forest);
+    background: var(--color-slate);
     color: var(--color-white);
     min-height: 70vh;
     display: flex;
@@ -42,21 +42,17 @@ const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%2
     max-width: 52ch;
   }
   .not-found-code {
-    font-family: var(--font-sans);
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-weight: 700;
     font-size: clamp(72px, 12vw, 120px);
-    color: var(--color-orange);
+    color: var(--color-gold);
     line-height: 1;
     letter-spacing: -0.04em;
   }
   .not-found-title {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
     color: var(--color-white);
   }
   .not-found-text {
-    font-family: var(--font-serif);
     font-size: 17px;
     line-height: 1.75;
     color: rgba(255, 255, 255, 0.65);

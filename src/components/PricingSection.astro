@@ -2,166 +2,151 @@
 
 ---
 
-<section class="pricing section-pad">
-  <div class="container">
-    <p class="section-label section-label-light pricing-reveal">La inversión</p>
-    <h2 class="pricing-h2 pricing-reveal">Precio visible<br />antes de la llamada.</h2>
+<section class="section dark pricing" id="precio" aria-labelledby="price-h2">
+  <div class="wrap">
+    <div class="tray">
+      <span class="serial">§ 05 / Inversión</span>
+      <span class="meta">CLP · cobrado por adelantado</span>
+    </div>
 
-    <div class="pricing-cards pricing-reveal">
-      <div class="pricing-card pricing-card--main">
-        <p class="pricing-card-eyebrow">Fee mensual</p>
-        <p class="pricing-amount">$1.000.000<span class="pricing-sep">–</span>$1.200.000</p>
-        <p class="pricing-period">CLP / mes · cobrado por adelantado</p>
-        <p class="pricing-card-note">
-          Cubre el sistema completo: Search Ads, landing, tracking, WhatsApp y SEO local. La pauta va siempre aparte.
-        </p>
+    <h2 id="price-h2">Precio visible<br/><em>antes</em> de la llamada.</h2>
+
+    <div class="price-grid">
+      <div class="price-col featured">
+        <div class="eyebrow-row"><span>Fee mensual</span><span class="tag">Estándar</span></div>
+        <p class="price-amt">$1.000.000<span class="sep">–</span>$1.200.000</p>
+        <p class="price-period">CLP / mes · cobrado por adelantado</p>
+        <p class="price-note">Cubre el sistema completo: Search Ads, landing, tracking, WhatsApp y SEO local. La pauta va siempre aparte.</p>
       </div>
-
-      <div class="pricing-card pricing-card--setup">
-        <p class="pricing-card-eyebrow">Setup inicial</p>
-        <p class="pricing-amount">$400.000<span class="pricing-sep">–</span>$700.000</p>
-        <p class="pricing-period">CLP · único · no reembolsable</p>
-        <p class="pricing-card-note">
-          Cubre instrumentación, landing, tracking y aprendizaje inicial. Sin setup, el tiempo de entrega lo financia la
-          agencia. No es el modelo.
-        </p>
+      <div class="price-col">
+        <div class="eyebrow-row"><span>Setup inicial</span><span>Único</span></div>
+        <p class="price-amt">$400.000<span class="sep">–</span>$700.000</p>
+        <p class="price-period">CLP · único · no reembolsable</p>
+        <p class="price-note">Cubre instrumentación, landing y aprendizaje inicial — el costo real de tener el sistema listo antes del primer peso de pauta.</p>
       </div>
-
-      <div class="pricing-card pricing-card--media">
-        <p class="pricing-card-eyebrow">Pauta publicitaria</p>
-        <p class="pricing-amount pricing-amount--alt">Aparte</p>
-        <p class="pricing-period">pagada por el cliente directamente a Google</p>
-        <p class="pricing-card-note">
-          El cliente es propietario de sus cuentas publicitarias. La pauta no pasa por la agencia. Sin opacidad, sin
-          markup.
-        </p>
+      <div class="price-col">
+        <div class="eyebrow-row"><span>Pauta publicitaria</span><span>Aparte</span></div>
+        <p class="price-amt alt">Aparte</p>
+        <p class="price-period">pagada por el cliente directamente a Google</p>
+        <p class="price-note">El cliente es propietario de sus cuentas publicitarias. La pauta no pasa por la agencia. Sin opacidad, sin markup.</p>
       </div>
     </div>
 
-    <div class="pricing-roi pricing-reveal">
-      <p class="pricing-roi-eyebrow">La matemática</p>
-      <p class="pricing-roi-text">
-        Un implante cerrado en Santiago deja entre <strong>$800.000 y $1.200.000</strong>. Dos cierres al mes cubren el
-        fee. Si agregas un caso de ortodoncia, el retorno ya es obvio. El trabajo es instalar el sistema para que eso
-        sea medible y repetible.
-      </p>
+    <div class="roi">
+      <span class="label">La matemática</span>
+      <p>Un implante cerrado en Santiago deja entre <strong>$800.000 y $1.200.000</strong>. Dos cierres al mes cubren el fee. Si agregas un caso de ortodoncia, el retorno ya es obvio. El trabajo es instalar el sistema para que eso sea medible y repetible.</p>
     </div>
   </div>
 </section>
 
 <style>
-  .pricing {
-    background: var(--color-forest);
-    color: var(--color-white);
-  }
-
-  .pricing-h2 {
-    font-size: var(--text-h2-size);
-    font-weight: var(--text-h2-weight);
-    letter-spacing: var(--text-h2-track);
-    line-height: var(--text-h2-leading);
-    color: var(--color-white);
-    margin-block: 0 4rem;
-  }
-
-  .pricing-cards {
+  .price-grid {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
-    gap: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-bottom: 4rem;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--ink-line);
   }
-  @media (min-width: 768px) {
-    .pricing-cards {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
+  @media (min-width: 900px) { .price-grid { grid-template-columns: 1.2fr 1fr 1fr; } }
 
-  .pricing-card {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 2.5rem 2rem;
+  .price-col {
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border-right: 1px solid var(--ink-line);
+    border-bottom: 1px solid var(--ink-line);
+    position: relative;
+  }
+  .price-col:last-child { border-right: 0; border-bottom: 0; }
+  @media (min-width: 900px) {
+    .price-col:last-child { border-bottom: 0; }
+    .price-col:nth-child(2) { border-bottom: 0; }
+    .price-col:nth-child(1) { border-bottom: 0; }
+  }
+  .price-col.featured { background: var(--ink-2); }
+
+  .eyebrow-row {
     display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-
-  .pricing-card--main {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .pricing-card-eyebrow {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 0.16em;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 0.75rem;
+    color: var(--muted-dark);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--ink-line);
   }
+  .eyebrow-row .tag { color: var(--vermilion); }
 
-  .pricing-amount {
-    font-family: var(--font-sans);
-    font-weight: 900;
-    font-size: clamp(22px, 2.8vw, 32px);
+  .price-amt {
+    font-family: var(--f-display);
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+    font-size: clamp(2.25rem, 3vw + 1rem, 3.5rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+    color: var(--bone);
+    margin: 0;
+  }
+  .price-amt .sep { color: var(--vermilion); padding: 0 0.15em; }
+  .price-amt.alt {
+    color: var(--vermilion);
+    font-style: italic;
+    font-family: var(--f-serif);
+    font-weight: 400;
     letter-spacing: -0.02em;
-    color: var(--color-orange);
-    line-height: 1.15;
   }
 
-  .pricing-amount--alt {
-    color: var(--color-white);
-  }
-
-  .pricing-sep {
-    color: rgba(255, 255, 255, 0.3);
-    margin-inline: 0.2em;
-  }
-
-  .pricing-period {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.3);
-    letter-spacing: 0.04em;
-    margin-bottom: 1rem;
-  }
-
-  .pricing-card-note {
-    font-family: var(--font-serif);
-    font-size: 15px;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-    padding-top: 1rem;
-    margin-top: auto;
-  }
-
-  .pricing-roi {
-    border-left: 3px solid var(--color-orange);
-    padding-left: 1.75rem;
-    max-width: 62ch;
-  }
-
-  .pricing-roi-eyebrow {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 0.16em;
+  .price-period {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-orange);
-    margin-bottom: 0.75rem;
+    color: var(--muted-dark);
+    margin-top: 0.85rem;
+    margin-bottom: 0;
   }
 
-  .pricing-roi-text {
-    font-family: var(--font-serif);
-    font-size: clamp(16px, 1.8vw, 18px);
-    line-height: 1.75;
-    color: rgba(255, 255, 255, 0.6);
+  .price-note {
+    color: var(--muted-dark);
+    font-size: var(--t-md);
+    line-height: 1.55;
+    margin-top: 1.25rem;
+    max-width: 38ch;
   }
 
-  .pricing-roi-text strong {
-    color: rgba(255, 255, 255, 0.9);
+  .roi {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ink-line);
+  }
+  @media (min-width: 800px) { .roi { grid-template-columns: 14ch 1fr; gap: 2rem; align-items: baseline; } }
+
+  .roi .label {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--vermilion);
+  }
+  .roi p {
+    font-family: var(--f-display);
+    font-size: var(--t-2xl);
+    line-height: 1.45;
+    color: var(--bone);
+    max-width: 70ch;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .roi strong {
     font-weight: 600;
+    color: var(--bone);
+    border-bottom: 1px solid var(--vermilion);
+    padding-bottom: 1px;
   }
 </style>
