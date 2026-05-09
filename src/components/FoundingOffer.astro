@@ -48,7 +48,7 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
         <p class="note found-note">Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000–$1.200.000/mes. Sin excepciones.</p>
 
         <div class="founding-cta">
-          <a href={ctaHref} class="btn" id="founding-cta-btn">
+          <a href={ctaHref} class="btn" id="founding-cta-btn" data-analytics-event="cta_click" data-analytics-location="founding">
             Reservar un cupo fundador <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
           </a>
         </div>
@@ -56,14 +56,6 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     </div>
   </div>
 </section>
-
-<script>
-  document.getElementById("founding-cta-btn")?.addEventListener("click", () => {
-    if (typeof gtag !== "undefined") {
-      gtag("event", "cta_click", { location: "founding" });
-    }
-  });
-</script>
 
 <style>
   .found-h2 { margin-top: 0.65rem; }

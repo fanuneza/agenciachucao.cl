@@ -13,6 +13,8 @@ const waMessage = encodeURIComponent(
   aria-label="Escribir por WhatsApp"
   id="wa-float-btn"
   data-wa={waNumber}
+  data-analytics-event="whatsapp_click"
+  data-analytics-location="floating_button"
 >
   <span class="dot" aria-hidden="true"></span>
   <svg aria-hidden="true"><use href="#i-wa"/></svg>
@@ -22,12 +24,6 @@ const waMessage = encodeURIComponent(
 <script>
   const btn = document.getElementById("wa-float-btn") as HTMLAnchorElement | null;
   if (btn) {
-    btn.addEventListener("click", () => {
-      if (typeof gtag !== "undefined") {
-        gtag("event", "whatsapp_click_floating", { page_url: window.location.href });
-      }
-    });
-
     // Keep float above cookie banner while banner is visible
     const banner = document.getElementById("cookie-banner");
     if (banner) {

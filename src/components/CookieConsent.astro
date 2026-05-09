@@ -1,7 +1,3 @@
----
-const ga4Id = import.meta.env.PUBLIC_GA4_ID;
----
-
 <div class="cookie-banner" id="cookie-banner" hidden aria-live="polite" role="region" aria-label="Aviso de cookies">
   <div class="cookie-inner wrap">
     <p class="cookie-text">
@@ -14,52 +10,6 @@ const ga4Id = import.meta.env.PUBLIC_GA4_ID;
     </div>
   </div>
 </div>
-
-<script define:vars={{ ga4Id }}>
-  function getCookie(name) {
-    return document.cookie
-      .split("; ")
-      .find((row) => row.startsWith(name + "="))
-      ?.split("=")[1];
-  }
-
-  function setCookie(name, value) {
-    document.cookie = `${name}=${value}; max-age=31536000; path=/; SameSite=Lax`;
-  }
-
-  function initGA4() {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag("js", new Date());
-    gtag("config", ga4Id);
-  }
-
-  const banner = document.getElementById("cookie-banner");
-  const consent = getCookie("chucao_consent");
-
-  if (consent === "accepted") {
-    initGA4();
-  } else if (!consent) {
-    banner?.removeAttribute("hidden");
-  }
-
-  document.getElementById("cookie-accept")?.addEventListener("click", () => {
-    setCookie("chucao_consent", "accepted");
-    initGA4();
-    banner?.remove();
-  });
-
-  document.getElementById("cookie-reject")?.addEventListener("click", () => {
-    setCookie("chucao_consent", "rejected");
-    banner?.remove();
-  });
-</script>
 
 <style>
   .cookie-banner {

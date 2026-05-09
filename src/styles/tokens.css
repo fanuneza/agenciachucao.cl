@@ -11,13 +11,13 @@
   --muted-dark:  #B8B2A4;
   --vermilion:   #D24A2A;
   --vermilion-d: #B83D1F;
-  --white:       #FFFFFF;
+  --white:       #FFF;
   --focus-ring:  #D24A2A;
 
   /* ── type ── */
   --f-display: "Geist", ui-sans-serif, system-ui, sans-serif;
   --f-text:    "Geist", ui-sans-serif, system-ui, sans-serif;
-  --f-mono:    "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --f-mono:    "Geist Mono", ui-monospace, "SF Mono", menlo, monospace;
 
   /* ── scale (clamps) ── */
   --t-7xl: clamp(3.25rem, 6vw + 1rem, 6.75rem);
@@ -39,7 +39,7 @@
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   /* ── accent font ── */
-  --f-serif: "Instrument Serif", Georgia, serif;
+  --f-serif: "Instrument Serif", georgia, serif;
 
   /* ── brand colors ── */
   --color-wa:    #2BB36B;

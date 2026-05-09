@@ -26,7 +26,7 @@ const subheadlineHtml = subheadline
         <p class="lede hero-lede" set:html={subheadlineHtml}></p>
 
         <div class="hero-actions">
-          <a href={ctaHref} class="btn" id="hero-cta-btn">
+          <a href={ctaHref} class="btn" id="hero-cta-btn" data-analytics-event="cta_click" data-analytics-location="hero">
             {ctaText} <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
           </a>
           <a href="#oferta" class="btn-ghost">Ver el sistema</a>
@@ -45,14 +45,6 @@ const subheadlineHtml = subheadline
     </div>
   </div>
 </section>
-
-<script>
-  document.getElementById("hero-cta-btn")?.addEventListener("click", () => {
-    if (typeof gtag !== "undefined") {
-      gtag("event", "cta_click", { location: "hero" });
-    }
-  });
-</script>
 
 <style>
   .hero {

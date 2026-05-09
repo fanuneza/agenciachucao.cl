@@ -22,10 +22,10 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
         <p class="lede" style="margin-top:1.5rem;">Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin compromiso. Solo una conversación con números reales.</p>
       </div>
       <div class="final-actions">
-        <a href={ctaHref} class="btn" style="width:100%" id="footer-cta-btn">
+        <a href={ctaHref} class="btn" style="width:100%" id="footer-cta-btn" data-analytics-event="cta_click" data-analytics-location="footer_cta">
           {ctaText} <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
-        <a href={whatsappHref} class="wa-link" target="_blank" rel="noopener noreferrer" id="footer-wa-btn">
+        <a href={whatsappHref} class="wa-link" target="_blank" rel="noopener noreferrer" id="footer-wa-btn" data-analytics-event="whatsapp_click" data-analytics-location="footer">
           <svg aria-hidden="true"><use href="#i-wa"/></svg>
           Escribir por WhatsApp
         </a>
@@ -33,19 +33,6 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
     </div>
   </div>
 </section>
-
-<script>
-  document.getElementById("footer-cta-btn")?.addEventListener("click", () => {
-    if (typeof gtag !== "undefined") {
-      gtag("event", "cta_click", { location: "footer_cta" });
-    }
-  });
-  document.getElementById("footer-wa-btn")?.addEventListener("click", () => {
-    if (typeof gtag !== "undefined") {
-      gtag("event", "whatsapp_click", { page: window.location.href });
-    }
-  });
-</script>
 
 <style>
   .final {

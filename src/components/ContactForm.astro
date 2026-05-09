@@ -49,66 +49,6 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   </p>
 </div>
 
-<script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const statusEl = document.getElementById("form-status");
-  const submitBtn = document.getElementById("form-submit-btn") as HTMLButtonElement | null;
-
-  function showError(fieldId: string, msg: string) {
-    const el = document.getElementById(`err-${fieldId}`);
-    if (el) { el.textContent = msg; el.classList.add("visible"); }
-    const field = document.getElementById(fieldId) as HTMLInputElement | null;
-    field?.classList.add("invalid");
-  }
-
-  function clearErrors() {
-    document.querySelectorAll(".field-error").forEach((el) => { el.textContent = ""; el.classList.remove("visible"); });
-    document.querySelectorAll(".form-field").forEach((el) => el.classList.remove("invalid"));
-  }
-
-  function validate(data: FormData): boolean {
-    let valid = true;
-    const nombre = (data.get("nombre") as string)?.trim();
-    if (!nombre) { showError("nombre", "Por favor ingresa tu nombre."); valid = false; }
-    const clinica = (data.get("clinica") as string)?.trim();
-    if (!clinica) { showError("clinica", "Por favor ingresa el nombre de tu clínica."); valid = false; }
-    const phone = (data.get("phone") as string)?.trim();
-    if (!phone) { showError("phone", "Por favor ingresa tu teléfono."); valid = false; }
-    else if (!/^[\+\d\s\-\(\)]{7,}$/.test(phone)) { showError("phone", "El teléfono no parece válido."); valid = false; }
-    const tratamiento = (data.get("tratamiento") as string)?.trim();
-    if (!tratamiento) { showError("tratamiento", "Por favor selecciona el tratamiento principal."); valid = false; }
-    return valid;
-  }
-
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    clearErrors();
-    const data = new FormData(form);
-    if (!validate(data)) return;
-
-    submitBtn!.disabled = true;
-    submitBtn!.textContent = "Enviando…";
-    if (statusEl) statusEl.textContent = "";
-
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: data });
-      const json = await res.json();
-      if (res.ok && json.success) {
-        form.reset();
-        form.hidden = true;
-        if (statusEl) { statusEl.textContent = "Recibimos tu solicitud. Te contactamos en menos de 24 horas."; statusEl.classList.add("success"); }
-        if (typeof gtag !== "undefined") { gtag("event", "form_submit", { form: "audit_request" }); }
-      } else {
-        throw new Error(json.message ?? "Error desconocido");
-      }
-    } catch {
-      if (statusEl) { statusEl.textContent = "Hubo un problema al enviar. Por favor intenta de nuevo o usa WhatsApp."; statusEl.classList.add("error"); }
-      submitBtn!.disabled = false;
-      submitBtn!.textContent = "Solicitar auditoría";
-    }
-  });
-</script>
-
 <style>
   .contact-form {
     display: flex;
