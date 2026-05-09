@@ -71,6 +71,7 @@ Cloudflare.md
 
 # Internal planning docs (local only)
 docs/
+!docs/analytics-csp-consent.md
 process-notes.md
 
 # Backup files

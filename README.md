@@ -39,7 +39,7 @@ src/
     politica-de-cookies.astro
     404.astro
   layouts/
-    BaseLayout.astro        # Layout base con SEO, GA4, CookieConsent
+    BaseLayout.astro        # Layout base con SEO, GTM (consent-gated), CookieConsent
   components/
     Nav.astro               # Navegación (wordmark + CTA)
     Footer.astro
@@ -86,6 +86,8 @@ PUBLIC_WA_NUMBER=          # Número de WhatsApp sin +, sin espacios
 PUBLIC_WEB3FORMS_KEY=      # Access key de Web3Forms
 ```
 
+> **Nota:** El sitio usa **Google Tag Manager** (GTM) para analytics. GA4 se configura dentro del contenedor de GTM (`GTM-PZPX7SK9`). No se carga `gtag.js` directamente en el código. Ver `docs/analytics-csp-consent.md`.
+
 ## Testing
 
 1. **Accesibilidad** — `tests/visual/a11y.spec.ts` escanea todas las páginas con axe-core buscando violaciones WCAG 2.1 AA.
@@ -105,6 +107,14 @@ npx playwright test
 2. `npm run dev` para desarrollo local
 3. `npm run build` antes de mergear
 4. CI valida lint, formato, build, Lighthouse y Playwright automáticamente en cada push a `main`
+
+## Seguridad y privacidad
+
+- **CSP** está definida en `public/_headers` (formato Cloudflare Pages). Incluye `script-src-elem` explícito y fuentes permitidas para GTM/GA4.
+- **Cookie consent** está implementado en `src/scripts/site.ts` + `src/components/CookieConsent.astro`. GTM solo carga después de aceptación explícita.
+- **Cloudflare Web Analytics** no está habilitado intencionalmente. Si aparece bloqueado en consola, desactívalo en el dashboard de Cloudflare.
+
+Ver [`docs/analytics-csp-consent.md`](docs/analytics-csp-consent.md) para el mapa de eventos, pasos de verificación manual y detalles técnicos.
 
 ## Notas
 
