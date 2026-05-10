@@ -9,8 +9,7 @@ interface Props {
 const { headline, subheadline, ctaText, ctaHref } = Astro.props;
 
 const headlineHtml = headline.replace("agendamientos", "<em>agendamientos</em>");
-const subheadlineHtml = subheadline
-  .replace("cuánto te cuesta", "<strong>cuánto te cuesta</strong>");
+const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánto te cuesta</strong>");
 ---
 
 <section class="section dark hero" id="hero" aria-labelledby="hero-h1">
@@ -22,12 +21,19 @@ const subheadlineHtml = subheadline
 
     <div class="hero-grid">
       <div>
-        <h1 id="hero-h1" class="hero-headline" set:html={headlineHtml}></h1>
-        <p class="lede hero-lede" set:html={subheadlineHtml}></p>
+        <h1 id="hero-h1" class="hero-headline" set:html={headlineHtml} />
+        <p class="lede hero-lede" set:html={subheadlineHtml} />
 
         <div class="hero-actions">
-          <a href={ctaHref} class="btn" id="hero-cta-btn" data-analytics-event="cta_click" data-analytics-location="hero">
-            {ctaText} <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          <a
+            href={ctaHref}
+            class="btn"
+            id="hero-cta-btn"
+            data-analytics-event="cta_click"
+            data-analytics-location="hero"
+          >
+            {ctaText}
+            <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
           </a>
           <a href="#oferta" class="btn-ghost">Ver el sistema</a>
         </div>
@@ -36,10 +42,16 @@ const subheadlineHtml = subheadline
       </div>
 
       <aside class="specs" aria-label="Especificaciones del sistema">
-        <div class="specs-row"><span class="k">Foco</span><span class="v">Implantes · Ortodoncia · Rehabilitación</span></div>
-        <div class="specs-row"><span class="k">Medición</span><span class="v">Gasto por evaluación y por tratamiento</span></div>
+        <div class="specs-row">
+          <span class="k">Foco</span><span class="v">Implantes · Ortodoncia · Rehabilitación</span>
+        </div>
+        <div class="specs-row">
+          <span class="k">Medición</span><span class="v">Gasto por evaluación y por tratamiento</span>
+        </div>
         <div class="specs-row"><span class="k">Inversión</span><span class="v">Desde $950.000/mes + pauta</span></div>
-        <div class="specs-row"><span class="k">Pauta</span><span class="v"><em>Aparte</em>, pagada por el cliente</span></div>
+        <div class="specs-row">
+          <span class="k">Pauta</span><span class="v"><em>Aparte</em>, pagada por el cliente</span>
+        </div>
         <div class="specs-row"><span class="k">Cupos abiertos</span><span class="v">02 / 02</span></div>
       </aside>
     </div>
@@ -53,10 +65,18 @@ const subheadlineHtml = subheadline
     padding-bottom: clamp(2rem, 4vw, 3.5rem);
     overflow: hidden;
   }
-  .hero .tray { border-bottom-color: var(--ink-line); color: var(--muted-dark); margin-bottom: 1.25rem; }
-  .hero-headline { color: var(--bone); }
+  .hero .tray {
+    border-bottom-color: var(--ink-line);
+    color: var(--muted-dark);
+    margin-bottom: 1.25rem;
+  }
+  .hero-headline {
+    color: var(--bone);
+  }
 
-  .hero-lede { margin-top: clamp(1rem, 2vw, 1.5rem); }
+  .hero-lede {
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
 
   .hero-grid {
     display: grid;
@@ -64,7 +84,10 @@ const subheadlineHtml = subheadline
     gap: clamp(2rem, 4vw, 3.5rem);
   }
   @media (min-width: 900px) {
-    .hero-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); align-items: start; }
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+      align-items: start;
+    }
   }
 
   .hero-actions {
@@ -103,7 +126,9 @@ const subheadlineHtml = subheadline
     font-size: var(--t-sm);
   }
   .specs-row:last-child .k,
-  .specs-row:last-child .v { border-bottom: 0; }
+  .specs-row:last-child .v {
+    border-bottom: 0;
+  }
   .specs-row .k {
     padding-right: 1.25rem;
     color: var(--muted-dark);

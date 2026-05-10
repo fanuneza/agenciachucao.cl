@@ -15,9 +15,10 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
         <span class="serial">Auditoría gratuita</span>
         <span class="meta">Sin compromiso · respuesta en 24 h</span>
       </div>
-      <h1>Cuéntanos de<br/>tu clínica.</h1>
+      <h1>Cuéntanos de<br />tu clínica.</h1>
       <p class="lede audit-lede">
-        Revisamos dónde se están perdiendo pacientes agendados y te mostramos cómo medirlo. Sin compromiso, sin presentación. Solo números.
+        Revisamos dónde se están perdiendo pacientes agendados y te mostramos cómo medirlo. Sin compromiso, sin
+        presentación. Solo números.
       </p>
     </div>
   </section>
@@ -32,12 +33,15 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
         <aside class="audit-aside">
           <div class="audit-block">
             <p class="kicker">Tiempo de respuesta</p>
-            <p class="audit-block-text">Menos de 24 horas hábiles. Si es viernes en la tarde, respondemos el lunes temprano.</p>
+            <p class="audit-block-text">
+              Menos de 24 horas hábiles. Si es viernes en la tarde, respondemos el lunes temprano.
+            </p>
           </div>
           <div class="audit-block">
             <p class="kicker">Qué pasa después</p>
             <p class="audit-block-text">
-              Revisamos tu sitio, tu perfil en Google y tu presencia en directorios. Te enviamos una auditoría breve con los puntos de fuga. Sin cobrarte nada.
+              Revisamos tu sitio, tu perfil en Google y tu presencia en directorios. Te enviamos una auditoría breve con
+              los puntos de fuga. Sin cobrarte nada.
             </p>
           </div>
           <div class="audit-block">
@@ -53,8 +57,12 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
 </BaseLayout>
 
 <style>
-  .audit-hero { border-top: 0; }
-  .audit-lede { margin-top: 1.5rem; }
+  .audit-hero {
+    border-top: 0;
+  }
+  .audit-lede {
+    margin-top: 1.5rem;
+  }
 
   .audit-grid {
     display: grid;
@@ -63,7 +71,9 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
     align-items: start;
   }
   @media (min-width: 1024px) {
-    .audit-grid { grid-template-columns: minmax(0, 600px) 280px; }
+    .audit-grid {
+      grid-template-columns: minmax(0, 600px) 280px;
+    }
   }
 
   .audit-aside {
@@ -81,8 +91,12 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
     padding-block: 1.5rem;
     border-bottom: 1px solid var(--bone-line);
   }
-  .audit-block:first-child { padding-top: 0; }
-  .audit-block:last-child { border-bottom: none; }
+  .audit-block:first-child {
+    padding-top: 0;
+  }
+  .audit-block:last-child {
+    border-bottom: none;
+  }
 
   .audit-block-text {
     font-size: var(--t-md);
@@ -98,5 +112,7 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
     word-break: break-all;
     transition: color 160ms var(--ease-out);
   }
-  .audit-email:hover { color: var(--vermilion); }
+  .audit-email:hover {
+    color: var(--vermilion);
+  }
 </style>

@@ -15,36 +15,58 @@ const { included, excluded, extras } = Astro.props;
       <span class="meta">Lo que incluye · lo que no</span>
     </div>
 
-    <h2 id="inc-h2">Qué incluye<br/>y qué <em>no</em>.</h2>
-    <p class="lede" style="margin-top:1.5rem;">Un alcance acotado es lo que permite ejecutar cada pieza bien. Aquí está todo lo que incluye el fee mensual, y lo que no, para que no haya sorpresas.</p>
+    <h2 id="inc-h2">Qué incluye<br />y qué <em>no</em>.</h2>
+    <p class="lede" style="margin-top:1.5rem;">
+      Un alcance acotado es lo que permite ejecutar cada pieza bien. Aquí está todo lo que incluye el fee mensual, y lo
+      que no, para que no haya sorpresas.
+    </p>
 
     <div class="includes-grid">
       <div class="inc-col in">
         <p class="label">Incluido en el fee mensual</p>
         <ul class="inc-list" role="list">
-          {included.map((item) => (
-            <li><span class="mark">✓</span><span>{item}</span></li>
-          ))}
+          {
+            included.map((item) => (
+              <li>
+                <>
+                  <span class="mark">✓</span>
+                  <span>{item}</span>
+                </>
+              </li>
+            ))
+          }
         </ul>
       </div>
       <div class="inc-col out">
         <p class="label">No incluido</p>
         <ul class="inc-list" role="list">
-          {excluded.map((item) => (
-            <li><span class="mark">—</span><span>{item}</span></li>
-          ))}
+          {
+            excluded.map((item) => (
+              <li>
+                <>
+                  <span class="mark">—</span>
+                  <span>{item}</span>
+                </>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
 
     <div class="extras">
-      <p class="label" style="border:0; margin-bottom:1rem; padding:0;">Fuera del alcance estándar · se cotiza aparte</p>
+      <p class="label" style="border:0; margin-bottom:1rem; padding:0;">
+        Fuera del alcance estándar · se cotiza aparte
+      </p>
       <div class="chips">
         {extras.map((item) => <span class="chip">{item}</span>)}
       </div>
     </div>
 
-    <p class="note includes-note">La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee — así mantenemos las cuentas en manos del cliente y sin opacidad.</p>
+    <p class="note includes-note">
+      La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee —
+      así mantenemos las cuentas en manos del cliente y sin opacidad.
+    </p>
   </div>
 </section>
 
@@ -56,12 +78,23 @@ const { included, excluded, extras } = Astro.props;
     gap: 0;
     border: 1px solid var(--bone-line);
   }
-  @media (min-width: 900px) { .includes-grid { grid-template-columns: 1fr 1fr; } }
-
-  .inc-col { padding: clamp(1.5rem, 2.5vw, 2.25rem); }
-  .inc-col + .inc-col { border-top: 1px solid var(--bone-line); }
   @media (min-width: 900px) {
-    .inc-col + .inc-col { border-top: 0; border-left: 1px solid var(--bone-line); }
+    .includes-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .inc-col {
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
+  .inc-col + .inc-col {
+    border-top: 1px solid var(--bone-line);
+  }
+  @media (min-width: 900px) {
+    .inc-col + .inc-col {
+      border-top: 0;
+      border-left: 1px solid var(--bone-line);
+    }
   }
 
   .inc-col .label {
@@ -77,10 +110,26 @@ const { included, excluded, extras } = Astro.props;
     border-bottom: 1px solid var(--bone-line);
     width: 100%;
   }
-  .inc-col.in .label { color: var(--ink); }
-  .inc-col.in .label::before { content: ""; width: 8px; height: 8px; background: var(--vermilion); display: inline-block; }
-  .inc-col.out .label { color: var(--muted); }
-  .inc-col.out .label::before { content: ""; width: 8px; height: 1px; background: var(--muted); display: inline-block; }
+  .inc-col.in .label {
+    color: var(--ink);
+  }
+  .inc-col.in .label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--vermilion);
+    display: inline-block;
+  }
+  .inc-col.out .label {
+    color: var(--muted);
+  }
+  .inc-col.out .label::before {
+    content: "";
+    width: 8px;
+    height: 1px;
+    background: var(--muted);
+    display: inline-block;
+  }
 
   .inc-list {
     list-style: none;
@@ -97,8 +146,12 @@ const { included, excluded, extras } = Astro.props;
     gap: 0.75rem;
     font-size: var(--t-md);
   }
-  .inc-list li:last-child { border-bottom: 0; }
-  .inc-col.out .inc-list li { color: var(--muted); }
+  .inc-list li:last-child {
+    border-bottom: 0;
+  }
+  .inc-col.out .inc-list li {
+    color: var(--muted);
+  }
 
   .inc-list .mark {
     font-family: var(--f-mono);
@@ -106,16 +159,25 @@ const { included, excluded, extras } = Astro.props;
     color: var(--vermilion);
     margin-top: 0.15em;
   }
-  .inc-col.out .inc-list li .mark { color: var(--muted); }
+  .inc-col.out .inc-list li .mark {
+    color: var(--muted);
+  }
 
   .extras {
     margin-top: clamp(2rem, 3vw, 2.5rem);
     padding-top: 1.5rem;
     border-top: 1px solid var(--bone-line);
   }
-  .extras .label { display: block; margin-bottom: 1rem; }
+  .extras .label {
+    display: block;
+    margin-bottom: 1rem;
+  }
 
-  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
   .chip {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
@@ -126,5 +188,8 @@ const { included, excluded, extras } = Astro.props;
     background: var(--bone-2);
   }
 
-  .includes-note { margin-top: 1.5rem; max-width: 70ch; }
+  .includes-note {
+    margin-top: 1.5rem;
+    max-width: 70ch;
+  }
 </style>

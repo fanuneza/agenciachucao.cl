@@ -18,30 +18,27 @@ const { items } = Astro.props;
       <span class="meta">Las dudas que no quieres llevar a la llamada</span>
     </div>
 
-    <h2 id="faq-h2">Las dudas que no<br/>quieres llevar a la <em>llamada</em>.</h2>
+    <h2 id="faq-h2">Las dudas que no<br />quieres llevar a la <em>llamada</em>.</h2>
 
     <div class="faq-list" role="list">
-      {items.map((item, i) => (
-        <div class="faq-item" role="listitem">
-          <button
-            class="faq-q"
-            aria-expanded="false"
-            aria-controls={`a${i}`}
-            id={`q${i}`}
-          >
-            <span>
-              <span class="ord">Q · {String(i + 1).padStart(2, "0")}</span>
-              {item.question}
-            </span>
-            <span class="ind" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a" id={`a${i}`} role="region" aria-labelledby={`q${i}`}>
-            <div>
-              <div class="faq-a-inner">{item.answer}</div>
+      {
+        items.map((item, i) => (
+          <div class="faq-item" role="listitem">
+            <button class="faq-q" aria-expanded="false" aria-controls={`a${i}`} id={`q${i}`}>
+              <span>
+                <span class="ord">Q · {String(i + 1).padStart(2, "0")}</span>
+                {item.question}
+              </span>
+              <span class="ind" aria-hidden="true" />
+            </button>
+            <div class="faq-a" id={`a${i}`} role="region" aria-labelledby={`q${i}`}>
+              <div>
+                <div class="faq-a-inner">{item.answer}</div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>
@@ -61,7 +58,9 @@ const { items } = Astro.props;
     margin-top: clamp(2.5rem, 5vw, 4rem);
     border-top: 1px solid var(--bone-line);
   }
-  .faq-item { border-bottom: 1px solid var(--bone-line); }
+  .faq-item {
+    border-bottom: 1px solid var(--bone-line);
+  }
 
   .faq-q {
     width: 100%;
@@ -78,8 +77,13 @@ const { items } = Astro.props;
     color: var(--ink);
     cursor: pointer;
   }
-  .faq-q:hover { color: var(--vermilion); }
-  .faq-q:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+  .faq-q:hover {
+    color: var(--vermilion);
+  }
+  .faq-q:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 4px;
+  }
 
   .faq-q .ord {
     font-family: var(--f-mono);
@@ -97,9 +101,14 @@ const { items } = Astro.props;
     border: 1px solid var(--bone-line);
     position: relative;
     flex: 0 0 auto;
-    transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
+    transition:
+      border-color 160ms var(--ease-out),
+      background 160ms var(--ease-out);
   }
-  .faq-q[aria-expanded="true"] .ind { background: var(--ink); border-color: var(--ink); }
+  .faq-q[aria-expanded="true"] .ind {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
 
   .faq-q .ind::before,
   .faq-q .ind::after {
@@ -107,17 +116,31 @@ const { items } = Astro.props;
     position: absolute;
     background: var(--ink);
   }
-  .faq-q .ind::before { width: 12px; height: 1.5px; }
-  .faq-q .ind::after  { width: 1.5px; height: 12px; transition: transform 200ms var(--ease-out); }
-  .faq-q[aria-expanded="true"] .ind::before { background: var(--bone); }
-  .faq-q[aria-expanded="true"] .ind::after  { background: var(--bone); transform: scaleY(0); }
+  .faq-q .ind::before {
+    width: 12px;
+    height: 1.5px;
+  }
+  .faq-q .ind::after {
+    width: 1.5px;
+    height: 12px;
+    transition: transform 200ms var(--ease-out);
+  }
+  .faq-q[aria-expanded="true"] .ind::before {
+    background: var(--bone);
+  }
+  .faq-q[aria-expanded="true"] .ind::after {
+    background: var(--bone);
+    transform: scaleY(0);
+  }
 
   .faq-a {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 220ms var(--ease-out);
   }
-  .faq-a > div { overflow: hidden; }
+  .faq-a > div {
+    overflow: hidden;
+  }
   .faq-a-inner {
     padding: 0 0 1.5rem 0;
     max-width: 70ch;
@@ -125,5 +148,7 @@ const { items } = Astro.props;
     font-size: var(--t-md);
     line-height: 1.6;
   }
-  .faq-q[aria-expanded="true"] + .faq-a { grid-template-rows: 1fr; }
+  .faq-q[aria-expanded="true"] + .faq-a {
+    grid-template-rows: 1fr;
+  }
 </style>

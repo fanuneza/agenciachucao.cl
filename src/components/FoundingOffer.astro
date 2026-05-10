@@ -18,7 +18,7 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     <div class="founding-grid">
       <aside class="cupos" aria-label="Cupos fundadores disponibles">
         <div class="cupos-num"><span>{spotsFormatted}</span></div>
-        <div class="cupos-label">Cupos fundadores<br/>disponibles</div>
+        <div class="cupos-label">Cupos fundadores<br />disponibles</div>
         <div class="cupos-status">
           <span class="dot" aria-hidden="true"></span>
           Abierto · Q2 2026
@@ -28,7 +28,10 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
       <div>
         <p class="eyebrow">Oferta fundadora</p>
         <h2 id="found-h2" class="found-h2">Dos cuentas iniciales a <em>precio de validación</em>.</h2>
-        <p class="lede found-lede">Estamos abriendo dos cuentas para documentar resultados con el nicho dental. Precio reducido a cambio del caso: tú llegas antes que la competencia, nosotros demostramos el modelo.</p>
+        <p class="lede found-lede">
+          Estamos abriendo dos cuentas para documentar resultados con el nicho dental. Precio reducido a cambio del
+          caso: tú llegas antes que la competencia, nosotros demostramos el modelo.
+        </p>
 
         <div class="founding-detail">
           <div>
@@ -45,11 +48,19 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
           </div>
         </div>
 
-        <p class="note found-note">Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000–$1.200.000/mes. Sin excepciones.</p>
+        <p class="note found-note">
+          Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000–$1.200.000/mes. Sin excepciones.
+        </p>
 
         <div class="founding-cta">
-          <a href={ctaHref} class="btn" id="founding-cta-btn" data-analytics-event="cta_click" data-analytics-location="founding">
-            Reservar un cupo fundador <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          <a
+            href={ctaHref}
+            class="btn"
+            id="founding-cta-btn"
+            data-analytics-event="cta_click"
+            data-analytics-location="founding"
+          >
+            Reservar un cupo fundador <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
           </a>
         </div>
       </div>
@@ -58,9 +69,16 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
 </section>
 
 <style>
-  .found-h2 { margin-top: 0.65rem; }
-  .found-lede { margin-top: 1.5rem; }
-  .found-note { margin-top: 1.5rem; max-width: 60ch; }
+  .found-h2 {
+    margin-top: 0.65rem;
+  }
+  .found-lede {
+    margin-top: 1.5rem;
+  }
+  .found-note {
+    margin-top: 1.5rem;
+    max-width: 60ch;
+  }
 
   .founding-grid {
     display: grid;
@@ -68,7 +86,10 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     gap: clamp(2rem, 4vw, 3rem);
   }
   @media (min-width: 900px) {
-    .founding-grid { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); align-items: start; }
+    .founding-grid {
+      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+      align-items: start;
+    }
   }
 
   .cupos {
@@ -86,7 +107,9 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     letter-spacing: -0.04em;
     color: var(--ink);
   }
-  .cupos-num span { color: var(--vermilion); }
+  .cupos-num span {
+    color: var(--vermilion);
+  }
   .cupos-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
@@ -126,7 +149,9 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     padding: 1.25rem;
     border-right: 1px solid var(--bone-line);
   }
-  .founding-detail > div:last-child { border-right: 0; }
+  .founding-detail > div:last-child {
+    border-right: 0;
+  }
   .founding-detail .k {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
@@ -155,9 +180,16 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
     letter-spacing: 0.06em;
   }
   @media (max-width: 600px) {
-    .founding-detail { grid-template-columns: 1fr; }
-    .founding-detail > div { border-right: 0; border-bottom: 1px solid var(--bone-line); }
-    .founding-detail > div:last-child { border-bottom: 0; }
+    .founding-detail {
+      grid-template-columns: 1fr;
+    }
+    .founding-detail > div {
+      border-right: 0;
+      border-bottom: 1px solid var(--bone-line);
+    }
+    .founding-detail > div:last-child {
+      border-bottom: 0;
+    }
   }
 
   .founding-cta {

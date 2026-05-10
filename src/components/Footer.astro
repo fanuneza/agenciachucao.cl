@@ -7,10 +7,13 @@ const year = new Date().getFullYear();
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="/" class="brand" aria-label="Agencia Chucao — inicio">
-          <svg class="mark" aria-hidden="true" style="color: var(--bone)"><use href="#chucao-mark"/></svg>
+          <svg class="mark" aria-hidden="true" style="color: var(--bone)"><use href="#chucao-mark"></use></svg>
           <span><span class="light">agencia</span><span class="bold">chucao</span></span>
         </a>
-        <p class="foot-tag">Captación digital para clínicas dentales en Santiago. Google Ads, conversión y seguimiento medible, sin contratos largos.</p>
+        <p class="foot-tag">
+          Captación digital para clínicas dentales en Santiago. Google Ads, conversión y seguimiento medible, sin
+          contratos largos.
+        </p>
       </div>
       <div>
         <p class="col-label">Contacto</p>
@@ -64,7 +67,11 @@ const year = new Date().getFullYear();
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--ink-line);
   }
-  @media (min-width: 800px) { .foot-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+  @media (min-width: 800px) {
+    .foot-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
 
   /* Brand — inner triangle must invert on dark background */
   .brand {
@@ -77,9 +84,18 @@ const year = new Date().getFullYear();
     margin-bottom: 1rem;
     --mark-inner: var(--graphite);
   }
-  .brand .mark { width: 22px; height: 22px; }
-  .brand .light { font-weight: 400; color: var(--muted-dark); }
-  .brand .bold  { font-weight: 700; color: var(--bone); }
+  .brand .mark {
+    width: 22px;
+    height: 22px;
+  }
+  .brand .light {
+    font-weight: 400;
+    color: var(--muted-dark);
+  }
+  .brand .bold {
+    font-weight: 700;
+    color: var(--bone);
+  }
 
   .foot-tag {
     font-size: var(--t-md);
@@ -107,8 +123,14 @@ const year = new Date().getFullYear();
     display: grid;
     gap: 0.55rem;
   }
-  .foot p, .foot a { color: var(--muted-dark); font-size: var(--t-md); }
-  .foot a:hover { color: var(--bone); }
+  .foot p,
+  .foot a {
+    color: var(--muted-dark);
+    font-size: var(--t-md);
+  }
+  .foot a:hover {
+    color: var(--bone);
+  }
 
   /* Bottom */
   .foot-bottom {
@@ -142,5 +164,7 @@ const year = new Date().getFullYear();
     padding: 0;
     transition: color 160ms var(--ease-out);
   }
-  .cookie-manage-btn:hover { color: var(--bone); }
+  .cookie-manage-btn:hover {
+    color: var(--bone);
+  }
 </style>

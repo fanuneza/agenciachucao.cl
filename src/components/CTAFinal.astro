@@ -18,15 +18,34 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
 
     <div class="final">
       <div>
-        <h2 id="final-h2" set:html={headline.replace("paciente nuevo", "<em>paciente nuevo</em>")}></h2>
-        <p class="lede" style="margin-top:1.5rem;">Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin compromiso. Solo una conversación con números reales.</p>
+        <h2 id="final-h2" set:html={headline.replace("paciente nuevo", "<em>paciente nuevo</em>")} />
+        <p class="lede" style="margin-top:1.5rem;">
+          Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin
+          compromiso. Solo una conversación con números reales.
+        </p>
       </div>
       <div class="final-actions">
-        <a href={ctaHref} class="btn" style="width:100%" id="footer-cta-btn" data-analytics-event="cta_click" data-analytics-location="footer_cta">
-          {ctaText} <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+        <a
+          href={ctaHref}
+          class="btn"
+          style="width:100%"
+          id="footer-cta-btn"
+          data-analytics-event="cta_click"
+          data-analytics-location="footer_cta"
+        >
+          {ctaText}
+          <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
         </a>
-        <a href={whatsappHref} class="wa-link" target="_blank" rel="noopener noreferrer" id="footer-wa-btn" data-analytics-event="whatsapp_click" data-analytics-location="footer">
-          <svg aria-hidden="true"><use href="#i-wa"/></svg>
+        <a
+          href={whatsappHref}
+          class="wa-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="footer-wa-btn"
+          data-analytics-event="whatsapp_click"
+          data-analytics-location="footer"
+        >
+          <svg aria-hidden="true"><use href="#i-wa"></use></svg>
           Escribir por WhatsApp
         </a>
       </div>
@@ -41,7 +60,11 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
     gap: clamp(1.75rem, 3vw, 2.5rem);
     align-items: end;
   }
-  @media (min-width: 900px) { .final { grid-template-columns: 1.4fr 1fr; } }
+  @media (min-width: 900px) {
+    .final {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
 
   .final-actions {
     display: grid;
@@ -61,10 +84,19 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
     font-family: var(--f-display);
     font-size: var(--t-md);
     background: transparent;
-    transition: border-color 160ms var(--ease-out), background 160ms var(--ease-out);
+    transition:
+      border-color 160ms var(--ease-out),
+      background 160ms var(--ease-out);
   }
-  .wa-link:hover { border-color: var(--bone); background: var(--ink-2); }
-  .wa-link svg { width: 1em; height: 1em; fill: currentColor; }
+  .wa-link:hover {
+    border-color: var(--bone);
+    background: var(--ink-2);
+  }
+  .wa-link svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+  }
 
   /* Italic serif accent on h2 em */
   :global(#contacto h2 em) {

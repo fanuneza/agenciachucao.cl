@@ -9,32 +9,44 @@
       <span class="meta">CLP · cobrado por adelantado</span>
     </div>
 
-    <h2 id="price-h2">Precio visible<br/><em>antes</em> de la llamada.</h2>
+    <h2 id="price-h2">Precio visible<br /><em>antes</em> de la llamada.</h2>
 
     <div class="price-grid">
       <div class="price-col featured">
         <div class="eyebrow-row"><span>Fee mensual</span><span class="tag">Estándar</span></div>
         <p class="price-amt">$1.000.000<span class="sep">–</span>$1.200.000</p>
         <p class="price-period">CLP / mes · cobrado por adelantado</p>
-        <p class="price-note">Cubre el sistema completo: Search Ads, landing, tracking, WhatsApp y SEO local. La pauta va siempre aparte.</p>
+        <p class="price-note">
+          Cubre el sistema completo: Search Ads, landing, tracking, WhatsApp y SEO local. La pauta va siempre aparte.
+        </p>
       </div>
       <div class="price-col">
         <div class="eyebrow-row"><span>Setup inicial</span><span>Único</span></div>
         <p class="price-amt">$400.000<span class="sep">–</span>$700.000</p>
         <p class="price-period">CLP · único · no reembolsable</p>
-        <p class="price-note">Cubre instrumentación, landing y aprendizaje inicial — el costo real de tener el sistema listo antes del primer peso de pauta.</p>
+        <p class="price-note">
+          Cubre instrumentación, landing y aprendizaje inicial — el costo real de tener el sistema listo antes del
+          primer peso de pauta.
+        </p>
       </div>
       <div class="price-col">
         <div class="eyebrow-row"><span>Pauta publicitaria</span><span>Aparte</span></div>
         <p class="price-amt alt">Aparte</p>
         <p class="price-period">pagada por el cliente directamente a Google</p>
-        <p class="price-note">El cliente es propietario de sus cuentas publicitarias. La pauta no pasa por la agencia. Sin opacidad, sin markup.</p>
+        <p class="price-note">
+          El cliente es propietario de sus cuentas publicitarias. La pauta no pasa por la agencia. Sin opacidad, sin
+          markup.
+        </p>
       </div>
     </div>
 
     <div class="roi">
       <span class="label">La matemática</span>
-      <p>Un implante cerrado en Santiago deja entre <strong>$800.000 y $1.200.000</strong>. Dos cierres al mes cubren el fee. Si agregas un caso de ortodoncia, el retorno ya es obvio. El trabajo es instalar el sistema para que eso sea medible y repetible.</p>
+      <p>
+        Un implante cerrado en Santiago deja entre <strong>$800.000 y $1.200.000</strong>. Dos cierres al mes cubren el
+        fee. Si agregas un caso de ortodoncia, el retorno ya es obvio. El trabajo es instalar el sistema para que eso
+        sea medible y repetible.
+      </p>
     </div>
   </div>
 </section>
@@ -47,7 +59,11 @@
     gap: 0;
     border: 1px solid var(--ink-line);
   }
-  @media (min-width: 900px) { .price-grid { grid-template-columns: 1.2fr 1fr 1fr; } }
+  @media (min-width: 900px) {
+    .price-grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+    }
+  }
 
   .price-col {
     padding: clamp(1.75rem, 3vw, 2.5rem);
@@ -55,13 +71,24 @@
     border-bottom: 1px solid var(--ink-line);
     position: relative;
   }
-  .price-col:last-child { border-right: 0; border-bottom: 0; }
-  @media (min-width: 900px) {
-    .price-col:last-child { border-bottom: 0; }
-    .price-col:nth-child(2) { border-bottom: 0; }
-    .price-col:nth-child(1) { border-bottom: 0; }
+  .price-col:last-child {
+    border-right: 0;
+    border-bottom: 0;
   }
-  .price-col.featured { background: var(--ink-2); }
+  @media (min-width: 900px) {
+    .price-col:last-child {
+      border-bottom: 0;
+    }
+    .price-col:nth-child(2) {
+      border-bottom: 0;
+    }
+    .price-col:nth-child(1) {
+      border-bottom: 0;
+    }
+  }
+  .price-col.featured {
+    background: var(--ink-2);
+  }
 
   .eyebrow-row {
     display: flex;
@@ -77,7 +104,9 @@
     margin-bottom: 1.25rem;
     border-bottom: 1px solid var(--ink-line);
   }
-  .eyebrow-row .tag { color: var(--vermilion); }
+  .eyebrow-row .tag {
+    color: var(--vermilion);
+  }
 
   .price-amt {
     font-family: var(--f-display);
@@ -86,11 +115,14 @@
     font-size: clamp(2.25rem, 3vw + 1rem, 3.5rem);
     font-weight: 500;
     letter-spacing: -0.035em;
-    line-height: 1.0;
+    line-height: 1;
     color: var(--bone);
     margin: 0;
   }
-  .price-amt .sep { color: var(--vermilion); padding: 0 0.15em; }
+  .price-amt .sep {
+    color: var(--vermilion);
+    padding: 0 0.15em;
+  }
   .price-amt.alt {
     color: var(--vermilion);
     font-style: italic;
@@ -125,7 +157,13 @@
     padding-top: 2rem;
     border-top: 1px solid var(--ink-line);
   }
-  @media (min-width: 800px) { .roi { grid-template-columns: 14ch 1fr; gap: 2rem; align-items: baseline; } }
+  @media (min-width: 800px) {
+    .roi {
+      grid-template-columns: 14ch 1fr;
+      gap: 2rem;
+      align-items: baseline;
+    }
+  }
 
   .roi .label {
     font-family: var(--f-mono);

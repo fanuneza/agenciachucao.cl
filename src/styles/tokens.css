@@ -1,38 +1,38 @@
 :root {
   /* ── color: bone / ink / vermilion ── */
-  --bone:        #F2EEE6;
-  --bone-2:      #E8E2D4;
-  --bone-line:   #D9D2C0;
-  --ink:         #0E0E0C;
-  --ink-2:       #1A1A17;
-  --ink-line:    #2A2A24;
-  --graphite:    #4A4943;
-  --muted:       #7A7770;
-  --muted-dark:  #B8B2A4;
-  --vermilion:   #D24A2A;
-  --vermilion-d: #B83D1F;
-  --white:       #FFF;
-  --focus-ring:  #D24A2A;
+  --bone: #f2eee6;
+  --bone-2: #e8e2d4;
+  --bone-line: #d9d2c0;
+  --ink: #0e0e0c;
+  --ink-2: #1a1a17;
+  --ink-line: #2a2a24;
+  --graphite: #4a4943;
+  --muted: #7a7770;
+  --muted-dark: #b8b2a4;
+  --vermilion: #d24a2a;
+  --vermilion-d: #b83d1f;
+  --white: #fff;
+  --focus-ring: #d24a2a;
 
   /* ── type ── */
   --f-display: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --f-text:    "Geist", ui-sans-serif, system-ui, sans-serif;
-  --f-mono:    "Geist Mono", ui-monospace, "SF Mono", menlo, monospace;
+  --f-text: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, "SF Mono", menlo, monospace;
 
   /* ── scale (clamps) ── */
   --t-7xl: clamp(3.25rem, 6vw + 1rem, 6.75rem);
   --t-6xl: clamp(2.5rem, 4.4vw + 0.5rem, 4.75rem);
   --t-4xl: clamp(1.75rem, 1.4vw + 1.2rem, 2.5rem);
   --t-2xl: clamp(1.25rem, 0.6vw + 1.05rem, 1.5rem);
-  --t-xl:  1.125rem;
-  --t-lg:  1rem;
-  --t-md:  0.9375rem;
-  --t-sm:  0.8125rem;
-  --t-xs:  0.6875rem;
+  --t-xl: 1.125rem;
+  --t-lg: 1rem;
+  --t-md: 0.9375rem;
+  --t-sm: 0.8125rem;
+  --t-xs: 0.6875rem;
 
   /* ── spacing ── */
-  --gutter:    clamp(1.25rem, 2vw, 2rem);
-  --maxw:      1280px;
+  --gutter: clamp(1.25rem, 2vw, 2rem);
+  --maxw: 1280px;
   --section-y: clamp(5rem, 9vw, 9rem);
 
   /* ── motion ── */
@@ -42,6 +42,6 @@
   --f-serif: "Instrument Serif", georgia, serif;
 
   /* ── brand colors ── */
-  --color-wa:    #2BB36B;
+  --color-wa: #2bb36b;
   --color-wa-bg: rgba(43, 179, 107, 0.18);
 }

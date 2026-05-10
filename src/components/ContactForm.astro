@@ -10,7 +10,15 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="nombre">Tu nombre</label>
-    <input class="form-field" type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Nombre y apellido" required />
+    <input
+      class="form-field"
+      type="text"
+      id="nombre"
+      name="nombre"
+      autocomplete="name"
+      placeholder="Nombre y apellido"
+      required
+    />
     <span class="field-error" id="err-nombre"></span>
   </div>
 
@@ -22,7 +30,15 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div class="form-group">
     <label class="field-label" for="phone">Teléfono o WhatsApp</label>
-    <input class="form-field" type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+56 9 1234 5678" required />
+    <input
+      class="form-field"
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      placeholder="+56 9 1234 5678"
+      required
+    />
     <span class="field-error" id="err-phone"></span>
   </div>
 
@@ -40,12 +56,16 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div id="form-status" class="form-status" aria-live="polite"></div>
 
-  <button type="submit" class="btn form-submit" id="form-submit-btn">Solicitar auditoría <svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <button type="submit" class="btn form-submit" id="form-submit-btn"
+    >Solicitar auditoría <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg></button
+  >
 </form>
 
 <div class="form-wa-fallback">
   <p class="fallback-text">
-    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link">Escríbenos directamente →</a>
+    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
+      >Escríbenos directamente →</a
+    >
   </p>
 </div>
 
@@ -69,7 +89,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     color: var(--vermilion);
     display: none;
   }
-  .field-error.visible { display: block; }
+  .field-error.visible {
+    display: block;
+  }
 
   .form-field.invalid {
     border-color: var(--vermilion);
@@ -83,7 +105,9 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     border: 1px solid var(--bone-line);
     display: none;
   }
-  .form-status:not(:empty) { display: block; }
+  .form-status:not(:empty) {
+    display: block;
+  }
   .form-status.success {
     background: var(--bone-2);
     color: var(--ink);
@@ -106,9 +130,14 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   .form-submit {
     align-self: flex-start;
   }
-  .form-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+  .form-submit:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
 
-  .form-wa-fallback { margin-top: 0.5rem; }
+  .form-wa-fallback {
+    margin-top: 0.5rem;
+  }
   .fallback-text {
     font-family: var(--f-text);
     font-size: var(--t-sm);
@@ -121,5 +150,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     text-underline-offset: 2px;
     transition: color 160ms var(--ease-out);
   }
-  .fallback-link:hover { color: var(--vermilion); }
+  .fallback-link:hover {
+    color: var(--vermilion);
+  }
 </style>

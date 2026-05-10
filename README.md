@@ -18,16 +18,16 @@ Sitio estático desarrollado con Astro para Agencia Chucao. Lead Engine para cl�
 
 ## Comandos
 
-| Comando               | Descripción                                        |
-| --------------------- | -------------------------------------------------- |
-| `npm install`         | Instala las dependencias del proyecto.             |
-| `npm run dev`         | Levanta el entorno local de desarrollo.            |
-| `npm run build`       | Genera la versión de producción en `dist/`.        |
-| `npm run preview`     | Sirve localmente la compilación de producción.     |
-| `npm run test:lighthouse` | Ejecuta Lighthouse CI sobre `dist/`.           |
-| `npm run capture:local`   | Ejecuta capturas visuales con Playwright.      |
-| `npm run capture:home`    | Capturas visuales de la página de inicio.      |
-| `npm run capture:contacto`| Capturas visuales de la página de contacto.   |
+| Comando                    | Descripción                                    |
+| -------------------------- | ---------------------------------------------- |
+| `npm install`              | Instala las dependencias del proyecto.         |
+| `npm run dev`              | Levanta el entorno local de desarrollo.        |
+| `npm run build`            | Genera la versión de producción en `dist/`.    |
+| `npm run preview`          | Sirve localmente la compilación de producción. |
+| `npm run test:lighthouse`  | Ejecuta Lighthouse CI sobre `dist/`.           |
+| `npm run capture:local`    | Ejecuta capturas visuales con Playwright.      |
+| `npm run capture:home`     | Capturas visuales de la página de inicio.      |
+| `npm run capture:contacto` | Capturas visuales de la página de contacto.    |
 
 ## Estructura del proyecto
 

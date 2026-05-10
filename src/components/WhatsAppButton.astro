@@ -1,8 +1,6 @@
 ---
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waMessage = encodeURIComponent(
-  "Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental."
-);
+const waMessage = encodeURIComponent("Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental.");
 ---
 
 <a
@@ -17,7 +15,7 @@ const waMessage = encodeURIComponent(
   data-analytics-location="floating_button"
 >
   <span class="dot" aria-hidden="true"></span>
-  <svg aria-hidden="true"><use href="#i-wa"/></svg>
+  <svg aria-hidden="true"><use href="#i-wa"></use></svg>
   <span class="lbl">WhatsApp · respuesta &lt; 24 h</span>
 </a>
 
@@ -66,7 +64,11 @@ const waMessage = encodeURIComponent(
     letter-spacing: 0.08em;
     text-transform: uppercase;
     box-shadow: 0 12px 28px rgba(14, 14, 12, 0.18);
-    transition: transform 200ms var(--ease-out), background 160ms var(--ease-out), border-color 160ms var(--ease-out), opacity 200ms var(--ease-out);
+    transition:
+      transform 200ms var(--ease-out),
+      background 160ms var(--ease-out),
+      border-color 160ms var(--ease-out),
+      opacity 200ms var(--ease-out);
     text-decoration: none;
   }
   .wa-float:hover {
@@ -74,7 +76,10 @@ const waMessage = encodeURIComponent(
     border-color: var(--vermilion);
     transform: translateY(-2px);
   }
-  .wa-float:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+  .wa-float:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
 
   .wa-float .dot {
     width: 8px;
@@ -92,7 +97,11 @@ const waMessage = encodeURIComponent(
   }
 
   @media (max-width: 520px) {
-    .wa-float .lbl { display: none; }
-    .wa-float { padding: 0.85rem; }
+    .wa-float .lbl {
+      display: none;
+    }
+    .wa-float {
+      padding: 0.85rem;
+    }
   }
 </style>

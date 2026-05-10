@@ -20,19 +20,21 @@ const { steps } = Astro.props;
       <span class="meta">45 días · cuatro fases</span>
     </div>
 
-    <h2 id="how-h2">Qué pasa después<br/>de que <em>firmas</em>.</h2>
+    <h2 id="how-h2">Qué pasa después<br />de que <em>firmas</em>.</h2>
 
     <ol class="steps" role="list">
-      {steps.map((step) => (
-        <li class="step">
-          <span class="num">{step.number}</span>
-          <div class="body">
-            <span class="timeline">{step.timeline}</span>
-            <p class="title">{step.title}</p>
-            <p class="desc">{step.description}</p>
-          </div>
-        </li>
-      ))}
+      {
+        steps.map((step) => (
+          <li class="step">
+            <span class="num">{step.number}</span>
+            <div class="body">
+              <span class="timeline">{step.timeline}</span>
+              <p class="title">{step.title}</p>
+              <p class="desc">{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </div>
 </section>
@@ -56,10 +58,15 @@ const { steps } = Astro.props;
     align-items: baseline;
   }
   @media (min-width: 720px) {
-    .step { grid-template-columns: 90px 180px 1fr; }
+    .step {
+      grid-template-columns: 90px 180px 1fr;
+    }
   }
   @media (max-width: 480px) {
-    .step { grid-template-columns: 1fr; gap: 0.5rem; }
+    .step {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
   }
 
   .step .num {
@@ -70,7 +77,10 @@ const { steps } = Astro.props;
     letter-spacing: -0.04em;
   }
 
-  .step .body { display: grid; gap: 0.5rem; }
+  .step .body {
+    display: grid;
+    gap: 0.5rem;
+  }
 
   .step .timeline {
     font-family: var(--f-mono);

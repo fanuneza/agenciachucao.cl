@@ -16,24 +16,33 @@ const { components } = Astro.props;
     </div>
 
     <h2 id="offer-h2">El <em>Lead Engine</em> dental.</h2>
-    <p class="lede offer-lede">Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.</p>
+    <p class="lede offer-lede">
+      Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días
+      tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.
+    </p>
 
     <div class="offer-grid" role="list">
-      {components.map((item) => (
-        <article class="offer-cell" role="listitem">
-          <p class="idx">{item.idx}</p>
-          <h3>{item.label}</h3>
-          <p>{item.description}</p>
-        </article>
-      ))}
+      {
+        components.map((item) => (
+          <article class="offer-cell" role="listitem">
+            <p class="idx">{item.idx}</p>
+            <h3>{item.label}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))
+      }
     </div>
 
-    <p class="promise">Menos fuga. Más pacientes agendados calificados. Con el costo de cada uno visible desde el día 30.</p>
+    <p class="promise">
+      Menos fuga. Más pacientes agendados calificados. Con el costo de cada uno visible desde el día 30.
+    </p>
   </div>
 </section>
 
 <style>
-  .offer-lede { margin-top: 1.5rem; }
+  .offer-lede {
+    margin-top: 1.5rem;
+  }
 
   .offer-grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
@@ -41,8 +50,16 @@ const { components } = Astro.props;
     grid-template-columns: 1fr;
     border: 1px solid var(--ink-line);
   }
-  @media (min-width: 720px) { .offer-grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 1080px) { .offer-grid { grid-template-columns: 1fr 1fr 1fr; } }
+  @media (min-width: 720px) {
+    .offer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1080px) {
+    .offer-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
 
   .offer-cell {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
@@ -54,7 +71,9 @@ const { components } = Astro.props;
     background: var(--ink);
     transition: background 160ms var(--ease-out);
   }
-  .offer-cell:hover { background: var(--ink-2); }
+  .offer-cell:hover {
+    background: var(--ink-2);
+  }
 
   .offer-cell .idx {
     font-family: var(--f-mono);
@@ -79,16 +98,28 @@ const { components } = Astro.props;
 
   /* Trim outer borders */
   @media (min-width: 1080px) {
-    .offer-cell:nth-child(3n) { border-right: 0; }
-    .offer-cell:nth-last-child(-n+3) { border-bottom: 0; }
+    .offer-cell:nth-child(3n) {
+      border-right: 0;
+    }
+    .offer-cell:nth-last-child(-n + 3) {
+      border-bottom: 0;
+    }
   }
   @media (min-width: 720px) and (max-width: 1079px) {
-    .offer-cell:nth-child(2n) { border-right: 0; }
-    .offer-cell:nth-last-child(-n+2) { border-bottom: 0; }
+    .offer-cell:nth-child(2n) {
+      border-right: 0;
+    }
+    .offer-cell:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
   }
   @media (max-width: 719px) {
-    .offer-cell { border-right: 0; }
-    .offer-cell:last-child { border-bottom: 0; }
+    .offer-cell {
+      border-right: 0;
+    }
+    .offer-cell:last-child {
+      border-bottom: 0;
+    }
   }
 
   .promise {
