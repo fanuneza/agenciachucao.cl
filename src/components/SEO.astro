@@ -43,4 +43,4 @@ const ogImage = new URL(image, Astro.site).href;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
-{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
