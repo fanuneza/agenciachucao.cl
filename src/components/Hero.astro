@@ -15,8 +15,8 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
 <section class="section dark hero" id="hero" aria-labelledby="hero-h1">
   <div class="wrap">
     <div class="tray">
-      <span class="serial">§ 00 / Hero</span>
-      <span class="meta">Sistema de captación · Clínicas dentales · Santiago</span>
+      <span class="serial">Lead Engine dental</span>
+      <span class="meta">Santiago, Chile</span>
     </div>
 
     <div class="hero-grid">
@@ -37,7 +37,10 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
           </a>
         </div>
 
-        <p class="hero-trust">Sin contratos largos · Cupos fundadores disponibles · Respuesta en 24 h</p>
+        <p class="hero-trust">
+          Sistema pensado para tratamientos de alto valor, donde cada consulta debe ser medible desde Google hasta
+          WhatsApp.
+        </p>
       </div>
 
       <aside class="flow-panel" aria-label="Flujo del sistema">
@@ -64,7 +67,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
           </div>
         </div>
         <div class="flow-meta">
-          <p><span class="flow-meta-k">Foco</span> Implantes · Ortodoncia · Rehabilitación</p>
+          <p><span class="flow-meta-k">Foco</span> Implantes, ortodoncia, rehabilitación</p>
           <p><span class="flow-meta-k">Inversión</span> Desde $950.000/mes + pauta aparte</p>
         </div>
       </aside>
@@ -112,15 +115,13 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
   }
 
   .hero-trust {
-    margin-top: 1rem;
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    letter-spacing: 0.06em;
+    margin-top: 1.25rem;
+    font-size: var(--t-sm);
+    line-height: 1.6;
     color: var(--muted-dark);
-    text-transform: uppercase;
+    max-width: 55ch;
   }
 
-  /* Flow panel */
   .flow-panel {
     border: 1px solid var(--ink-line);
     background: var(--ink-2);
@@ -172,7 +173,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     height: 1px;
     background: var(--vermilion);
     flex-shrink: 0;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .flow-meta {

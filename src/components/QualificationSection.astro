@@ -1,0 +1,125 @@
+---
+
+---
+
+<section class="section qual" id="fit" aria-labelledby="qual-h2">
+  <div class="wrap">
+    <div class="tray">
+      <span class="serial">§ 04b / Fit</span>
+      <span class="meta">Para quién es este sistema</span>
+    </div>
+
+    <h2 id="qual-h2">Para clínicas que quieren medir antes de escalar.</h2>
+
+    <div class="qual-grid">
+      <div class="qual-col fit">
+        <p class="qual-label">Este sistema calza si</p>
+        <ul class="qual-list" role="list">
+          <li>Ya tienes tratamientos de valor medio o alto.</li>
+          <li>Puedes responder WhatsApp con rapidez.</li>
+          <li>Quieres saber cuánto cuesta cada oportunidad.</li>
+          <li>Estás dispuesto a mejorar la página y el seguimiento, no solo pagar anuncios.</li>
+        </ul>
+      </div>
+      <div class="qual-col nofit">
+        <p class="qual-label">No calza si</p>
+        <ul class="qual-list" role="list">
+          <li>Buscas solo publicaciones para redes sociales.</li>
+          <li>Quieres pacientes garantizados.</li>
+          <li>No puedes responder consultas dentro del día.</li>
+          <li>No quieres medir ni ajustar el proceso comercial.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .qual-grid {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--bone-line);
+  }
+  @media (min-width: 900px) {
+    .qual-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .qual-col {
+    padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
+  .qual-col + .qual-col {
+    border-top: 1px solid var(--bone-line);
+  }
+  @media (min-width: 900px) {
+    .qual-col + .qual-col {
+      border-top: 0;
+      border-left: 1px solid var(--bone-line);
+    }
+  }
+
+  .qual-label {
+    font-family: var(--f-display);
+    font-size: var(--t-lg);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--bone-line);
+  }
+  .fit .qual-label {
+    color: var(--ink);
+  }
+  .fit .qual-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--vermilion);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.6rem;
+  }
+  .nofit .qual-label {
+    color: var(--muted);
+  }
+  .nofit .qual-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid var(--muted);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.6rem;
+  }
+
+  .qual-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .qual-list li {
+    font-size: var(--t-md);
+    line-height: 1.55;
+    color: var(--graphite);
+    padding-left: 1.15rem;
+    position: relative;
+  }
+  .qual-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    background: var(--bone-line);
+    border-radius: 50%;
+  }
+  .fit .qual-list li::before {
+    background: var(--vermilion);
+  }
+</style>

@@ -4,82 +4,62 @@ interface Props {
   ctaHref: string;
 }
 
-const { spotsTotal, ctaHref } = Astro.props;
-const spotsFormatted = String(spotsTotal).padStart(2, "0");
+const { ctaHref } = Astro.props;
 ---
 
 <section class="section founding" id="fundadores" aria-labelledby="found-h2">
   <div class="wrap">
     <div class="tray">
-      <span class="serial">§ 06 / Cupos fundadores</span>
-      <span class="meta">Precio de validación · cierra al llenarse</span>
+      <span class="serial">§ 06 / Cupos iniciales</span>
+      <span class="meta">Precio reducido · cierra al llenarse</span>
     </div>
 
     <div class="founding-grid">
-      <aside class="cupos" aria-label="Cupos fundadores disponibles">
-        <div class="cupos-num"><span>{spotsFormatted}</span></div>
-        <div class="cupos-label">Cupos fundadores<br />disponibles</div>
-        <div class="cupos-status">
-          <span class="dot" aria-hidden="true"></span>
-          Abierto · Q2 2026
-        </div>
-      </aside>
-
-      <div>
-        <p class="eyebrow">Oferta fundadora</p>
-        <h2 id="found-h2" class="found-h2">Dos cuentas iniciales a <em>precio de validación</em>.</h2>
+      <div class="founding-intro">
+        <h2 id="found-h2">Precio reducido para las primeras 2 clínicas.</h2>
         <p class="lede found-lede">
-          Estamos abriendo dos cuentas para documentar resultados con el nicho dental. Precio reducido a cambio del
-          caso: tú llegas antes que la competencia, nosotros demostramos el modelo.
+          Estamos documentando resultados en el nicho dental. Por eso abrimos dos cupos iniciales con un valor menor al
+          precio estándar.
         </p>
+      </div>
 
-        <div class="founding-detail">
-          <div>
-            <div class="k">Fee fundador</div>
-            <div class="v">$950.000<span class="unit">/mes</span></div>
-          </div>
-          <div>
-            <div class="k">Setup</div>
-            <div class="v">$500.000<span class="unit">único</span></div>
-          </div>
-          <div>
-            <div class="k">Pauta</div>
-            <div class="v alt">Aparte</div>
-          </div>
+      <div class="founding-details">
+        <div class="detail-row">
+          <span class="detail-k">Fee mensual</span>
+          <span class="detail-v">$950.000</span>
         </div>
+        <div class="detail-row">
+          <span class="detail-k">Setup inicial</span>
+          <span class="detail-v">$500.000</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-k">Pauta publicitaria</span>
+          <span class="detail-v alt">Aparte</span>
+        </div>
+      </div>
 
-        <p class="note found-note">
-          Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000–$1.200.000/mes. Sin excepciones.
+      <div class="founding-note">
+        <p>
+          Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000 - $1.200.000/mes. Sin excepciones.
         </p>
+      </div>
 
-        <div class="founding-cta">
-          <a
-            href={ctaHref}
-            class="btn"
-            id="founding-cta-btn"
-            data-analytics-event="cta_click"
-            data-analytics-location="founding"
-          >
-            Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
-          </a>
-        </div>
+      <div class="founding-cta">
+        <a
+          href={ctaHref}
+          class="btn"
+          id="founding-cta-btn"
+          data-analytics-event="cta_click"
+          data-analytics-location="founding"
+        >
+          Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .found-h2 {
-    margin-top: 0.65rem;
-  }
-  .found-lede {
-    margin-top: 1.5rem;
-  }
-  .found-note {
-    margin-top: 1.5rem;
-    max-width: 60ch;
-  }
-
   .founding-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -87,113 +67,92 @@ const spotsFormatted = String(spotsTotal).padStart(2, "0");
   }
   @media (min-width: 900px) {
     .founding-grid {
-      grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+      grid-template-columns: 1.2fr 1fr;
+      grid-template-rows: auto auto auto;
       align-items: start;
+    }
+    .founding-intro {
+      grid-column: 1;
+      grid-row: 1 / 4;
+    }
+    .founding-details {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .founding-note {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .founding-cta {
+      grid-column: 2;
+      grid-row: 3;
     }
   }
 
-  .cupos {
-    border: 1px solid var(--ink);
-    padding: 1.5rem;
-    display: grid;
-    gap: 1.25rem;
-    background: var(--bone-2);
-  }
-  .cupos-num {
-    font-family: var(--f-display);
-    font-size: clamp(5rem, 9vw, 8rem);
-    line-height: 0.85;
-    font-weight: 500;
-    letter-spacing: -0.04em;
-    color: var(--ink);
-  }
-  .cupos-num span {
-    color: var(--vermilion);
-  }
-  .cupos-label {
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--graphite);
-  }
-  .cupos-status {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-    padding-top: 1rem;
-    border-top: 1px solid var(--bone-line);
-  }
-  .cupos-status .dot {
-    width: 8px;
-    height: 8px;
-    background: var(--vermilion);
-    border-radius: 50%;
-    animation: pulse 2.4s var(--ease-out) infinite;
-    flex-shrink: 0;
+  .founding-intro h2 {
+    line-height: 1.05;
   }
 
-  .founding-detail {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
+  .found-lede {
+    margin-top: 1.5rem;
+  }
+
+  .founding-details {
     border: 1px solid var(--bone-line);
+    background: var(--bone-2);
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    display: grid;
+    gap: 0;
   }
-  .founding-detail > div {
-    padding: 1.25rem;
-    border-right: 1px solid var(--bone-line);
+
+  .detail-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--bone-line);
   }
-  .founding-detail > div:last-child {
-    border-right: 0;
+  .detail-row:first-child {
+    padding-top: 0;
   }
-  .founding-detail .k {
+  .detail-row:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .detail-k {
     font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.5rem;
+    font-size: var(--t-sm);
+    color: var(--graphite);
+    letter-spacing: 0.02em;
   }
-  .founding-detail .v {
+
+  .detail-v {
     font-family: var(--f-display);
     font-size: var(--t-2xl);
     font-weight: 500;
     letter-spacing: -0.025em;
+    color: var(--ink);
   }
-  .founding-detail .v.alt {
-    font-family: var(--f-serif);
-    font-style: italic;
+  .detail-v.alt {
+    font-family: var(--f-display);
+    font-size: var(--t-xl);
     color: var(--vermilion);
-    font-weight: 400;
+    font-weight: 500;
   }
-  .founding-detail .v .unit {
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
+
+  .founding-note {
+    font-size: var(--t-sm);
     color: var(--muted);
-    margin-left: 0.4rem;
-    letter-spacing: 0.06em;
+    line-height: 1.6;
+    max-width: 55ch;
   }
-  @media (max-width: 600px) {
-    .founding-detail {
-      grid-template-columns: 1fr;
-    }
-    .founding-detail > div {
-      border-right: 0;
-      border-bottom: 1px solid var(--bone-line);
-    }
-    .founding-detail > div:last-child {
-      border-bottom: 0;
-    }
+  .founding-note p {
+    margin: 0;
   }
 
   .founding-cta {
-    margin-top: 2rem;
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;

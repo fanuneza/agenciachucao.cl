@@ -12,10 +12,10 @@ const { components } = Astro.props;
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 02 / Sistema</span>
-      <span class="meta">Lead Engine dental · 6 piezas, un objetivo</span>
+      <span class="meta">Seis piezas, un objetivo</span>
     </div>
 
-    <h2 id="offer-h2">El <em>Lead Engine</em> dental.</h2>
+    <h2 id="offer-h2">El Lead Engine dental.</h2>
     <p class="lede offer-lede">
       Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días
       tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.
@@ -62,7 +62,6 @@ const { components } = Astro.props;
     }
   }
 
-  /* System connector line — subtle pipeline feel */
   .offer-grid::before {
     content: "";
     position: absolute;
@@ -71,7 +70,7 @@ const { components } = Astro.props;
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--vermilion) 0%, var(--vermilion) 60%, transparent 100%);
-    opacity: 0.35;
+    opacity: 0.3;
     z-index: 1;
   }
 
@@ -112,7 +111,6 @@ const { components } = Astro.props;
     margin: 0;
   }
 
-  /* Trim outer borders */
   @media (min-width: 1080px) {
     .offer-cell:nth-child(3n) {
       border-right: 0;

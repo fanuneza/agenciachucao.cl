@@ -6,52 +6,52 @@
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 05 / Inversión</span>
-      <span class="meta">CLP · cobrado por adelantado</span>
+      <span class="meta">Fee + setup + pauta</span>
     </div>
 
-    <h2 id="price-h2">Precio visible<br /><em>antes</em> de la llamada.</h2>
+    <h2 id="price-h2">Precio visible antes de la llamada.</h2>
+    <p class="lede price-lede">
+      En tratamientos de alto valor, unos pocos agendamientos calificados pueden justificar la inversión. El trabajo es
+      instalar un sistema medible y repetible.
+    </p>
 
     <div class="price-grid">
       <div class="price-col featured">
-        <div class="eyebrow-row"><span>Fee mensual</span><span class="tag">Estándar</span></div>
-        <p class="price-amt">$1.000.000<span class="sep">–</span>$1.200.000</p>
-        <p class="price-period">CLP / mes · cobrado por adelantado</p>
+        <p class="price-label">Fee mensual</p>
+        <p class="price-amt">$1.000.000 - $1.200.000</p>
+        <p class="price-period">CLP / mes, cobrado por adelantado</p>
         <p class="price-note">
-          Cubre el sistema completo: Search Ads, landing, tracking, WhatsApp y SEO local. La pauta va siempre aparte.
+          Cubre el sistema completo: Google Ads, landing, seguimiento de conversiones, WhatsApp y SEO local. La pauta va
+          siempre aparte.
         </p>
       </div>
       <div class="price-col">
-        <div class="eyebrow-row"><span>Setup inicial</span><span>Único</span></div>
-        <p class="price-amt">$400.000<span class="sep">–</span>$700.000</p>
-        <p class="price-period">CLP · único · no reembolsable</p>
+        <p class="price-label">Setup inicial</p>
+        <p class="price-amt">$400.000 - $700.000</p>
+        <p class="price-period">Pago único, no reembolsable</p>
         <p class="price-note">
-          Cubre instrumentación, landing y aprendizaje inicial — el costo real de tener el sistema listo antes del
-          primer peso de pauta.
+          Instrumentación, landing y aprendizaje inicial. El costo real de tener el sistema listo antes del primer peso
+          de pauta.
         </p>
       </div>
       <div class="price-col">
-        <div class="eyebrow-row"><span>Pauta publicitaria</span><span>Aparte</span></div>
+        <p class="price-label">Pauta publicitaria</p>
         <p class="price-amt alt">Aparte</p>
-        <p class="price-period">pagada por el cliente directamente a Google</p>
+        <p class="price-period">Pagada directamente a Google</p>
         <p class="price-note">
-          El cliente es propietario de sus cuentas publicitarias. La pauta no pasa por la agencia. Sin opacidad, sin
-          markup.
+          El cliente es propietario de sus cuentas. La pauta no pasa por la agencia. Sin opacidad, sin markup.
         </p>
       </div>
-    </div>
-
-    <div class="roi">
-      <span class="label">La matemática</span>
-      <p>
-        Un implante cerrado en Santiago deja entre <strong>$800.000 y $1.200.000</strong>. Dos cierres al mes cubren el
-        fee. Si agregas un caso de ortodoncia, el retorno ya es obvio. El trabajo es instalar el sistema para que eso
-        sea medible y repetible.
-      </p>
     </div>
   </div>
 </section>
 
 <style>
+  .price-lede {
+    margin-top: 1.5rem;
+    color: var(--muted-dark);
+  }
+
   .price-grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
@@ -90,101 +90,50 @@
     background: var(--ink-2);
   }
 
-  .eyebrow-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+  .price-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted-dark);
     padding-bottom: 1rem;
     margin-bottom: 1.25rem;
     border-bottom: 1px solid var(--ink-line);
   }
-  .eyebrow-row .tag {
-    color: var(--vermilion);
-  }
 
   .price-amt {
     font-family: var(--f-display);
     font-feature-settings: "tnum" 1;
     font-variant-numeric: tabular-nums;
-    font-size: clamp(2.25rem, 3vw + 1rem, 3.5rem);
+    font-size: clamp(2rem, 2.8vw + 0.8rem, 3rem);
     font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 1;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
     color: var(--bone);
     margin: 0;
   }
-  .price-amt .sep {
-    color: var(--vermilion);
-    padding: 0 0.15em;
-  }
   .price-amt.alt {
-    color: var(--vermilion);
-    font-style: italic;
-    font-family: var(--f-serif);
-    font-weight: 400;
+    color: var(--bone);
+    font-family: var(--f-display);
+    font-style: normal;
+    font-weight: 500;
     letter-spacing: -0.02em;
   }
 
   .price-period {
     font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: var(--t-sm);
+    letter-spacing: 0.04em;
     color: var(--muted-dark);
-    margin-top: 0.85rem;
+    margin-top: 0.75rem;
     margin-bottom: 0;
   }
 
   .price-note {
     color: var(--muted-dark);
     font-size: var(--t-md);
-    line-height: 1.55;
+    line-height: 1.6;
     margin-top: 1.25rem;
     max-width: 38ch;
-  }
-
-  .roi {
-    margin-top: clamp(2rem, 4vw, 3rem);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--ink-line);
-  }
-  @media (min-width: 800px) {
-    .roi {
-      grid-template-columns: 14ch 1fr;
-      gap: 2rem;
-      align-items: baseline;
-    }
-  }
-
-  .roi .label {
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--vermilion);
-  }
-  .roi p {
-    font-family: var(--f-display);
-    font-size: var(--t-2xl);
-    line-height: 1.45;
-    color: var(--bone);
-    max-width: 70ch;
-    letter-spacing: -0.005em;
-    margin: 0;
-  }
-  .roi strong {
-    font-weight: 600;
-    color: var(--bone);
-    border-bottom: 1px solid var(--vermilion);
-    padding-bottom: 1px;
   }
 </style>

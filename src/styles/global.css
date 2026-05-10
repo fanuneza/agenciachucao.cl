@@ -40,6 +40,7 @@ body {
   line-height: 1.65;
   color: var(--ink);
   background: var(--bone);
+  scroll-padding-top: 80px;
   font-feature-settings: "ss01", "ss02", "cv01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -49,6 +50,28 @@ body {
 ::selection {
   background: var(--vermilion);
   color: var(--bone);
+}
+
+/* ── Skip link ──────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-120%);
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--bone);
+  border: 1px solid var(--ink-line);
+  font-family: var(--f-display);
+  font-size: var(--t-md);
+  text-decoration: none;
+  transition: transform 160ms var(--ease-out);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* ── Layout primitives ──────────────────────────────────── */
@@ -88,6 +111,7 @@ body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
+  line-height: 1.4;
 }
 .section.dark .tray {
   border-bottom-color: var(--ink-line);
@@ -183,7 +207,7 @@ p {
 .note {
   font-size: var(--t-sm);
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 .section.dark .note {
   color: var(--muted-dark);

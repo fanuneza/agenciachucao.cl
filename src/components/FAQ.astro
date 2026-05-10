@@ -15,20 +15,20 @@ const { items } = Astro.props;
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 07 / Preguntas</span>
-      <span class="meta">Las dudas que no quieres llevar a la llamada</span>
+      <span class="meta">Respuestas directas</span>
     </div>
 
-    <h2 id="faq-h2">Las dudas que no<br />quieres llevar a la <em>llamada</em>.</h2>
+    <h2 id="faq-h2">Las dudas que no quieres llevar a la llamada.</h2>
+    <p class="lede faq-lede">
+      Si algo no está claro, es mejor resolverlo antes de hablar. Aquí están las preguntas que suelen aparecer.
+    </p>
 
     <div class="faq-list" role="list">
       {
         items.map((item, i) => (
           <div class="faq-item" role="listitem">
             <button class="faq-q" aria-expanded="false" aria-controls={`a${i}`} id={`q${i}`}>
-              <span>
-                <span class="ord">Q · {String(i + 1).padStart(2, "0")}</span>
-                {item.question}
-              </span>
+              <span class="faq-q-text">{item.question}</span>
               <span class="ind" aria-hidden="true" />
             </button>
             <div class="faq-a" id={`a${i}`} role="region" aria-labelledby={`q${i}`}>
@@ -54,6 +54,10 @@ const { items } = Astro.props;
 </script>
 
 <style>
+  .faq-lede {
+    margin-top: 1.5rem;
+  }
+
   .faq-list {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     border-top: 1px solid var(--bone-line);
@@ -69,13 +73,14 @@ const { items } = Astro.props;
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.5rem 0;
+    padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
     font-family: var(--f-display);
-    font-size: clamp(1.05rem, 0.6vw + 0.95rem, 1.35rem);
+    font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.25rem);
     font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
     color: var(--ink);
     cursor: pointer;
+    line-height: 1.35;
   }
   .faq-q:hover {
     color: var(--vermilion);
@@ -85,12 +90,9 @@ const { items } = Astro.props;
     outline-offset: 4px;
   }
 
-  .faq-q .ord {
-    font-family: var(--f-mono);
-    font-size: var(--t-xs);
-    color: var(--vermilion);
-    letter-spacing: 0.08em;
-    margin-right: 1rem;
+  .faq-q-text {
+    display: block;
+    max-width: 70ch;
   }
 
   .faq-q .ind {
@@ -142,11 +144,11 @@ const { items } = Astro.props;
     overflow: hidden;
   }
   .faq-a-inner {
-    padding: 0 0 1.5rem 0;
+    padding: 0 0 clamp(1.25rem, 2.5vw, 1.75rem) 0;
     max-width: 70ch;
     color: var(--graphite);
     font-size: var(--t-md);
-    line-height: 1.6;
+    line-height: 1.65;
   }
   .faq-q[aria-expanded="true"] + .faq-a {
     grid-template-rows: 1fr;

@@ -6,6 +6,7 @@ import OfferSection from "@components/OfferSection.astro";
 import HowItWorks from "@components/HowItWorks.astro";
 import ProofSection from "@components/ProofSection.astro";
 import IncludesExcludes from "@components/IncludesExcludes.astro";
+import QualificationSection from "@components/QualificationSection.astro";
 import PricingSection from "@components/PricingSection.astro";
 import FoundingOffer from "@components/FoundingOffer.astro";
 import FAQ from "@components/FAQ.astro";
@@ -22,30 +23,28 @@ const howSteps = [
   {
     number: "01",
     title: "Setup",
-    timeline: "Días 1–7",
+    timeline: "Semana 1",
     description:
-      "Instalamos el seguimiento de conversiones, creamos la landing por tratamiento y activamos todos los canales. Al final de la semana el sistema está listo.",
+      "Instalamos la landing, la estructura de campaña, los eventos de conversión y la conexión hacia WhatsApp.",
   },
   {
     number: "02",
     title: "Tráfico",
-    timeline: "Semana 2",
+    timeline: "Días 7 a 14",
     description:
-      "Activamos las campañas de Google Search. Capturamos demanda existente de pacientes que buscan tu tratamiento en Santiago.",
+      "Activamos búsquedas con intención comercial y empezamos a separar consultas útiles de tráfico irrelevante.",
   },
   {
     number: "03",
     title: "Primeros leads",
-    timeline: "Días 10–21",
-    description:
-      "Si hay demanda activa en tu zona, los primeros leads llegan en esta ventana. Activamos el protocolo de seguimiento por WhatsApp.",
+    timeline: "Primeros 30 días",
+    description: "Revisamos volumen, calidad de consultas, respuesta por WhatsApp y fricciones antes del agendamiento.",
   },
   {
     number: "04",
     title: "Medición y ajustes",
-    timeline: "Día 30–45",
-    description:
-      "Primera revisión con datos reales: gasto por evaluación, tasa de contacto, fuentes que funcionan. Ajustamos lo que muestre señales débiles.",
+    timeline: "Mensual",
+    description: "Ajustamos palabras clave, anuncios, presupuesto, landing y seguimiento según datos reales.",
   },
 ];
 
@@ -81,27 +80,27 @@ const faqItems = [
   {
     question: "¿Por qué CLP $1.000.000 si hay agencias más baratas?",
     answer:
-      "Depende de qué estás midiendo. Dos cierres de implante al mes ya cubren el fee. La pregunta más útil es cuánto te cuesta hoy conseguir cada paciente nuevo, contando todo: pauta, tiempo y esfuerzo. Si no tienes ese número, cualquier comparación de precios es arbitraria.",
+      "Este no es community management. Incluye setup de campaña, landing de conversión, medición de conversiones, reporte mensual y optimización. La pauta la pagas directo a Google, no pasa por nosotros. El objetivo es construir un sistema de adquisición medible, no solo correr anuncios.",
   },
   {
     question: "Ya tenemos agencia.",
     answer:
-      "Puede que funcione bien. Lo que vale la pena revisar es si hoy puedes ver cuánto te costó el último paciente de implante, desde que buscó en Google hasta que pagó. Si ese dato existe y es claro, probablemente no necesitas nada más. Si no está, hay algo concreto que se puede mejorar.",
+      "Podemos funcionar como una capa enfocada en adquisición dental sin reemplazar todo tu marketing. El Lead Engine se encarga de la parte medible: búsquedas, landing, WhatsApp y reportes. Si tu agencia actual ya tiene eso claro, probablemente no necesitas esto.",
   },
   {
     question: "¿Cuánto demora en verse resultados?",
     answer:
-      "Setup completo en 7–14 días. Primeros leads en 10–21 días si hay demanda activa en tu zona y tratamiento. Primeras conclusiones serias a los 30–45 días. Para juzgar sostenibilidad, necesitas 90 días de datos.",
+      "El primer mes es para setup, lanzamiento y diagnóstico. La campaña necesita tráfico suficiente para aprender. Las primeras señales útiles aparecen cuando hay volumen y disciplina de seguimiento. No prometemos pacientes en una semana.",
   },
   {
     question: "¿Qué pasa si no funciona?",
     answer:
-      "No hay permanencia larga. El setup cubre la instalación y el aprendizaje inicial. A los 45 días revisamos con datos reales: si hay algo que optimizar, lo hacemos. Si hay razones estructurales por las que el canal no funciona para tu clínica o zona, te lo decimos con claridad.",
+      "El primer diagnóstico es identificar dónde está el cuello de botella: si es tráfico, conversión de la landing, respuesta por WhatsApp, precio del tratamiento o economía del negocio. El sistema existe para localizar el problema en lugar de adivinar.",
   },
   {
     question: "¿Qué no incluye el fee?",
     answer:
-      "Community management, redes sociales, reels, desarrollo web, branding y pauta publicitaria. La pauta la paga el cliente directamente a Google. Tampoco incluimos más de una reunión mensual ni landings adicionales para nuevos tratamientos o sedes.",
+      "Revisa la sección de alcance arriba. Lo esencial: no incluimos community management, producción de contenido, desarrollo web ni pauta publicitaria. La pauta la pagas directamente a Google. Tampoco garantizamos una cantidad específica de pacientes.",
   },
 ];
 
@@ -144,6 +143,8 @@ const localBusinessSchema = {
   <ProofSection />
 
   <IncludesExcludes included={included} excluded={excluded} extras={extras} />
+
+  <QualificationSection />
 
   <PricingSection />
 
