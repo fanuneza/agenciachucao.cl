@@ -3,6 +3,7 @@ import SEO from "@components/SEO.astro";
 import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
 import CookieConsent from "@components/CookieConsent.astro";
+import IconSprite from "@components/IconSprite.astro";
 import "@styles/global.css";
 
 interface Props {
@@ -39,6 +40,7 @@ const { title, description, image, canonical, noindex, schema } = Astro.props;
     <script src="../scripts/site.ts"></script>
   </head>
   <body>
+    <IconSprite />
     <a class="skip-link" href="#main">Saltar al contenido</a>
 
     <Nav />
