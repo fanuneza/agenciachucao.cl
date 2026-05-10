@@ -21,10 +21,10 @@ const { components } = Astro.props;
       tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.
     </p>
 
-    <div class="offer-grid" role="list">
+    <div class="offer-grid">
       {
         components.map((item) => (
-          <article class="offer-cell" role="listitem">
+          <article class="offer-cell">
             <p class="idx">{item.idx}</p>
             <h3>{item.label}</h3>
             <p>{item.description}</p>
