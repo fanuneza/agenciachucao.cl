@@ -14,7 +14,7 @@ const DISABLED_RULES = ["color-contrast", "label-content-name-mismatch", "headin
 
 for (const pageInfo of pages) {
   test(`a11y ${pageInfo.name}`, async ({ page }) => {
-    await page.goto(pageInfo.path, { waitUntil: "networkidle" });
+    await page.goto(pageInfo.path, { waitUntil: "load" });
     await expect(page.locator("body")).toBeVisible();
 
     const accessibilityScanResults = await new AxeBuilder({ page })

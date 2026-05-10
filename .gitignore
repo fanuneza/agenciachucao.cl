@@ -70,8 +70,9 @@ CI.md
 Cloudflare.md
 
 # Internal planning docs (local only)
-docs/
+docs/*
 !docs/analytics-csp-consent.md
+!docs/ci-audit.md
 process-notes.md
 
 # Backup files

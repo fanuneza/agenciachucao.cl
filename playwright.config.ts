@@ -4,7 +4,7 @@ const port = Number(process.env.PLAYWRIGHT_PORT ?? 4325);
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${port}`;
 
 export default defineConfig({
-  testDir: "./tests/visual",
+  testDir: "./tests",
   timeout: 60_000,
   expect: {
     timeout: 10_000,

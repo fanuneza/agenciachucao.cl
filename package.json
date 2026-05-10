@@ -10,10 +10,10 @@
     "lint:fix": "eslint . --fix && stylelint \"src/**/*.css\" --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:lighthouse": "lhci autorun",
-    "capture:local": "playwright test --config playwright.config.ts",
-    "capture:home": "playwright test --config playwright.config.ts --grep @home",
-    "capture:contacto": "playwright test --config playwright.config.ts --grep @contacto"
+    "test": "playwright test",
+    "test:a11y": "playwright test tests/visual/a11y.spec.ts",
+    "test:build": "playwright test tests/build/build.spec.ts",
+    "test:lighthouse": "lhci autorun"
   },
   "engines": {
     "node": ">=22"
