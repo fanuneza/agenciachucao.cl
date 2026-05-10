@@ -49,6 +49,7 @@ const { components } = Astro.props;
     display: grid;
     grid-template-columns: 1fr;
     border: 1px solid var(--ink-line);
+    position: relative;
   }
   @media (min-width: 720px) {
     .offer-grid {
@@ -61,6 +62,19 @@ const { components } = Astro.props;
     }
   }
 
+  /* System connector line — subtle pipeline feel */
+  .offer-grid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--vermilion) 0%, var(--vermilion) 60%, transparent 100%);
+    opacity: 0.35;
+    z-index: 1;
+  }
+
   .offer-cell {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
     border-right: 1px solid var(--ink-line);
@@ -70,6 +84,7 @@ const { components } = Astro.props;
     align-content: start;
     background: var(--ink);
     transition: background 160ms var(--ease-out);
+    position: relative;
   }
   .offer-cell:hover {
     background: var(--ink-2);
@@ -88,11 +103,12 @@ const { components } = Astro.props;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--bone);
+    line-height: 1.25;
   }
   .offer-cell p:last-child {
     color: var(--muted-dark);
     font-size: var(--t-md);
-    line-height: 1.55;
+    line-height: 1.6;
     margin: 0;
   }
 
@@ -126,7 +142,7 @@ const { components } = Astro.props;
     margin-top: clamp(2rem, 4vw, 3rem);
     font-family: var(--f-display);
     font-size: var(--t-2xl);
-    line-height: 1.4;
+    line-height: 1.45;
     color: var(--bone);
     max-width: 62ch;
     border-left: 2px solid var(--vermilion);

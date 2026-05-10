@@ -47,6 +47,23 @@ const { steps } = Astro.props;
     border-top: 1px solid var(--bone-line);
     list-style: none;
     padding: 0;
+    position: relative;
+  }
+
+  /* Timeline connector line */
+  .steps::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 44px;
+    width: 1px;
+    background: var(--bone-line);
+  }
+  @media (max-width: 480px) {
+    .steps::before {
+      left: 18px;
+    }
   }
 
   .step {
@@ -55,7 +72,8 @@ const { steps } = Astro.props;
     gap: clamp(1rem, 2vw, 2rem);
     padding: clamp(1.5rem, 3vw, 2.25rem) 0;
     border-bottom: 1px solid var(--bone-line);
-    align-items: baseline;
+    align-items: start;
+    position: relative;
   }
   @media (min-width: 720px) {
     .step {
@@ -64,8 +82,8 @@ const { steps } = Astro.props;
   }
   @media (max-width: 480px) {
     .step {
-      grid-template-columns: 1fr;
-      gap: 0.5rem;
+      grid-template-columns: 36px 1fr;
+      gap: 0.75rem;
     }
   }
 
@@ -75,6 +93,9 @@ const { steps } = Astro.props;
     font-weight: 500;
     color: var(--ink);
     letter-spacing: -0.04em;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
   }
 
   .step .body {
@@ -95,6 +116,7 @@ const { steps } = Astro.props;
     font-size: var(--t-xl);
     font-weight: 600;
     letter-spacing: -0.015em;
+    line-height: 1.25;
     margin: 0;
   }
   .step .desc {

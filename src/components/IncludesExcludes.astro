@@ -23,13 +23,15 @@ const { included, excluded, extras } = Astro.props;
 
     <div class="includes-grid">
       <div class="inc-col in">
-        <p class="label">Incluido en el fee mensual</p>
+        <p class="label">Sí incluye</p>
         <ul class="inc-list" role="list">
           {
             included.map((item) => (
               <li>
                 <>
-                  <span class="mark">✓</span>
+                  <span class="mark" aria-hidden="true">
+                    ✓
+                  </span>
                   <span>{item}</span>
                 </>
               </li>
@@ -38,13 +40,15 @@ const { included, excluded, extras } = Astro.props;
         </ul>
       </div>
       <div class="inc-col out">
-        <p class="label">No incluido</p>
+        <p class="label">No incluye</p>
         <ul class="inc-list" role="list">
           {
             excluded.map((item) => (
               <li>
                 <>
-                  <span class="mark">—</span>
+                  <span class="mark" aria-hidden="true">
+                    —
+                  </span>
                   <span>{item}</span>
                 </>
               </li>
@@ -55,17 +59,15 @@ const { included, excluded, extras } = Astro.props;
     </div>
 
     <div class="extras">
-      <p class="label" style="border:0; margin-bottom:1rem; padding:0;">
-        Fuera del alcance estándar · se cotiza aparte
-      </p>
+      <p class="label" style="border:0; margin-bottom:1rem; padding:0;">Opciones aparte</p>
       <div class="chips">
         {extras.map((item) => <span class="chip">{item}</span>)}
       </div>
     </div>
 
     <p class="note includes-note">
-      La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee —
-      así mantenemos las cuentas en manos del cliente y sin opacidad.
+      La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee.
+      Así mantenemos las cuentas en manos del cliente y sin opacidad.
     </p>
   </div>
 </section>
@@ -109,6 +111,7 @@ const { included, excluded, extras } = Astro.props;
     margin-bottom: 1.25rem;
     border-bottom: 1px solid var(--bone-line);
     width: 100%;
+    font-weight: 600;
   }
   .inc-col.in .label {
     color: var(--ink);
@@ -142,9 +145,10 @@ const { included, excluded, extras } = Astro.props;
     padding: 0.85rem 0;
     border-bottom: 1px dashed var(--bone-line);
     display: grid;
-    grid-template-columns: 18px 1fr;
+    grid-template-columns: 22px 1fr;
     gap: 0.75rem;
     font-size: var(--t-md);
+    line-height: 1.5;
   }
   .inc-list li:last-child {
     border-bottom: 0;

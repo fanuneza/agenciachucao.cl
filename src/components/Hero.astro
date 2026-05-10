@@ -35,24 +35,38 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
             {ctaText}
             <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
           </a>
-          <a href="#oferta" class="btn-ghost">Ver el sistema</a>
         </div>
 
         <p class="hero-trust">Sin contratos largos · Cupos fundadores disponibles · Respuesta en 24 h</p>
       </div>
 
-      <aside class="specs" aria-label="Especificaciones del sistema">
-        <div class="specs-row">
-          <span class="k">Foco</span><span class="v">Implantes · Ortodoncia · Rehabilitación</span>
+      <aside class="flow-panel" aria-label="Flujo del sistema">
+        <p class="flow-label">Cómo funciona el Lead Engine</p>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <span class="flow-dot" aria-hidden="true"></span>
+            <span class="flow-name">Búsqueda en Google</span>
+          </div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-step">
+            <span class="flow-dot" aria-hidden="true"></span>
+            <span class="flow-name">Landing</span>
+          </div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-step">
+            <span class="flow-dot" aria-hidden="true"></span>
+            <span class="flow-name">WhatsApp</span>
+          </div>
+          <span class="flow-connector" aria-hidden="true"></span>
+          <div class="flow-step">
+            <span class="flow-dot" aria-hidden="true"></span>
+            <span class="flow-name">Agenda</span>
+          </div>
         </div>
-        <div class="specs-row">
-          <span class="k">Medición</span><span class="v">Gasto por evaluación y por tratamiento</span>
+        <div class="flow-meta">
+          <p><span class="flow-meta-k">Foco</span> Implantes · Ortodoncia · Rehabilitación</p>
+          <p><span class="flow-meta-k">Inversión</span> Desde $950.000/mes + pauta aparte</p>
         </div>
-        <div class="specs-row"><span class="k">Inversión</span><span class="v">Desde $950.000/mes + pauta</span></div>
-        <div class="specs-row">
-          <span class="k">Pauta</span><span class="v"><em>Aparte</em>, pagada por el cliente</span>
-        </div>
-        <div class="specs-row"><span class="k">Cupos abiertos</span><span class="v">02 / 02</span></div>
       </aside>
     </div>
   </div>
@@ -106,39 +120,100 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     text-transform: uppercase;
   }
 
-  /* Specs panel — parent grid ensures all rows share the same column widths */
-  .specs {
+  /* Flow panel */
+  .flow-panel {
     border: 1px solid var(--ink-line);
     background: var(--ink-2);
-    padding: 1.5rem;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
   }
-  .specs-row {
-    display: contents;
-  }
-  .specs-row .k,
-  .specs-row .v {
-    padding: 0.95rem 0;
+
+  .flow-label {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+    margin: 0 0 1.25rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid var(--ink-line);
+  }
+
+  .flow-steps {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.25rem;
+  }
+
+  .flow-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--ink);
+    border: 1px solid var(--ink-line);
+    padding: 0.5rem 0.75rem;
+    font-family: var(--f-display);
+    font-size: var(--t-sm);
+    color: var(--bone);
+    letter-spacing: -0.01em;
+  }
+
+  .flow-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--vermilion);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .flow-connector {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1px;
+    background: var(--vermilion);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .flow-meta {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--ink-line);
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .flow-meta p {
     font-family: var(--f-mono);
     font-size: var(--t-sm);
+    color: var(--bone);
+    line-height: 1.5;
+    margin: 0;
   }
-  .specs-row:last-child .k,
-  .specs-row:last-child .v {
-    border-bottom: 0;
-  }
-  .specs-row .k {
-    padding-right: 1.25rem;
+
+  .flow-meta-k {
     color: var(--muted-dark);
     text-transform: uppercase;
     font-size: var(--t-xs);
     letter-spacing: 0.08em;
-    white-space: nowrap;
+    margin-right: 0.5rem;
   }
-  .specs-row .v {
-    color: var(--bone);
-    text-align: right;
+
+  @media (max-width: 520px) {
+    .flow-steps {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem 0.35rem;
+      align-items: center;
+    }
+    .flow-step {
+      grid-column: 2;
+    }
+    .flow-connector {
+      grid-column: 1;
+      width: 1px;
+      height: 0.75rem;
+      justify-self: center;
+    }
   }
 </style>

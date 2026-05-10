@@ -18,10 +18,10 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
 
     <div class="final">
       <div>
-        <h2 id="final-h2" set:html={headline.replace("paciente nuevo", "<em>paciente nuevo</em>")} />
+        <h2 id="final-h2" set:html={headline.replace("agendamientos", "<em>agendamientos</em>")} />
         <p class="lede" style="margin-top:1.5rem;">
           Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin
-          compromiso. Solo una conversación con números reales.
+          compromiso. Solo una conversación con orientación clara.
         </p>
       </div>
       <div class="final-actions">
@@ -48,6 +48,7 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
           <svg aria-hidden="true"><use href="#i-wa"></use></svg>
           Escribir por WhatsApp
         </a>
+        <p class="final-microcopy">Te respondemos con una primera orientación clara. Sin venta agresiva.</p>
       </div>
     </div>
   </div>
@@ -96,6 +97,15 @@ const { headline, ctaText, ctaHref, whatsappHref } = Astro.props;
     width: 1em;
     height: 1em;
     fill: currentColor;
+  }
+
+  .final-microcopy {
+    font-family: var(--f-mono);
+    font-size: var(--t-xs);
+    color: var(--muted-dark);
+    letter-spacing: 0.04em;
+    text-align: center;
+    margin: 0.25rem 0 0;
   }
 
   /* Italic serif accent on h2 em */

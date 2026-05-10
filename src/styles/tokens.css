@@ -26,14 +26,14 @@
   --t-2xl: clamp(1.25rem, 0.6vw + 1.05rem, 1.5rem);
   --t-xl: 1.125rem;
   --t-lg: 1rem;
-  --t-md: 0.9375rem;
-  --t-sm: 0.8125rem;
+  --t-md: 1rem;
+  --t-sm: 0.875rem;
   --t-xs: 0.6875rem;
 
   /* ── spacing ── */
   --gutter: clamp(1.25rem, 2vw, 2rem);
   --maxw: 1280px;
-  --section-y: clamp(5rem, 9vw, 9rem);
+  --section-y: clamp(4rem, 7vw, 7rem);
 
   /* ── motion ── */
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);

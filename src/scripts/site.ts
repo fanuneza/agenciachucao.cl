@@ -312,7 +312,7 @@ function initContactForm(): void {
 
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = "Reservar diagnóstico";
+        submitButton.textContent = "Solicita una revisión gratis";
       }
     }
   });

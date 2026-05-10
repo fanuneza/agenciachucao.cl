@@ -4,6 +4,7 @@ import Hero from "@components/Hero.astro";
 import ProblemSection from "@components/ProblemSection.astro";
 import OfferSection from "@components/OfferSection.astro";
 import HowItWorks from "@components/HowItWorks.astro";
+import ProofSection from "@components/ProofSection.astro";
 import IncludesExcludes from "@components/IncludesExcludes.astro";
 import PricingSection from "@components/PricingSection.astro";
 import FoundingOffer from "@components/FoundingOffer.astro";
@@ -23,25 +24,25 @@ const howSteps = [
     title: "Setup",
     timeline: "Días 1–7",
     description:
-      "Instalamos el seguimiento de conversiones, creamos la página por tratamiento y activamos todos los canales. Al final de la semana, el sistema está listo.",
+      "Instalamos el seguimiento de conversiones, creamos la landing por tratamiento y activamos todos los canales. Al final de la semana el sistema está listo.",
   },
   {
     number: "02",
     title: "Tráfico",
     timeline: "Semana 2",
     description:
-      "Activamos las campañas de Google Search. Capturamos demanda existente de pacientes buscando activamente tu tratamiento en Santiago.",
+      "Activamos las campañas de Google Search. Capturamos demanda existente de pacientes que buscan tu tratamiento en Santiago.",
   },
   {
     number: "03",
     title: "Primeros leads",
     timeline: "Días 10–21",
     description:
-      "Si hay demanda activa en tu zona y tratamiento, los primeros leads llegan en esta ventana. Activamos el protocolo de seguimiento por WhatsApp.",
+      "Si hay demanda activa en tu zona, los primeros leads llegan en esta ventana. Activamos el protocolo de seguimiento por WhatsApp.",
   },
   {
     number: "04",
-    title: "Medición y ajuste",
+    title: "Medición y ajustes",
     timeline: "Día 30–45",
     description:
       "Primera revisión con datos reales: gasto por evaluación, tasa de contacto, fuentes que funcionan. Ajustamos lo que muestre señales débiles.",
@@ -49,25 +50,22 @@ const howSteps = [
 ];
 
 const included = [
-  "Google Search Ads (configuración, gestión y optimización)",
-  "Landing de conversión por tratamiento",
-  "Seguimiento de conversiones completo (Google Analytics + Tag Manager)",
-  "Protocolo de respuesta por WhatsApp",
-  "SEO local + optimización de Google Business Profile",
-  "Optimización de perfil en Doctoralia y directorios",
-  "Remarketing en Meta como canal de apoyo",
-  "Reunión mensual de revisión",
-  "Reporte mensual de gasto por lead y por evaluación",
+  "Setup inicial de Google Ads",
+  "Landing de conversión",
+  "Integración con WhatsApp",
+  "Medición básica de conversiones",
+  "SEO local básico / Google Business Profile",
+  "Reporte mensual",
+  "Ajustes mensuales de campaña",
 ];
 
 const excluded = [
-  "Community management y gestión de redes sociales",
-  "Producción de reels, videos o piezas creativas",
-  "Desarrollo web completo o rediseño del sitio",
-  "Branding e identidad visual",
-  "Pauta publicitaria (va aparte, pagada por el cliente a Google)",
-  "Calendario de contenidos y publicaciones periódicas",
-  "Más de una reunión mensual incluida",
+  "Community management diario",
+  "Producción audiovisual",
+  "Respuesta manual de WhatsApp por parte del equipo",
+  "Garantía de cantidad exacta de pacientes",
+  "Gestión clínica interna",
+  "Software CRM avanzado",
 ];
 
 const extras = [
@@ -132,8 +130,8 @@ const localBusinessSchema = {
 >
   <Hero
     headline="Convierte búsquedas en agendamientos."
-    subheadline="Instalamos Google Ads, una página de conversión y seguimiento por WhatsApp para clínicas dentales en Santiago. En 30 días sabes cuánto te cuesta cada paciente nuevo, de dónde viene y qué tratamiento buscó."
-    ctaText="Solicita tu auditoría gratuita"
+    subheadline="Google Ads + landing de conversión + seguimiento por WhatsApp para clínicas dentales en Santiago. En 30 días sabes cuánto te cuesta cada paciente nuevo."
+    ctaText="Solicita una revisión gratis"
     ctaHref="/contacto/"
   />
 
@@ -142,6 +140,8 @@ const localBusinessSchema = {
   <OfferSection components={offerComponents} />
 
   <HowItWorks steps={howSteps} />
+
+  <ProofSection />
 
   <IncludesExcludes included={included} excluded={excluded} extras={extras} />
 
@@ -152,8 +152,8 @@ const localBusinessSchema = {
   <FAQ items={faqItems} />
 
   <CTAFinal
-    headline="¿Quieres saber cuánto te cuesta conseguir cada paciente nuevo desde Google?"
-    ctaText="Solicita tu auditoría gratuita"
+    headline="Revisemos si tu clínica puede generar más agendamientos desde Google."
+    ctaText="Solicita una revisión gratis"
     ctaHref="/contacto/"
     whatsappHref={waHref}
   />

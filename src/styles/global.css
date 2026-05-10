@@ -37,7 +37,7 @@ a {
 body {
   font-family: var(--f-text);
   font-size: var(--t-lg);
-  line-height: 1.55;
+  line-height: 1.65;
   color: var(--ink);
   background: var(--bone);
   font-feature-settings: "ss01", "ss02", "cv01";
@@ -81,7 +81,7 @@ body {
   gap: 1rem;
   align-items: end;
   padding-bottom: 2.25rem;
-  margin-bottom: 3.25rem;
+  margin-bottom: clamp(2rem, 3vw, 3.25rem);
   border-bottom: 1px solid var(--bone-line);
   font-family: var(--f-mono);
   font-size: var(--t-xs);
