@@ -39,13 +39,13 @@ Key functions in `src/scripts/site.ts`:
 
 Site events pushed to `dataLayer` for GTM to consume:
 
-| Event name          | Trigger location                                | Parameters                               |
-|---------------------|-------------------------------------------------|------------------------------------------|
-| `page_view_virtual` | Astro client-side navigation                    | `page_location`, `page_path`, `page_title` |
-| `cta_click`         | Hero primary, Hero ghost, Founding offer, Pricing, CTA final | `location`                               |
-| `whatsapp_click`    | Contact form, CTA final, Founding offer, Floating button, 404 | `location`, `page`                       |
-| `pricing_view`      | Pricing section intersects viewport (30%)       | —                                        |
-| `form_submit`       | Contact form successfully submitted             | `form: "audit_request"`                  |
+| Event name          | Trigger location                                              | Parameters                                 |
+| ------------------- | ------------------------------------------------------------- | ------------------------------------------ |
+| `page_view_virtual` | Astro client-side navigation                                  | `page_location`, `page_path`, `page_title` |
+| `cta_click`         | Hero primary, Hero ghost, Founding offer, Pricing, CTA final  | `location`                                 |
+| `whatsapp_click`    | Contact form, CTA final, Founding offer, Floating button, 404 | `location`, `page`                         |
+| `pricing_view`      | Pricing section intersects viewport (30%)                     | —                                          |
+| `form_submit`       | Contact form successfully submitted                           | `form: "audit_request"`                    |
 
 In GTM, create **Custom Event** triggers for each event name and map them to your GA4 event tags.
 
@@ -72,6 +72,7 @@ Content-Security-Policy:
 ```
 
 Notes:
+
 - `unsafe-inline` for `script-src` is required because Astro `ClientRouter` injects inline scripts for view transitions.
 - `unsafe-inline` for `style-src` is required because the site uses inline `style` attributes.
 - `script-src-elem` is explicit so browsers do not fall back to `script-src` and produce confusing warnings.
@@ -89,6 +90,7 @@ Because we cannot consent-gate a script injected by the edge, the recommended fi
 4. This removes the beacon injection and eliminates the CSP violation.
 
 If you intentionally want Cloudflare Web Analytics:
+
 - Add `https://static.cloudflareinsights.com` to `script-src`, `script-src-elem`, and `connect-src` in `public/_headers`.
 - Be aware that the beacon may still load **before** cookie consent because Cloudflare injects it at the edge.
 
