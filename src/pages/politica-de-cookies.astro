@@ -7,11 +7,11 @@ import BaseLayout from "@layouts/BaseLayout.astro";
   description="Información sobre las cookies que usa Agencia Chucao y cómo gestionarlas."
   noindex={true}
 >
-  <article class="cookie-policy section-py">
-    <div class="container cookie-policy-inner">
+  <article class="section policy">
+    <div class="wrap policy-wrap">
       <header class="policy-header">
         <p class="eyebrow">Legal</p>
-        <h1 class="policy-title">Política de Cookies</h1>
+        <h1>Política de Cookies</h1>
         <p class="policy-meta">Última actualización: abril 2026</p>
       </header>
 
@@ -45,10 +45,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
                 </tr>
                 <tr>
                   <td><code>_ga</code>, <code>_ga_*</code></td>
-                  <td
-                    >Google Analytics 4 — analiza el tráfico de forma agregada (páginas vistas, duración de visita,
-                    etc.). Solo se activa si aceptas cookies.</td
-                  >
+                  <td>
+                    Google Analytics 4 — analiza el tráfico de forma agregada (páginas vistas, duración de visita,
+                    etc.). Solo se activa si aceptas cookies.
+                  </td>
                   <td>Hasta 2 años</td>
                   <td>Analítica (opcional)</td>
                 </tr>
@@ -60,8 +60,8 @@ import BaseLayout from "@layouts/BaseLayout.astro";
         <section class="policy-section">
           <h2>Cómo gestionamos tu consentimiento</h2>
           <p>
-            Al visitar este sitio por primera vez, verás un aviso que te pide elegir entre
-            <strong>Aceptar</strong> o <strong>Rechazar</strong> las cookies de analítica.
+            Al visitar este sitio por primera vez, verás un aviso que te pide elegir entre <strong>Aceptar</strong> o
+            <strong>Rechazar</strong> las cookies de analítica.
           </p>
           <ul>
             <li>
@@ -69,9 +69,8 @@ import BaseLayout from "@layouts/BaseLayout.astro";
               en la cookie <code>chucao_consent=accepted</code>.
             </li>
             <li>
-              <strong>Si rechazas:</strong> Google Analytics no se activa. Tu elección se guarda en <code
-                >chucao_consent=rejected</code
-              >.
+              <strong>Si rechazas:</strong> Google Analytics no se activa. Tu elección se guarda en
+              <code>chucao_consent=rejected</code>.
             </li>
           </ul>
           <p>En ningún caso compartimos datos personales con terceros con fines publicitarios.</p>
@@ -80,9 +79,10 @@ import BaseLayout from "@layouts/BaseLayout.astro";
         <section class="policy-section">
           <h2>Retirar o cambiar tu consentimiento</h2>
           <p>
-            Puedes cambiar tu elección en cualquier momento haciendo clic en
-            <strong>"Gestionar preferencias de cookies"</strong> en el pie de página de este sitio. Esto eliminará la cookie
-            <code>chucao_consent</code> y volverá a mostrarte el aviso.
+            Puedes cambiar tu elección en cualquier momento haciendo clic en <strong
+              >"Gestionar preferencias de cookies"</strong
+            > en el pie de página de este sitio. Esto eliminará la cookie <code>chucao_consent</code> y volverá a mostrarte
+            el aviso.
           </p>
           <p>
             También puedes eliminar todas las cookies desde la configuración de privacidad de tu navegador (Chrome,
@@ -108,102 +108,125 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       </div>
     </div>
   </article>
+
+  <style>
+    .policy-wrap {
+      max-width: 72ch;
+    }
+
+    .policy-header {
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+      padding-bottom: clamp(1.5rem, 3vw, 2rem);
+      border-bottom: 1px solid var(--bone-line);
+    }
+    .policy-header h1 {
+      font-family: var(--f-display);
+      font-size: var(--t-4xl);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin: 0.75rem 0 0.5rem;
+    }
+    .policy-meta {
+      font-family: var(--f-mono);
+      font-size: var(--t-sm);
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      margin: 0;
+    }
+
+    .policy-body {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    .policy-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .policy-section h2 {
+      font-family: var(--f-display);
+      font-size: var(--t-xl);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--bone-line);
+      margin: 0;
+    }
+    .policy-section p,
+    .policy-section li {
+      font-size: var(--t-md);
+      line-height: 1.7;
+      color: var(--graphite);
+      margin: 0;
+    }
+    .policy-section ul {
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0;
+    }
+    .policy-section strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .policy-section a {
+      color: var(--vermilion);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 160ms var(--ease-out);
+    }
+    .policy-section a:hover {
+      color: var(--vermilion-d);
+    }
+    .policy-section code {
+      font-family: var(--f-mono);
+      font-size: 0.875em;
+      background: var(--bone-2);
+      padding: 2px 5px;
+      color: var(--ink);
+    }
+
+    .policy-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--bone-line);
+    }
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--f-text);
+      font-size: var(--t-sm);
+      line-height: 1.5;
+    }
+    .policy-table th {
+      background: var(--ink);
+      color: var(--bone);
+      font-family: var(--f-mono);
+      font-weight: 500;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-size: var(--t-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .policy-table td {
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid var(--bone-line);
+      color: var(--graphite);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .policy-table tr:last-child td {
+      border-bottom: none;
+    }
+    .policy-table tr:nth-child(even) td {
+      background: var(--bone-2);
+    }
+  </style>
 </BaseLayout>
-
-<style>
-  .cookie-policy {
-    background: var(--color-cream);
-  }
-  .cookie-policy-inner {
-    max-width: 72ch;
-  }
-
-  .policy-header {
-    margin-bottom: 3rem;
-  }
-  .policy-title {
-    color: var(--color-ink);
-    margin-block: 0.75rem 0.5rem;
-  }
-  .policy-meta {
-    font-family: var(--font-sans);
-    font-size: 12px;
-    color: var(--color-ink-mid);
-  }
-
-  .policy-body {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .policy-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .policy-section h2 {
-    color: var(--color-ink);
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .policy-section p,
-  .policy-section li {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--color-ink);
-  }
-  .policy-section ul {
-    padding-left: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .policy-section strong {
-    color: var(--color-ink);
-    font-weight: 600;
-  }
-  .policy-section a {
-    color: var(--color-gold);
-  }
-  .policy-section code {
-    font-family: var(--font-mono);
-    font-size: 0.875em;
-    background: var(--color-border);
-    padding: 2px 5px;
-    border-radius: var(--radius-sm);
-  }
-
-  .policy-table-wrap {
-    overflow-x: auto;
-  }
-  .policy-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-sans);
-    font-size: 13px;
-  }
-  .policy-table th {
-    background: var(--color-slate);
-    color: var(--color-white);
-    font-weight: 600;
-    text-align: left;
-    padding: 0.75rem 1rem;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .policy-table td {
-    padding: 0.875rem 1rem;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-ink);
-    vertical-align: top;
-    line-height: 1.5;
-  }
-  .policy-table tr:last-child td {
-    border-bottom: none;
-  }
-  .policy-table tr:nth-child(even) td {
-    background: var(--color-cream);
-  }
-</style>

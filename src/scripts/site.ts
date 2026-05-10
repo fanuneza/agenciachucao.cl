@@ -397,4 +397,4 @@ function initPage(): void {
   initCookieBanner();
 }
 
-document.addEventListener("astro:page-load", initPage);
+document.addEventListener("DOMContentLoaded", initPage);
