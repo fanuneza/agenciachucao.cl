@@ -32,6 +32,16 @@ test("robots and sitemap are available", async ({ request }) => {
   expect(sitemap.ok()).toBe(true);
 });
 
+test("redirects canonicalize http and www traffic to https apex", async ({ request }) => {
+  const redirects = await request.get("/_redirects");
+  expect(redirects.ok()).toBe(true);
+  const source = await redirects.text();
+
+  expect(source).toContain("http://agenciachucao.cl/* https://agenciachucao.cl/:splat 301!");
+  expect(source).toContain("http://www.agenciachucao.cl/* https://agenciachucao.cl/:splat 301!");
+  expect(source).toContain("https://www.agenciachucao.cl/* https://agenciachucao.cl/:splat 301!");
+});
+
 test("json-ld scripts parse and include a graph", async ({ page }) => {
   await page.goto("/", { waitUntil: "load" });
   const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
