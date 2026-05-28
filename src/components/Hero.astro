@@ -1,4 +1,6 @@
 ---
+import TrackedLink from "@components/TrackedLink.astro";
+
 interface Props {
   headline: string;
   subheadline: string;
@@ -25,16 +27,19 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
         <p class="lede hero-lede" set:html={subheadlineHtml} />
 
         <div class="hero-actions">
-          <a
+          <TrackedLink
             href={ctaHref}
             class="btn"
             id="hero-cta-btn"
-            data-analytics-event="cta_click"
-            data-analytics-location="hero"
+            trackEvent="select_content"
+            trackLabel={ctaText}
+            trackLocation="hero"
+            trackDestination={ctaHref}
+            trackCategory="cta"
           >
             {ctaText}
             <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
-          </a>
+          </TrackedLink>
         </div>
 
         <p class="hero-trust">

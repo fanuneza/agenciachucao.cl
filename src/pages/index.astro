@@ -13,6 +13,7 @@ import FAQ from "@components/FAQ.astro";
 import CTAFinal from "@components/CTAFinal.astro";
 import WhatsAppButton from "@components/WhatsAppButton.astro";
 import { offerComponents } from "@data/services";
+import { buildFaqPage } from "@/lib/structured-data";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waMessage =
@@ -104,28 +105,13 @@ const faqItems = [
   },
 ];
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Agencia Chucao",
-  url: "https://agenciachucao.cl",
-  telephone: "+56922218674",
-  description:
-    "Lead Engine para clínicas dentales de alto ticket en Santiago. Convertimos búsquedas activas en pacientes agendados.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Santiago",
-    addressRegion: "Región Metropolitana",
-    addressCountry: "CL",
-  },
-  serviceType: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversión web"],
-};
+const faqSchema = buildFaqPage(faqItems);
 ---
 
 <BaseLayout
   title="Lead Engine para clínicas dentales en Santiago"
   description="Convertimos búsquedas activas en pacientes agendados. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
-  schema={localBusinessSchema}
+  schema={faqSchema}
 >
   <Hero
     headline="Convierte búsquedas en agendamientos."

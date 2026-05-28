@@ -1,4 +1,6 @@
 ---
+import TrackedLink from "@components/TrackedLink.astro";
+
 interface Props {
   spotsTotal: number;
   ctaHref: string;
@@ -45,15 +47,18 @@ const { ctaHref } = Astro.props;
       </div>
 
       <div class="founding-cta">
-        <a
+        <TrackedLink
           href={ctaHref}
           class="btn"
           id="founding-cta-btn"
-          data-analytics-event="cta_click"
-          data-analytics-location="founding"
+          trackEvent="select_content"
+          trackLabel="Solicita una revision gratis"
+          trackLocation="founding"
+          trackDestination={ctaHref}
+          trackCategory="cta"
         >
           Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
-        </a>
+        </TrackedLink>
       </div>
     </div>
   </div>

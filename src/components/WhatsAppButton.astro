@@ -1,23 +1,29 @@
 ---
+import TrackedLink from "@components/TrackedLink.astro";
+
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waMessage = encodeURIComponent("Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental.");
+const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
 ---
 
-<a
-  href={`https://wa.me/${waNumber}?text=${waMessage}`}
+<TrackedLink
+  href={waHref}
   class="wa-float"
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Escribir por WhatsApp"
   id="wa-float-btn"
   data-wa={waNumber}
-  data-analytics-event="whatsapp_click"
-  data-analytics-location="floating_button"
+  trackEvent="contact"
+  trackLabel="WhatsApp flotante"
+  trackLocation="floating_button"
+  trackDestination={waHref}
+  trackCategory="whatsapp"
 >
   <span class="dot" aria-hidden="true"></span>
   <svg aria-hidden="true"><use href="#i-wa"></use></svg>
   <span class="lbl">WhatsApp · respuesta &lt; 24 h</span>
-</a>
+</TrackedLink>
 
 <script>
   const btn = document.getElementById("wa-float-btn") as HTMLAnchorElement | null;

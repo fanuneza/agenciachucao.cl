@@ -1,73 +1,17 @@
-const CONSENT_COOKIE = "chucao_consent";
-const GTM_ID = "GTM-PZPX7SK9";
-const CTA_SELECTOR = "[data-analytics-event]";
+import {
+  acceptAnalytics,
+  getConsent,
+  initializeAnalytics,
+  rejectAnalytics,
+  resetAnalyticsConsent,
+  trackEvent,
+} from "./analytics";
+
+const CTA_SELECTOR = "[data-track-event]";
 
 let headerScrollListenerBound = false;
 let fabVisibilityListenerBound = false;
-let gtmLoaded = false;
 let isFirstPageLoad = true;
-
-function getCookie(name: string): string | undefined {
-  return document.cookie
-    .split("; ")
-    .find((cookie) => cookie.startsWith(`${name}=`))
-    ?.split("=")[1];
-}
-
-function setCookie(name: string, value: string): void {
-  document.cookie = `${name}=${value}; max-age=31536000; path=/; SameSite=Lax`;
-}
-
-function deleteCookie(name: string): void {
-  document.cookie = `${name}=; max-age=0; path=/; SameSite=Lax`;
-}
-
-function getConsent(): "accepted" | "rejected" | "unknown" {
-  const value = getCookie(CONSENT_COOKIE);
-  if (value === "accepted") return "accepted";
-  if (value === "rejected") return "rejected";
-  return "unknown";
-}
-
-function deleteAnalyticsCookies(): void {
-  const known = ["_ga", "_gid", "_gat", "_gcl_au"];
-  document.cookie.split("; ").forEach((cookie) => {
-    const name = cookie.split("=")[0];
-    if (name.startsWith("_ga") || known.includes(name)) {
-      deleteCookie(name);
-      // Also attempt deletion scoped to the current hostname,
-      // in case the cookie was set with an explicit domain.
-      document.cookie = `${name}=; max-age=0; path=/; domain=${window.location.hostname}; SameSite=Lax`;
-    }
-  });
-}
-
-function pushConsentState(granted: boolean): void {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push([
-    "consent",
-    "update",
-    {
-      ad_storage: granted ? "granted" : "denied",
-      analytics_storage: granted ? "granted" : "denied",
-      ad_user_data: granted ? "granted" : "denied",
-      ad_personalization: granted ? "granted" : "denied",
-    },
-  ]);
-}
-
-function loadGtm(): void {
-  if (gtmLoaded || !GTM_ID) return;
-  gtmLoaded = true;
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-  document.head.appendChild(script);
-}
 
 function trackPageView(): void {
   window.dataLayer = window.dataLayer || [];
@@ -76,18 +20,6 @@ function trackPageView(): void {
     page_location: window.location.href,
     page_path: `${window.location.pathname}${window.location.search}`,
     page_title: document.title,
-  });
-}
-
-function trackEvent(name: string, params: Record<string, string> = {}): void {
-  if (getConsent() !== "accepted") {
-    return;
-  }
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: name,
-    ...params,
   });
 }
 
@@ -128,27 +60,24 @@ function initFaq(): void {
 
 function initAnalyticsLinks(): void {
   document.querySelectorAll<HTMLElement>(CTA_SELECTOR).forEach((element) => {
-    if (element.dataset.analyticsBound === "true") {
+    if (element.dataset.trackBound === "true") {
       return;
     }
 
-    element.dataset.analyticsBound = "true";
+    element.dataset.trackBound = "true";
     element.addEventListener("click", () => {
-      const eventName = element.dataset.analyticsEvent;
+      const eventName = element.dataset.trackEvent;
 
       if (!eventName) {
         return;
       }
 
-      const params: Record<string, string> = {};
+      const params: Record<string, string | undefined> = {};
 
-      if (element.dataset.analyticsLocation) {
-        params.location = element.dataset.analyticsLocation;
-      }
-
-      if (eventName === "whatsapp_click") {
-        params.page = window.location.pathname;
-      }
+      if (element.dataset.trackLabel) params.content_name = element.dataset.trackLabel;
+      if (element.dataset.trackLocation) params.content_location = element.dataset.trackLocation;
+      if (element.dataset.trackDestination) params.link_url = element.dataset.trackDestination;
+      if (element.dataset.trackCategory) params.content_type = element.dataset.trackCategory;
 
       trackEvent(eventName, params);
     });
@@ -170,7 +99,7 @@ function initPricingObserver(): void {
         return;
       }
 
-      trackEvent("pricing_view");
+      trackEvent("view_item", { item_name: "pricing", item_category: "lead_engine" });
       observer.disconnect();
     },
     { threshold: 0.3 }
@@ -185,7 +114,7 @@ function initFabVisibility(): void {
   }
 
   const syncFabVisibility = (target: EventTarget | null) => {
-    const fab = document.getElementById("wa-fab");
+    const fab = document.getElementById("wa-float-btn");
 
     if (!fab) {
       return;
@@ -303,7 +232,7 @@ function initContactForm(): void {
 
       form.hidden = true;
       successMessage?.removeAttribute("hidden");
-      trackEvent("form_submit", { form: "audit_request" });
+      trackEvent("generate_lead", { form_name: "audit_request" });
     } catch {
       if (statusMessage) {
         statusMessage.textContent = "Hubo un problema al enviar. Por favor usa WhatsApp.";
@@ -329,15 +258,13 @@ function initCookieBanner(): void {
   }
 
   const syncBanner = () => {
-    banner.hidden = Boolean(getCookie(CONSENT_COOKIE));
+    banner.hidden = getConsent() !== "unknown";
   };
 
   if (acceptButton.dataset.bound !== "true") {
     acceptButton.dataset.bound = "true";
     acceptButton.addEventListener("click", () => {
-      setCookie(CONSENT_COOKIE, "accepted");
-      pushConsentState(true);
-      loadGtm();
+      acceptAnalytics();
       syncBanner();
     });
   }
@@ -345,9 +272,7 @@ function initCookieBanner(): void {
   if (rejectButton.dataset.bound !== "true") {
     rejectButton.dataset.bound = "true";
     rejectButton.addEventListener("click", () => {
-      setCookie(CONSENT_COOKIE, "rejected");
-      deleteAnalyticsCookies();
-      pushConsentState(false);
+      rejectAnalytics();
       syncBanner();
     });
   }
@@ -360,9 +285,7 @@ function initCookieBanner(): void {
     button.dataset.bound = "true";
     button.addEventListener("click", (event) => {
       event.preventDefault();
-      deleteCookie(CONSENT_COOKIE);
-      deleteAnalyticsCookies();
-      pushConsentState(false);
+      resetAnalyticsConsent();
       syncBanner();
       banner.scrollIntoView({ behavior: "smooth", block: "end" });
     });
@@ -373,17 +296,12 @@ function initCookieBanner(): void {
 
 function initPage(): void {
   const consent = getConsent();
+  initializeAnalytics();
 
   if (consent === "accepted") {
-    if (!gtmLoaded) {
-      pushConsentState(true);
-      loadGtm();
-    }
     if (!isFirstPageLoad) {
       trackPageView();
     }
-  } else {
-    pushConsentState(false);
   }
 
   isFirstPageLoad = false;

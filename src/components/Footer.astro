@@ -38,18 +38,11 @@ const year = new Date().getFullYear();
       <span>&copy; {year} Agencia Chucao &middot; Santiago, CL</span>
       <div class="foot-legal">
         <a href="/politica-de-cookies/">Política de cookies</a>
-        <button class="cookie-manage-btn" id="cookie-manage-btn">Gestionar preferencias</button>
+        <button class="cookie-manage-btn" data-cookie-preferences>Gestionar cookies</button>
       </div>
     </div>
   </div>
 </footer>
-
-<script>
-  document.getElementById("cookie-manage-btn")?.addEventListener("click", () => {
-    document.cookie = "chucao_consent=; max-age=0; path=/";
-    window.location.reload();
-  });
-</script>
 
 <style>
   .foot {

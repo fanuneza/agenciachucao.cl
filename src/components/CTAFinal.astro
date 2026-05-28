@@ -1,4 +1,6 @@
 ---
+import TrackedLink from "@components/TrackedLink.astro";
+
 interface Props {
   headline: string;
   ctaText: string;
@@ -24,28 +26,34 @@ const { ctaText, ctaHref, whatsappHref } = Astro.props;
       </p>
 
       <div class="final-actions">
-        <a
+        <TrackedLink
           href={ctaHref}
           class="btn final-btn"
           id="footer-cta-btn"
-          data-analytics-event="cta_click"
-          data-analytics-location="footer_cta"
+          trackEvent="select_content"
+          trackLabel={ctaText}
+          trackLocation="footer_cta"
+          trackDestination={ctaHref}
+          trackCategory="cta"
         >
           {ctaText}
           <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
-        </a>
-        <a
+        </TrackedLink>
+        <TrackedLink
           href={whatsappHref}
           class="wa-link"
           target="_blank"
           rel="noopener noreferrer"
           id="footer-wa-btn"
-          data-analytics-event="whatsapp_click"
-          data-analytics-location="footer"
+          trackEvent="contact"
+          trackLabel="Escribir por WhatsApp"
+          trackLocation="footer"
+          trackDestination={whatsappHref}
+          trackCategory="whatsapp"
         >
           <svg aria-hidden="true"><use href="#i-wa"></use></svg>
           Escribir por WhatsApp
-        </a>
+        </TrackedLink>
         <p class="final-microcopy">Te respondemos con una primera orientación clara. Sin venta agresiva.</p>
       </div>
     </div>

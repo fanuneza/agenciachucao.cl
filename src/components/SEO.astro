@@ -1,46 +1,59 @@
 ---
+import { site } from "@/config/site";
+import { buildSeo } from "@/lib/seo";
+import { buildStructuredDataGraph, type JsonLdGraph, type JsonLdNode } from "@/lib/structured-data";
+
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   image?: string;
   canonical?: string;
   noindex?: boolean;
-  schema?: object;
+  schema?: JsonLdNode | JsonLdNode[] | JsonLdGraph;
 }
 
-const {
-  title,
-  description,
-  image = "/images/og/og-image.webp",
-  canonical = Astro.url.href,
-  noindex = false,
-  schema,
-} = Astro.props;
+const seo = buildSeo({
+  title: Astro.props.title,
+  description: Astro.props.description,
+  image: Astro.props.image,
+  canonical: Astro.props.canonical ?? Astro.url.pathname,
+  noindex: Astro.props.noindex,
+});
 
-const siteName = "Agencia Chucao";
-const ogImage = new URL(image, Astro.site).href;
+const structuredData = buildStructuredDataGraph({
+  canonicalUrl: seo.canonical,
+  title: seo.title,
+  description: seo.description,
+  imageUrl: seo.image,
+  pathname: new URL(seo.canonical).pathname,
+  breadcrumbLabels: {
+    contacto: "Contacto",
+    "politica-de-cookies": "Politica de cookies",
+  },
+  extraNodes: Astro.props.schema,
+});
 ---
 
-<title>{title} | {siteName}</title>
-<meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
+<title>{seo.title}</title>
+<meta name="description" content={seo.description} />
+<link rel="canonical" href={seo.canonical} />
 
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+{seo.noindex && <meta name="robots" content="noindex, nofollow" />}
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content={siteName} />
-<meta property="og:title" content={`${title} | ${siteName}`} />
-<meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
-<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content={site.siteName} />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={seo.description} />
+<meta property="og:url" content={seo.canonical} />
+<meta property="og:image" content={seo.image} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={`${title} | ${siteName}`} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={seo.description} />
+<meta name="twitter:image" content={seo.image} />
 
-{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />

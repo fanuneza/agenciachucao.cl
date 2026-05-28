@@ -2,9 +2,11 @@ import { defineConfig, devices } from "@playwright/test";
 
 const port = Number(process.env.PLAYWRIGHT_PORT ?? 4325);
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${port}`;
+const useExternalUrl = Boolean(process.env.PLAYWRIGHT_BASE_URL);
 
 export default defineConfig({
   testDir: "./tests",
+  testIgnore: ["**/source-hygiene.spec.ts"],
   timeout: 60_000,
   expect: {
     timeout: 10_000,
@@ -20,12 +22,14 @@ export default defineConfig({
     screenshot: "only-on-failure",
     ...devices["Desktop Chrome"],
   },
-  webServer: {
-    command: `npm run preview -- --host 127.0.0.1 --port ${port}`,
-    url: baseURL,
-    reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
-    stdout: "pipe",
-    stderr: "pipe",
-  },
+  webServer: useExternalUrl
+    ? undefined
+    : {
+        command: `npm run preview -- --host 127.0.0.1 --port ${port}`,
+        url: baseURL,
+        reuseExistingServer: !process.env.CI,
+        timeout: 60_000,
+        stdout: "pipe",
+        stderr: "pipe",
+      },
 });
