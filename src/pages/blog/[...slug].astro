@@ -3,16 +3,29 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { buildSchemaGraph } from "../../utils/schema";
 
+interface BlogPostEntry {
+  id: string;
+  body: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    author: string;
+    category?: string;
+    heroImage?: string;
+  };
+}
+
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog")) as unknown as BlogPostEntry[];
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const post = Astro.props.post as BlogPostEntry;
+const { Content } = await render(post as never);
 
 const postUrl = `https://agenciachucao.cl/blog/${post.id}/`;
 const schema = buildSchemaGraph({

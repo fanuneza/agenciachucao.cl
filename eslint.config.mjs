@@ -12,6 +12,7 @@ export default [
       "playwright.config.ts",
       "tests/**",
       "src/env.d.ts",
+      "src/pages/.well-known/**",
     ],
   },
   ...eslintPluginAstro.configs.recommended,

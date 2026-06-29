@@ -1,10 +1,4 @@
-import { 
-  makeIds, 
-  buildWebSite, 
-  buildWebPage, 
-  buildArticle, 
-  buildPiece 
-} from "@jdevalk/seo-graph-core";
+import { makeIds, buildWebSite, buildWebPage, buildArticle, buildPiece } from "@jdevalk/seo-graph-core";
 
 const SITE_URL = "https://agenciachucao.cl";
 
@@ -19,7 +13,7 @@ export function buildSchemaGraph(options: {
   category?: string;
 }) {
   const ids = makeIds({ siteUrl: SITE_URL });
-  const pieces: any[] = [];
+  const pieces: Record<string, unknown>[] = [];
   const orgId = ids.organization("agencia-chucao");
 
   // 1. WebSite (Configurado con SearchAction de búsqueda interna)
@@ -28,7 +22,8 @@ export function buildSchemaGraph(options: {
       {
         url: SITE_URL,
         name: "Agencia Chucao",
-        description: "Sistema de captación medible para clínicas dentales en Santiago: Google Ads, landing de conversión y seguimiento por WhatsApp.",
+        description:
+          "Sistema de captación medible para clínicas dentales en Santiago: Google Ads, landing de conversión y seguimiento por WhatsApp.",
         publisher: { "@id": orgId },
         potentialAction: {
           "@type": "SearchAction",
@@ -37,7 +32,7 @@ export function buildSchemaGraph(options: {
             urlTemplate: `${SITE_URL}/?q={search_term_string}`,
           },
           "query-input": "required name=search_term_string",
-        } as any,
+        } as never,
       },
       ids
     )
@@ -45,31 +40,27 @@ export function buildSchemaGraph(options: {
 
   // 2. Organización / Autor / Persona
   pieces.push(
-    buildPiece(
-      {
-        "@type": "Organization",
-        "@id": orgId,
-        name: "Agencia Chucao",
-        url: SITE_URL,
-        logo: {
-          "@type": "ImageObject",
-          url: `${SITE_URL}/favicon.svg`,
-        },
-      }
-    )
+    buildPiece({
+      "@type": "Organization",
+      "@id": orgId,
+      name: "Agencia Chucao",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon.svg`,
+      },
+    })
   );
 
   const authorId = `${SITE_URL}/#author-pepito`;
   pieces.push(
-    buildPiece(
-      {
-        "@type": "Person",
-        "@id": authorId,
-        name: options.authorName || "Pepito Perez",
-        url: `${SITE_URL}/nosotros/`,
-        knowsAbout: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversion web"],
-      }
-    )
+    buildPiece({
+      "@type": "Person",
+      "@id": authorId,
+      name: options.authorName || "Pepito Perez",
+      url: `${SITE_URL}/nosotros/`,
+      knowsAbout: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversion web"],
+    })
   );
 
   // 3. WebPage y/o Article (si aplica)

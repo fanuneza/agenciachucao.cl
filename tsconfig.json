@@ -11,5 +11,6 @@
       "@lib/*": ["src/lib/*"],
       "@styles/*": ["src/styles/*"]
     }
-  }
+  },
+  "include": ["src/**/*", "src/.well-known/**/*"]
 }

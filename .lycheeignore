@@ -6,3 +6,8 @@ https://(www\.)?instagram\.(com|cl)/.*
 
 # Excluir URLs con variables de plantilla de JS sin evaluar en bloques de código
 https://www\.googletagmanager\.com/ns\.html\?id=\$\{gtmContainerId\}
+https://wa\.me/\$\{.*
+https://wa\.me/\$%7B.*
+https://agenciachucao\.cl/blog/\$\{.*
+https://agenciachucao\.cl/blog/\$%7B.*
+
