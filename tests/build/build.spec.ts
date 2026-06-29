@@ -69,8 +69,10 @@ test.describe("SEO metadata", () => {
     await page.goto("/", { waitUntil: "load" });
 
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
-    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute("content", expect.anything());
-    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute("content", expect.anything());
+    // twitter:title and twitter:image are intentionally omitted by the SEO library
+    // when they equal the og:title / og:image values — Twitter/X falls back to OG automatically.
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", expect.anything());
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", expect.anything());
   });
 
   test("sitemap is accessible", async ({ page }) => {
