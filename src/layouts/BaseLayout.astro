@@ -16,12 +16,33 @@ interface Props {
   schema?: JsonLdNode | JsonLdNode[] | JsonLdGraph;
 }
 
+import { buildSchemaGraph } from "../utils/schema";
+
 const { title, description, image, canonical, noindex, schema } = Astro.props;
 const siteUrl = "https://agenciachucao.cl";
 const defaultOgImage = "/images/og/og-image.webp";
 const ogImage = image || defaultOgImage;
 const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
+const defaultSchema = buildSchemaGraph({
+  pageType: isHome ? "website" : "webpage",
+  url: canonicalUrl,
+  title,
+  description,
+});
+
+const finalSchema = defaultSchema;
+if (schema) {
+  if ("@graph" in schema && Array.isArray(schema["@graph"])) {
+    finalSchema["@graph"].push(...schema["@graph"]);
+  } else {
+    const node = { ...schema };
+    delete (node as any)["@context"];
+    finalSchema["@graph"].push(node);
+  }
+}
 ---
 
 <!doctype html>
@@ -44,7 +65,8 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString(
       ogImageHeight={630}
       siteName="Agencia Chucao"
       locale="es_CL"
-      graph={schema as any}
+      graph={finalSchema}
+      twitter={{ card: "summary_large_image" }}
       extraLinks={[
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },

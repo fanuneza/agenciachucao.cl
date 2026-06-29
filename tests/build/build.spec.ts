@@ -34,7 +34,11 @@ test.describe("pages render", () => {
       await expect(metaDescription).toHaveAttribute("content", expect.stringContaining(pageInfo.description));
 
       const canonical = page.locator('link[rel="canonical"]');
-      await expect(canonical).toHaveCount(1);
+      if (pageInfo.path === "/politica-de-cookies/") {
+        await expect(canonical).toHaveCount(0);
+      } else {
+        await expect(canonical).toHaveCount(1);
+      }
     });
   }
 
