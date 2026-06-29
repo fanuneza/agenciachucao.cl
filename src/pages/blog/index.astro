@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = await getCollection("blog");
+---
+
+<BaseLayout
+  title="Blog de Marketing Dental y Adquisición"
+  description="Artículos sobre optimización, Google Ads y SEO local para clínicas dentales."
+>
+  <section class="section blog-index">
+    <div class="wrap">
+      <h1>Blog de Agencia Chucao</h1>
+      <ul class="posts-list">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

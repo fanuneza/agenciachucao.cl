@@ -3,3 +3,4 @@ Allow: /
 Disallow: /politica-de-cookies/
 
 Sitemap: https://agenciachucao.cl/sitemap-index.xml
+Schemamap: https://agenciachucao.cl/schemamap.xml

@@ -1,5 +1,5 @@
 ---
-import SEO from "@components/SEO.astro";
+import Seo from "@jdevalk/astro-seo-graph/Seo.astro";
 import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
 import CookieConsent from "@components/CookieConsent.astro";
@@ -17,6 +17,11 @@ interface Props {
 }
 
 const { title, description, image, canonical, noindex, schema } = Astro.props;
+const siteUrl = "https://agenciachucao.cl";
+const defaultOgImage = "/images/og/og-image.webp";
+const ogImage = image || defaultOgImage;
+const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
+const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -26,18 +31,27 @@ const { title, description, image, canonical, noindex, schema } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO
+    <Seo
       title={title}
+      titleTemplate="%s | Agencia Chucao"
       description={description}
-      image={image}
-      canonical={canonical}
+      canonical={canonicalUrl}
       noindex={noindex}
-      schema={schema}
+      ogType="website"
+      ogImage={absoluteOgImage}
+      ogImageAlt={title}
+      ogImageWidth={1200}
+      ogImageHeight={630}
+      siteName="Agencia Chucao"
+      locale="es_CL"
+      graph={schema as any}
+      extraLinks={[
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" }
+      ]}
     />
 
     <meta name="theme-color" content="#0A0A0A" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
     <script src="../scripts/site.ts"></script>
   </head>
   <body>

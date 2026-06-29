@@ -22,8 +22,15 @@
   "engines": {
     "node": ">=22"
   },
+  "overrides": {
+    "@jdevalk/astro-seo-graph": {
+      "astro": "$astro"
+    }
+  },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
+    "@jdevalk/astro-seo-graph": "^2.0.0",
+    "@jdevalk/seo-graph-core": "^0.6.2",
     "astro": "6.4.2"
   },
   "devDependencies": {

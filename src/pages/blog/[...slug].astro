@@ -1,0 +1,64 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildSchemaGraph } from "../../utils/schema";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const postUrl = `https://agenciachucao.cl/blog/${post.id}/`;
+const schema = buildSchemaGraph({
+  pageType: "blogPost",
+  url: postUrl,
+  title: post.data.title,
+  description: post.data.description,
+  publishDate: post.data.pubDate,
+  authorName: post.data.author,
+  featureImageUrl: post.data.heroImage,
+  category: post.data.category,
+});
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.heroImage}
+  canonical={postUrl}
+  schema={schema}
+>
+  <article class="section blog-post">
+    <div class="wrap">
+      <header class="blog-header">
+        <p class="meta">
+          Publicado por {post.data.author} el {post.data.pubDate.toLocaleDateString("es-CL")}
+        </p>
+        <h1>{post.data.title}</h1>
+      </header>
+      <div class="blog-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-block: 4rem;
+  }
+  .blog-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-block: 1rem 2rem;
+  }
+  .blog-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+</style>
