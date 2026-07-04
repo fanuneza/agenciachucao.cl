@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 const requiredPages = [
-  { path: "/", titleIncludes: "Agencia Chucao" },
-  { path: "/contacto/", titleIncludes: "Agencia Chucao" },
-  { path: "/404", titleIncludes: "Página no encontrada" },
+  { path: "/", titleIncludes: "Agencia Chucao", canonicalCount: 1 },
+  { path: "/contacto/", titleIncludes: "Agencia Chucao", canonicalCount: 1 },
+  { path: "/404", titleIncludes: "Página no encontrada", canonicalCount: 0 },
 ];
 
 for (const pageInfo of requiredPages) {
@@ -15,7 +15,7 @@ for (const pageInfo of requiredPages) {
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page).toHaveTitle(new RegExp(pageInfo.titleIncludes, "i"));
     await expect(page.locator('meta[name="description"]')).toHaveCount(1);
-    await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(pageInfo.canonicalCount);
     await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
     await expect(page.locator('meta[property="og:description"]')).toHaveCount(1);
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
