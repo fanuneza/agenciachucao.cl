@@ -52,7 +52,8 @@ export function buildSchemaGraph(options: {
   const pieces: Record<string, unknown>[] = [];
   const orgId = ids.organization("agencia-chucao");
   const breadcrumbId = ids.breadcrumb(options.url);
-  const breadcrumb = options.includeBreadcrumbs === false ? null : buildBreadcrumbList(options.url, options.title, breadcrumbId);
+  const breadcrumb =
+    options.includeBreadcrumbs === false ? null : buildBreadcrumbList(options.url, options.title, breadcrumbId);
 
   // 1. WebSite (Configurado con SearchAction de búsqueda interna)
   pieces.push(
