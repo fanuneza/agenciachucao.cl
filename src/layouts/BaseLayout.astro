@@ -31,12 +31,13 @@ const defaultSchema = buildSchemaGraph({
   url: canonicalUrl,
   title,
   description,
+  includeBreadcrumbs: !isHome && !noindex,
 });
 
-const finalSchema = defaultSchema;
+let finalSchema = defaultSchema;
 if (schema) {
   if ("@graph" in schema && Array.isArray(schema["@graph"])) {
-    finalSchema["@graph"].push(...schema["@graph"]);
+    finalSchema = schema as JsonLdGraph;
   } else {
     const node = { ...schema };
     delete (node as any)["@context"];

@@ -21,6 +21,20 @@ const pages = [
   },
 ] as const;
 
+type JsonLdNode = Record<string, unknown>;
+
+function getJsonLdGraph(script: string) {
+  return JSON.parse(script) as { "@graph"?: unknown[] };
+}
+
+function getBreadcrumbLists(graph: unknown[]) {
+  return graph.filter((node): node is JsonLdNode => {
+    if (typeof node !== "object" || node === null) return false;
+    const candidate = node as JsonLdNode;
+    return candidate["@type"] === "BreadcrumbList" && Array.isArray(candidate.itemListElement);
+  });
+}
+
 test.describe("pages render", () => {
   for (const pageInfo of pages) {
     test(`${pageInfo.name} renders with correct metadata`, async ({ page }) => {
@@ -81,6 +95,46 @@ test.describe("SEO metadata", () => {
     const body = await page.locator("body").textContent();
     expect(body).toContain("sitemap");
   });
+
+  test("contacto page emits a breadcrumb list with itemListElement", async ({ page }) => {
+    await page.goto("/contacto/", { waitUntil: "load" });
+    const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+    expect(scripts.length).toBeGreaterThan(0);
+
+    const breadcrumbLists = scripts.flatMap((script) => {
+      const graph = getJsonLdGraph(script)["@graph"];
+      return Array.isArray(graph) ? getBreadcrumbLists(graph) : [];
+    });
+
+    expect(breadcrumbLists).toHaveLength(1);
+
+    const [breadcrumbList] = breadcrumbLists;
+    const itemListElement = breadcrumbList.itemListElement as JsonLdNode[];
+    expect(itemListElement).toHaveLength(2);
+
+    for (const [index, item] of itemListElement.entries()) {
+      expect(item).toMatchObject({
+        "@type": "ListItem",
+        position: index + 1,
+      });
+      expect(item).toHaveProperty("name");
+      expect(item).toHaveProperty("item");
+    }
+  });
+
+  for (const path of ["/politica-de-cookies/", "/404"]) {
+    test(`${path} does not emit breadcrumb structured data`, async ({ page }) => {
+      await page.goto(path, { waitUntil: "load" });
+      const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+
+      const breadcrumbLists = scripts.flatMap((script) => {
+        const graph = getJsonLdGraph(script)["@graph"];
+        return Array.isArray(graph) ? getBreadcrumbLists(graph) : [];
+      });
+
+      expect(breadcrumbLists).toHaveLength(0);
+    });
+  }
 });
 
 test.describe("critical content", () => {

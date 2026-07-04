@@ -1,6 +1,41 @@
 import { makeIds, buildWebSite, buildWebPage, buildArticle, buildPiece } from "@jdevalk/seo-graph-core";
 
 const SITE_URL = "https://agenciachucao.cl";
+const BREADCRUMB_LABELS: Record<string, string> = {
+  blog: "Blog",
+  contacto: "Contacto",
+  "politica-de-cookies": "Politica de cookies",
+};
+
+function buildBreadcrumbName(segment: string) {
+  return BREADCRUMB_LABELS[segment] ?? segment.replace(/-/g, " ");
+}
+
+function buildBreadcrumbList(url: string, title: string, breadcrumbId: string) {
+  const pathname = new URL(url).pathname;
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments.length === 0) return null;
+
+  return buildPiece({
+    "@type": "BreadcrumbList",
+    "@id": breadcrumbId,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: `${SITE_URL}/`,
+      },
+      ...segments.map((segment, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: index === segments.length - 1 ? title : buildBreadcrumbName(segment),
+        item: `${SITE_URL}/${segments.slice(0, index + 1).join("/")}/`,
+      })),
+    ],
+  });
+}
 
 export function buildSchemaGraph(options: {
   pageType: "website" | "blogPost" | "webpage";
@@ -11,10 +46,13 @@ export function buildSchemaGraph(options: {
   authorName?: string;
   featureImageUrl?: string;
   category?: string;
+  includeBreadcrumbs?: boolean;
 }) {
   const ids = makeIds({ siteUrl: SITE_URL });
   const pieces: Record<string, unknown>[] = [];
   const orgId = ids.organization("agencia-chucao");
+  const breadcrumbId = ids.breadcrumb(options.url);
+  const breadcrumb = options.includeBreadcrumbs === false ? null : buildBreadcrumbList(options.url, options.title, breadcrumbId);
 
   // 1. WebSite (Configurado con SearchAction de búsqueda interna)
   pieces.push(
@@ -71,12 +109,16 @@ export function buildSchemaGraph(options: {
         name: options.title,
         description: options.description,
         isPartOf: { "@id": ids.website },
-        breadcrumb: { "@id": ids.breadcrumb(options.url) },
+        ...(breadcrumb ? { breadcrumb: { "@id": breadcrumbId } } : {}),
         ...(options.publishDate ? { datePublished: options.publishDate } : {}),
       },
       ids
     )
   );
+
+  if (breadcrumb) {
+    pieces.push(breadcrumb);
+  }
 
   if (options.pageType === "blogPost") {
     pieces.push(
