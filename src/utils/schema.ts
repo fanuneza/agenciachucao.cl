@@ -7,6 +7,13 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   "politica-de-cookies": "Politica de cookies",
 };
 
+export type JsonLdNode = Record<string, unknown>;
+
+export type JsonLdGraph = {
+  "@context": "https://schema.org";
+  "@graph": JsonLdNode[];
+};
+
 function buildBreadcrumbName(segment: string) {
   return BREADCRUMB_LABELS[segment] ?? segment.replace(/-/g, " ");
 }
@@ -143,5 +150,19 @@ export function buildSchemaGraph(options: {
   return {
     "@context": "https://schema.org" as const,
     "@graph": pieces,
+  };
+}
+
+export function buildFaqPage(items: Array<{ question: string; answer: string }>): JsonLdNode {
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }

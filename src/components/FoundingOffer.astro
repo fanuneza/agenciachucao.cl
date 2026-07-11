@@ -9,44 +9,44 @@ interface Props {
 const { ctaHref } = Astro.props;
 ---
 
-<section class="section founding" id="fundadores" aria-labelledby="found-h2">
+<section class="section founding-section" id="fundadores" aria-labelledby="found-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 06 / Cupos iniciales</span>
       <span class="meta">Precio reducido · cierra al llenarse</span>
     </div>
 
-    <div class="founding-grid">
-      <div class="founding-intro">
+    <div class="founding-section__grid">
+      <div class="founding-section__intro">
         <h2 id="found-h2">Precio reducido para las primeras 2 clínicas.</h2>
-        <p class="lede found-lede">
+        <p class="lede founding-section__lede">
           Estamos documentando resultados en el nicho dental. Por eso abrimos dos cupos iniciales con un valor menor al
           precio estándar.
         </p>
       </div>
 
-      <div class="founding-details">
-        <div class="detail-row">
-          <span class="detail-k">Fee mensual</span>
-          <span class="detail-v">$950.000</span>
+      <div class="founding-section__details">
+        <div class="founding-section__detail">
+          <span class="founding-section__detail-key">Fee mensual</span>
+          <span class="founding-section__detail-value">$950.000</span>
         </div>
-        <div class="detail-row">
-          <span class="detail-k">Setup inicial</span>
-          <span class="detail-v">$500.000</span>
+        <div class="founding-section__detail">
+          <span class="founding-section__detail-key">Setup inicial</span>
+          <span class="founding-section__detail-value">$500.000</span>
         </div>
-        <div class="detail-row">
-          <span class="detail-k">Pauta publicitaria</span>
-          <span class="detail-v alt">Aparte</span>
+        <div class="founding-section__detail">
+          <span class="founding-section__detail-key">Pauta publicitaria</span>
+          <span class="founding-section__detail-value founding-section__detail-value--text">Aparte</span>
         </div>
       </div>
 
-      <div class="founding-note">
+      <div class="founding-section__note">
         <p>
           Al cerrarse los dos cupos, el precio sube a la banda estándar de $1.150.000 - $1.200.000/mes. Sin excepciones.
         </p>
       </div>
 
-      <div class="founding-cta">
+      <div class="founding-section__cta">
         <TrackedLink
           href={ctaHref}
           class="btn"
@@ -65,44 +65,44 @@ const { ctaHref } = Astro.props;
 </section>
 
 <style>
-  .founding-grid {
+  .founding-section__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: clamp(2rem, 4vw, 3rem);
   }
   @media (min-width: 900px) {
-    .founding-grid {
+    .founding-section__grid {
       grid-template-columns: 1.2fr 1fr;
       grid-template-rows: auto auto auto;
       align-items: start;
     }
-    .founding-intro {
+    .founding-section__intro {
       grid-column: 1;
       grid-row: 1 / 4;
     }
-    .founding-details {
+    .founding-section__details {
       grid-column: 2;
       grid-row: 1;
     }
-    .founding-note {
+    .founding-section__note {
       grid-column: 2;
       grid-row: 2;
     }
-    .founding-cta {
+    .founding-section__cta {
       grid-column: 2;
       grid-row: 3;
     }
   }
 
-  .founding-intro h2 {
+  .founding-section__intro h2 {
     line-height: 1.05;
   }
 
-  .found-lede {
+  .founding-section__lede {
     margin-top: 1.5rem;
   }
 
-  .founding-details {
+  .founding-section__details {
     border: 1px solid var(--bone-line);
     background: var(--bone-2);
     padding: clamp(1.25rem, 2vw, 1.75rem);
@@ -110,7 +110,7 @@ const { ctaHref } = Astro.props;
     gap: 0;
   }
 
-  .detail-row {
+  .founding-section__detail {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -118,46 +118,46 @@ const { ctaHref } = Astro.props;
     padding: 1rem 0;
     border-bottom: 1px solid var(--bone-line);
   }
-  .detail-row:first-child {
+  .founding-section__detail:first-child {
     padding-top: 0;
   }
-  .detail-row:last-child {
+  .founding-section__detail:last-child {
     border-bottom: 0;
     padding-bottom: 0;
   }
 
-  .detail-k {
+  .founding-section__detail-key {
     font-family: var(--f-mono);
     font-size: var(--t-sm);
     color: var(--graphite);
     letter-spacing: 0.02em;
   }
 
-  .detail-v {
+  .founding-section__detail-value {
     font-family: var(--f-display);
     font-size: var(--t-2xl);
     font-weight: 500;
     letter-spacing: -0.025em;
     color: var(--ink);
   }
-  .detail-v.alt {
+  .founding-section__detail-value--text {
     font-family: var(--f-display);
     font-size: var(--t-xl);
     color: var(--vermilion);
     font-weight: 500;
   }
 
-  .founding-note {
+  .founding-section__note {
     font-size: var(--t-sm);
     color: var(--muted);
     line-height: 1.6;
     max-width: 55ch;
   }
-  .founding-note p {
+  .founding-section__note p {
     margin: 0;
   }
 
-  .founding-cta {
+  .founding-section__cta {
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;

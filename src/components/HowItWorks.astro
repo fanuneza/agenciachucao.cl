@@ -13,7 +13,7 @@ interface Props {
 const { steps } = Astro.props;
 ---
 
-<section class="section how" id="proceso" aria-labelledby="how-h2">
+<section class="section process-section" id="proceso" aria-labelledby="how-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 03 / Procedimiento</span>
@@ -21,21 +21,21 @@ const { steps } = Astro.props;
     </div>
 
     <h2 id="how-h2">Qué pasa después de que firmas.</h2>
-    <p class="lede how-lede">
+    <p class="lede process-section__lede">
       El primer mes se usa para instalar el sistema, activar tráfico medible y detectar qué tan bien convierte la
       clínica desde Google hasta WhatsApp.
     </p>
 
-    <ol class="steps" role="list">
+    <ol class="process-section__steps" role="list">
       {
         steps.map((step) => (
-          <li class="step">
-            <div class="step-header">
-              <span class="num">{step.number}</span>
-              <span class="timeline">{step.timeline}</span>
+          <li class="process-section__step">
+            <div class="process-section__step-header">
+              <span class="process-section__step-num">{step.number}</span>
+              <span class="process-section__step-timeline">{step.timeline}</span>
             </div>
-            <p class="title">{step.title}</p>
-            <p class="desc">{step.description}</p>
+            <p class="process-section__step-title">{step.title}</p>
+            <p class="process-section__step-desc">{step.description}</p>
           </li>
         ))
       }
@@ -44,11 +44,11 @@ const { steps } = Astro.props;
 </section>
 
 <style>
-  .how-lede {
+  .process-section__lede {
     margin-top: 1.5rem;
   }
 
-  .steps {
+  .process-section__steps {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     grid-template-columns: 1fr;
@@ -58,12 +58,12 @@ const { steps } = Astro.props;
     padding: 0;
   }
   @media (min-width: 720px) {
-    .steps {
+    .process-section__steps {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  .step {
+  .process-section__step {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
     border-bottom: 1px solid var(--bone-line);
     border-right: 1px solid var(--bone-line);
@@ -72,30 +72,30 @@ const { steps } = Astro.props;
     align-content: start;
   }
   @media (min-width: 720px) {
-    .step:nth-child(2n) {
+    .process-section__step:nth-child(2n) {
       border-right: 0;
     }
-    .step:nth-last-child(-n + 2) {
+    .process-section__step:nth-last-child(-n + 2) {
       border-bottom: 0;
     }
   }
   @media (max-width: 719px) {
-    .step {
+    .process-section__step {
       border-right: 0;
     }
-    .step:last-child {
+    .process-section__step:last-child {
       border-bottom: 0;
     }
   }
 
-  .step-header {
+  .process-section__step-header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
   }
 
-  .step .num {
+  .process-section__step-num {
     font-family: var(--f-display);
     font-size: clamp(2rem, 3vw, 2.75rem);
     font-weight: 500;
@@ -104,7 +104,7 @@ const { steps } = Astro.props;
     line-height: 1;
   }
 
-  .step .timeline {
+  .process-section__step-timeline {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     color: var(--vermilion);
@@ -112,7 +112,7 @@ const { steps } = Astro.props;
     letter-spacing: 0.08em;
   }
 
-  .step .title {
+  .process-section__step-title {
     font-family: var(--f-display);
     font-size: var(--t-xl);
     font-weight: 600;
@@ -121,7 +121,7 @@ const { steps } = Astro.props;
     margin: 0;
   }
 
-  .step .desc {
+  .process-section__step-desc {
     color: var(--graphite);
     font-size: var(--t-md);
     line-height: 1.6;

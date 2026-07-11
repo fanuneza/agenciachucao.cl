@@ -1,24 +1,11 @@
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { createSchemaEndpoint } from "@jdevalk/astro-seo-graph";
-import { buildSchemaGraph } from "../../utils/schema";
-
-interface BlogPostEntry {
-  id: string;
-  body: string;
-  data: {
-    title: string;
-    description: string;
-    pubDate: Date;
-    author: string;
-    category?: string;
-    heroImage?: string;
-  };
-}
+import { buildSchemaGraph } from "@/utils/schema";
 
 export const GET = createSchemaEndpoint({
   entries: () => getCollection("blog") as never,
   mapper: (post) => {
-    const p = post as BlogPostEntry;
+    const p = post as CollectionEntry<"blog">;
     const url = `https://agenciachucao.cl/blog/${p.id}/`;
     const graph = buildSchemaGraph({
       pageType: "blogPost",

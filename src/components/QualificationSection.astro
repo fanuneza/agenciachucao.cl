@@ -2,7 +2,7 @@
 
 ---
 
-<section class="section qual" id="fit" aria-labelledby="qual-h2">
+<section class="section fit-section" id="fit" aria-labelledby="qual-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 04b / Fit</span>
@@ -11,19 +11,19 @@
 
     <h2 id="qual-h2">Para clínicas que quieren medir antes de escalar.</h2>
 
-    <div class="qual-grid">
-      <div class="qual-col fit">
-        <p class="qual-label">Este sistema calza si</p>
-        <ul class="qual-list" role="list">
+    <div class="fit-section__grid">
+      <div class="fit-section__col fit-section__col--fit">
+        <p class="fit-section__col-label">Este sistema calza si</p>
+        <ul class="fit-section__list" role="list">
           <li>Ya tienes tratamientos de valor medio o alto.</li>
           <li>Puedes responder WhatsApp con rapidez.</li>
           <li>Quieres saber cuánto cuesta cada oportunidad.</li>
           <li>Estás dispuesto a mejorar la página y el seguimiento, no solo pagar anuncios.</li>
         </ul>
       </div>
-      <div class="qual-col nofit">
-        <p class="qual-label">No calza si</p>
-        <ul class="qual-list" role="list">
+      <div class="fit-section__col fit-section__col--nofit">
+        <p class="fit-section__col-label">No calza si</p>
+        <ul class="fit-section__list" role="list">
           <li>Buscas solo publicaciones para redes sociales.</li>
           <li>Quieres pacientes garantizados.</li>
           <li>No puedes responder consultas dentro del día.</li>
@@ -35,7 +35,7 @@
 </section>
 
 <style>
-  .qual-grid {
+  .fit-section__grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     grid-template-columns: 1fr;
@@ -43,25 +43,25 @@
     border: 1px solid var(--bone-line);
   }
   @media (min-width: 900px) {
-    .qual-grid {
+    .fit-section__grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  .qual-col {
+  .fit-section__col {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
   }
-  .qual-col + .qual-col {
+  .fit-section__col + .fit-section__col {
     border-top: 1px solid var(--bone-line);
   }
   @media (min-width: 900px) {
-    .qual-col + .qual-col {
+    .fit-section__col + .fit-section__col {
       border-top: 0;
       border-left: 1px solid var(--bone-line);
     }
   }
 
-  .qual-label {
+  .fit-section__col-label {
     font-family: var(--f-display);
     font-size: var(--t-lg);
     font-weight: 600;
@@ -70,10 +70,10 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--bone-line);
   }
-  .fit .qual-label {
+  .fit-section__col--fit .fit-section__col-label {
     color: var(--ink);
   }
-  .fit .qual-label::before {
+  .fit-section__col--fit .fit-section__col-label::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -82,10 +82,10 @@
     display: inline-block;
     margin-right: 0.6rem;
   }
-  .nofit .qual-label {
+  .fit-section__col--nofit .fit-section__col-label {
     color: var(--muted);
   }
-  .nofit .qual-label::before {
+  .fit-section__col--nofit .fit-section__col-label::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -95,21 +95,21 @@
     margin-right: 0.6rem;
   }
 
-  .qual-list {
+  .fit-section__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     gap: 0.75rem;
   }
-  .qual-list li {
+  .fit-section__list li {
     font-size: var(--t-md);
     line-height: 1.55;
     color: var(--graphite);
     padding-left: 1.15rem;
     position: relative;
   }
-  .qual-list li::before {
+  .fit-section__list li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -119,7 +119,7 @@
     background: var(--bone-line);
     border-radius: 50%;
   }
-  .fit .qual-list li::before {
+  .fit-section__col--fit .fit-section__list li::before {
     background: var(--vermilion);
   }
 </style>

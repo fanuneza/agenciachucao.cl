@@ -8,7 +8,7 @@ interface Props {
 const { included, excluded, extras } = Astro.props;
 ---
 
-<section class="section includes" id="alcance" aria-labelledby="inc-h2">
+<section class="section scope-section" id="alcance" aria-labelledby="inc-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 04 / Alcance</span>
@@ -21,14 +21,14 @@ const { included, excluded, extras } = Astro.props;
       que no, para que no haya sorpresas.
     </p>
 
-    <div class="includes-grid">
-      <div class="inc-col in">
-        <p class="label">Sí incluye</p>
-        <ul class="inc-list" role="list">
+    <div class="scope-section__grid">
+      <div class="scope-section__col scope-section__col--included">
+        <p class="scope-section__col-label">Sí incluye</p>
+        <ul class="scope-section__list" role="list">
           {
             included.map((item) => (
               <li>
-                <span class="mark" aria-hidden="true">
+                <span class="scope-section__list-mark" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path
                       d="M2 7l4 4 6-6"
@@ -45,13 +45,13 @@ const { included, excluded, extras } = Astro.props;
           }
         </ul>
       </div>
-      <div class="inc-col out">
-        <p class="label">No incluye</p>
-        <ul class="inc-list" role="list">
+      <div class="scope-section__col scope-section__col--excluded">
+        <p class="scope-section__col-label">No incluye</p>
+        <ul class="scope-section__list" role="list">
           {
             excluded.map((item) => (
               <li>
-                <span class="mark" aria-hidden="true">
+                <span class="scope-section__list-mark" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                   </svg>
@@ -66,9 +66,9 @@ const { included, excluded, extras } = Astro.props;
 
     {
       extras.length > 0 && (
-        <div class="extras-block">
-          <p class="extras-label">Servicios opcionales</p>
-          <ul class="extras-list" role="list">
+        <div class="scope-section__extras">
+          <p class="scope-section__extras-label">Servicios opcionales</p>
+          <ul class="scope-section__extras-list" role="list">
             {extras.map((item) => (
               <li>{item}</li>
             ))}
@@ -77,7 +77,7 @@ const { included, excluded, extras } = Astro.props;
       )
     }
 
-    <p class="note includes-note">
+    <p class="note scope-section__note">
       La pauta publicitaria siempre va aparte. El cliente la paga directamente a Google. Nunca la incluimos en el fee.
       Así mantenemos las cuentas en manos del cliente y sin opacidad.
     </p>
@@ -85,7 +85,7 @@ const { included, excluded, extras } = Astro.props;
 </section>
 
 <style>
-  .includes-grid {
+  .scope-section__grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     grid-template-columns: 1fr;
@@ -93,25 +93,25 @@ const { included, excluded, extras } = Astro.props;
     border: 1px solid var(--bone-line);
   }
   @media (min-width: 900px) {
-    .includes-grid {
+    .scope-section__grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  .inc-col {
+  .scope-section__col {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
   }
-  .inc-col + .inc-col {
+  .scope-section__col + .scope-section__col {
     border-top: 1px solid var(--bone-line);
   }
   @media (min-width: 900px) {
-    .inc-col + .inc-col {
+    .scope-section__col + .scope-section__col {
       border-top: 0;
       border-left: 1px solid var(--bone-line);
     }
   }
 
-  .inc-col .label {
+  .scope-section__col-label {
     font-family: var(--f-display);
     font-size: var(--t-lg);
     font-weight: 600;
@@ -124,10 +124,10 @@ const { included, excluded, extras } = Astro.props;
     border-bottom: 1px solid var(--bone-line);
     width: 100%;
   }
-  .inc-col.in .label {
+  .scope-section__col--included .scope-section__col-label {
     color: var(--ink);
   }
-  .inc-col.in .label::before {
+  .scope-section__col--included .scope-section__col-label::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -135,10 +135,10 @@ const { included, excluded, extras } = Astro.props;
     display: inline-block;
     border-radius: 50%;
   }
-  .inc-col.out .label {
+  .scope-section__col--excluded .scope-section__col-label {
     color: var(--muted);
   }
-  .inc-col.out .label::before {
+  .scope-section__col--excluded .scope-section__col-label::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -147,14 +147,14 @@ const { included, excluded, extras } = Astro.props;
     border-radius: 50%;
   }
 
-  .inc-list {
+  .scope-section__list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     gap: 0;
   }
-  .inc-list li {
+  .scope-section__list li {
     padding: 0.9rem 0;
     border-bottom: 1px solid var(--bone-line);
     display: grid;
@@ -164,30 +164,30 @@ const { included, excluded, extras } = Astro.props;
     line-height: 1.5;
     align-items: start;
   }
-  .inc-list li:last-child {
+  .scope-section__list li:last-child {
     border-bottom: 0;
   }
-  .inc-col.out .inc-list li {
+  .scope-section__col--excluded .scope-section__list li {
     color: var(--muted);
   }
 
-  .inc-list .mark {
+  .scope-section__list-mark {
     color: var(--vermilion);
     margin-top: 0.15em;
     display: inline-flex;
   }
-  .inc-col.out .inc-list li .mark {
+  .scope-section__col--excluded .scope-section__list li .scope-section__list-mark {
     color: var(--muted);
   }
 
-  .extras-block {
+  .scope-section__extras {
     margin-top: clamp(2rem, 3vw, 2.5rem);
     padding: clamp(1.25rem, 2vw, 1.75rem);
     border: 1px solid var(--bone-line);
     background: var(--bone-2);
   }
 
-  .extras-label {
+  .scope-section__extras-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     letter-spacing: 0.08em;
@@ -198,7 +198,7 @@ const { included, excluded, extras } = Astro.props;
     border-bottom: 1px solid var(--bone-line);
   }
 
-  .extras-list {
+  .scope-section__extras-list {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -207,18 +207,18 @@ const { included, excluded, extras } = Astro.props;
     gap: 0.5rem;
   }
   @media (min-width: 640px) {
-    .extras-list {
+    .scope-section__extras-list {
       grid-template-columns: 1fr 1fr;
     }
   }
-  .extras-list li {
+  .scope-section__extras-list li {
     font-size: var(--t-sm);
     color: var(--graphite);
     line-height: 1.5;
     padding-left: 1rem;
     position: relative;
   }
-  .extras-list li::before {
+  .scope-section__extras-list li::before {
     content: "";
     position: absolute;
     left: 0;
@@ -228,7 +228,7 @@ const { included, excluded, extras } = Astro.props;
     background: var(--muted);
   }
 
-  .includes-note {
+  .scope-section__note {
     margin-top: 1.5rem;
     max-width: 70ch;
   }

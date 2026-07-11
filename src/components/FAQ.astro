@@ -11,7 +11,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<section class="section faq" id="faq" aria-labelledby="faq-h2">
+<section class="section faq-section" id="faq" aria-labelledby="faq-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 07 / Preguntas</span>
@@ -19,21 +19,21 @@ const { items } = Astro.props;
     </div>
 
     <h2 id="faq-h2">Las dudas que no quieres llevar a la llamada.</h2>
-    <p class="lede faq-lede">
+    <p class="lede faq-section__lede">
       Si algo no está claro, es mejor resolverlo antes de hablar. Aquí están las preguntas que suelen aparecer.
     </p>
 
-    <div class="faq-list" role="list">
+    <div class="faq-section__list" role="list">
       {
         items.map((item, i) => (
-          <div class="faq-item" role="listitem">
-            <button class="faq-q" aria-expanded="false" aria-controls={`a${i}`} id={`q${i}`}>
-              <span class="faq-q-text">{item.question}</span>
-              <span class="ind" aria-hidden="true" />
+          <div class="faq-section__item" role="listitem">
+            <button class="faq-section__question" aria-expanded="false" aria-controls={`a${i}`} id={`q${i}`}>
+              <span class="faq-section__question-text">{item.question}</span>
+              <span class="faq-section__indicator" aria-hidden="true" />
             </button>
-            <div class="faq-a" id={`a${i}`} role="region" aria-labelledby={`q${i}`}>
+            <div class="faq-section__answer" id={`a${i}`} role="region" aria-labelledby={`q${i}`}>
               <div>
-                <div class="faq-a-inner">{item.answer}</div>
+                <div class="faq-section__answer-inner">{item.answer}</div>
               </div>
             </div>
           </div>
@@ -44,29 +44,29 @@ const { items } = Astro.props;
 </section>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+  document.querySelectorAll<HTMLButtonElement>(".faq-section__question").forEach((btn) => {
     btn.addEventListener("click", () => {
       const open = btn.getAttribute("aria-expanded") === "true";
-      document.querySelectorAll(".faq-q").forEach((b) => b.setAttribute("aria-expanded", "false"));
+      document.querySelectorAll(".faq-section__question").forEach((b) => b.setAttribute("aria-expanded", "false"));
       btn.setAttribute("aria-expanded", open ? "false" : "true");
     });
   });
 </script>
 
 <style>
-  .faq-lede {
+  .faq-section__lede {
     margin-top: 1.5rem;
   }
 
-  .faq-list {
+  .faq-section__list {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     border-top: 1px solid var(--bone-line);
   }
-  .faq-item {
+  .faq-section__item {
     border-bottom: 1px solid var(--bone-line);
   }
 
-  .faq-q {
+  .faq-section__question {
     width: 100%;
     text-align: left;
     display: grid;
@@ -82,20 +82,20 @@ const { items } = Astro.props;
     cursor: pointer;
     line-height: 1.35;
   }
-  .faq-q:hover {
+  .faq-section__question:hover {
     color: var(--vermilion);
   }
-  .faq-q:focus-visible {
+  .faq-section__question:focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 4px;
   }
 
-  .faq-q-text {
+  .faq-section__question-text {
     display: block;
     max-width: 70ch;
   }
 
-  .faq-q .ind {
+  .faq-section__question .faq-section__indicator {
     width: 28px;
     height: 28px;
     display: inline-grid;
@@ -107,50 +107,50 @@ const { items } = Astro.props;
       border-color 160ms var(--ease-out),
       background 160ms var(--ease-out);
   }
-  .faq-q[aria-expanded="true"] .ind {
+  .faq-section__question[aria-expanded="true"] .faq-section__indicator {
     background: var(--ink);
     border-color: var(--ink);
   }
 
-  .faq-q .ind::before,
-  .faq-q .ind::after {
+  .faq-section__question .faq-section__indicator::before,
+  .faq-section__question .faq-section__indicator::after {
     content: "";
     position: absolute;
     background: var(--ink);
   }
-  .faq-q .ind::before {
+  .faq-section__question .faq-section__indicator::before {
     width: 12px;
     height: 1.5px;
   }
-  .faq-q .ind::after {
+  .faq-section__question .faq-section__indicator::after {
     width: 1.5px;
     height: 12px;
     transition: transform 200ms var(--ease-out);
   }
-  .faq-q[aria-expanded="true"] .ind::before {
+  .faq-section__question[aria-expanded="true"] .faq-section__indicator::before {
     background: var(--bone);
   }
-  .faq-q[aria-expanded="true"] .ind::after {
+  .faq-section__question[aria-expanded="true"] .faq-section__indicator::after {
     background: var(--bone);
     transform: scaleY(0);
   }
 
-  .faq-a {
+  .faq-section__answer {
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 220ms var(--ease-out);
   }
-  .faq-a > div {
+  .faq-section__answer > div {
     overflow: hidden;
   }
-  .faq-a-inner {
+  .faq-section__answer-inner {
     padding: 0 0 clamp(1.25rem, 2.5vw, 1.75rem) 0;
     max-width: 70ch;
     color: var(--graphite);
     font-size: var(--t-md);
     line-height: 1.65;
   }
-  .faq-q[aria-expanded="true"] + .faq-a {
+  .faq-section__question[aria-expanded="true"] + .faq-section__answer {
     grid-template-rows: 1fr;
   }
 </style>

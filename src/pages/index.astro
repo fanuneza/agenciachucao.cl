@@ -13,12 +13,13 @@ import FAQ from "@components/FAQ.astro";
 import CTAFinal from "@components/CTAFinal.astro";
 import WhatsAppButton from "@components/WhatsAppButton.astro";
 import { offerComponents } from "@data/services";
-import { buildFaqPage } from "@/lib/structured-data";
+import { buildFaqPage } from "@/utils/schema";
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waMessage =
-  "Hola%2C%20vi%20Agencia%20Chucao%20y%20me%20interesa%20el%20Lead%20Engine%20para%20mi%20cl%C3%ADnica%20dental.%20%C2%BFTienen%20disponibilidad%3F";
-const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+  "Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental. ¿Tienen disponibilidad?";
+const waHref = buildWhatsAppUrl(waNumber, waMessage);
 
 const howSteps = [
   {

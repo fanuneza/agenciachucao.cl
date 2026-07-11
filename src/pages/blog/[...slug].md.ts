@@ -1,28 +1,15 @@
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { createMarkdownEndpoint } from "@jdevalk/astro-seo-graph";
 
-interface BlogPostEntry {
-  id: string;
-  body: string;
-  data: {
-    title: string;
-    description: string;
-    pubDate: Date;
-    author: string;
-    category?: string;
-    heroImage?: string;
-  };
-}
-
 export const getStaticPaths = async () => {
-  const posts = (await getCollection("blog")) as unknown as BlogPostEntry[];
+  const posts: CollectionEntry<"blog">[] = await getCollection("blog");
   return posts.map((p) => ({ params: { slug: p.id } }));
 };
 
 export const GET = createMarkdownEndpoint({
   entries: () => getCollection("blog") as never,
   mapper: (post, slug) => {
-    const p = post as BlogPostEntry;
+    const p = post as CollectionEntry<"blog">;
     return p.id !== slug
       ? null
       : {

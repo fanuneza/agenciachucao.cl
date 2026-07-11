@@ -2,7 +2,7 @@
 
 ---
 
-<section class="section problem" id="problema" aria-labelledby="prob-h2">
+<section class="section problem-section" id="problema" aria-labelledby="prob-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 01 / Diagnóstico</span>
@@ -10,37 +10,37 @@
     </div>
 
     <h2 id="prob-h2">Tienes tráfico. No tienes agendamientos.</h2>
-    <p class="lede prob-lede">
+    <p class="lede problem-section__lede">
       Alguien busca "implantes dentales Santiago" u "ortodoncia precio". Encuentra tu clínica. Entra al sitio. Y
       desaparece.
     </p>
 
-    <ol class="leaks" role="list">
-      <li class="leak">
-        <span class="num">01</span>
-        <div class="leak-body">
-          <p class="title">La búsqueda llega, pero no convierte.</p>
-          <p class="desc">
+    <ol class="problem-section__leaks" role="list">
+      <li class="problem-section__leak">
+        <span class="problem-section__leak-num">01</span>
+        <div class="problem-section__leak-body">
+          <p class="problem-section__leak-title">La búsqueda llega, pero no convierte.</p>
+          <p class="problem-section__leak-desc">
             El paciente encuentra tu clínica en Google, pero la página no tiene un motivo claro para agendar ahora. Sin
             CTA directo, sin próximo paso obvio.
           </p>
         </div>
       </li>
-      <li class="leak">
-        <span class="num">02</span>
-        <div class="leak-body">
-          <p class="title">WhatsApp no responde a tiempo.</p>
-          <p class="desc">
+      <li class="problem-section__leak">
+        <span class="problem-section__leak-num">02</span>
+        <div class="problem-section__leak-body">
+          <p class="problem-section__leak-title">WhatsApp no responde a tiempo.</p>
+          <p class="problem-section__leak-desc">
             El lead que escribe a las 8 PM espera respuesta. Si no llega en la primera hora hábil, ya cotizó en otra
             clínica. La velocidad de contacto es el factor que más impacta el cierre.
           </p>
         </div>
       </li>
-      <li class="leak">
-        <span class="num">03</span>
-        <div class="leak-body">
-          <p class="title">Nadie sabe cuánto cuesta cada agendamiento.</p>
-          <p class="desc">
+      <li class="problem-section__leak">
+        <span class="problem-section__leak-num">03</span>
+        <div class="problem-section__leak-body">
+          <p class="problem-section__leak-title">Nadie sabe cuánto cuesta cada agendamiento.</p>
+          <p class="problem-section__leak-desc">
             Tu agencia te muestra clics e impresiones. La pregunta real es cuánto te costó el último paciente de
             implante, desde que buscó hasta que pagó. Sin ese dato no se puede optimizar.
           </p>
@@ -48,7 +48,7 @@
       </li>
     </ol>
 
-    <blockquote class="problem-trigger">
+    <blockquote class="problem-section__quote">
       Las clínicas que llegan suelen tener el mismo punto de partida: hay visitas, hay búsquedas, pero nadie agenda. O
       tienen agencia pero no pueden decir cuánto les costó cada evaluación. Ese es el problema que resolvemos.
     </blockquote>
@@ -56,11 +56,11 @@
 </section>
 
 <style>
-  .prob-lede {
+  .problem-section__lede {
     margin-top: 1.5rem;
   }
 
-  .leaks {
+  .problem-section__leaks {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     gap: 0;
@@ -69,7 +69,7 @@
     padding: 0;
   }
 
-  .leak {
+  .problem-section__leak {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.85rem;
@@ -77,14 +77,14 @@
     border-bottom: 1px solid var(--bone-line);
   }
   @media (min-width: 640px) {
-    .leak {
+    .problem-section__leak {
       grid-template-columns: 48px 1fr;
       gap: clamp(1.25rem, 2.5vw, 2rem);
       align-items: start;
     }
   }
 
-  .leak .num {
+  .problem-section__leak .problem-section__leak-num {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     color: var(--vermilion);
@@ -92,12 +92,12 @@
     padding-top: 0.2em;
   }
 
-  .leak-body {
+  .problem-section__leak-body {
     display: grid;
     gap: 0.5rem;
   }
 
-  .leak .title {
+  .problem-section__leak .problem-section__leak-title {
     font-family: var(--f-display);
     font-size: var(--t-xl);
     font-weight: 600;
@@ -105,13 +105,13 @@
     line-height: 1.25;
     margin: 0;
   }
-  .leak .desc {
+  .problem-section__leak .problem-section__leak-desc {
     color: var(--graphite);
     max-width: 60ch;
     margin: 0;
   }
 
-  .problem-trigger {
+  .problem-section__quote {
     margin: clamp(2.5rem, 5vw, 4rem) 0 0;
     font-family: var(--f-display);
     font-size: clamp(1.15rem, 1.4vw + 0.9rem, 1.6rem);

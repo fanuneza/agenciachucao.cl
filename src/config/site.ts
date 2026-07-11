@@ -9,7 +9,6 @@ export const site = {
   defaultOgImage: "/images/og/og-image.webp",
   logo: "/images/assets/chucao-logo.svg",
   gtmId: "GTM-PZPX7SK9",
-  cloudflareAnalyticsEnabled: true,
   contact: {
     email: "contacto@agenciachucao.cl",
     phone: "+56 9 2221 8674",
@@ -28,7 +27,6 @@ export const site = {
     addressCountry: "CL",
     serviceType: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversion web"],
   },
-  socialProfiles: [] as string[],
 } as const;
 
 export type SiteConfig = typeof site;

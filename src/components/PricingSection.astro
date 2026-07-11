@@ -2,7 +2,7 @@
 
 ---
 
-<section class="section dark pricing" id="precio" aria-labelledby="price-h2">
+<section class="section dark pricing-section" id="precio" aria-labelledby="price-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 05 / Inversión</span>
@@ -10,35 +10,35 @@
     </div>
 
     <h2 id="price-h2">Precio visible antes de la llamada.</h2>
-    <p class="lede price-lede">
+    <p class="lede pricing-section__lede">
       En tratamientos de alto valor, unos pocos agendamientos calificados pueden justificar la inversión. El trabajo es
       instalar un sistema medible y repetible.
     </p>
 
-    <div class="price-grid">
-      <div class="price-col featured">
-        <p class="price-label">Fee mensual</p>
-        <p class="price-amt">$1.000.000 - $1.200.000</p>
-        <p class="price-period">CLP / mes, cobrado por adelantado</p>
-        <p class="price-note">
+    <div class="pricing-section__grid">
+      <div class="pricing-section__card pricing-section__card--featured">
+        <p class="pricing-section__card-label">Fee mensual</p>
+        <p class="pricing-section__card-amount">$1.000.000 - $1.200.000</p>
+        <p class="pricing-section__card-period">CLP / mes, cobrado por adelantado</p>
+        <p class="pricing-section__card-note">
           Cubre el sistema completo: Google Ads, landing, seguimiento de conversiones, WhatsApp y SEO local. La pauta va
           siempre aparte.
         </p>
       </div>
-      <div class="price-col">
-        <p class="price-label">Setup inicial</p>
-        <p class="price-amt">$400.000 - $700.000</p>
-        <p class="price-period">Pago único, no reembolsable</p>
-        <p class="price-note">
+      <div class="pricing-section__card">
+        <p class="pricing-section__card-label">Setup inicial</p>
+        <p class="pricing-section__card-amount">$400.000 - $700.000</p>
+        <p class="pricing-section__card-period">Pago único, no reembolsable</p>
+        <p class="pricing-section__card-note">
           Instrumentación, landing y aprendizaje inicial. El costo real de tener el sistema listo antes del primer peso
           de pauta.
         </p>
       </div>
-      <div class="price-col">
-        <p class="price-label">Pauta publicitaria</p>
-        <p class="price-amt alt">Aparte</p>
-        <p class="price-period">Pagada directamente a Google</p>
-        <p class="price-note">
+      <div class="pricing-section__card">
+        <p class="pricing-section__card-label">Pauta publicitaria</p>
+        <p class="pricing-section__card-amount pricing-section__card-amount--text">Aparte</p>
+        <p class="pricing-section__card-period">Pagada directamente a Google</p>
+        <p class="pricing-section__card-note">
           El cliente es propietario de sus cuentas. La pauta no pasa por la agencia. Sin opacidad, sin markup.
         </p>
       </div>
@@ -47,12 +47,12 @@
 </section>
 
 <style>
-  .price-lede {
+  .pricing-section__lede {
     margin-top: 1.5rem;
     color: var(--muted-dark);
   }
 
-  .price-grid {
+  .pricing-section__grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     grid-template-columns: 1fr;
@@ -60,37 +60,37 @@
     border: 1px solid var(--ink-line);
   }
   @media (min-width: 900px) {
-    .price-grid {
+    .pricing-section__grid {
       grid-template-columns: 1.2fr 1fr 1fr;
     }
   }
 
-  .price-col {
+  .pricing-section__card {
     padding: clamp(1.75rem, 3vw, 2.5rem);
     border-right: 1px solid var(--ink-line);
     border-bottom: 1px solid var(--ink-line);
     position: relative;
   }
-  .price-col:last-child {
+  .pricing-section__card:last-child {
     border-right: 0;
     border-bottom: 0;
   }
   @media (min-width: 900px) {
-    .price-col:last-child {
+    .pricing-section__card:last-child {
       border-bottom: 0;
     }
-    .price-col:nth-child(2) {
+    .pricing-section__card:nth-child(2) {
       border-bottom: 0;
     }
-    .price-col:nth-child(1) {
+    .pricing-section__card:nth-child(1) {
       border-bottom: 0;
     }
   }
-  .price-col.featured {
+  .pricing-section__card--featured {
     background: var(--ink-2);
   }
 
-  .price-label {
+  .pricing-section__card-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     letter-spacing: 0.08em;
@@ -101,7 +101,7 @@
     border-bottom: 1px solid var(--ink-line);
   }
 
-  .price-amt {
+  .pricing-section__card-amount {
     font-family: var(--f-display);
     font-feature-settings: "tnum" 1;
     font-variant-numeric: tabular-nums;
@@ -112,7 +112,7 @@
     color: var(--bone);
     margin: 0;
   }
-  .price-amt.alt {
+  .pricing-section__card-amount--text {
     color: var(--bone);
     font-family: var(--f-display);
     font-style: normal;
@@ -120,7 +120,7 @@
     letter-spacing: -0.02em;
   }
 
-  .price-period {
+  .pricing-section__card-period {
     font-family: var(--f-mono);
     font-size: var(--t-sm);
     letter-spacing: 0.04em;
@@ -129,7 +129,7 @@
     margin-bottom: 0;
   }
 
-  .price-note {
+  .pricing-section__card-note {
     color: var(--muted-dark);
     font-size: var(--t-md);
     line-height: 1.6;

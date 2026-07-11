@@ -21,12 +21,12 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
       <span class="meta">Santiago, Chile</span>
     </div>
 
-    <div class="hero-grid">
+    <div class="hero__grid">
       <div>
-        <h1 id="hero-h1" class="hero-headline" set:html={headlineHtml} />
-        <p class="lede hero-lede" set:html={subheadlineHtml} />
+        <h1 id="hero-h1" class="hero__headline" set:html={headlineHtml} />
+        <p class="lede hero__lede" set:html={subheadlineHtml} />
 
-        <div class="hero-actions">
+        <div class="hero__actions">
           <TrackedLink
             href={ctaHref}
             class="btn"
@@ -42,38 +42,38 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
           </TrackedLink>
         </div>
 
-        <p class="hero-trust">
+        <p class="hero__trust">
           Sistema pensado para tratamientos de alto valor, donde cada consulta debe ser medible desde Google hasta
           WhatsApp.
         </p>
       </div>
 
-      <aside class="flow-panel" aria-label="Flujo del sistema">
-        <p class="flow-label">Cómo funciona el Lead Engine</p>
-        <div class="flow-steps">
-          <div class="flow-step">
-            <span class="flow-dot" aria-hidden="true"></span>
-            <span class="flow-name">Búsqueda en Google</span>
+      <aside class="hero__flow" aria-label="Flujo del sistema">
+        <p class="hero__flow-label">Cómo funciona el Lead Engine</p>
+        <div class="hero__flow-steps">
+          <div class="hero__flow-step">
+            <span class="hero__flow-dot" aria-hidden="true"></span>
+            <span class="hero__flow-name">Búsqueda en Google</span>
           </div>
-          <span class="flow-connector" aria-hidden="true"></span>
-          <div class="flow-step">
-            <span class="flow-dot" aria-hidden="true"></span>
-            <span class="flow-name">Landing</span>
+          <span class="hero__flow-connector" aria-hidden="true"></span>
+          <div class="hero__flow-step">
+            <span class="hero__flow-dot" aria-hidden="true"></span>
+            <span class="hero__flow-name">Landing</span>
           </div>
-          <span class="flow-connector" aria-hidden="true"></span>
-          <div class="flow-step">
-            <span class="flow-dot" aria-hidden="true"></span>
-            <span class="flow-name">WhatsApp</span>
+          <span class="hero__flow-connector" aria-hidden="true"></span>
+          <div class="hero__flow-step">
+            <span class="hero__flow-dot" aria-hidden="true"></span>
+            <span class="hero__flow-name">WhatsApp</span>
           </div>
-          <span class="flow-connector" aria-hidden="true"></span>
-          <div class="flow-step">
-            <span class="flow-dot" aria-hidden="true"></span>
-            <span class="flow-name">Agenda</span>
+          <span class="hero__flow-connector" aria-hidden="true"></span>
+          <div class="hero__flow-step">
+            <span class="hero__flow-dot" aria-hidden="true"></span>
+            <span class="hero__flow-name">Agenda</span>
           </div>
         </div>
-        <div class="flow-meta">
-          <p><span class="flow-meta-k">Foco</span> Implantes, ortodoncia, rehabilitación</p>
-          <p><span class="flow-meta-k">Inversión</span> Desde $950.000/mes + pauta aparte</p>
+        <div class="hero__flow-meta">
+          <p><span class="hero__flow-meta-key">Foco</span> Implantes, ortodoncia, rehabilitación</p>
+          <p><span class="hero__flow-meta-key">Inversión</span> Desde $950.000/mes + pauta aparte</p>
         </div>
       </aside>
     </div>
@@ -92,34 +92,34 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     color: var(--muted-dark);
     margin-bottom: 1.25rem;
   }
-  .hero-headline {
+  .hero__headline {
     color: var(--bone);
   }
 
-  .hero-lede {
+  .hero__lede {
     margin-top: clamp(1rem, 2vw, 1.5rem);
   }
 
-  .hero-grid {
+  .hero__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3.5rem);
   }
   @media (min-width: 900px) {
-    .hero-grid {
+    .hero__grid {
       grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
       align-items: start;
     }
   }
 
-  .hero-actions {
+  .hero__actions {
     margin-top: clamp(1.25rem, 2vw, 1.75rem);
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;
   }
 
-  .hero-trust {
+  .hero__trust {
     margin-top: 1.25rem;
     font-size: var(--t-sm);
     line-height: 1.6;
@@ -127,13 +127,13 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     max-width: 55ch;
   }
 
-  .flow-panel {
+  .hero__flow {
     border: 1px solid var(--ink-line);
     background: var(--ink-2);
     padding: clamp(1.25rem, 2vw, 1.75rem);
   }
 
-  .flow-label {
+  .hero__flow-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     letter-spacing: 0.08em;
@@ -144,14 +144,14 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     border-bottom: 1px solid var(--ink-line);
   }
 
-  .flow-steps {
+  .hero__flow-steps {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem 0.25rem;
   }
 
-  .flow-step {
+  .hero__flow-step {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -164,7 +164,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     letter-spacing: -0.01em;
   }
 
-  .flow-dot {
+  .hero__flow-dot {
     width: 7px;
     height: 7px;
     background: var(--vermilion);
@@ -172,7 +172,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     flex-shrink: 0;
   }
 
-  .flow-connector {
+  .hero__flow-connector {
     display: inline-block;
     width: 1.25rem;
     height: 1px;
@@ -181,7 +181,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     opacity: 0.5;
   }
 
-  .flow-meta {
+  .hero__flow-meta {
     margin-top: 1.25rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--ink-line);
@@ -189,7 +189,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     gap: 0.6rem;
   }
 
-  .flow-meta p {
+  .hero__flow-meta p {
     font-family: var(--f-mono);
     font-size: var(--t-sm);
     color: var(--bone);
@@ -197,7 +197,7 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
     margin: 0;
   }
 
-  .flow-meta-k {
+  .hero__flow-meta-key {
     color: var(--muted-dark);
     text-transform: uppercase;
     font-size: var(--t-xs);
@@ -206,16 +206,16 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
   }
 
   @media (max-width: 520px) {
-    .flow-steps {
+    .hero__flow-steps {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 0.5rem 0.35rem;
       align-items: center;
     }
-    .flow-step {
+    .hero__flow-step {
       grid-column: 2;
     }
-    .flow-connector {
+    .hero__flow-connector {
       grid-column: 1;
       width: 1px;
       height: 0.75rem;

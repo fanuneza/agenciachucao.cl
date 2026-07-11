@@ -1,31 +1,18 @@
 ---
-import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { buildSchemaGraph } from "../../utils/schema";
-
-interface BlogPostEntry {
-  id: string;
-  body: string;
-  data: {
-    title: string;
-    description: string;
-    pubDate: Date;
-    author: string;
-    category?: string;
-    heroImage?: string;
-  };
-}
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { buildSchemaGraph } from "@/utils/schema";
 
 export async function getStaticPaths() {
-  const posts = (await getCollection("blog")) as unknown as BlogPostEntry[];
+  const posts: CollectionEntry<"blog">[] = await getCollection("blog");
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
 }
 
-const post = Astro.props.post as BlogPostEntry;
-const { Content } = await render(post as never);
+const post = Astro.props.post as CollectionEntry<"blog">;
+const { Content } = await render(post);
 
 const postUrl = `https://agenciachucao.cl/blog/${post.id}/`;
 const schema = buildSchemaGraph({
@@ -50,13 +37,13 @@ const schema = buildSchemaGraph({
 >
   <article class="section blog-post">
     <div class="wrap">
-      <header class="blog-header">
+      <header class="blog-post__header">
         <p class="meta">
           Publicado por {post.data.author} el {post.data.pubDate.toLocaleDateString("es-CL")}
         </p>
         <h1>{post.data.title}</h1>
       </header>
-      <div class="blog-content">
+      <div class="blog-post__content">
         <Content />
       </div>
     </div>
@@ -67,11 +54,11 @@ const schema = buildSchemaGraph({
   .blog-post {
     padding-block: 4rem;
   }
-  .blog-header h1 {
+  .blog-post__header h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     margin-block: 1rem 2rem;
   }
-  .blog-content {
+  .blog-post__content {
     font-size: 1.125rem;
     line-height: 1.8;
   }

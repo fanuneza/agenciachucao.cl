@@ -1,31 +1,30 @@
 ---
+import Brand from "@components/Brand.astro";
+
 const year = new Date().getFullYear();
 ---
 
-<footer class="foot">
+<footer class="site-footer">
   <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="/" class="brand" aria-label="Agencia Chucao - inicio">
-          <img class="mark" src="/images/assets/chucao-logo.svg" alt="" width="22" height="22" />
-          <span><span class="light">agencia</span><span class="bold">chucao</span></span>
-        </a>
-        <p class="foot-tag">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <Brand variant="dark" class="site-footer__brand-logo" />
+        <p class="site-footer__tagline">
           Captación digital para clínicas dentales en Santiago. Google Ads, conversión y seguimiento medible, sin
           contratos largos.
         </p>
       </div>
       <div>
-        <p class="col-label">Contacto</p>
-        <ul>
+        <p class="site-footer__col-label">Contacto</p>
+        <ul class="site-footer__links">
           <li><a href="/contacto/">Solicitar auditoría</a></li>
           <li><a href="mailto:contacto@agenciachucao.cl">contacto@agenciachucao.cl</a></li>
           <li><a href="https://wa.me/56922218674" target="_blank" rel="noopener">+56 9 2221 8674</a></li>
         </ul>
       </div>
       <div>
-        <p class="col-label">Sistema</p>
-        <ul>
+        <p class="site-footer__col-label">Sistema</p>
+        <ul class="site-footer__links">
           <li><a href="#oferta">El Lead Engine</a></li>
           <li><a href="#proceso">Procedimiento</a></li>
           <li><a href="#precio">Inversión</a></li>
@@ -34,18 +33,18 @@ const year = new Date().getFullYear();
         </ul>
       </div>
     </div>
-    <div class="foot-bottom">
+    <div class="site-footer__bottom">
       <span>&copy; {year} Agencia Chucao &middot; Santiago, CL</span>
-      <div class="foot-legal">
+      <div class="site-footer__legal">
         <a href="/politica-de-cookies/">Política de cookies</a>
-        <button class="cookie-manage-btn" data-cookie-preferences>Gestionar cookies</button>
+        <button class="site-footer__cookie-btn" data-cookie-preferences>Gestionar cookies</button>
       </div>
     </div>
   </div>
 </footer>
 
 <style>
-  .foot {
+  .site-footer {
     background: var(--ink);
     color: var(--bone);
     padding-top: clamp(3rem, 5vw, 4rem);
@@ -53,7 +52,7 @@ const year = new Date().getFullYear();
     border-top: 1px solid var(--ink-line);
   }
 
-  .foot-grid {
+  .site-footer__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -61,35 +60,16 @@ const year = new Date().getFullYear();
     border-bottom: 1px solid var(--ink-line);
   }
   @media (min-width: 800px) {
-    .foot-grid {
+    .site-footer__grid {
       grid-template-columns: 1.4fr 1fr 1fr;
     }
   }
 
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    font-family: var(--f-display);
-    font-size: 0.95rem;
-    letter-spacing: -0.01em;
+  .site-footer__brand-logo {
     margin-bottom: 1rem;
   }
-  .brand .mark {
-    width: 22px;
-    height: 22px;
-    display: block;
-  }
-  .brand .light {
-    font-weight: 400;
-    color: var(--muted-dark);
-  }
-  .brand .bold {
-    font-weight: 700;
-    color: var(--bone);
-  }
 
-  .foot-tag {
+  .site-footer__tagline {
     font-size: var(--t-md);
     line-height: 1.65;
     color: var(--muted-dark);
@@ -97,7 +77,7 @@ const year = new Date().getFullYear();
     margin: 0;
   }
 
-  .col-label {
+  .site-footer__col-label {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     letter-spacing: 0.08em;
@@ -107,24 +87,24 @@ const year = new Date().getFullYear();
     margin-top: 0;
   }
 
-  .foot ul {
+  .site-footer__links {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     gap: 0.6rem;
   }
-  .foot a {
+  .site-footer a {
     color: var(--muted-dark);
     font-size: var(--t-md);
     line-height: 1.5;
     transition: color 160ms var(--ease-out);
   }
-  .foot a:hover {
+  .site-footer a:hover {
     color: var(--bone);
   }
 
-  .foot-bottom {
+  .site-footer__bottom {
     margin-top: 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -136,13 +116,13 @@ const year = new Date().getFullYear();
     color: var(--muted-dark);
   }
 
-  .foot-legal {
+  .site-footer__legal {
     display: flex;
     align-items: center;
     gap: 1.25rem;
     flex-wrap: wrap;
   }
-  .cookie-manage-btn {
+  .site-footer__cookie-btn {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     letter-spacing: 0.04em;
@@ -153,7 +133,7 @@ const year = new Date().getFullYear();
     padding: 0;
     transition: color 160ms var(--ease-out);
   }
-  .cookie-manage-btn:hover {
+  .site-footer__cookie-btn:hover {
     color: var(--bone);
   }
 </style>

@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import FuzzyRedirect from "@jdevalk/astro-seo-graph/FuzzyRedirect.astro";
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%20p%C3%A1gina%20que%20no%20existe%20en%20Agencia%20Chucao.%20%C2%BFMe%20pueden%20ayudar%3F`;
+const waMessage = "Hola, llegué a una página que no existe en Agencia Chucao. ¿Me pueden ayudar?";
+const waHref = buildWhatsAppUrl(waNumber, waMessage);
 ---
 
 <BaseLayout
@@ -11,20 +13,20 @@ const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%2
   description="Esta página no existe o fue movida. Vuelve al inicio o escríbenos por WhatsApp."
   noindex={true}
 >
-  <section class="not-found section-py">
-    <div class="container not-found-inner">
-      <span class="not-found-code" aria-hidden="true">404</span>
-      <h1 class="not-found-title">Esta página no existe</h1>
-      <p class="not-found-text">
+  <section class="section dark not-found" aria-labelledby="not-found-title">
+    <div class="wrap not-found__inner">
+      <span class="not-found__code" aria-hidden="true">404</span>
+      <h1 id="not-found-title" class="not-found__title">Esta página no existe</h1>
+      <p class="not-found__text">
         Puede que haya sido movida, eliminada o que la URL tenga un error. No te preocupes — desde aquí puedes volver al
         inicio o escribirnos directamente.
       </p>
-      <div class="not-found-redirect" style="color: var(--color-gold); font-weight: 600;">
+      <div class="not-found__redirect">
         <FuzzyRedirect />
       </div>
-      <div class="not-found-actions">
-        <a href="/" class="btn-primary-gold">Volver al inicio</a>
-        <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn-ghost not-found-wa">
+      <div class="not-found__actions">
+        <a href="/" class="btn">Volver al inicio</a>
+        <a href={waHref} target="_blank" rel="noopener noreferrer" class="btn btn-secondary not-found__wa">
           Escribir por WhatsApp
         </a>
       </div>
@@ -34,40 +36,39 @@ const waHref = `https://wa.me/${waNumber}?text=Hola%2C%20llegu%C3%A9%20a%20una%2
 
 <style>
   .not-found {
-    background: var(--color-slate);
-    color: var(--color-white);
     min-height: 70vh;
     display: flex;
     align-items: center;
   }
-  .not-found-inner {
+  .not-found__inner {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     max-width: 52ch;
   }
-  .not-found-code {
-    font-family: var(--font-display);
+  .not-found__code {
+    font-family: var(--f-display);
     font-weight: 700;
     font-size: clamp(72px, 12vw, 120px);
-    color: var(--color-gold);
+    color: var(--vermilion);
     line-height: 1;
     letter-spacing: -0.04em;
   }
-  .not-found-title {
-    color: var(--color-white);
+  .not-found__title {
+    color: var(--bone);
   }
-  .not-found-text {
-    font-size: 17px;
+  .not-found__text {
+    font-size: var(--t-lg);
     line-height: 1.75;
-    color: rgba(255, 255, 255, 0.65);
+    color: var(--muted-dark);
   }
-  .not-found-actions {
+  .not-found__redirect {
+    color: var(--vermilion);
+    font-weight: 600;
+  }
+  .not-found__actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-  }
-  .not-found-wa {
-    color: var(--color-white);
   }
 </style>

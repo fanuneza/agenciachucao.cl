@@ -1,13 +1,13 @@
 <div class="cookie-banner" id="cookie-banner" hidden aria-live="polite" role="region" aria-label="Aviso de cookies">
-  <div class="cookie-inner wrap">
-    <p class="cookie-text">
-      Usamos analítica para mejorar el sitio. Google Analytics 4 se activa a través de Google Tag Manager solo si
-      aceptas; Cloudflare Web Analytics puede operar como telemetría agregada de respaldo.
-      <a href="/politica-de-cookies/" class="cookie-link">Ver política de cookies</a>
+  <div class="cookie-banner__inner wrap">
+    <p class="cookie-banner__text">
+      Usamos Google Analytics 4 a través de Google Tag Manager solo si aceptas. No cargamos scripts de analítica antes
+      de tu consentimiento.
+      <a href="/politica-de-cookies/" class="cookie-banner__link">Ver política de cookies</a>
     </p>
-    <div class="cookie-actions">
-      <button class="btn cookie-btn" id="cookie-accept">Aceptar</button>
-      <button class="btn btn-secondary cookie-btn" id="cookie-reject">Rechazar</button>
+    <div class="cookie-banner__actions">
+      <button class="btn cookie-banner__btn" id="cookie-accept">Aceptar</button>
+      <button class="btn btn-secondary cookie-banner__btn" id="cookie-reject">Rechazar</button>
     </div>
   </div>
 </div>
@@ -23,7 +23,7 @@
     border-top: 1px solid var(--ink-line);
   }
 
-  .cookie-inner {
+  .cookie-banner__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,7 +32,7 @@
     padding-block: 1.25rem;
   }
 
-  .cookie-text {
+  .cookie-banner__text {
     font-family: var(--f-text);
     font-size: var(--t-sm);
     color: var(--muted-dark);
@@ -41,35 +41,35 @@
     margin: 0;
   }
 
-  .cookie-link {
+  .cookie-banner__link {
     color: var(--vermilion);
     text-decoration: underline;
     text-underline-offset: 2px;
     margin-left: 0.375rem;
     transition: color 160ms var(--ease-out);
   }
-  .cookie-link:hover {
+  .cookie-banner__link:hover {
     color: var(--bone);
   }
 
-  .cookie-actions {
+  .cookie-banner__actions {
     display: flex;
     gap: 0.75rem;
     flex-shrink: 0;
   }
 
-  .cookie-btn {
+  .cookie-banner__btn {
     font-size: var(--t-xs);
     padding: 0.6rem 1rem;
     min-height: 36px;
   }
 
   /* Secondary button on dark banner */
-  .cookie-btn.btn-secondary {
+  .cookie-banner__btn.btn-secondary {
     --fg: var(--bone);
     --bd: rgba(178, 174, 164, 0.35);
   }
-  .cookie-btn.btn-secondary:hover {
+  .cookie-banner__btn.btn-secondary:hover {
     --bg: var(--bone);
     --fg: var(--ink);
     border-color: var(--bone);

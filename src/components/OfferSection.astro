@@ -16,16 +16,16 @@ const { components } = Astro.props;
     </div>
 
     <h2 id="offer-h2">El Lead Engine dental.</h2>
-    <p class="lede offer-lede">
+    <p class="lede offer-section__lede">
       Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días
       tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.
     </p>
 
-    <div class="offer-grid">
+    <div class="offer-section__grid">
       {
         components.map((item) => (
-          <article class="offer-cell">
-            <p class="idx">{item.idx}</p>
+          <article class="offer-section__item">
+            <p class="offer-section__item-index">{item.idx}</p>
             <h3>{item.label}</h3>
             <p>{item.description}</p>
           </article>
@@ -33,18 +33,18 @@ const { components } = Astro.props;
       }
     </div>
 
-    <p class="promise">
+    <p class="offer-section__promise">
       Menos fuga. Más pacientes agendados calificados. Con el costo de cada uno visible desde el día 30.
     </p>
   </div>
 </section>
 
 <style>
-  .offer-lede {
+  .offer-section__lede {
     margin-top: 1.5rem;
   }
 
-  .offer-grid {
+  .offer-section__grid {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     display: grid;
     grid-template-columns: 1fr;
@@ -52,17 +52,17 @@ const { components } = Astro.props;
     position: relative;
   }
   @media (min-width: 720px) {
-    .offer-grid {
+    .offer-section__grid {
       grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 1080px) {
-    .offer-grid {
+    .offer-section__grid {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
-  .offer-grid::before {
+  .offer-section__grid::before {
     content: "";
     position: absolute;
     top: 0;
@@ -74,7 +74,7 @@ const { components } = Astro.props;
     z-index: 1;
   }
 
-  .offer-cell {
+  .offer-section__item {
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
     border-right: 1px solid var(--ink-line);
     border-bottom: 1px solid var(--ink-line);
@@ -85,11 +85,11 @@ const { components } = Astro.props;
     transition: background 160ms var(--ease-out);
     position: relative;
   }
-  .offer-cell:hover {
+  .offer-section__item:hover {
     background: var(--ink-2);
   }
 
-  .offer-cell .idx {
+  .offer-section__item-index {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     color: var(--vermilion);
@@ -97,14 +97,14 @@ const { components } = Astro.props;
     text-transform: uppercase;
     margin: 0;
   }
-  .offer-cell h3 {
+  .offer-section__item h3 {
     font-size: var(--t-xl);
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--bone);
     line-height: 1.25;
   }
-  .offer-cell p:last-child {
+  .offer-section__item p:last-child {
     color: var(--muted-dark);
     font-size: var(--t-md);
     line-height: 1.6;
@@ -112,31 +112,31 @@ const { components } = Astro.props;
   }
 
   @media (min-width: 1080px) {
-    .offer-cell:nth-child(3n) {
+    .offer-section__item:nth-child(3n) {
       border-right: 0;
     }
-    .offer-cell:nth-last-child(-n + 3) {
+    .offer-section__item:nth-last-child(-n + 3) {
       border-bottom: 0;
     }
   }
   @media (min-width: 720px) and (max-width: 1079px) {
-    .offer-cell:nth-child(2n) {
+    .offer-section__item:nth-child(2n) {
       border-right: 0;
     }
-    .offer-cell:nth-last-child(-n + 2) {
+    .offer-section__item:nth-last-child(-n + 2) {
       border-bottom: 0;
     }
   }
   @media (max-width: 719px) {
-    .offer-cell {
+    .offer-section__item {
       border-right: 0;
     }
-    .offer-cell:last-child {
+    .offer-section__item:last-child {
       border-bottom: 0;
     }
   }
 
-  .promise {
+  .offer-section__promise {
     margin-top: clamp(2rem, 4vw, 3rem);
     font-family: var(--f-display);
     font-size: var(--t-2xl);

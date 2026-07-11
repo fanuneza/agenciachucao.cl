@@ -11,24 +11,24 @@ interface Props {
 const { ctaText, ctaHref, whatsappHref } = Astro.props;
 ---
 
-<section class="section dark final-section" id="contacto" aria-labelledby="final-h2">
+<section class="section dark cta-section" id="contacto" aria-labelledby="final-h2">
   <div class="wrap">
     <div class="tray">
       <span class="serial">§ 08 / Contacto</span>
       <span class="meta">Auditoría gratuita</span>
     </div>
 
-    <div class="final">
+    <div class="cta-section__content">
       <h2 id="final-h2">Revisemos si tu clínica puede generar más agendamientos desde Google.</h2>
-      <p class="lede final-lede">
+      <p class="lede cta-section__lede">
         Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin
         compromiso. Solo una conversación con orientación clara.
       </p>
 
-      <div class="final-actions">
+      <div class="cta-section__actions">
         <TrackedLink
           href={ctaHref}
-          class="btn final-btn"
+          class="btn cta-section__btn"
           id="footer-cta-btn"
           trackEvent="select_content"
           trackLabel={ctaText}
@@ -41,7 +41,7 @@ const { ctaText, ctaHref, whatsappHref } = Astro.props;
         </TrackedLink>
         <TrackedLink
           href={whatsappHref}
-          class="wa-link"
+          class="cta-section__whatsapp"
           target="_blank"
           rel="noopener noreferrer"
           id="footer-wa-btn"
@@ -54,47 +54,47 @@ const { ctaText, ctaHref, whatsappHref } = Astro.props;
           <svg aria-hidden="true"><use href="#i-wa"></use></svg>
           Escribir por WhatsApp
         </TrackedLink>
-        <p class="final-microcopy">Te respondemos con una primera orientación clara. Sin venta agresiva.</p>
+        <p class="cta-section__microcopy">Te respondemos con una primera orientación clara. Sin venta agresiva.</p>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .final {
+  .cta-section__content {
     display: grid;
     grid-template-columns: 1fr;
     gap: clamp(1.5rem, 3vw, 2rem);
   }
   @media (min-width: 900px) {
-    .final {
+    .cta-section__content {
       grid-template-columns: 1.4fr 1fr;
       gap: clamp(2rem, 5vw, 4rem);
       align-items: end;
     }
-    .final-actions {
+    .cta-section__actions {
       grid-column: 2;
       grid-row: 1 / 3;
     }
   }
 
-  .final-lede {
+  .cta-section__lede {
     margin-top: 1.25rem;
     max-width: 55ch;
   }
 
-  .final-actions {
+  .cta-section__actions {
     display: grid;
     gap: 0.85rem;
     align-content: end;
     padding-top: 0.5rem;
   }
 
-  .final-btn {
+  .cta-section__btn {
     width: 100%;
   }
 
-  .wa-link {
+  .cta-section__whatsapp {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -110,17 +110,17 @@ const { ctaText, ctaHref, whatsappHref } = Astro.props;
       border-color 160ms var(--ease-out),
       background 160ms var(--ease-out);
   }
-  .wa-link:hover {
+  .cta-section__whatsapp:hover {
     border-color: var(--bone);
     background: var(--ink-2);
   }
-  .wa-link svg {
+  .cta-section__whatsapp svg {
     width: 1em;
     height: 1em;
     fill: currentColor;
   }
 
-  .final-microcopy {
+  .cta-section__microcopy {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     color: var(--muted-dark);

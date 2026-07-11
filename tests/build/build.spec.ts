@@ -141,7 +141,7 @@ test.describe("critical content", () => {
   test("home page has expected sections", async ({ page }) => {
     await page.goto("/", { waitUntil: "load" });
 
-    await expect(page.locator("header.nav")).toBeVisible();
+    await expect(page.locator("header.site-nav")).toBeVisible();
     await expect(page.locator("main")).toBeVisible();
     await expect(page.locator("footer")).toBeVisible();
     const contactLinks = page.locator('a[href="/contacto/"]');

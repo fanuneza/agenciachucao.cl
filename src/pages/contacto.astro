@@ -9,44 +9,44 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
   description="Cuéntanos de tu clínica. Revisamos dónde se están perdiendo pacientes agendados y te mostramos cómo medirlo."
   canonical="https://agenciachucao.cl/contacto/"
 >
-  <section class="section dark audit-hero">
+  <section class="section dark audit-page__hero">
     <div class="wrap">
       <div class="tray">
         <span class="serial">Auditoría gratuita</span>
         <span class="meta">Sin compromiso · respuesta en 24 h</span>
       </div>
       <h1>Cuéntanos de<br />tu clínica.</h1>
-      <p class="lede audit-lede">
+      <p class="lede audit-page__lede">
         Revisamos dónde se están perdiendo pacientes agendados y te mostramos cómo medirlo. Sin compromiso, sin
         presentación. Solo números.
       </p>
     </div>
   </section>
 
-  <section class="section audit-body">
+  <section class="section audit-page__body">
     <div class="wrap">
-      <div class="audit-grid">
-        <div class="audit-form-wrap">
+      <div class="audit-page__grid">
+        <div class="audit-page__form">
           <ContactForm />
         </div>
 
-        <aside class="audit-aside">
-          <div class="audit-block">
+        <aside class="audit-page__aside">
+          <div class="audit-page__block">
             <p class="kicker">Tiempo de respuesta</p>
-            <p class="audit-block-text">
+            <p class="audit-page__block-text">
               Menos de 24 horas hábiles. Si es viernes en la tarde, respondemos el lunes temprano.
             </p>
           </div>
-          <div class="audit-block">
+          <div class="audit-page__block">
             <p class="kicker">Qué pasa después</p>
-            <p class="audit-block-text">
+            <p class="audit-page__block-text">
               Revisamos tu sitio, tu perfil en Google y tu presencia en directorios. Te enviamos una auditoría breve con
               los puntos de fuga. Sin cobrarte nada.
             </p>
           </div>
-          <div class="audit-block">
+          <div class="audit-page__block">
             <p class="kicker">Correo directo</p>
-            <a href="mailto:contacto@agenciachucao.cl" class="audit-email">contacto@agenciachucao.cl</a>
+            <a href="mailto:contacto@agenciachucao.cl" class="audit-page__email">contacto@agenciachucao.cl</a>
           </div>
         </aside>
       </div>
@@ -57,26 +57,26 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
 </BaseLayout>
 
 <style>
-  .audit-hero {
+  .audit-page__hero {
     border-top: 0;
   }
-  .audit-lede {
+  .audit-page__lede {
     margin-top: 1.5rem;
   }
 
-  .audit-grid {
+  .audit-page__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: clamp(3rem, 6vw, 5rem);
     align-items: start;
   }
   @media (min-width: 1024px) {
-    .audit-grid {
+    .audit-page__grid {
       grid-template-columns: minmax(0, 600px) 280px;
     }
   }
 
-  .audit-aside {
+  .audit-page__aside {
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -84,35 +84,35 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
     top: 5.5rem;
   }
 
-  .audit-block {
+  .audit-page__block {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     padding-block: 1.5rem;
     border-bottom: 1px solid var(--bone-line);
   }
-  .audit-block:first-child {
+  .audit-page__block:first-child {
     padding-top: 0;
   }
-  .audit-block:last-child {
+  .audit-page__block:last-child {
     border-bottom: none;
   }
 
-  .audit-block-text {
+  .audit-page__block-text {
     font-size: var(--t-md);
     line-height: 1.65;
     color: var(--graphite);
     margin: 0;
   }
 
-  .audit-email {
+  .audit-page__email {
     font-family: var(--f-mono);
     font-size: var(--t-sm);
     color: var(--ink);
     word-break: break-all;
     transition: color 160ms var(--ease-out);
   }
-  .audit-email:hover {
+  .audit-page__email:hover {
     color: var(--vermilion);
   }
 </style>

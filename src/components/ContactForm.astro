@@ -1,6 +1,9 @@
 ---
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
+
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waFallback = `https://wa.me/${waNumber}?text=Hola%2C%20intent%C3%A9%20contactarme%20por%20el%20formulario%20pero%20tuve%20un%20problema.%20%C2%BFPodr%C3%ADan%20ayudarme%3F`;
+const waFallbackMessage = "Hola, intenté contactarme por el formulario pero tuve un problema. ¿Podrían ayudarme?";
+const waFallback = buildWhatsAppUrl(waNumber, waFallbackMessage);
 const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
 
@@ -8,7 +11,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   <input type="hidden" name="access_key" value={web3Key} />
   <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <div class="form-group">
+  <div class="contact-form__group">
     <label class="field-label" for="nombre">Tu nombre</label>
     <input
       class="form-field"
@@ -19,16 +22,16 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       placeholder="Nombre y apellido"
       required
     />
-    <span class="field-error" id="err-nombre"></span>
+    <span class="contact-form__error" id="err-nombre"></span>
   </div>
 
-  <div class="form-group">
+  <div class="contact-form__group">
     <label class="field-label" for="clinica">Nombre de tu clínica</label>
     <input class="form-field" type="text" id="clinica" name="clinica" placeholder="Clínica Dental..." required />
-    <span class="field-error" id="err-clinica"></span>
+    <span class="contact-form__error" id="err-clinica"></span>
   </div>
 
-  <div class="form-group">
+  <div class="contact-form__group">
     <label class="field-label" for="phone">Teléfono o WhatsApp</label>
     <input
       class="form-field"
@@ -39,32 +42,35 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       placeholder="+56 9 1234 5678"
       required
     />
-    <span class="field-error" id="err-phone"></span>
+    <span class="contact-form__error" id="err-phone"></span>
   </div>
 
-  <div class="form-group">
+  <div class="contact-form__group">
     <label class="field-label" for="tratamiento">Tratamiento principal</label>
-    <select class="form-field form-select" id="tratamiento" name="tratamiento" required>
+    <select class="form-field contact-form__select" id="tratamiento" name="tratamiento" required>
       <option value="">Selecciona una opción…</option>
       <option value="Implantología">Implantología</option>
       <option value="Ortodoncia">Ortodoncia</option>
       <option value="Rehabilitación oral">Rehabilitación oral</option>
       <option value="Otro">Otro</option>
     </select>
-    <span class="field-error" id="err-tratamiento"></span>
+    <span class="contact-form__error" id="err-tratamiento"></span>
   </div>
 
-  <div id="form-status" class="form-status" aria-live="polite"></div>
+  <div id="form-status" class="contact-form__status" aria-live="polite"></div>
 
-  <button type="submit" class="btn form-submit" id="form-submit-btn"
+  <button type="submit" class="btn contact-form__submit" id="form-submit-btn"
     >Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg></button
   >
 </form>
 
-<div class="form-wa-fallback">
-  <p class="fallback-text">
-    ¿Prefieres WhatsApp? <a href={waFallback} target="_blank" rel="noopener noreferrer" class="fallback-link"
-      >Escríbenos directamente →</a
+<div class="contact-form__fallback">
+  <p class="contact-form__fallback-text">
+    ¿Prefieres WhatsApp? <a
+      href={waFallback}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="contact-form__fallback-link">Escríbenos directamente →</a
     >
   </p>
 </div>
@@ -77,49 +83,49 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     margin-bottom: 1.5rem;
   }
 
-  .form-group {
+  .contact-form__group {
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
   }
 
-  .field-error {
+  .contact-form__error {
     font-family: var(--f-mono);
     font-size: var(--t-xs);
     color: var(--vermilion);
     display: none;
   }
-  .field-error.visible {
+  .contact-form__error--visible {
     display: block;
   }
 
-  .form-field.invalid {
+  .contact-form__group--invalid .form-field {
     border-color: var(--vermilion);
     box-shadow: 0 0 0 3px rgba(210, 74, 42, 0.12);
   }
 
-  .form-status {
+  .contact-form__status {
     font-family: var(--f-text);
     font-size: var(--t-md);
     padding: 0.875rem 1rem;
     border: 1px solid var(--bone-line);
     display: none;
   }
-  .form-status:not(:empty) {
+  .contact-form__status:not(:empty) {
     display: block;
   }
-  .form-status.success {
+  .contact-form__status--success {
     background: var(--bone-2);
     color: var(--ink);
     border-color: var(--bone-line);
   }
-  .form-status.error {
+  .contact-form__status--error {
     background: var(--bone-2);
     color: var(--vermilion-d);
     border-color: var(--vermilion);
   }
 
-  .form-select {
+  .contact-form__select {
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A4943' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -127,30 +133,30 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     padding-right: 2.5rem;
   }
 
-  .form-submit {
+  .contact-form__submit {
     align-self: flex-start;
   }
-  .form-submit:disabled {
+  .contact-form__submit:disabled {
     opacity: 0.45;
     cursor: not-allowed;
   }
 
-  .form-wa-fallback {
+  .contact-form__fallback {
     margin-top: 0.5rem;
   }
-  .fallback-text {
+  .contact-form__fallback-text {
     font-family: var(--f-text);
     font-size: var(--t-sm);
     color: var(--graphite);
     margin: 0;
   }
-  .fallback-link {
+  .contact-form__fallback-link {
     color: var(--ink);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 160ms var(--ease-out);
   }
-  .fallback-link:hover {
+  .contact-form__fallback-link:hover {
     color: var(--vermilion);
   }
 </style>

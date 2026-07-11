@@ -1,9 +1,10 @@
 ---
 import TrackedLink from "@components/TrackedLink.astro";
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waMessage = encodeURIComponent("Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental.");
-const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
+const waMessage = "Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental.";
+const waHref = buildWhatsAppUrl(waNumber, waMessage);
 ---
 
 <TrackedLink
@@ -20,9 +21,9 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
   trackDestination={waHref}
   trackCategory="whatsapp"
 >
-  <span class="dot" aria-hidden="true"></span>
-  <svg aria-hidden="true"><use href="#i-wa"></use></svg>
-  <span class="lbl">WhatsApp · respuesta &lt; 24 h</span>
+  <span class="wa-float__dot" aria-hidden="true"></span>
+  <svg class="wa-float__icon" aria-hidden="true"><use href="#i-wa"></use></svg>
+  <span class="wa-float__label">WhatsApp · respuesta &lt; 24 h</span>
 </TrackedLink>
 
 <script>
@@ -87,7 +88,7 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     outline-offset: 3px;
   }
 
-  .wa-float .dot {
+  .wa-float__dot {
     width: 8px;
     height: 8px;
     background: var(--color-wa);
@@ -95,15 +96,19 @@ const waHref = `https://wa.me/${waNumber}?text=${waMessage}`;
     flex-shrink: 0;
   }
 
-  .wa-float svg {
+  .wa-float__icon {
     width: 18px;
     height: 18px;
     fill: currentColor;
     flex: 0 0 auto;
   }
 
+  .wa-float__label {
+    white-space: nowrap;
+  }
+
   @media (max-width: 520px) {
-    .wa-float .lbl {
+    .wa-float__label {
       display: none;
     }
     .wa-float {
