@@ -14,6 +14,8 @@ The main structural problems found were:
 
 The refactor removed ~1,170 lines and added ~560 lines across 32 changed files, deleted 4 unused files, and created 7 new focused modules. All verification commands pass.
 
+A follow-up CSS delivery pass then moved all remaining component `<style>` blocks out of the build and into explicitly loaded stylesheets (`public/styles/`). This eliminated the Lighthouse `unused-css-rules` failure and the contact-page CLS issue without adding new dependencies or changing visual output.
+
 ## Baseline condition
 
 - **Framework:** Astro 6.4.2, static output.
@@ -63,11 +65,24 @@ The refactor removed ~1,170 lines and added ~560 lines across 32 changed files, 
 | `npm run test:a11y`       | 4/4 pass                                                    |
 | `npm run test:consent`    | 3/3 pass                                                    |
 | `npm test`                | 26/26 pass                                                  |
-| `npm run test:lighthouse` | pass (unused-css-rules now warns with `maxLength: 1`)       |
+| `npm run test:lighthouse` | pass (no `unused-css-rules` or CLS failures)                |
 
 One test selector was updated as a consequence of the BEM migration: `tests/build/build.spec.ts:144` now uses `header.site-nav` instead of `header.nav`.
 
 No regressions introduced by the refactor.
+
+### After CSS delivery pass
+
+| Command                   | Result                                                      |
+| ------------------------- | ----------------------------------------------------------- |
+| `npm run check`           | 0 errors, 0 warnings, 8 hints (same pre-existing `z` hints) |
+| `npm run lint`            | pass                                                        |
+| `npm run format:check`    | pass                                                        |
+| `npm run build`           | pass                                                        |
+| `npm test`                | 26/26 pass                                                  |
+| `npm run test:lighthouse` | pass                                                        |
+
+`unused-css-rules` no longer fails on `/` or `/contacto/`, and the contact-page `cumulative-layout-shift` warning is gone. The only remaining Lighthouse warnings are `render-blocking-resources`, which is expected for synchronously loaded above-the-fold CSS.
 
 ## Refactoring passes completed
 
@@ -81,11 +96,18 @@ No regressions introduced by the refactor.
 8. **CSS code-split for below-the-fold content** — moved non-critical CSS out of the global bundle and component `<style>` blocks into lazy-loaded stylesheets:
    - `public/styles/footer.css` (footer layout and dark surfaces)
    - `public/styles/contact-form.css` (form fields, validation states, selects)
-   - `public/styles/contacto.css` (`/contacto/` body grid and aside blocks)
-   - Critical fallback styles for footer background/text, form layout, and contact-page grid were added to `src/styles/global.css` to prevent FOUC.
-   - `IntersectionObserver` loads each lazy stylesheet when its target element enters the viewport (`rootMargin: 400px`), with `<noscript>` fallbacks.
-9. **Lighthouse assertion tuning** — set `unused-css-rules` in `.lighthouserc.cjs` to `maxLength: 1` (warn). Astro's `build.inlineStylesheets: "always"` inlines all scoped component CSS; some below-the-fold rules are unavoidable on any route, and the metric savings are 0 ms.
-10. **Final cleanup** — fixed formatting, ran full verification suite, confirmed no old selectors remain in source.
+   - `public/styles/cookie-banner.css` (cookie banner layout and secondary button)
+   - `public/styles/home-sections.css` (all below-the-fold home sections)
+   - `public/styles/hero.css` (home hero, synchronously loaded)
+   - `public/styles/audit-hero.css` (`/contacto/` hero, grid, aside, and critical form layout)
+   - `public/styles/policy.css`, `public/styles/not-found.css`, `public/styles/blog-post.css` (content pages)
+   - `public/styles/base-content.css` (shared h2–h4 and `.eyebrow`, loaded sync on content pages and lazy on home)
+   - `src/components/LazyStyles.astro` uses `IntersectionObserver` to load each lazy stylesheet when its target element enters the viewport (`rootMargin: 0px`), with `<noscript>` fallbacks.
+9. **Global CSS reduction** — removed non-shared typography and state rules from `src/styles/global.css` (h2–h4, `.eyebrow`, `.btn[disabled]`, hero-only `strong`/`em` overrides) so the global bundle only contains reset/base, skip-link, brand, nav, WhatsApp float, and shared button primitives. Switched `@fontsource` imports to latin subsets, eliminating unused non-Latin `@font-face` rules from the critical path.
+10. **CLS fix on `/contacto/`** — moved the contact-page grid/aside layout and the critical form field dimensions into the synchronously loaded `audit-hero.css`, so form inputs do not shift when the lazy form stylesheet arrives.
+11. **Lighthouse assertion recovery** — removed the `unused-css-rules: maxLength: 1` exception from `.lighthouserc.cjs`; the metric now passes on both monitored routes.
+12. **Final cleanup** — fixed formatting, ran full verification suite, confirmed no old selectors remain in source.
+13. **Agent guidance consolidation** — compared `AGENTS.md` against `astro-starter-standards` and strengthened it with explicit sections for required documentation, performance/accessibility, SEO/LLM coverage, analytics/consent/security, and Cloudflare Pages deployment. Created `docs/quality.md` as the source of truth for the quality contract, routes, verification commands, resource budgets, and delivery checklist.
 
 ## Dead code removed
 
@@ -339,19 +361,47 @@ No pre-existing test failures. The only baseline warnings are:
 - **Framework migration:** not applicable.
 - **Major redesign of 404 page:** repaired with existing tokens but kept the same content and structure.
 
+## Agent guidance pass
+
+After the CSS delivery pass, `AGENTS.md` was compared against `astro-starter-standards` to adopt conventions that improve maintainability without inventing project facts.
+
+### Changes
+
+- Added `Required Documentation` section listing existing docs (`PRODUCT.md`, `DESIGN.md`, `docs/refactor-audit.md`, `docs/refactor-report.md`, `docs/analytics-csp-consent.md`, `docs/ci-audit.md`) and the rule that new decisions must update the relevant doc instead of bloating `AGENTS.md`.
+- Expanded `Opening Workflow` with Astro Docs MCP decision points and shell-search guidance.
+- Added `Performance and Accessibility` section covering islands, fonts, images, semantic HTML, keyboard/focus, contrast, and reduced motion.
+- Expanded `SEO, Structured Data y LLM Coverage` with crawlability, canonical facts, `llms.txt` cautions, and the no-PII rule.
+- Added `Analytics, Consent y Seguridad` with the opt-in/consented rule, no-standalone-`gtag.js` rule, event centralization, and security baseline headers.
+- Added `Cloudflare Pages y Deployment` with build command, output directory, preview deployments, Pages limits, and the intentional disabling of Cloudflare Web Analytics.
+- Created `docs/quality.md` with representative routes, Lighthouse targets, verification commands, resource budgets, and delivery checklist.
+
+### Verification
+
+| Command                | Result                                         |
+| ---------------------- | ---------------------------------------------- |
+| `npm run format:check` | pass                                           |
+| `npm run lint`         | pass                                           |
+| `npm run check`        | 0 errors, 0 warnings, 8 pre-existing `z` hints |
+| `npm run build`        | pass                                           |
+| `npm test`             | 26/26 pass                                     |
+
+No behavioral changes; only documentation and project conventions were updated.
+
 ## Known risks or areas requiring manual browser review
 
 - The 404 page was restyled from broken tokens to existing tokens; a quick manual check that it renders correctly is recommended.
 - The header scroll shadow (`site-nav--scrolled`) was previously non-functional because the selector targeted `#site-header`, which did not exist. It now targets `.site-nav`. This is a behavior fix, but the visual effect should be verified.
 - The contact-form error state now applies a red border via `.contact-form__group--invalid .form-field`; this was previously broken and should be verified visually.
 - BEM migration touched many components; while all automated tests pass, a visual smoke test across breakpoints is recommended.
-- Lazy-loaded CSS (`footer.css`, `contact-form.css`, `contacto.css`) relies on `IntersectionObserver`; verify that styles appear on slow connections and that the `<noscript>` fallbacks cover users without JavaScript.
-- `unused-css-rules` is now a warn-level assertion with `maxLength: 1`. This is a pragmatic acceptance of Astro's inlined scoped CSS; it does not regress real performance (metric savings are 0 ms).
+- Lazy-loaded CSS (`footer.css`, `contact-form.css`, `home-sections.css`, `cookie-banner.css`, `base-content.css`) relies on `IntersectionObserver`; verify that styles appear on slow connections and that the `<noscript>` fallbacks cover users without JavaScript.
+- `render-blocking-resources` remains a Lighthouse warning because above-the-fold CSS (`global.css`, `hero.css`, `audit-hero.css`, content-page stylesheets) is loaded synchronously. This is intentional: the alternative (async CSS) risks FOUC on a conversion-focused landing page. The warning has no metric savings in this case.
 
 ## Summary of changes
 
-- 32 source files changed, 4 deleted, 10 created (3 new lazy-loaded stylesheets: `public/styles/footer.css`, `public/styles/contact-form.css`, `public/styles/contacto.css`); plus 1 test selector updated.
-- ~1,170 lines removed, ~560 lines added (net reduction ~610 lines).
+- 32 source files changed in the initial refactor, plus the CSS delivery pass modified `src/styles/global.css`, all major components/pages, and `BaseLayout.astro`.
+- New files created in the CSS pass: `src/components/LazyStyles.astro`, `public/styles/hero.css`, `public/styles/audit-hero.css`, `public/styles/home-sections.css`, `public/styles/cookie-banner.css`, `public/styles/base-content.css`, `public/styles/policy.css`, `public/styles/not-found.css`, `public/styles/blog-post.css`. `public/styles/contacto.css` was removed after its rules merged into `audit-hero.css`.
+- Agent guidance pass updated `AGENTS.md` and created `docs/quality.md`.
+- ~1,170 lines removed, ~560 lines added in the initial refactor (net reduction ~610 lines); additional line churn in the CSS pass is mostly file moves.
 - No new dependencies.
 - No behavioral or public-interface changes.
-- All verification commands pass.
+- All verification commands pass, including Lighthouse without `unused-css-rules` or CLS failures.

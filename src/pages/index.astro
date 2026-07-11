@@ -12,6 +12,7 @@ import FoundingOffer from "@components/FoundingOffer.astro";
 import FAQ from "@components/FAQ.astro";
 import CTAFinal from "@components/CTAFinal.astro";
 import WhatsAppButton from "@components/WhatsAppButton.astro";
+import LazyStyles from "@components/LazyStyles.astro";
 import { offerComponents } from "@data/services";
 import { buildFaqPage } from "@/utils/schema";
 import { buildWhatsAppUrl } from "@/utils/whatsapp";
@@ -114,6 +115,10 @@ const faqSchema = buildFaqPage(faqItems);
   description="Convertimos búsquedas activas en pacientes agendados. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
   schema={faqSchema}
 >
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/styles/hero.css" />
+  </Fragment>
+
   <Hero
     headline="Convierte búsquedas en agendamientos."
     subheadline="Google Ads + landing de conversión + seguimiento por WhatsApp para clínicas dentales en Santiago. En 30 días sabes cuánto te cuesta cada paciente nuevo."
@@ -147,4 +152,10 @@ const faqSchema = buildFaqPage(faqItems);
   />
 
   <WhatsAppButton />
+  <LazyStyles
+    targets={[
+      { selector: ".problem-section", href: "/styles/home-sections.css" },
+      { selector: ".problem-section", href: "/styles/base-content.css" },
+    ]}
+  />
 </BaseLayout>

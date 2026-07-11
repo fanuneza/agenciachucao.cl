@@ -2,48 +2,18 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ContactForm from "@components/ContactForm.astro";
 import WhatsAppButton from "@components/WhatsAppButton.astro";
+import LazyStyles from "@components/LazyStyles.astro";
 ---
-
-<script is:inline>
-  (function () {
-    var body = document.querySelector(".audit-page__body");
-    if (!body) return;
-    function loadCss(href) {
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = href;
-      document.head.appendChild(link);
-    }
-    if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(
-        function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              loadCss("/styles/contacto.css");
-              loadCss("/styles/contact-form.css");
-              obs.disconnect();
-            }
-          });
-        },
-        { rootMargin: "400px" }
-      );
-      observer.observe(body);
-    } else {
-      loadCss("/styles/contacto.css");
-      loadCss("/styles/contact-form.css");
-    }
-  })();
-</script>
-<noscript>
-  <link rel="stylesheet" href="/styles/contacto.css" />
-  <link rel="stylesheet" href="/styles/contact-form.css" />
-</noscript>
 
 <BaseLayout
   title="Solicita tu auditoría gratuita"
   description="Cuéntanos de tu clínica. Revisamos dónde se están perdiendo pacientes agendados y te mostramos cómo medirlo."
   canonical="https://agenciachucao.cl/contacto/"
 >
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/styles/audit-hero.css" />
+  </Fragment>
+
   <section class="section dark audit-page__hero">
     <div class="wrap">
       <div class="tray">
@@ -89,4 +59,5 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
   </section>
 
   <WhatsAppButton />
+  <LazyStyles targets={[{ selector: ".contact-form", href: "/styles/contact-form.css" }]} />
 </BaseLayout>

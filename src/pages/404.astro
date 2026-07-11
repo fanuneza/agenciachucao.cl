@@ -13,6 +13,11 @@ const waHref = buildWhatsAppUrl(waNumber, waMessage);
   description="Esta página no existe o fue movida. Vuelve al inicio o escríbenos por WhatsApp."
   noindex={true}
 >
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/styles/base-content.css" />
+    <link rel="stylesheet" href="/styles/not-found.css" />
+  </Fragment>
+
   <section class="section dark not-found" aria-labelledby="not-found-title">
     <div class="wrap not-found__inner">
       <span class="not-found__code" aria-hidden="true">404</span>
@@ -33,42 +38,3 @@ const waHref = buildWhatsAppUrl(waNumber, waMessage);
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .not-found {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-  }
-  .not-found__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 52ch;
-  }
-  .not-found__code {
-    font-family: var(--f-display);
-    font-weight: 700;
-    font-size: clamp(72px, 12vw, 120px);
-    color: var(--vermilion);
-    line-height: 1;
-    letter-spacing: -0.04em;
-  }
-  .not-found__title {
-    color: var(--bone);
-  }
-  .not-found__text {
-    font-size: var(--t-lg);
-    line-height: 1.75;
-    color: var(--muted-dark);
-  }
-  .not-found__redirect {
-    color: var(--vermilion-light);
-    font-weight: 600;
-  }
-  .not-found__actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-</style>

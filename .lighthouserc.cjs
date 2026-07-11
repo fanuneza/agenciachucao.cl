@@ -30,10 +30,6 @@ module.exports = {
         "uses-responsive-images": "warn",
         "modern-image-formats": "warn",
         "render-blocking-resources": "warn",
-        // Astro inlines scoped component CSS; we lazy-load below-the-fold CSS
-        // and keep critical styles inline, but one stylesheet with unused rules
-        // is unavoidable on pages with below-the-fold components.
-        "unused-css-rules": ["warn", { maxLength: 1 }],
       },
     },
     upload: {

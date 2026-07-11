@@ -61,7 +61,7 @@ coverage/
 
 # Local agent / IDE settings
 .claude/
-.impeccable/
+.impeccable/*
 
 # Agent workflow instructions (local only)
 Astro.md

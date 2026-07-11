@@ -1,0 +1,128 @@
+.audit-page__hero {
+  border-top: 0;
+}
+.audit-page__lede {
+  margin-top: 1.5rem;
+}
+
+.kicker {
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.audit-page__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .audit-page__grid {
+    grid-template-columns: minmax(0, 600px) 280px;
+  }
+}
+
+.audit-page__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 5.5rem;
+}
+
+.audit-page__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--bone-line);
+}
+.audit-page__block:first-child {
+  padding-top: 0;
+}
+.audit-page__block:last-child {
+  border-bottom: none;
+}
+
+.audit-page__block-text {
+  font-size: var(--t-md);
+  line-height: 1.65;
+  color: var(--graphite);
+  margin: 0;
+}
+
+.audit-page__email {
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  color: var(--ink);
+  word-break: break-all;
+  transition: color 160ms var(--ease-out);
+}
+.audit-page__email:hover {
+  color: var(--vermilion);
+}
+
+/* Critical form layout loaded synchronously to avoid CLS while the full form styles lazy-load. */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field-label {
+  display: block;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.form-field {
+  width: 100%;
+  min-height: 48px;
+  background: var(--white);
+  border: 1.5px solid var(--bone-line);
+  padding: 0.75rem 1rem;
+  font-family: var(--f-text);
+  font-size: var(--t-md);
+  color: var(--ink);
+  outline: none;
+  appearance: none;
+}
+
+.contact-form__error {
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  color: var(--vermilion);
+  display: none;
+}
+
+.contact-form__status {
+  font-family: var(--f-text);
+  font-size: var(--t-md);
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--bone-line);
+  display: none;
+}
+
+.contact-form__submit {
+  align-self: flex-start;
+  min-height: 48px;
+}
+
+.contact-form__fallback {
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,28 @@
+/* Heading levels and section kicker used below-the-fold on home and on content pages. */
+
+h2,
+h3,
+h4 {
+  font-family: var(--f-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
+}
+h2 {
+  font-size: var(--t-6xl);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+h3 {
+  font-size: var(--t-4xl);
+}
+
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vermilion);
+}

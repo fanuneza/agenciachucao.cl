@@ -1,6 +1,6 @@
 # Agencia Chucao — Agent Guidance
 
-Este documento define las convenciones del proyecto para agentes que trabajen en [`agenciachucao.cl`](https://agenciachucao.cl). Es un sitio estático de conversión para clínicas dentales de alto ticket en Santiago, Chile. Antes de modificar código, lee este archivo, `PRODUCT.md`, `DESIGN.md` y el estado del working tree.
+Este documento define las convenciones del proyecto para agentes que trabajen en [`agenciachucao.cl`](https://agenciachucao.cl). Es un sitio estático de conversión para clínicas dentales de alto ticket en Santiago, Chile. Antes de modificar código, lee este archivo, `PRODUCT.md`, `DESIGN.md`, `README.md` y el estado del working tree.
 
 ## Project Context
 
@@ -21,14 +21,28 @@ Este documento define las convenciones del proyecto para agentes que trabajen en
 4. **No filler:** cada sección debe justificar su existencia con una acción o una creencia que acerque al CTA.
 5. **Accessible by default:** cumplir WCAG AA estricto en contraste, foco, motion y lectores de pantalla.
 
+## Required Documentation
+
+Las decisiones importantes del proyecto deben quedar registradas. No inventar dominios, datos legales, credenciales, IDs de tracking ni claims no verificados. Los documentos existentes son:
+
+- `PRODUCT.md` — contexto de negocio, usuario, propuesta de valor y voz.
+- `DESIGN.md` — sistema visual, tokens, tipografía, reglas de diseño y sidecar `.impeccable/design.json`.
+- `docs/refactor-audit.md` — hallazgos y plan inicial del refactor de mantenibilidad.
+- `docs/refactor-report.md` — resumen ejecutivo del refactor ejecutado, baseline y resultados.
+- `docs/analytics-csp-consent.md` — arquitectura de consentimiento, GTM/GA4, CSP y checklist de QA manual.
+- `docs/ci-audit.md` — estado y recomendaciones del pipeline de CI.
+
+Cuando una decisión nueva lo amerite, actualizar el documento correspondiente en lugar de agregar secciones sueltas en `AGENTS.md`.
+
 ## Opening Workflow
 
 1. Lee este `AGENTS.md`, `PRODUCT.md`, `DESIGN.md`, `README.md` y el estado del working tree.
 2. Resuelve el repo con jCodeMunch e indexa si es necesario.
 3. Para trabajo en fuentes, usa `plan_turn` con el repo resuelto, la tarea y el modelo activo.
-4. Consulta Astro Docs MCP antes de confiar en comportamiento de Astro que pueda cambiar.
+4. Consulta Astro Docs MCP antes de confiar en comportamiento de Astro que pueda cambiar: integraciones, adaptadores, content collections/loaders, imágenes, rutas, middleware, actions, sesiones y view transitions.
 5. Define un resultado pequeño y verificable. Preserva trabajo no relacionado.
 6. Antes de cambiar comportamiento compartido, revisa blast radius e importadores. Después de editar, llama `register_edit` con `reindex: true`.
+7. Shell search sigue siendo válido para nombres de archivo, output generado, texto exacto y documentación no indexada.
 
 ## Design System
 
@@ -57,8 +71,9 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 ## Implementation Defaults
 
 - Stack: Astro 6, TypeScript, output estático, npm.
-- Fuentes auto-hospedadas en `public/fonts/`.
-- Estilos en `src/styles/tokens.css` y `src/styles/global.css`. No añadir metodologías CSS nuevas sin justificación.
+- Fuentes auto-hospedadas en `public/fonts/`. Cargar variantes `latin-*` de `@fontsource` para reducir CSS crítico.
+- Estilos en `src/styles/global.css` y hojas por ruta en `public/styles/`. No añadir metodologías CSS nuevas sin justificación.
+- No usar bloques `<style>` en componentes ni páginas. El CSS de cada bloque vive en `public/styles/` y se carga explícitamente.
 - Componentes Astro en `src/components/`. Mantener módulos pequeños y con nombres claros.
 - Formulario de contacto en `src/components/ContactForm.astro`, enviado vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`). Sus estilos viven en `public/styles/contact-form.css` y se cargan de forma asíncrona solo en `/contacto/`.
 - WhatsApp flotante en `src/components/WhatsAppButton.astro` (`PUBLIC_WA_NUMBER`).
@@ -69,10 +84,12 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 
 ## Quality Contract
 
+Las rutas representativas y el plan de verificación detallado viven en `docs/quality.md`. Resumen:
+
 - Rutas representativas para verificar: `/`, `/contacto/`, `/politica-de-cookies/`, `/404`.
-- Objetivo: Lighthouse 100 en Accessibility, Best Practices y SEO; Performance con excepción documentada para `unused-css-rules`.
-- Astro `build.inlineStylesheets: "always"` fuerza todo el CSS scoped de componentes a un `<style>` inline por página. El CSS below-the-fold (footer, formulario de contacto, cuerpo de `/contacto/`) se carga de forma no bloqueante vía `IntersectionObserver` desde `public/styles/footer.css`, `public/styles/contact-form.css` y `public/styles/contacto.css`; los estilos críticos mínimos se mantienen en `src/styles/global.css` para evitar FOUC.
-- `.lighthouserc.cjs` tolera hasta 1 stylesheet con reglas no usadas (`unused-css-rules`: `maxLength: 1`) porque el CSS scoped inlineado siempre contendrá algo de below-the-fold; el impacto real es 0 ms de metric savings. Eliminarlo por completo requeriría extraer todo el CSS de componentes a archivos globales/lazy-loaded (refactor grande) o cambiar `inlineStylesheets`.
+- Objetivo: Lighthouse 100 en Accessibility, Best Practices y SEO; Performance con `render-blocking-resources` como advertencia aceptada por CSS crítico sincrónico.
+- El CSS de cada página se carga de forma explícita: `src/styles/global.css` (compartido sincrónico) más hojas sincrónicas/lazy en `public/styles/` según la ruta. El CSS below-the-fold (footer, formulario de contacto, secciones de home, banner de cookies) se carga de forma no bloqueante vía `IntersectionObserver` usando `src/components/LazyStyles.astro`; los estilos críticos de layout se mantienen en hojas sincrónicas para evitar CLS/FOUC.
+- `.lighthouserc.cjs` no tiene excepciones para `unused-css-rules`: todas las hojas cargadas en una ruta deben contener solo reglas usadas en esa ruta. Si se añade una hoja compartida, asegurar que no traiga reglas no usadas por la ruta testeada, o dividirla/duplicarla por página.
 - Tests de accesibilidad con axe-core en `tests/visual/a11y.spec.ts`.
 - Tests de build/output en `tests/build-output.spec.ts` y `tests/build/build.spec.ts`.
 - Tests de consentimiento en `tests/analytics-consent.spec.ts`.
@@ -81,17 +98,55 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 - Antes de entregar: suite completa (`npm run lint`, `npm run format:check`, `npm run check`, `npm run build`, `npm test`).
 - Reportar checks omitidos y sus razones.
 
-## SEO, Structured Data y Analytics
+## Performance and Accessibility
+
+- Mantener páginas estáticas y server-rendered. Cada island, script inline, tercero o función runtime requiere un requisito de usuario concreto.
+- Usar Astro islands solo en el límite interactivo más pequeño y elegir la directiva de cliente menos eager que cumpla el UX.
+- Preferir fuentes auto-hospedadas/subseteadas con `font-display` adecuado. Precargar solo recursos críticos medidos.
+- Usar componentes de imagen de Astro. Dimensionar imágenes, entregar `sizes` precisos y mantener la imagen LCP descubrible y eager-loaded.
+- Usar landmarks semánticos, un `h1` claro por página, jerarquía lógica de encabezados y nombres descriptivos en enlaces/botones.
+- Soportar teclado, foco visible, skip navigation, zoom/reflow, touch targets, reduced motion y alternativas no-hover.
+- Dar a formularios etiquetas persistentes, instrucciones, mensajes de estado y recuperación útil de errores.
+- Cumplir WCAG AA en contraste; no comunicar significado solo con color.
+- Imágenes informativas con `alt` contextual; imágenes decorativas con `alt` vacío u ocultamiento apropiado.
+- Preferir HTML nativo antes que ARIA; preservar `aria-expanded`, `aria-current`, `disabled`, `checked`, `open`, `hidden`.
+- No ocultar contenido esencial detrás de JavaScript, animaciones, acordeones, carruseles o hover.
+
+## SEO, Structured Data y LLM Coverage
 
 - El sitio usa `@jdevalk/astro-seo-graph` para validación de H1, metadatos, enlaces internos, alt de imágenes y structured data.
 - Emite `WebSite` node en la home con `name` consistente a `og:site_name` y branding.
+- Cada página indexable debe tener título descriptivo, meta descripción, canonical URL, un `h1` claro y landmarks semánticos.
+- Responder la pregunta principal de cada página en texto server-rendered sin requerir interacción.
+- Enlazar entidades relacionadas con anchor text descriptivo; mantener URLs canónicas estables.
+- Citar fuentes autorizadas y mostrar fechas de revisión cuando los hechos son sensibles al tiempo.
+- Emitir solo structured data que coincida con el contenido visible.
+- `llms.txt` es opcional; si se añade, seguir el formato de la propuesta y vincular recursos públicos canónicos. No publicar instrucciones internas ni datos privados a través de archivos de descubrimiento.
 - GTM se carga solo tras consentimiento (`GTM-PZPX7SK9`); GA4 vive dentro del contenedor. Ver `docs/analytics-csp-consent.md`.
 - No enviar datos personales en payloads de analytics.
 - Mantener coherencia entre contenido visible y structured data.
 
+## Analytics, Consent y Seguridad
+
+- Analytics es opt-in y consentido. La arquitectura completa está en `docs/analytics-csp-consent.md`.
+- GTM/GA4 se cargan solo tras aceptación explícita. No usar `gtag.js` standalone.
+- Centralizar eventos en `src/scripts/site.ts`. No incluir PII (nombres, emails, teléfonos, direcciones, valores de formulario) en payloads.
+- CSP está definida en `public/_headers` para Cloudflare Pages. No copiar CSP universales; ajustar solo para servicios documentados.
+- La baseline de seguridad considera `Content-Security-Policy`, `Strict-Transport-Security` tras confirmar HTTPS, `X-Content-Type-Options: nosniff`, protección contra clickjacking via CSP `frame-ancestors` y `X-Frame-Options` para clientes legacy, `Referrer-Policy` y `Permissions-Policy` mínimo.
+- Probar `_headers` y `_redirects` construidos, y verificar headers desplegados en HTML y assets estáticos.
+
+## Cloudflare Pages y Deployment
+
+- Plataforma objetivo: Cloudflare Pages estático conectado a GitHub. Astro output `static`, sin adapter.
+- Build command: `npm run build`; output directory: `dist`.
+- Usar preview deployments para revisar cambios antes de mergear a la rama de producción.
+- Verificar límites de Pages: cantidad/tamaño de archivos, reglas de `_headers`/`_redirects`.
+- Dominio custom con HTTPS y modo SSL/TLS intencional.
+- Cloudflare Web Analytics está deshabilitado intencionalmente; si se habilita en el dashboard, inyectará `beacon.min.js` antes del consentimiento. Ver `docs/analytics-csp-consent.md`.
+
 ## Seguridad, Privacidad y Git
 
-- CSP está definida en `public/_headers` para Cloudflare Pages. No copiar CSP universales; ajustar solo para servicios documentados.
 - No commitear, staguear, pushear, crear PRs, cambiar de branch, editar configuración de Git ni reescribir historia a menos que el usuario lo solicite explícitamente.
 - No subir secretos, `.env` ni datos privados al repositorio.
 - No publicar instrucciones internas ni datos privados a través de `llms.txt`, schema o metadatos.
+- Preservar cambios no relacionados del working tree. Inspección de Git es lectura; mutaciones requieren instrucción explícita.

@@ -9,6 +9,10 @@ const posts: CollectionEntry<"blog">[] = await getCollection("blog");
   title="Blog de Marketing Dental y Adquisición"
   description="Artículos sobre optimización, Google Ads y SEO local para clínicas dentales."
 >
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/styles/base-content.css" />
+  </Fragment>
+
   <section class="section blog-index">
     <div class="wrap">
       <h1>Blog de Agencia Chucao</h1>

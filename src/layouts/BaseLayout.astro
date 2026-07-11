@@ -4,6 +4,7 @@ import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
 import CookieConsent from "@components/CookieConsent.astro";
 import IconSprite from "@components/IconSprite.astro";
+import LazyStyles from "@components/LazyStyles.astro";
 import "@styles/global.css";
 
 import { buildSchemaGraph, type JsonLdGraph, type JsonLdNode } from "@/utils/schema";
@@ -86,35 +87,7 @@ if (schema) {
       )
     }
     <script src="../scripts/site.ts"></script>
-    <script is:inline>
-      (function () {
-        var footer = document.querySelector(".site-footer");
-        if (!footer) return;
-        function loadFooterCss() {
-          var link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = "/styles/footer.css";
-          document.head.appendChild(link);
-        }
-        if ("IntersectionObserver" in window) {
-          var observer = new IntersectionObserver(
-            function (entries, obs) {
-              entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                  loadFooterCss();
-                  obs.disconnect();
-                }
-              });
-            },
-            { rootMargin: "400px" }
-          );
-          observer.observe(footer);
-        } else {
-          loadFooterCss();
-        }
-      })();
-    </script>
-    <noscript><link rel="stylesheet" href="/styles/footer.css" /></noscript>
+    <slot name="head" />
   </head>
   <body>
     <IconSprite />
@@ -128,5 +101,11 @@ if (schema) {
 
     <Footer />
     <CookieConsent />
+    <LazyStyles
+      targets={[
+        { selector: ".site-footer", href: "/styles/footer.css" },
+        { selector: ".cookie-banner", href: "/styles/cookie-banner.css" },
+      ]}
+    />
   </body>
 </html>

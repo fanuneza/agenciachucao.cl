@@ -35,6 +35,11 @@ const schema = buildSchemaGraph({
   canonical={postUrl}
   schema={schema}
 >
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/styles/base-content.css" />
+    <link rel="stylesheet" href="/styles/blog-post.css" />
+  </Fragment>
+
   <article class="section blog-post">
     <div class="wrap">
       <header class="blog-post__header">
@@ -49,17 +54,3 @@ const schema = buildSchemaGraph({
     </div>
   </article>
 </BaseLayout>
-
-<style>
-  .blog-post {
-    padding-block: 4rem;
-  }
-  .blog-post__header h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-block: 1rem 2rem;
-  }
-  .blog-post__content {
-    font-size: 1.125rem;
-    line-height: 1.8;
-  }
-</style>

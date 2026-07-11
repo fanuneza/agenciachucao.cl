@@ -1,0 +1,56 @@
+---
+interface Target {
+  selector: string;
+  href: string;
+}
+
+interface Props {
+  targets: Target[];
+}
+
+const { targets } = Astro.props;
+---
+
+<script is:inline define:vars={{ targets }}>
+  (function () {
+    function loadCss(href) {
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      document.head.appendChild(link);
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach(function (t) {
+        loadCss(t.href);
+      });
+      return;
+    }
+
+    var seen = new Set();
+    var obs = new IntersectionObserver(
+      function (entries, o) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          targets.forEach(function (t) {
+            if (entry.target.matches(t.selector) && !seen.has(t.href)) {
+              seen.add(t.href);
+              loadCss(t.href);
+            }
+          });
+          o.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px" }
+    );
+
+    targets.forEach(function (t) {
+      var el = document.querySelector(t.selector);
+      if (el) obs.observe(el);
+    });
+  })();
+</script>
+
+<noscript>
+  {targets.map((t) => <link rel="stylesheet" href={t.href} />)}
+</noscript>

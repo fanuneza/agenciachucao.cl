@@ -1,3 +1,38 @@
+.field-label {
+  display: block;
+  font-family: var(--f-mono);
+  font-weight: 500;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.form-field {
+  width: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--bone-line);
+  padding: 0.75rem 1rem;
+  font-family: var(--f-text);
+  font-size: var(--t-md);
+  color: var(--ink);
+  outline: none;
+  appearance: none;
+  transition:
+    border-color 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out);
+}
+.form-field::placeholder {
+  color: var(--muted);
+}
+.form-field:hover {
+  border-color: var(--graphite);
+}
+.form-field:focus {
+  border-color: var(--vermilion);
+  box-shadow: 0 0 0 3px rgba(184, 61, 31, 0.12);
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
