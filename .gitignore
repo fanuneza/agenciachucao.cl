@@ -64,17 +64,9 @@ coverage/
 .impeccable/
 
 # Agent workflow instructions (local only)
-AGENTS.md
-CLAUDE.md
 Astro.md
 CI.md
 Cloudflare.md
-
-# Internal planning docs (local only)
-docs/*
-!docs/analytics-csp-consent.md
-!docs/ci-audit.md
-process-notes.md
 
 # Backup files
 *.md.bak
