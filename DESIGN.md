@@ -2,8 +2,9 @@
 name: Agencia Chucao
 description: Sistema de agendamientos para clínicas dentales en Santiago.
 colors:
-  vermilion: "#d24a2a"
-  vermilion-dark: "#b83d1f"
+  vermilion: "#b83d1f"
+  vermilion-dark: "#8f2813"
+  vermilion-light: "#e86b4a"
   bone: "#f2eee6"
   bone-2: "#e8e2d4"
   bone-line: "#d9d2c0"
@@ -11,7 +12,7 @@ colors:
   ink-2: "#1a1a17"
   ink-line: "#2a2a24"
   graphite: "#4a4943"
-  muted: "#7a7770"
+  muted: "#6d6a64"
   muted-dark: "#c8c3b6"
   white: "#ffffff"
   wa: "#2bb36b"
@@ -114,8 +115,9 @@ El palette es reducido: un acento cálido, una familia de neutros terrosos y una
 
 ### Primary
 
-- **Señal cálida** (`#d24a2a`): acento principal. Usado en CTAs, estados de foco, énfasis y puntos de ancla visual. Debe ocupar ≤10% de la superficie.
-- **Señal cálida oscura** (`#b83d1f`): estado hover/active del acento.
+- **Señal cálida** (`#b83d1f`): acento principal. Usado en CTAs, estados de foco, énfasis y puntos de ancla visual sobre fondos claros. Debe ocupar ≤10% de la superficie.
+- **Señal cálida oscura** (`#8f2813`): estado hover/active del acento y texto sobre superficies hueso secundarias.
+- **Señal cálida clara** (`#e86b4a`): texto y anclas sobre fondos tinta oscuros.
 
 ### Neutral
 
@@ -171,16 +173,16 @@ El sistema es predominantemente plano. La profundidad se comunica mediante capas
 ### Buttons
 
 - **Shape:** sin radio de borde (`0`), esquinas nítidas.
-- **Primary:** fondo `#d24a2a`, texto `#f2eee6`, borde `#d24a2a`, padding `0.95rem 1.4rem`, altura mínima 48px.
-- **Hover / Focus:** fondo `#b83d1f`, borde `#b83d1f`; foco con outline 2px naranja y offset 3px.
+- **Primary:** fondo `#b83d1f`, texto `#f2eee6`, borde `#b83d1f`, padding `0.95rem 1.4rem`, altura mínima 48px.
+- **Hover / Focus:** fondo `#8f2813`, borde `#8f2813`; foco con outline 2px vermilion y offset 3px.
 - **Secondary:** fondo transparente, texto `#0e0e0c`, borde `#0e0e0c`; en fondo oscuro, texto y borde `#f2eee6`.
 - **Ghost:** fondo transparente, texto `#0e0e0c`, borde `#d9d2c0`, tipografía mono uppercase xs; en fondo oscuro, texto `#f2eee6`.
 
 ### Inputs / Fields
 
 - **Style:** fondo `#ffffff`, borde 1.5px `#d9d2c0`, sin radio, padding `0.75rem 1rem`.
-- **Focus:** borde `#d24a2a`, glow `0 0 0 3px rgba(210, 74, 42, 0.12)`.
-- **Error:** borde `#d24a2a`, mensaje en mono xs.
+- **Focus:** borde `#b83d1f`, glow `0 0 0 3px rgba(184, 61, 31, 0.12)`.
+- **Error:** borde `#b83d1f`, mensaje en mono xs.
 
 ### Navigation
 

@@ -6,8 +6,8 @@ export default defineConfig({
   output: "static",
   site: "https://agenciachucao.cl",
   prefetch: {
-    prefetchAll: true,
-    defaultStrategy: "hover",
+    prefetchAll: false,
+    defaultStrategy: "viewport",
   },
   build: {
     inlineStylesheets: "always",

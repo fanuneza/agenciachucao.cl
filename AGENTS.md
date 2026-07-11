@@ -36,9 +36,9 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 
 ### Tokens clave
 
-- **Acento:** `#d24a2a` (vermilion), hover `#b83d1f`.
-- **Fondos:** `#f2eee6` (bone), `#0e0e0c` (ink).
-- **Texto:** `#0e0e0c` sobre bone, `#f2eee6` sobre ink, `#4a4943` (graphite) para secundario, `#7a7770` (muted) para metadatos.
+- **Acento:** `#b83d1f` (vermilion), hover `#8f2813` (vermilion-d), texto sobre fondos oscuros `#e86b4a` (vermilion-light).
+- **Fondos:** `#f2eee6` (bone), `#e8e2d4` (bone-2), `#0e0e0c` (ink).
+- **Texto:** `#0e0e0c` sobre bone, `#f2eee6` sobre ink, `#4a4943` (graphite) para secundario, `#6d6a64` (muted) para metadatos.
 - **Tipografía:** Montserrat para display/body, JetBrains Mono para etiquetas y metadatos.
 - **Forma:** esquinas nítidas (`border-radius: 0`).
 - **Elevación:** plano por defecto; la única sombra permitida es la del FAB de WhatsApp (`0 12px 28px rgba(14, 14, 12, 0.18)`).
@@ -69,7 +69,7 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 ## Quality Contract
 
 - Rutas representativas para verificar: `/`, `/contacto/`, `/politica-de-cookies/`, `/404`.
-- Objetivo: Lighthouse 100 en Performance, Accessibility, Best Practices y SEO bajo condiciones repetibles.
+- Objetivo: Lighthouse 100 en Accessibility, Best Practices y SEO; Performance con excepción documentada para `unused-css-rules` en `/contacto/` causado por el CSS scoped de `ContactForm.astro` que vive below-the-fold en esa ruta.
 - Tests de accesibilidad con axe-core en `tests/visual/a11y.spec.ts`.
 - Tests de build/output en `tests/build-output.spec.ts` y `tests/build/build.spec.ts`.
 - Tests de consentimiento en `tests/analytics-consent.spec.ts`.

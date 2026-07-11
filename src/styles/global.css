@@ -63,7 +63,7 @@ body {
   top: 0;
   left: 0;
   transform: translateY(-120%);
-  z-index: 9999;
+  z-index: 100;
   padding: 0.75rem 1rem;
   background: var(--ink);
   color: var(--bone);
@@ -222,6 +222,9 @@ em {
   font-style: normal;
   color: var(--vermilion);
 }
+.section.dark em {
+  color: var(--vermilion-light);
+}
 .section.dark strong {
   color: var(--bone);
   font-weight: 600;
@@ -259,8 +262,8 @@ em {
   border-color: var(--vermilion-d);
 }
 .btn:active {
-  background: #a03318;
-  border-color: #a03318;
+  background: var(--vermilion-d);
+  border-color: var(--vermilion-d);
 }
 .btn:focus-visible {
   outline: 2px solid var(--focus-ring);
@@ -418,7 +421,7 @@ em {
 }
 .form-field:focus {
   border-color: var(--vermilion);
-  box-shadow: 0 0 0 3px rgba(210, 74, 42, 0.12);
+  box-shadow: 0 0 0 3px rgba(184, 61, 31, 0.12);
 }
 
 .field-label {
