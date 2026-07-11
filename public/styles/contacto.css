@@ -1,0 +1,58 @@
+.audit-page__hero {
+  border-top: 0;
+}
+.audit-page__lede {
+  margin-top: 1.5rem;
+}
+
+.audit-page__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: start;
+}
+@media (min-width: 1024px) {
+  .audit-page__grid {
+    grid-template-columns: minmax(0, 600px) 280px;
+  }
+}
+
+.audit-page__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 5.5rem;
+}
+
+.audit-page__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--bone-line);
+}
+.audit-page__block:first-child {
+  padding-top: 0;
+}
+.audit-page__block:last-child {
+  border-bottom: none;
+}
+
+.audit-page__block-text {
+  font-size: var(--t-md);
+  line-height: 1.65;
+  color: var(--graphite);
+  margin: 0;
+}
+
+.audit-page__email {
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  color: var(--ink);
+  word-break: break-all;
+  transition: color 160ms var(--ease-out);
+}
+.audit-page__email:hover {
+  color: var(--vermilion);
+}

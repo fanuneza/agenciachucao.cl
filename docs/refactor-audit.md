@@ -22,16 +22,16 @@
 
 All baseline checks passed before any edits:
 
-| Command | Result |
-|---|---|
-| `npm run check` | 0 errors, 0 warnings, 8 hints (`z` deprecated in `astro:content`) |
-| `npm run lint` | pass |
-| `npm run format:check` | pass |
-| `npm run build` | pass (6 pages, sitemap, IndexNow submitted) |
-| `npm run test:source` | 4/4 pass |
-| `npm run test:build` | 7/7 pass |
-| `npm run test:a11y` | 4/4 pass |
-| `npm run test:consent` | 3/3 pass |
+| Command                | Result                                                            |
+| ---------------------- | ----------------------------------------------------------------- |
+| `npm run check`        | 0 errors, 0 warnings, 8 hints (`z` deprecated in `astro:content`) |
+| `npm run lint`         | pass                                                              |
+| `npm run format:check` | pass                                                              |
+| `npm run build`        | pass (6 pages, sitemap, IndexNow submitted)                       |
+| `npm run test:source`  | 4/4 pass                                                          |
+| `npm run test:build`   | 7/7 pass                                                          |
+| `npm run test:a11y`    | 4/4 pass                                                          |
+| `npm run test:consent` | 3/3 pass                                                          |
 
 Build emits a few `markdownAlternate` warnings from `@jdevalk/astro-seo-graph` about `.md` alternates that would 404; these are pre-existing and harmless.
 

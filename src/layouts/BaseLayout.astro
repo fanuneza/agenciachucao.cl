@@ -86,6 +86,35 @@ if (schema) {
       )
     }
     <script src="../scripts/site.ts"></script>
+    <script is:inline>
+      (function () {
+        var footer = document.querySelector(".site-footer");
+        if (!footer) return;
+        function loadFooterCss() {
+          var link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "/styles/footer.css";
+          document.head.appendChild(link);
+        }
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(
+            function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  loadFooterCss();
+                  obs.disconnect();
+                }
+              });
+            },
+            { rootMargin: "400px" }
+          );
+          observer.observe(footer);
+        } else {
+          loadFooterCss();
+        }
+      })();
+    </script>
+    <noscript><link rel="stylesheet" href="/styles/footer.css" /></noscript>
   </head>
   <body>
     <IconSprite />

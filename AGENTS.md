@@ -39,6 +39,7 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 - **Acento:** `#b83d1f` (vermilion), hover `#8f2813` (vermilion-d), texto sobre fondos oscuros `#e86b4a` (vermilion-light).
 - **Fondos:** `#f2eee6` (bone), `#e8e2d4` (bone-2), `#0e0e0c` (ink).
 - **Texto:** `#0e0e0c` sobre bone, `#f2eee6` sobre ink, `#4a4943` (graphite) para secundario, `#6d6a64` (muted) para metadatos.
+- Ver tokens completos en `DESIGN.md` y `.impeccable/design.json`; cualquier cambio debe sincronizarse en ambos.
 - **Tipografía:** Montserrat para display/body, JetBrains Mono para etiquetas y metadatos.
 - **Forma:** esquinas nítidas (`border-radius: 0`).
 - **Elevación:** plano por defecto; la única sombra permitida es la del FAB de WhatsApp (`0 12px 28px rgba(14, 14, 12, 0.18)`).
@@ -59,7 +60,7 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 - Fuentes auto-hospedadas en `public/fonts/`.
 - Estilos en `src/styles/tokens.css` y `src/styles/global.css`. No añadir metodologías CSS nuevas sin justificación.
 - Componentes Astro en `src/components/`. Mantener módulos pequeños y con nombres claros.
-- Formulario de contacto en `src/components/ContactForm.astro`, enviado vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`).
+- Formulario de contacto en `src/components/ContactForm.astro`, enviado vía Web3Forms (`PUBLIC_WEB3FORMS_KEY`). Sus estilos viven en `public/styles/contact-form.css` y se cargan de forma asíncrona solo en `/contacto/`.
 - WhatsApp flotante en `src/components/WhatsAppButton.astro` (`PUBLIC_WA_NUMBER`).
 - Consentimiento de cookies en `src/components/CookieConsent.astro` + `src/scripts/site.ts`. GTM solo carga tras aceptación explícita.
 - Imágenes: preferir componentes nativos de Astro; dimensionar y no lazy-load la imagen LCP.
@@ -69,7 +70,9 @@ El sistema visual está documentado en `DESIGN.md` y en el sidecar `.impeccable/
 ## Quality Contract
 
 - Rutas representativas para verificar: `/`, `/contacto/`, `/politica-de-cookies/`, `/404`.
-- Objetivo: Lighthouse 100 en Accessibility, Best Practices y SEO; Performance con excepción documentada para `unused-css-rules` en `/contacto/` causado por el CSS scoped de `ContactForm.astro` que vive below-the-fold en esa ruta.
+- Objetivo: Lighthouse 100 en Accessibility, Best Practices y SEO; Performance con excepción documentada para `unused-css-rules`.
+- Astro `build.inlineStylesheets: "always"` fuerza todo el CSS scoped de componentes a un `<style>` inline por página. El CSS below-the-fold (footer, formulario de contacto, cuerpo de `/contacto/`) se carga de forma no bloqueante vía `IntersectionObserver` desde `public/styles/footer.css`, `public/styles/contact-form.css` y `public/styles/contacto.css`; los estilos críticos mínimos se mantienen en `src/styles/global.css` para evitar FOUC.
+- `.lighthouserc.cjs` tolera hasta 1 stylesheet con reglas no usadas (`unused-css-rules`: `maxLength: 1`) porque el CSS scoped inlineado siempre contendrá algo de below-the-fold; el impacto real es 0 ms de metric savings. Eliminarlo por completo requeriría extraer todo el CSS de componentes a archivos globales/lazy-loaded (refactor grande) o cambiar `inlineStylesheets`.
 - Tests de accesibilidad con axe-core en `tests/visual/a11y.spec.ts`.
 - Tests de build/output en `tests/build-output.spec.ts` y `tests/build/build.spec.ts`.
 - Tests de consentimiento en `tests/analytics-consent.spec.ts`.

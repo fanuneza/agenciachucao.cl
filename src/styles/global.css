@@ -432,5 +432,41 @@ em {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--graphite);
-  margin-bottom: 0.375rem;
+}
+
+/* ── Critical below-the-fold styles (lazy-loaded detail CSS in public/styles/) ── */
+.site-footer {
+  background: var(--ink);
+  color: var(--bone);
+  padding-top: clamp(3rem, 5vw, 4rem);
+  padding-bottom: 1.5rem;
+}
+.site-footer a,
+.site-footer__cookie-btn {
+  color: var(--muted-dark);
+}
+.site-footer__col-label {
+  color: var(--bone);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.contact-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.audit-page__grid {
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+.audit-page__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
