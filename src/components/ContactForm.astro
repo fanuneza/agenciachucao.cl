@@ -39,6 +39,7 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       id="phone"
       name="phone"
       autocomplete="tel"
+      inputmode="tel"
       placeholder="+56 9 1234 5678"
       required
     />
@@ -59,10 +60,20 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div id="form-status" class="contact-form__status" aria-live="polite"></div>
 
-  <button type="submit" class="btn contact-form__submit" id="form-submit-btn"
+  <button type="submit" class="btn contact-form__submit" id="form-submit-btn" data-label="Solicita una revisión gratis"
     >Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg></button
   >
 </form>
+
+<div id="form-success" class="contact-form__success" hidden tabindex="-1">
+  <p class="contact-form__success-title">Recibimos tu solicitud.</p>
+  <p class="contact-form__success-text">Te contactamos en menos de 24 horas hábiles para revisar tu clínica.</p>
+  <p class="contact-form__success-note">
+    Si prefieres, <a href={waFallback} target="_blank" rel="noopener noreferrer" class="contact-form__fallback-link"
+      >escríbenos por WhatsApp</a
+    >.
+  </p>
+</div>
 
 <div class="contact-form__fallback">
   <p class="contact-form__fallback-text">
@@ -123,6 +134,35 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     background: var(--bone-2);
     color: var(--vermilion-d);
     border-color: var(--vermilion);
+  }
+
+  .contact-form__success {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: var(--bone-2);
+    border: 1px solid var(--bone-line);
+    margin-bottom: 1.5rem;
+  }
+  .contact-form__success:focus {
+    outline: none;
+  }
+
+  .contact-form__success-title {
+    font-family: var(--f-display);
+    font-size: var(--t-xl);
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .contact-form__success-text,
+  .contact-form__success-note {
+    font-size: var(--t-md);
+    line-height: 1.6;
+    color: var(--graphite);
+    margin: 0;
   }
 
   .contact-form__select {

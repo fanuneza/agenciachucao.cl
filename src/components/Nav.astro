@@ -7,11 +7,13 @@ import Brand from "@components/Brand.astro";
     <Brand />
 
     <div class="site-nav__meta" aria-hidden="false">
-      <span class="site-nav__meta-item">Clínicas dentales · Santiago</span>
+      <span class="site-nav__meta-item">Santiago, Chile · clínicas dentales</span>
     </div>
 
-    <a href="/contacto/" class="btn site-nav__cta">
-      Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+    <a href="/contacto/" class="btn site-nav__cta" aria-label="Solicita una revisión gratis">
+      <span class="site-nav__cta-label site-nav__cta-label--full">Solicita una revisión gratis</span>
+      <span class="site-nav__cta-label site-nav__cta-label--short" aria-hidden="true">Auditoría gratis</span>
+      <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
     </a>
   </div>
 </header>
@@ -64,5 +66,17 @@ import Brand from "@components/Brand.astro";
     min-height: 40px;
     font-size: var(--t-sm);
     white-space: nowrap;
+  }
+
+  .site-nav__cta-label--short {
+    display: none;
+  }
+  @media (max-width: 520px) {
+    .site-nav__cta-label--full {
+      display: none;
+    }
+    .site-nav__cta-label--short {
+      display: inline;
+    }
   }
 </style>

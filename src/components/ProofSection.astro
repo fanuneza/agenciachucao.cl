@@ -5,7 +5,7 @@
 <section class="section proof-section" id="metricas" aria-labelledby="proof-h2">
   <div class="wrap">
     <div class="tray">
-      <span class="serial">§ 03b / Medición</span>
+      <span class="serial">Medición</span>
       <span class="meta">Sin números inventados</span>
     </div>
 
@@ -50,6 +50,13 @@
 
       <div class="proof-section__report">
         <p class="proof-section__report-label">El reporte mensual</p>
+        <img
+          class="proof-section__report-image"
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+          alt="Ejemplo de reporte mensual con métricas de campaña"
+          loading="lazy"
+          decoding="async"
+        />
         <p class="proof-section__report-body">
           Cada mes recibes un documento con estos números y una propuesta de ajuste concreta. Nada de clics e
           impresiones sin contexto. Solo lo que necesitas para decidir si el canal funciona para tu clínica.
@@ -123,6 +130,15 @@
     background: var(--bone-2);
     border: 1px solid var(--bone-line);
     padding: clamp(1.5rem, 2.5vw, 2rem);
+    display: grid;
+    gap: 1rem;
+  }
+
+  .proof-section__report-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--bone-line);
   }
 
   .proof-section__report-label {

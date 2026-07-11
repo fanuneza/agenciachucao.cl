@@ -15,9 +15,9 @@
   --focus-ring: #d24a2a;
 
   /* ── type ── */
-  --f-display: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --f-text: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --f-mono: "Geist Mono", ui-monospace, "SF Mono", menlo, monospace;
+  --f-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --f-text: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", menlo, monospace;
 
   /* ── scale (clamps) ── */
   --t-7xl: clamp(3.25rem, 6vw + 1rem, 6.75rem);
@@ -37,9 +37,6 @@
 
   /* ── motion ── */
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-
-  /* ── accent font ── */
-  --f-serif: "Instrument Serif", georgia, serif;
 
   /* ── brand colors ── */
   --color-wa: #2bb36b;

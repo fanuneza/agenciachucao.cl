@@ -61,6 +61,7 @@ coverage/
 
 # Local agent / IDE settings
 .claude/
+.impeccable/
 
 # Agent workflow instructions (local only)
 AGENTS.md

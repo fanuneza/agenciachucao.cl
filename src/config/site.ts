@@ -1,7 +1,7 @@
 export const site = {
   siteUrl: "https://agenciachucao.cl",
   siteName: "Agencia Chucao",
-  defaultTitle: "Lead Engine para clinicas dentales en Santiago | Agencia Chucao",
+  defaultTitle: "Agendamientos para clinicas dentales en Santiago | Agencia Chucao",
   defaultDescription:
     "Sistema de captacion medible para clinicas dentales en Santiago: Google Ads, landing de conversion y seguimiento por WhatsApp.",
   language: "es",

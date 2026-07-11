@@ -1,4 +1,10 @@
 @import url("./tokens.css");
+@import url("@fontsource/montserrat/400.css");
+@import url("@fontsource/montserrat/500.css");
+@import url("@fontsource/montserrat/600.css");
+@import url("@fontsource/montserrat/700.css");
+@import url("@fontsource/jetbrains-mono/400.css");
+@import url("@fontsource/jetbrains-mono/500.css");
 
 /* ── Base reset ─────────────────────────────────────────── */
 *,
@@ -41,7 +47,6 @@ body {
   color: var(--ink);
   background: var(--bone);
   scroll-padding-top: 80px;
-  font-feature-settings: "ss01", "ss02", "cv01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;

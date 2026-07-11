@@ -18,7 +18,7 @@ import { buildWhatsAppUrl } from "@/utils/whatsapp";
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
 const waMessage =
-  "Hola, vi Agencia Chucao y me interesa el Lead Engine para mi clínica dental. ¿Tienen disponibilidad?";
+  "Hola, vi Agencia Chucao y me interesa el sistema de agendamientos para mi clínica dental. ¿Tienen disponibilidad?";
 const waHref = buildWhatsAppUrl(waNumber, waMessage);
 
 const howSteps = [
@@ -87,7 +87,7 @@ const faqItems = [
   {
     question: "Ya tenemos agencia.",
     answer:
-      "Podemos funcionar como una capa enfocada en adquisición dental sin reemplazar todo tu marketing. El Lead Engine se encarga de la parte medible: búsquedas, landing, WhatsApp y reportes. Si tu agencia actual ya tiene eso claro, probablemente no necesitas esto.",
+      "Podemos funcionar como una capa enfocada en adquisición dental sin reemplazar todo tu marketing. El sistema de agendamientos se encarga de la parte medible: búsquedas, landing, WhatsApp y reportes. Si tu agencia actual ya tiene eso claro, probablemente no necesitas esto.",
   },
   {
     question: "¿Cuánto demora en verse resultados?",
@@ -110,7 +110,7 @@ const faqSchema = buildFaqPage(faqItems);
 ---
 
 <BaseLayout
-  title="Lead Engine para clínicas dentales en Santiago"
+  title="Agendamientos para clínicas dentales en Santiago"
   description="Convertimos búsquedas activas en pacientes agendados. Sistema de captación medible para implantología, ortodoncia y rehabilitación en Santiago. Sin contratos largos."
   schema={faqSchema}
 >

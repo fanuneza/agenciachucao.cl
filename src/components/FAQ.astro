@@ -14,7 +14,7 @@ const { items } = Astro.props;
 <section class="section faq-section" id="faq" aria-labelledby="faq-h2">
   <div class="wrap">
     <div class="tray">
-      <span class="serial">§ 07 / Preguntas</span>
+      <span class="serial">Preguntas</span>
       <span class="meta">Respuestas directas</span>
     </div>
 
@@ -47,7 +47,6 @@ const { items } = Astro.props;
   document.querySelectorAll<HTMLButtonElement>(".faq-section__question").forEach((btn) => {
     btn.addEventListener("click", () => {
       const open = btn.getAttribute("aria-expanded") === "true";
-      document.querySelectorAll(".faq-section__question").forEach((b) => b.setAttribute("aria-expanded", "false"));
       btn.setAttribute("aria-expanded", open ? "false" : "true");
     });
   });

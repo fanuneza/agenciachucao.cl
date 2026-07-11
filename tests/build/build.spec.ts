@@ -4,7 +4,7 @@ const pages = [
   {
     name: "home",
     path: "/",
-    title: "Lead Engine para clínicas dentales en Santiago | Agencia Chucao",
+    title: "Agendamientos para clínicas dentales en Santiago | Agencia Chucao",
     description: "Convertimos búsquedas activas en pacientes agendados.",
   },
   {
