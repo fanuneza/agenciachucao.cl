@@ -1,55 +1,31 @@
 ---
-import TrackedLink from "@components/TrackedLink.astro";
+import ContactForm from "@components/ContactForm.astro";
 
 interface Props {
   headline: string;
-  ctaText: string;
-  ctaHref: string;
-  whatsappHref: string;
 }
 
-const { ctaText, ctaHref, whatsappHref } = Astro.props;
+const { headline } = Astro.props;
 ---
 
-<section class="section dark cta-section" id="contacto" aria-labelledby="final-h2">
+<section class="section cta-section" id="contacto" aria-labelledby="final-h2">
   <div class="wrap">
-    <div class="cta-section__content" data-reveal-group>
-      <h2 id="final-h2" data-reveal="rise">Revisemos si tu clínica puede generar más agendamientos desde Google.</h2>
-      <p class="lede cta-section__lede" data-reveal="fade">
-        Revisamos tu situación y te decimos si el sistema tiene sentido para tu clínica. Sin presentación, sin
-        compromiso. Solo una conversación con orientación clara.
-      </p>
+    <div class="cta-section__content">
+      <div class="cta-section__intro" data-reveal-group>
+        <h2 id="final-h2" data-reveal="rise">{headline}</h2>
+        <p class="lede cta-section__lede" data-reveal="fade">
+          Déjanos tus datos y revisamos tu situación: te decimos si el sistema tiene sentido para tu clínica. Sin
+          presentación, sin compromiso. Solo una conversación con orientación clara.
+        </p>
+        <ul class="cta-section__assurances" role="list" data-reveal="fade">
+          <li>Respuesta en menos de 24 h hábiles.</li>
+          <li>Sin venta agresiva: te decimos si no calzas.</li>
+          <li>Mes a mes, sin contratos largos.</li>
+        </ul>
+      </div>
 
-      <div class="cta-section__actions" data-reveal>
-        <TrackedLink
-          href={ctaHref}
-          class="btn cta-section__btn"
-          id="footer-cta-btn"
-          trackEvent="select_content"
-          trackLabel={ctaText}
-          trackLocation="footer_cta"
-          trackDestination={ctaHref}
-          trackCategory="cta"
-        >
-          {ctaText}
-          <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
-        </TrackedLink>
-        <TrackedLink
-          href={whatsappHref}
-          class="cta-section__whatsapp"
-          target="_blank"
-          rel="noopener noreferrer"
-          id="footer-wa-btn"
-          trackEvent="contact"
-          trackLabel="Escribir por WhatsApp"
-          trackLocation="footer"
-          trackDestination={whatsappHref}
-          trackCategory="whatsapp"
-        >
-          <svg aria-hidden="true"><use href="#i-wa"></use></svg>
-          Escribir por WhatsApp
-        </TrackedLink>
-        <p class="cta-section__microcopy">Te respondemos con una primera orientación clara. Sin venta agresiva.</p>
+      <div class="cta-section__form">
+        <ContactForm />
       </div>
     </div>
   </div>

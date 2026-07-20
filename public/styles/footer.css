@@ -48,6 +48,11 @@
   display: grid;
   gap: 0.6rem;
 }
+.site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .site-footer a {
   color: var(--muted-dark);
   font-size: var(--t-md);
@@ -76,6 +81,11 @@
   gap: 1.25rem;
   flex-wrap: wrap;
 }
+.site-footer__legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
 .site-footer__cookie-btn {
   font-family: var(--f-mono);
   font-size: var(--t-xs);
@@ -84,6 +94,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  min-height: 44px;
   padding: 0;
   transition: color 160ms var(--ease-out);
 }

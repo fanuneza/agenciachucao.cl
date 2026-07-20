@@ -61,14 +61,17 @@ const { included, excluded, extras } = Astro.props;
 
     {
       extras.length > 0 && (
-        <div class="scope-section__extras" data-reveal="fade">
-          <p class="scope-section__extras-label">Servicios opcionales</p>
+        <details class="scope-section__extras" data-reveal="fade">
+          <summary class="scope-section__extras-summary">
+            <span>Servicios opcionales</span>
+            <span class="scope-section__extras-count">{extras.length}</span>
+          </summary>
           <ul class="scope-section__extras-list" role="list">
             {extras.map((item) => (
               <li>{item}</li>
             ))}
           </ul>
-        </div>
+        </details>
       )
     }
 

@@ -46,7 +46,7 @@
 .cookie-banner__btn {
   font-size: var(--t-xs);
   padding: 0.6rem 1rem;
-  min-height: 36px;
+  min-height: 44px;
 }
 
 .btn-secondary {

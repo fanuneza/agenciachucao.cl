@@ -14,12 +14,6 @@ import WhatsAppButton from "@components/WhatsAppButton.astro";
 import LazyStyles from "@components/LazyStyles.astro";
 import { offerComponents } from "@data/services";
 import { buildFaqPage } from "@/utils/schema";
-import { buildWhatsAppUrl } from "@/utils/whatsapp";
-
-const waNumber = import.meta.env.PUBLIC_WA_NUMBER;
-const waMessage =
-  "Hola, vi Agencia Chucao y me interesa el sistema de agendamientos para mi clínica dental. ¿Tienen disponibilidad?";
-const waHref = buildWhatsAppUrl(waNumber, waMessage);
 
 const howSteps = [
   {
@@ -122,7 +116,7 @@ const faqSchema = buildFaqPage(faqItems);
     headline="Convierte búsquedas en agendamientos."
     subheadline="Google Ads + landing de conversión + seguimiento por WhatsApp para clínicas dentales en Santiago. En 30 días sabes cuánto te cuesta cada paciente nuevo."
     ctaText="Solicita una revisión gratis"
-    ctaHref="/contacto/"
+    ctaHref="#contacto"
   />
 
   <ProblemSection />
@@ -137,22 +131,18 @@ const faqSchema = buildFaqPage(faqItems);
 
   <QualificationSection />
 
-  <FoundingOffer spotsTotal={2} ctaHref="/contacto/" />
+  <FoundingOffer spotsTotal={2} ctaHref="#contacto" />
 
   <FAQ items={faqItems} />
 
-  <CTAFinal
-    headline="Revisemos si tu clínica puede generar más agendamientos desde Google."
-    ctaText="Solicita una revisión gratis"
-    ctaHref="/contacto/"
-    whatsappHref={waHref}
-  />
+  <CTAFinal headline="Revisemos si tu clínica puede generar más agendamientos desde Google." />
 
   <WhatsAppButton />
   <LazyStyles
     targets={[
       { selector: ".problem-section", href: "/styles/home-sections.css" },
       { selector: ".problem-section", href: "/styles/base-content.css" },
+      { selector: ".contact-form", href: "/styles/contact-form.css" },
     ]}
   />
 </BaseLayout>
