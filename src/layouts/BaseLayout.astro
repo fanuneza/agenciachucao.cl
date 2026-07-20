@@ -75,17 +75,6 @@ if (schema) {
     />
 
     <meta name="theme-color" content="#0e0e0c" />
-    {
-      isHome && (
-        <link
-          rel="preload"
-          as="image"
-          href="https://images.unsplash.com/photo-1629909615957-be38d48fbbe6?auto=format&fit=crop&w=1600&q=80"
-          imagesrcset="https://images.unsplash.com/photo-1629909615957-be38d48fbbe6?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1629909615957-be38d48fbbe6?auto=format&fit=crop&w=1600&q=80 1600w"
-          imagesizes="100vw"
-        />
-      )
-    }
     <script src="../scripts/site.ts"></script>
     <slot name="head" />
   </head>

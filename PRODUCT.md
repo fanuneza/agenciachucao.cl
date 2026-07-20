@@ -23,7 +23,7 @@ Un sistema de agendamiento diseñado específicamente para clínicas dentales en
 
 ## Conversion & proof
 
-- Primary CTA: solicitar auditoría gratuita vía formulario.
+- Primary CTA: solicitar revisión gratis vía formulario.
 - Secondary CTA: iniciar conversación por WhatsApp.
 - The line a visitor remembers after 10 seconds: "Convierte búsquedas en agendamientos."
 - Belief ladder:
@@ -31,7 +31,7 @@ Un sistema de agendamiento diseñado específicamente para clínicas dentales en
   2. Veo que hay un sistema específico para clínicas dentales.
   3. Creo que el precio y el alcance son transparentes.
   4. Confío en que me van a mostrar números reales.
-  5. Solicito la auditoría gratuita.
+  5. Solicito la revisión gratis.
 - Proof on hand: none yet. Stock imagery is in use as placeholder; real testimonials, cases or clinic logos must be added when available.
 
 ## Brand Personality

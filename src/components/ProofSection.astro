@@ -50,15 +50,39 @@
 
       <div class="proof-section__report">
         <p class="proof-section__report-label">El reporte mensual</p>
-        <img
-          class="proof-section__report-image"
-          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-          alt="Ejemplo de reporte mensual con métricas de campaña"
-          width="800"
-          height="533"
-          loading="lazy"
-          decoding="async"
-        />
+        <div
+          class="proof-section__report-doc"
+          role="img"
+          aria-label="Formato del reporte mensual: una fila por métrica con su valor del mes, más el gasto y el resultado."
+        >
+          <div class="proof-section__report-doc-head">
+            <span>Reporte mensual</span>
+            <span>Tu clínica · mes en curso</span>
+          </div>
+          <ul class="proof-section__report-rows" role="list">
+            <li>
+              <span class="proof-section__report-metric">Consultas desde búsquedas</span>
+              <span class="proof-section__report-val" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="proof-section__report-metric">Clics a WhatsApp + formularios</span>
+              <span class="proof-section__report-val" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="proof-section__report-metric">Costo por oportunidad</span>
+              <span class="proof-section__report-val proof-section__report-val--money" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="proof-section__report-metric">Términos con mejores consultas</span>
+              <span class="proof-section__report-val" aria-hidden="true"></span>
+            </li>
+            <li>
+              <span class="proof-section__report-metric">Dónde se corta el proceso</span>
+              <span class="proof-section__report-val" aria-hidden="true"></span>
+            </li>
+          </ul>
+          <p class="proof-section__report-foot">Tus números reales, no un ejemplo genérico.</p>
+        </div>
         <p class="proof-section__report-body">
           Cada mes recibes un documento con estos números y una propuesta de ajuste concreta. Nada de clics e
           impresiones sin contexto. Solo lo que necesitas para decidir si el canal funciona para tu clínica.

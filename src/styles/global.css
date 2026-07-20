@@ -146,6 +146,7 @@ h1 {
   line-height: 0.96;
   margin: 0;
   text-wrap: balance;
+  overflow-wrap: break-word;
   font-size: var(--t-7xl);
 }
 p {
@@ -289,10 +290,17 @@ em {
   color: var(--muted);
   letter-spacing: 0.04em;
 }
-.site-nav__meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.site-nav__link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 140ms var(--ease-out);
+}
+.site-nav__link:hover {
+  color: var(--vermilion-d);
+}
+.site-nav__link:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 @media (max-width: 880px) {
   .site-nav__meta {

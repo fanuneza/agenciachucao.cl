@@ -44,8 +44,15 @@ const waHref = buildWhatsAppUrl(waNumber, waMessage);
     if (footer) {
       new IntersectionObserver(
         ([entry]) => {
-          btn.style.opacity = entry.isIntersecting ? "0" : "";
-          btn.style.pointerEvents = entry.isIntersecting ? "none" : "";
+          const hidden = entry.isIntersecting;
+          btn.style.opacity = hidden ? "0" : "";
+          btn.style.pointerEvents = hidden ? "none" : "";
+          btn.setAttribute("aria-hidden", hidden ? "true" : "false");
+          if (hidden) {
+            btn.setAttribute("tabindex", "-1");
+          } else {
+            btn.removeAttribute("tabindex");
+          }
         },
         { threshold: 0.1 }
       ).observe(footer);
