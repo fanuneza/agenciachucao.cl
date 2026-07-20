@@ -12,7 +12,7 @@ colors:
   ink-2: "#1a1a17"
   ink-line: "#2a2a24"
   graphite: "#4a4943"
-  muted: "#6d6a64"
+  muted: "#5c584f"
   muted-dark: "#c8c3b6"
   white: "#ffffff"
   wa: "#2bb36b"
@@ -128,7 +128,7 @@ El palette es reducido: un acento cálido, una familia de neutros terrosos y una
 - **Tinta 2** (`#1a1a17`): superficies elevadas sobre fondo oscuro.
 - **Línea tinta** (`#2a2a24`): bordes sobre fondo oscuro.
 - **Grafito** (`#4a4943`): texto secundario.
-- **Apagado** (`#6d6a64`): metadatos y caption.
+- **Apagado** (`#5c584f`): metadatos y caption. Contraste ≥4.5:1 sobre hueso y hueso 2.
 - **Apagado claro** (`#c8c3b6`): texto secundario sobre fondo oscuro.
 - **Blanco** (`#ffffff`): fondos de inputs y contraste puro.
 - **WhatsApp** (`#2bb36b`): acciones de contacto por WhatsApp, usado con moderación.

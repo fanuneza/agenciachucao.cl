@@ -53,14 +53,7 @@
   letter-spacing: 0.04em;
   line-height: 1.5;
   color: var(--muted-dark);
-}
-
-.hero__trust {
-  margin-top: 1rem;
-  font-size: var(--t-sm);
-  line-height: 1.6;
-  color: var(--muted-dark);
-  max-width: 55ch;
+  max-width: 60ch;
 }
 
 .hero__flow {
