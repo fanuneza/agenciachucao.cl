@@ -53,6 +53,14 @@ if (schema) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
+    <script is:inline>
+      // Arm reveal choreography before first paint. No JS / no parse => content
+      // stays visible (class absent). Reduced motion never arms the hidden state.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("js-reveal");
+      }
+    </script>
+
     <Seo
       title={title}
       titleTemplate="%s | Agencia Chucao"

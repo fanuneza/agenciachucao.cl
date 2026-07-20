@@ -54,6 +54,17 @@
 }
 .contact-form__error--visible {
   display: block;
+  animation: contact-error-in 200ms var(--ease-out);
+}
+@keyframes contact-error-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .contact-form__group--invalid .form-field {
@@ -86,13 +97,38 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  padding: 1.25rem;
+  padding: 1.5rem;
   background: var(--bone-2);
   border: 1px solid var(--bone-line);
+  border-top: 2px solid var(--vermilion);
   margin-bottom: 1.5rem;
+  animation: contact-success-in 460ms var(--ease-out-quart) both;
+}
+/* Respect the hidden attribute (author display would otherwise win). */
+.contact-form__success[hidden] {
+  display: none;
 }
 .contact-form__success:focus {
   outline: none;
+}
+.contact-form__success:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+@keyframes contact-success-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-form__success {
+    animation: none;
+  }
 }
 
 .contact-form__success-title {
@@ -123,8 +159,33 @@
   align-self: flex-start;
 }
 .contact-form__submit:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+  cursor: progress;
+}
+.contact-form__submit.is-submitting {
+  opacity: 0.85;
+}
+.contact-form__submit-label {
+  display: inline-block;
+}
+.contact-form__submit.is-submitting .arrow {
+  display: none;
+}
+.contact-form__submit-spinner {
+  display: none;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid rgba(242, 238, 230, 0.4);
+  border-top-color: var(--bone);
+}
+.contact-form__submit.is-submitting .contact-form__submit-spinner {
+  display: inline-block;
+  animation: contact-spin 0.7s linear infinite;
+}
+@keyframes contact-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .contact-form__fallback {

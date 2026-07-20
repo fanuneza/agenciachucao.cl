@@ -13,29 +13,29 @@ const { ctaHref } = Astro.props;
   <div class="wrap">
     <div class="founding-section__grid">
       <div class="founding-section__intro">
-        <h2 id="found-h2">Precio de cupo inicial para las primeras 2 clínicas.</h2>
-        <p class="lede founding-section__lede">
+        <h2 id="found-h2" data-reveal>Precio de cupo inicial para las primeras 2 clínicas.</h2>
+        <p class="lede founding-section__lede" data-reveal="fade">
           Estamos documentando resultados en el nicho dental. Por eso abrimos dos cupos iniciales con un valor menor al
           precio estándar. Todo el precio queda a la vista antes de la llamada.
         </p>
       </div>
 
-      <div class="founding-section__details">
-        <div class="founding-section__detail">
+      <div class="founding-section__details" data-reveal-group>
+        <div class="founding-section__detail" data-reveal="slide">
           <span class="founding-section__detail-key">Fee mensual</span>
           <span class="founding-section__detail-figure">
             <span class="founding-section__detail-value">$950.000</span>
             <span class="founding-section__detail-standard">Estándar $1.150.000 - $1.200.000</span>
           </span>
         </div>
-        <div class="founding-section__detail">
+        <div class="founding-section__detail" data-reveal="slide">
           <span class="founding-section__detail-key">Instalación inicial</span>
           <span class="founding-section__detail-figure">
             <span class="founding-section__detail-value">$500.000</span>
             <span class="founding-section__detail-standard founding-section__detail-standard--plain">Pago único</span>
           </span>
         </div>
-        <div class="founding-section__detail">
+        <div class="founding-section__detail" data-reveal="slide">
           <span class="founding-section__detail-key">Pauta publicitaria</span>
           <span class="founding-section__detail-figure">
             <span class="founding-section__detail-value founding-section__detail-value--text">Aparte</span>
@@ -44,7 +44,7 @@ const { ctaHref } = Astro.props;
         </div>
       </div>
 
-      <div class="founding-section__note">
+      <div class="founding-section__note" data-reveal="fade">
         <p>
           Al cerrarse los dos cupos, el fee sube a la banda estándar de $1.150.000 - $1.200.000/mes. La pauta siempre va
           aparte y la pagas directo a Google: tu clínica es dueña de sus cuentas, sin markup.

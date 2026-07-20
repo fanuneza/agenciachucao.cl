@@ -60,9 +60,11 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
   <div id="form-status" class="contact-form__status" aria-live="polite"></div>
 
-  <button type="submit" class="btn contact-form__submit" id="form-submit-btn" data-label="Solicita una revisión gratis"
-    >Solicita una revisión gratis <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg></button
-  >
+  <button type="submit" class="btn contact-form__submit" id="form-submit-btn" data-label="Solicita una revisión gratis">
+    <span class="contact-form__submit-spinner" aria-hidden="true"></span>
+    <span class="contact-form__submit-label">Solicita una revisión gratis</span>
+    <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+  </button>
 </form>
 
 <div id="form-success" class="contact-form__success" hidden tabindex="-1">

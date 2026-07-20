@@ -15,18 +15,19 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
 ---
 
 <section class="section dark hero" id="hero" aria-labelledby="hero-h1">
-  <div class="wrap">
-    <div class="tray">
+  <div class="wrap" data-reveal-group>
+    <div class="tray" data-reveal="fade">
       <span class="serial">Agendamientos para clínicas dentales</span>
       <span class="meta">Santiago, Chile</span>
     </div>
 
-    <div class="hero__grid">
-      <div>
-        <h1 id="hero-h1" class="hero__headline" set:html={headlineHtml} />
-        <p class="lede hero__lede" set:html={subheadlineHtml} />
+    <h1 id="hero-h1" class="hero__headline" set:html={headlineHtml} data-reveal="rise" />
 
-        <div class="hero__actions">
+    <div class="hero__grid">
+      <div class="hero__intro">
+        <p class="lede hero__lede" set:html={subheadlineHtml} data-reveal />
+
+        <div class="hero__actions" data-reveal>
           <TrackedLink
             href={ctaHref}
             class="btn"
@@ -42,35 +43,32 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
           </TrackedLink>
         </div>
 
-        <p class="hero__reassure">
+        <p class="hero__reassure" data-reveal="fade">
           Sin compromiso · respuesta en menos de 24 h · sin contratos largos. Pensado para tratamientos de alto valor,
           donde cada consulta es medible.
         </p>
       </div>
 
-      <aside class="hero__flow" aria-label="Flujo del sistema">
+      <aside class="hero__flow" aria-label="Flujo del sistema" data-reveal>
         <p class="hero__flow-label">Cómo funciona el sistema</p>
-        <div class="hero__flow-steps">
-          <div class="hero__flow-step">
-            <span class="hero__flow-dot" aria-hidden="true"></span>
+        <ol class="hero__flow-steps" role="list">
+          <li class="hero__flow-step">
+            <span class="hero__flow-node" aria-hidden="true"></span>
             <span class="hero__flow-name">Búsqueda en Google</span>
-          </div>
-          <span class="hero__flow-connector" aria-hidden="true"></span>
-          <div class="hero__flow-step">
-            <span class="hero__flow-dot" aria-hidden="true"></span>
-            <span class="hero__flow-name">Landing</span>
-          </div>
-          <span class="hero__flow-connector" aria-hidden="true"></span>
-          <div class="hero__flow-step">
-            <span class="hero__flow-dot" aria-hidden="true"></span>
-            <span class="hero__flow-name">WhatsApp</span>
-          </div>
-          <span class="hero__flow-connector" aria-hidden="true"></span>
-          <div class="hero__flow-step">
-            <span class="hero__flow-dot" aria-hidden="true"></span>
-            <span class="hero__flow-name">Agenda</span>
-          </div>
-        </div>
+          </li>
+          <li class="hero__flow-step">
+            <span class="hero__flow-node" aria-hidden="true"></span>
+            <span class="hero__flow-name">Landing de conversión</span>
+          </li>
+          <li class="hero__flow-step">
+            <span class="hero__flow-node" aria-hidden="true"></span>
+            <span class="hero__flow-name">Respuesta por WhatsApp</span>
+          </li>
+          <li class="hero__flow-step">
+            <span class="hero__flow-node" aria-hidden="true"></span>
+            <span class="hero__flow-name">Paciente agendado</span>
+          </li>
+        </ol>
         <div class="hero__flow-meta">
           <p><span class="hero__flow-meta-key">Foco</span> Implantes, ortodoncia, rehabilitación</p>
           <p><span class="hero__flow-meta-key">Inversión</span> Desde $950.000/mes + pauta aparte</p>

@@ -212,6 +212,47 @@ em {
 .btn .arrow {
   width: 1em;
   height: 1em;
+  transition: transform var(--dur-mid) var(--ease-out-quart);
+}
+.btn:hover .arrow,
+.btn:focus-visible .arrow {
+  transform: translateX(3px);
+}
+
+/* ── Reveal choreography ────────────────────────────────────
+   Armed only when `.js-reveal` is on <html> (set inline pre-paint, and never
+   under reduced motion). Without it, content renders in its final state. */
+/* Default flavor: a short confident rise. */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-quart),
+    transform var(--dur-reveal) var(--ease-out-quart),
+    clip-path var(--dur-reveal) var(--ease-out-quart);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+/* Flavor: lift from further, for hero-scale statements. */
+.js-reveal [data-reveal="rise"] {
+  transform: translateY(2.75rem);
+}
+/* Flavor: a quiet fade, for supporting copy that shouldn't move. */
+.js-reveal [data-reveal="fade"] {
+  transform: none;
+}
+/* Flavor: a vertical wipe, for rules/dividers and framed panels. */
+.js-reveal [data-reveal="wipe"] {
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+}
+/* Flavor: enter from the inline-start, for side-set list rows. */
+.js-reveal [data-reveal="slide"] {
+  transform: translateX(-1.25rem);
+}
+.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
@@ -224,6 +265,12 @@ em {
   }
   html {
     scroll-behavior: auto;
+  }
+  /* Belt-and-braces: never leave revealable content hidden. */
+  .js-reveal [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
   }
 }
 
@@ -302,6 +349,30 @@ em {
 .site-nav__link:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
+}
+.site-nav__link[aria-current="true"] {
+  color: var(--ink);
+}
+.site-nav__link[aria-current="true"]::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 3px;
+  background: var(--vermilion);
+}
+
+/* Scroll-progress hairline along the nav's lower edge. */
+.site-nav__progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  background: var(--vermilion);
+  transition: transform 90ms linear;
+  pointer-events: none;
 }
 .site-nav__cta {
   padding: 0.6rem 0.95rem;

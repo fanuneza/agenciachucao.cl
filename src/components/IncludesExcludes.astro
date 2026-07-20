@@ -10,14 +10,14 @@ const { included, excluded, extras } = Astro.props;
 
 <section class="section scope-section" id="alcance" aria-labelledby="inc-h2">
   <div class="wrap">
-    <h2 id="inc-h2">Qué incluye y qué no.</h2>
-    <p class="lede">
+    <h2 id="inc-h2" data-reveal>Qué incluye y qué no.</h2>
+    <p class="lede" data-reveal="fade">
       Un alcance acotado es lo que permite ejecutar cada pieza bien. Aquí está todo lo que incluye el fee mensual, y lo
       que no, para que no haya sorpresas.
     </p>
 
     <div class="scope-section__grid">
-      <div class="scope-section__col scope-section__col--included">
+      <div class="scope-section__col scope-section__col--included" data-reveal="slide">
         <p class="scope-section__col-label">Sí incluye</p>
         <ul class="scope-section__list" role="list">
           {
@@ -40,7 +40,7 @@ const { included, excluded, extras } = Astro.props;
           }
         </ul>
       </div>
-      <div class="scope-section__col scope-section__col--excluded">
+      <div class="scope-section__col scope-section__col--excluded" data-reveal="slide">
         <p class="scope-section__col-label">No incluye</p>
         <ul class="scope-section__list" role="list">
           {
@@ -61,7 +61,7 @@ const { included, excluded, extras } = Astro.props;
 
     {
       extras.length > 0 && (
-        <div class="scope-section__extras">
+        <div class="scope-section__extras" data-reveal="fade">
           <p class="scope-section__extras-label">Servicios opcionales</p>
           <ul class="scope-section__extras-list" role="list">
             {extras.map((item) => (

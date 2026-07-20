@@ -1,44 +1,51 @@
 export interface OfferComponent {
-  idx: string;
+  stage: string;
   label: string;
   description: string;
+  tier: "core" | "support";
 }
 
 export const offerComponents: OfferComponent[] = [
   {
-    idx: "01 · Captación",
+    stage: "Captación",
     label: "Google Search Ads",
     description:
       "Captamos demanda activa de personas que buscan implantes, ortodoncia o rehabilitación en Santiago. Solo búsquedas con intención real.",
+    tier: "core",
   },
   {
-    idx: "02 · Conversión",
+    stage: "Conversión",
     label: "Landing de conversión",
     description:
       "Página específica por tratamiento, sin distracciones ni menús innecesarios. Diseñada para que el paciente solicite una evaluación.",
+    tier: "core",
   },
   {
-    idx: "03 · Contacto",
+    stage: "Contacto",
     label: "WhatsApp y seguimiento",
     description:
       "Protocolo de contacto para que ningún lead quede sin respuesta en las primeras horas. La velocidad de contacto es lo que más impacta el cierre.",
+    tier: "core",
   },
   {
-    idx: "04 · Local",
+    stage: "Presencia local",
     label: "SEO local y Google Business Profile",
     description:
-      "Optimización del perfil local para captar búsquedas de alta intención en tu zona. Categorías, reseñas, publicaciones y visibilidad en Maps.",
+      "Optimización del perfil local para captar búsquedas de alta intención en tu zona: categorías, reseñas y visibilidad en Maps.",
+    tier: "support",
   },
   {
-    idx: "05 · Medición",
+    stage: "Medición",
     label: "Medición y reportes",
     description:
       "Seguimiento de conversiones desde el primer día. Sabemos de dónde viene cada lead, cuánto costó y qué canal funciona.",
+    tier: "support",
   },
   {
-    idx: "06 · Mejora",
+    stage: "Optimización",
     label: "Optimización mensual",
     description:
-      "Revisión mensual de campañas, palabras clave y tasas de conversión. Ajustamos lo que muestra señales débiles y potenciamos lo que funciona.",
+      "Revisión mensual de campañas, palabras clave y tasas de conversión. Ajustamos las señales débiles y potenciamos lo que funciona.",
+    tier: "support",
   },
 ];

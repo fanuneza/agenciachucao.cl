@@ -15,22 +15,22 @@ const { steps } = Astro.props;
 
 <section class="section process-section" id="proceso" aria-labelledby="how-h2">
   <div class="wrap">
-    <h2 id="how-h2">Qué pasa después de que firmas.</h2>
-    <p class="lede process-section__lede">
+    <h2 id="how-h2" data-reveal>Qué pasa después de que firmas.</h2>
+    <p class="lede process-section__lede" data-reveal="fade">
       El primer mes se usa para instalar el sistema, activar tráfico medible y detectar qué tan bien convierte la
       clínica desde Google hasta WhatsApp.
     </p>
 
-    <ol class="process-section__steps" role="list">
+    <ol class="process-timeline" role="list" data-reveal-group>
       {
         steps.map((step) => (
-          <li class="process-section__step">
-            <div class="process-section__step-header">
-              <span class="process-section__step-num">{step.number}</span>
-              <span class="process-section__step-timeline">{step.timeline}</span>
-            </div>
-            <p class="process-section__step-title">{step.title}</p>
-            <p class="process-section__step-desc">{step.description}</p>
+          <li class="process-timeline__step" data-reveal>
+            <span class="process-timeline__marker" aria-hidden="true">
+              <span class="process-timeline__num">{step.number}</span>
+            </span>
+            <p class="process-timeline__when">{step.timeline}</p>
+            <p class="process-timeline__title">{step.title}</p>
+            <p class="process-timeline__desc">{step.description}</p>
           </li>
         ))
       }

@@ -6,28 +6,52 @@ interface Props {
 }
 
 const { components } = Astro.props;
+const core = components.filter((c) => c.tier === "core");
+const support = components.filter((c) => c.tier === "support");
 ---
 
-<section class="section dark" id="oferta" aria-labelledby="offer-h2">
+<section class="section dark offer-section" id="oferta" aria-labelledby="offer-h2">
   <div class="wrap">
-    <h2 id="offer-h2">El sistema de agendamientos.</h2>
-    <p class="lede offer-section__lede">
+    <h2 id="offer-h2" data-reveal>El sistema de agendamientos.</h2>
+    <p class="lede offer-section__lede" data-reveal="fade">
       Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días
       tienes tres números concretos: costo por lead, costo por evaluación y costo por tratamiento.
     </p>
 
-    <div class="offer-section__grid">
+    <p class="offer-section__group-label">El motor: de la búsqueda al agendamiento</p>
+    <ol class="offer-engine" role="list" data-reveal-group>
       {
-        components.map((item) => (
-          <article class="offer-section__item">
-            <h3>{item.label}</h3>
-            <p>{item.description}</p>
-          </article>
+        core.map((item) => (
+          <li class="offer-engine__step" data-reveal>
+            <span class="offer-engine__head">
+              <span class="offer-engine__node" aria-hidden="true" />
+              <span class="offer-engine__stage">{item.stage}</span>
+            </span>
+            <h3 class="offer-engine__title">{item.label}</h3>
+            <p class="offer-engine__desc">{item.description}</p>
+          </li>
         ))
       }
+    </ol>
+
+    <div class="offer-support" data-reveal-group>
+      <p class="offer-section__group-label offer-section__group-label--support" data-reveal="fade">
+        Y lo que mantiene el sistema afinado
+      </p>
+      <div class="offer-support__grid">
+        {
+          support.map((item) => (
+            <div class="offer-support__item" data-reveal>
+              <p class="offer-support__stage">{item.stage}</p>
+              <h3 class="offer-support__title">{item.label}</h3>
+              <p class="offer-support__desc">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
     </div>
 
-    <p class="offer-section__promise">
+    <p class="offer-section__promise" data-reveal="wipe">
       Menos fuga. Más pacientes agendados calificados. Con el costo de cada uno visible desde el día 30.
     </p>
   </div>

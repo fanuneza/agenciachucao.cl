@@ -3,6 +3,7 @@ import { initCookieBanner } from "./cookie-banner";
 import { initContactForm } from "./contact-form";
 import { initFabVisibility } from "./fab";
 import { initHeader } from "./header";
+import { initReveal } from "./reveal";
 import { initAnalyticsLinks, initPricingObserver, trackPageView } from "./tracking";
 
 let isFirstPageLoad = true;
@@ -20,6 +21,7 @@ function initPage(): void {
   isFirstPageLoad = false;
 
   initHeader();
+  initReveal();
   initAnalyticsLinks();
   initPricingObserver();
   initFabVisibility();

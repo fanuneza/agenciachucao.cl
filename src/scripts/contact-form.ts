@@ -89,7 +89,11 @@ function focusFirstInvalidField(form: HTMLFormElement): void {
 function setSubmitting(button: HTMLButtonElement | null, submitting: boolean): void {
   if (!button) return;
   button.disabled = submitting;
-  button.textContent = submitting ? "Enviando…" : button.dataset.label || "Solicita una revisión gratis";
+  button.classList.toggle("is-submitting", submitting);
+  const label = button.querySelector<HTMLElement>(".contact-form__submit-label");
+  if (label) {
+    label.textContent = submitting ? "Enviando…" : button.dataset.label || "Solicita una revisión gratis";
+  }
 }
 
 function showFormStatus(status: HTMLElement | null, message: string, type: "error" | "success"): void {
