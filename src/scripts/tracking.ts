@@ -39,7 +39,7 @@ export function initAnalyticsLinks(): void {
 }
 
 export function initPricingObserver(): void {
-  const pricingSection = document.getElementById("pricing");
+  const pricingSection = document.getElementById("precio");
 
   if (!pricingSection || pricingSection.dataset.pricingObserved === "true") {
     return;

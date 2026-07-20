@@ -84,7 +84,7 @@ export function buildSchemaGraph(options: {
     )
   );
 
-  // 2. Organización / Autor / Persona
+  // 2. Organización / Autor
   pieces.push(
     buildPiece({
       "@type": "Organization",
@@ -98,16 +98,20 @@ export function buildSchemaGraph(options: {
     })
   );
 
-  const authorId = `${SITE_URL}/#author-pepito`;
-  pieces.push(
-    buildPiece({
-      "@type": "Person",
-      "@id": authorId,
-      name: options.authorName || "Pepito Perez",
-      url: `${SITE_URL}/nosotros/`,
-      knowsAbout: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversion web"],
-    })
-  );
+  // Sólo emitimos un nodo Person cuando hay un autor real declarado.
+  // Sin él, la autoría recae en la Organización (evita placeholders en producción).
+  const hasNamedAuthor = Boolean(options.authorName);
+  const authorId = hasNamedAuthor ? `${SITE_URL}/#author` : orgId;
+  if (hasNamedAuthor) {
+    pieces.push(
+      buildPiece({
+        "@type": "Person",
+        "@id": authorId,
+        name: options.authorName,
+        knowsAbout: ["Google Ads", "SEO Local", "Google Business Profile", "Lead Generation", "Conversion web"],
+      })
+    );
+  }
 
   // 3. WebPage y/o Article (si aplica)
   pieces.push(

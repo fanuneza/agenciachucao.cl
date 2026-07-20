@@ -46,8 +46,17 @@
   flex-wrap: wrap;
 }
 
+.hero__reassure {
+  margin-top: 1rem;
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--muted-dark);
+}
+
 .hero__trust {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   font-size: var(--t-sm);
   line-height: 1.6;
   color: var(--muted-dark);

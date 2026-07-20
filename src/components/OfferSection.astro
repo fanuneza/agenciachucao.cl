@@ -10,11 +10,6 @@ const { components } = Astro.props;
 
 <section class="section dark" id="oferta" aria-labelledby="offer-h2">
   <div class="wrap">
-    <div class="tray">
-      <span class="serial">Sistema</span>
-      <span class="meta">Seis piezas, un objetivo</span>
-    </div>
-
     <h2 id="offer-h2">El sistema de agendamientos.</h2>
     <p class="lede offer-section__lede">
       Un sistema de captación, conversión y medición con un solo objetivo: llenar la agenda de tu clínica. En 30 días
@@ -25,7 +20,6 @@ const { components } = Astro.props;
       {
         components.map((item) => (
           <article class="offer-section__item">
-            <p class="offer-section__item-index">{item.idx}</p>
             <h3>{item.label}</h3>
             <p>{item.description}</p>
           </article>

@@ -7,7 +7,6 @@ import HowItWorks from "@components/HowItWorks.astro";
 import ProofSection from "@components/ProofSection.astro";
 import IncludesExcludes from "@components/IncludesExcludes.astro";
 import QualificationSection from "@components/QualificationSection.astro";
-import PricingSection from "@components/PricingSection.astro";
 import FoundingOffer from "@components/FoundingOffer.astro";
 import FAQ from "@components/FAQ.astro";
 import CTAFinal from "@components/CTAFinal.astro";
@@ -137,8 +136,6 @@ const faqSchema = buildFaqPage(faqItems);
   <IncludesExcludes included={included} excluded={excluded} extras={extras} />
 
   <QualificationSection />
-
-  <PricingSection />
 
   <FoundingOffer spotsTotal={2} ctaHref="/contacto/" />
 

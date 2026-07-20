@@ -6,7 +6,7 @@ import Brand from "@components/Brand.astro";
   <div class="wrap site-nav__inner">
     <Brand />
 
-    <nav class="site-nav__meta" aria-label="Secciones de la página">
+    <nav id="site-nav-menu" class="site-nav__meta" aria-label="Secciones de la página">
       <a class="site-nav__link" href="/#oferta">Sistema</a>
       <a class="site-nav__link" href="/#proceso">Procedimiento</a>
       <a class="site-nav__link" href="/#precio">Precio</a>
@@ -18,5 +18,15 @@ import Brand from "@components/Brand.astro";
       <span class="site-nav__cta-label site-nav__cta-label--short" aria-hidden="true">Revisión gratis</span>
       <svg class="arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
     </a>
+
+    <button
+      type="button"
+      class="site-nav__toggle"
+      aria-expanded="false"
+      aria-controls="site-nav-menu"
+      aria-label="Abrir menú de secciones"
+    >
+      <span class="site-nav__toggle-bars" aria-hidden="true"></span>
+    </button>
   </div>
 </header>
