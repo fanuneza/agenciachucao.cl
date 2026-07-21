@@ -21,6 +21,7 @@
   min-height: 70vh;
   display: flex;
   align-items: center;
+  background: var(--vermilion);
 }
 .not-found__inner {
   display: flex;
@@ -32,7 +33,7 @@
   font-family: var(--f-display);
   font-weight: 700;
   font-size: clamp(72px, 12vw, 120px);
-  color: var(--vermilion);
+  color: var(--bone);
   line-height: 1;
   letter-spacing: -0.04em;
 }
@@ -42,7 +43,7 @@
 .not-found__text {
   font-size: var(--t-lg);
   line-height: 1.75;
-  color: var(--muted-dark);
+  color: var(--bone);
 }
 .not-found__redirect {
   color: var(--vermilion-light);

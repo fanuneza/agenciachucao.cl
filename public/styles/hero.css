@@ -1,165 +1,155 @@
-.hero {
-  border-top: 0;
-  padding-top: clamp(2.5rem, 5vw, 4.5rem);
-  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+.section.dark.hero {
   overflow: hidden;
-  background-color: var(--ink);
-  background-image:
-    radial-gradient(130% 90% at 82% -10%, rgba(184, 61, 31, 0.12), transparent 55%),
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    46px 46px,
-    46px 46px;
-  background-position: center;
+  padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+  border-top: 0;
+  background: var(--vermilion);
 }
 .hero .tray {
-  border-bottom-color: var(--ink-line);
-  color: var(--muted-dark);
-  margin-bottom: 1.25rem;
-}
-.hero__headline {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: 1rem;
   color: var(--bone);
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  border-bottom-color: rgba(242, 238, 230, 0.5);
 }
-
-.hero__lede {
-  margin-top: 0;
-}
-
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
   gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: end;
 }
 @media (min-width: 900px) {
   .hero__grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: start;
     gap: clamp(2.5rem, 5vw, 5rem);
   }
 }
-
 .hero__intro {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
-.hero__actions {
-  margin-top: clamp(1.25rem, 2vw, 1.75rem);
-  display: flex;
-  gap: 0.85rem;
-  flex-wrap: wrap;
+.hero__headline {
+  max-width: 8ch;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--bone);
 }
-
+.hero__lede {
+  max-width: 38ch;
+  margin-top: 0;
+  color: var(--bone);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: clamp(1.25rem, 2vw, 1.75rem);
+}
+.hero__actions .btn {
+  --bg: var(--ink);
+  --bd: var(--ink);
+}
+.hero__actions .btn:hover {
+  --bg: var(--bone);
+  --bd: var(--bone);
+  --fg: var(--ink);
+}
 .hero__reassure {
+  max-width: 60ch;
   margin-top: 1rem;
+  color: var(--bone);
   font-family: var(--f-mono);
   font-size: var(--t-xs);
-  letter-spacing: 0.04em;
   line-height: 1.5;
-  color: var(--muted-dark);
-  max-width: 60ch;
+  letter-spacing: 0.04em;
 }
-
 .hero__flow {
-  border: 1px solid var(--ink-line);
-  background: var(--ink-2);
   padding: clamp(1.25rem, 2vw, 1.75rem);
+  border: 1px solid rgba(242, 238, 230, 0.65);
 }
-
 .hero__flow-label {
+  margin: 0 0 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(242, 238, 230, 0.4);
+  color: var(--bone);
   font-family: var(--f-mono);
   font-size: var(--t-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted-dark);
-  margin: 0 0 1.25rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--ink-line);
 }
-
 .hero__flow-steps {
-  list-style: none;
+  display: grid;
   margin: 0;
   padding: 0;
-  display: grid;
+  list-style: none;
 }
-
 .hero__flow-step {
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: center;
   gap: 0.85rem;
-  padding: 0.62rem 0;
+  align-items: center;
+  padding: 0.9rem 0;
 }
-
-/* The connecting line runs from each node's centre down to the next. */
 .hero__flow-step:not(:last-child)::before {
-  content: "";
   position: absolute;
-  left: 5px;
-  top: 50%;
-  height: 100%;
-  width: 1px;
-  background: var(--vermilion);
-  opacity: 0.38;
   z-index: 0;
+  top: 50%;
+  left: 1.25rem;
+  width: 1px;
+  height: 100%;
+  background: var(--bone);
+  content: "";
+  opacity: 0.55;
 }
-
-.hero__flow-node {
+.hero__flow-number {
   position: relative;
   z-index: 1;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid var(--vermilion);
-  background: var(--ink);
-}
-/* The pipeline resolves to a filled node: the booked patient. */
-.hero__flow-step:last-child .hero__flow-node {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--bone);
   background: var(--vermilion);
-  box-shadow: 0 0 0 3px rgba(184, 61, 31, 0.18);
+  color: var(--bone);
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
 }
-
 .hero__flow-name {
+  color: var(--bone);
   font-family: var(--f-display);
   font-size: var(--t-md);
-  color: var(--bone);
   letter-spacing: -0.01em;
 }
-
+.hero__flow-name small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--bone);
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+}
 .hero__flow-meta {
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--ink-line);
   display: grid;
   gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(242, 238, 230, 0.4);
 }
-
 .hero__flow-meta p {
+  margin: 0;
+  color: var(--bone);
   font-family: var(--f-mono);
   font-size: var(--t-sm);
-  color: var(--bone);
   line-height: 1.5;
-  margin: 0;
 }
-
 .hero__flow-meta-key {
-  color: var(--muted-dark);
-  text-transform: uppercase;
+  margin-right: 0.5rem;
+  color: var(--bone);
   font-size: var(--t-xs);
   letter-spacing: 0.08em;
-  margin-right: 0.5rem;
+  text-transform: uppercase;
 }
-
-.section.dark strong {
-  color: var(--bone);
-  font-weight: 600;
-}
+.section.dark strong,
 .section.dark .lede strong {
   color: var(--bone);
   font-weight: 600;

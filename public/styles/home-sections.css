@@ -13,8 +13,26 @@
 }
 
 .problem-section__leak {
+  display: grid;
+  grid-template-columns: minmax(2.5rem, 0.16fr) 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
   padding: clamp(1.5rem, 3vw, 2rem) 0;
   border-bottom: 1px solid var(--bone-line);
+}
+.problem-section__leak::before {
+  color: var(--vermilion);
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+}
+.problem-section__leak:nth-child(1)::before {
+  content: "01";
+}
+.problem-section__leak:nth-child(2)::before {
+  content: "02";
+}
+.problem-section__leak:nth-child(3)::before {
+  content: "03";
 }
 
 .problem-section__leak-body {
@@ -134,7 +152,6 @@
 .offer-engine__node {
   width: 9px;
   height: 9px;
-  border-radius: 50%;
   background: var(--vermilion);
   flex-shrink: 0;
 }
@@ -255,7 +272,6 @@
   width: var(--tl-marker);
   height: var(--tl-marker);
   border: 1px solid var(--vermilion);
-  border-radius: 50%;
   background: var(--bone);
   color: var(--vermilion);
   z-index: 1;
@@ -397,7 +413,6 @@
   width: 8px;
   height: 8px;
   background: var(--vermilion-light);
-  border-radius: 50%;
   margin-top: 0.4em;
 }
 @media (min-width: 720px) {
@@ -459,7 +474,6 @@
   width: 10px;
   height: 10px;
   background: var(--vermilion-light);
-  border-radius: 50%;
   margin-top: 0.35em;
   flex-shrink: 0;
   display: inline-block;
@@ -488,7 +502,6 @@
 .proof-section__report-doc {
   border: 1px solid var(--bone-line);
   background: var(--bone);
-  box-shadow: 0 18px 40px rgba(14, 14, 12, 0.35);
 }
 .proof-section__report-doc-head {
   display: flex;

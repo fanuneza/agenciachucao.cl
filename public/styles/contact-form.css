@@ -11,7 +11,7 @@
 .form-field {
   width: 100%;
   background: var(--white);
-  border: 1.5px solid var(--bone-line);
+  border: 1px solid var(--ink);
   padding: 0.75rem 1rem;
   font-family: var(--f-text);
   font-size: var(--t-md);
@@ -20,17 +20,18 @@
   appearance: none;
   transition:
     border-color 160ms var(--ease-out),
-    box-shadow 160ms var(--ease-out);
+    background 160ms var(--ease-out);
 }
 .form-field::placeholder {
   color: var(--muted);
 }
 .form-field:hover {
-  border-color: var(--graphite);
+  background: var(--bone-2);
 }
 .form-field:focus {
   border-color: var(--vermilion);
-  box-shadow: 0 0 0 3px rgba(184, 61, 31, 0.12);
+  outline: 2px solid var(--vermilion);
+  outline-offset: 2px;
 }
 
 .contact-form {

@@ -16,15 +16,13 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
 
 <section class="section dark hero" id="hero" aria-labelledby="hero-h1">
   <div class="wrap" data-reveal-group>
-    <div class="tray" data-reveal="fade">
-      <span class="serial">Agendamientos para clínicas dentales</span>
-      <span class="meta">Santiago, Chile</span>
-    </div>
-
-    <h1 id="hero-h1" class="hero__headline" set:html={headlineHtml} data-reveal="rise" />
-
     <div class="hero__grid">
       <div class="hero__intro">
+        <div class="tray" data-reveal="fade">
+          <span class="serial">Sistema de adquisición para clínicas dentales</span>
+          <span class="meta">Santiago, Chile</span>
+        </div>
+        <h1 id="hero-h1" class="hero__headline" set:html={headlineHtml} data-reveal="rise" />
         <p class="lede hero__lede" set:html={subheadlineHtml} data-reveal />
 
         <div class="hero__actions" data-reveal>
@@ -50,23 +48,23 @@ const subheadlineHtml = subheadline.replace("cuánto te cuesta", "<strong>cuánt
       </div>
 
       <aside class="hero__flow" aria-label="Flujo del sistema" data-reveal>
-        <p class="hero__flow-label">Cómo funciona el sistema</p>
+        <p class="hero__flow-label">Flujo de adquisición</p>
         <ol class="hero__flow-steps" role="list">
           <li class="hero__flow-step">
-            <span class="hero__flow-node" aria-hidden="true"></span>
-            <span class="hero__flow-name">Búsqueda en Google</span>
+            <span class="hero__flow-number" aria-hidden="true">01</span>
+            <span class="hero__flow-name">Búsqueda en Google<small>Intención de tratamiento</small></span>
           </li>
           <li class="hero__flow-step">
-            <span class="hero__flow-node" aria-hidden="true"></span>
-            <span class="hero__flow-name">Landing de conversión</span>
+            <span class="hero__flow-number" aria-hidden="true">02</span>
+            <span class="hero__flow-name">Landing de conversión<small>Mensaje claro, siguiente paso</small></span>
           </li>
           <li class="hero__flow-step">
-            <span class="hero__flow-node" aria-hidden="true"></span>
-            <span class="hero__flow-name">Respuesta por WhatsApp</span>
+            <span class="hero__flow-number" aria-hidden="true">03</span>
+            <span class="hero__flow-name">Respuesta por WhatsApp<small>Conversación y seguimiento</small></span>
           </li>
           <li class="hero__flow-step">
-            <span class="hero__flow-node" aria-hidden="true"></span>
-            <span class="hero__flow-name">Paciente agendado</span>
+            <span class="hero__flow-number" aria-hidden="true">04</span>
+            <span class="hero__flow-name">Paciente agendado<small>Confirmación de evaluación</small></span>
           </li>
         </ol>
         <div class="hero__flow-meta">

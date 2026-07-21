@@ -1,5 +1,13 @@
-.audit-page__hero {
+.section.dark.audit-page__hero {
   border-top: 0;
+  background: var(--vermilion);
+}
+.audit-page__hero .tray {
+  color: var(--bone);
+  border-bottom-color: rgba(242, 238, 230, 0.5);
+}
+.audit-page__hero .lede {
+  color: var(--bone);
 }
 .audit-page__lede {
   margin-top: 1.5rem;
@@ -32,6 +40,7 @@
   gap: 0;
   position: sticky;
   top: 5.5rem;
+  border-top: 2px solid var(--vermilion);
 }
 
 .audit-page__block {
