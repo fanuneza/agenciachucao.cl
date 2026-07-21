@@ -1,8 +1,30 @@
 .section.dark.hero {
+  position: relative;
   overflow: hidden;
   padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
   border-top: 0;
   background: var(--vermilion);
+}
+.section.dark.hero::before,
+.section.dark.hero::after {
+  position: absolute;
+  width: clamp(3rem, 8vw, 7rem);
+  height: clamp(3rem, 8vw, 7rem);
+  border-color: rgba(242, 238, 230, 0.6);
+  content: "";
+  pointer-events: none;
+}
+.section.dark.hero::before {
+  top: 2rem;
+  left: var(--gutter);
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.section.dark.hero::after {
+  right: var(--gutter);
+  bottom: 2rem;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
 }
 .hero .tray {
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
@@ -22,14 +44,17 @@
   }
 }
 .hero__intro {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 .hero__headline {
-  max-width: 8ch;
+  max-width: 12ch;
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   color: var(--bone);
+  hyphens: none;
+  word-break: normal;
 }
 .hero__lede {
   max-width: 38ch;
@@ -61,8 +86,26 @@
   letter-spacing: 0.04em;
 }
 .hero__flow {
+  position: relative;
   padding: clamp(1.25rem, 2vw, 1.75rem);
   border: 1px solid rgba(242, 238, 230, 0.65);
+}
+.hero__flow::before,
+.hero__flow::after {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--bone);
+  background: var(--vermilion);
+  content: "";
+}
+.hero__flow::before {
+  top: -5px;
+  left: -5px;
+}
+.hero__flow::after {
+  right: -5px;
+  bottom: -5px;
 }
 .hero__flow-label {
   margin: 0 0 1.25rem;
@@ -107,7 +150,7 @@
   height: 2.5rem;
   place-items: center;
   border: 1px solid var(--bone);
-  background: var(--vermilion);
+  background: var(--vermilion-d);
   color: var(--bone);
   font-family: var(--f-mono);
   font-size: var(--t-xs);
@@ -117,6 +160,14 @@
   font-family: var(--f-display);
   font-size: var(--t-md);
   letter-spacing: -0.01em;
+}
+@media (min-width: 900px) {
+  .hero__headline {
+    font-size: clamp(4.5rem, 6.5vw, 7rem);
+  }
+  .hero__flow {
+    margin-bottom: clamp(1rem, 5vw, 5rem);
+  }
 }
 .hero__flow-name small {
   display: block;
