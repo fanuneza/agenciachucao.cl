@@ -1138,3 +1138,181 @@
 .cta-section__form .contact-form__fallback {
   margin-bottom: 0;
 }
+
+/* ── Industrial acquisition-system pass ─────────────────── */
+.problem-section,
+.process-section,
+.scope-section,
+.fit-section,
+.faq-section,
+.cta-section {
+  overflow: hidden;
+}
+.problem-section h2,
+.process-section h2,
+.scope-section h2,
+.fit-section h2,
+.faq-section h2,
+.cta-section h2 {
+  max-width: 12ch;
+}
+.problem-section__leaks {
+  counter-reset: leak;
+}
+.problem-section__leak {
+  grid-template-columns: minmax(3rem, 0.18fr) minmax(0, 1fr);
+}
+.problem-section__leak::before {
+  align-self: start;
+  padding-top: 0.25rem;
+}
+.problem-section__quote {
+  max-width: none;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  border-top-width: 1px;
+  font-size: var(--t-2xl);
+}
+
+.offer-section .wrap,
+.proof-section .wrap {
+  position: relative;
+}
+.offer-section .wrap::before,
+.proof-section .wrap::before {
+  position: absolute;
+  top: 0;
+  right: var(--gutter);
+  color: var(--vermilion-light);
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  content: "SISTEMA / 01";
+}
+.offer-engine {
+  border-color: var(--muted);
+}
+.offer-engine__step {
+  min-height: 18rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+.offer-engine__head {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--ink-line);
+}
+.offer-engine__title {
+  font-size: var(--t-2xl);
+}
+.offer-support__grid {
+  border-top-color: var(--muted);
+}
+.offer-section__promise {
+  max-width: 52ch;
+  color: var(--vermilion-light);
+}
+
+.process-timeline {
+  border-top: 1px solid var(--bone-line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.process-timeline__marker {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--ink);
+  color: var(--bone);
+  border-color: var(--ink);
+}
+.process-timeline__step:last-child .process-timeline__marker {
+  background: var(--vermilion);
+  border-color: var(--vermilion);
+}
+.process-timeline__when {
+  color: var(--ink);
+}
+
+.proof-section__guarantee {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.4fr) 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+.proof-section__guarantee-note {
+  grid-column: 2;
+}
+.proof-section__commit {
+  grid-column: 2;
+}
+.proof-section__guarantee-title {
+  margin: 0;
+}
+.proof-section__report-doc {
+  border-color: var(--bone);
+}
+.proof-section__report-label {
+  color: var(--vermilion-light);
+}
+
+.scope-section__grid,
+.fit-section__grid {
+  border-top: 1px solid var(--bone-line);
+}
+.scope-section__col,
+.fit-section__col {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--bone-2);
+}
+.scope-section__col + .scope-section__col,
+.fit-section__col + .fit-section__col {
+  border-left: 1px solid var(--bone-line);
+}
+.scope-section__list li,
+.fit-section__list li {
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--bone-line);
+}
+.scope-section__list li:last-child,
+.fit-section__list li:last-child {
+  border-bottom: 0;
+}
+
+.founding-section__grid {
+  border-top: 1px solid var(--ink-line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+.founding-section__detail {
+  padding-block: clamp(1rem, 2vw, 1.5rem);
+}
+.founding-section__detail-value {
+  color: var(--vermilion-light);
+}
+.faq-section__item {
+  border-bottom: 1px solid var(--bone-line);
+}
+.faq-section__question {
+  padding-block: clamp(1rem, 2vw, 1.5rem);
+}
+.faq-section__indicator {
+  border-radius: 0 !important;
+}
+.cta-section {
+  background: var(--bone-2);
+}
+.cta-section__form {
+  border: 1px solid var(--ink);
+  background: var(--bone);
+}
+.cta-section__assurances li::before {
+  border-radius: 0;
+}
+
+@media (max-width: 719px) {
+  .proof-section__guarantee {
+    display: block;
+  }
+  .proof-section__guarantee-title {
+    margin-bottom: 1.5rem;
+  }
+  .scope-section__col + .scope-section__col,
+  .fit-section__col + .fit-section__col {
+    border-top: 1px solid var(--bone-line);
+    border-left: 0;
+  }
+}
