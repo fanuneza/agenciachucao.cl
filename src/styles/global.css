@@ -303,7 +303,9 @@ em {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: var(--bone);
+  background: rgba(242, 238, 230, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--bone-line);
 }
 .site-nav--scrolled {

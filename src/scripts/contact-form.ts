@@ -30,7 +30,8 @@ function getFieldElements(form: ParentNode, id: FieldId) {
 }
 
 function showFieldError(form: ParentNode, id: FieldId, message: string): void {
-  const { error, group } = getFieldElements(form, id);
+  const { field, error, group } = getFieldElements(form, id);
+  field?.setAttribute("aria-invalid", "true");
   if (error) {
     error.textContent = message;
     error.classList.add("contact-form__error--visible");
@@ -39,7 +40,8 @@ function showFieldError(form: ParentNode, id: FieldId, message: string): void {
 }
 
 function clearFieldError(form: ParentNode, id: FieldId): void {
-  const { error, group } = getFieldElements(form, id);
+  const { field, error, group } = getFieldElements(form, id);
+  field?.removeAttribute("aria-invalid");
   if (error) {
     error.textContent = "";
     error.classList.remove("contact-form__error--visible");
@@ -134,6 +136,12 @@ export function initContactForm(): void {
         validateField(form, id);
       }
     });
+
+    if (field instanceof HTMLSelectElement) {
+      field.addEventListener("change", () => {
+        validateField(form, id);
+      });
+    }
   });
 
   form.addEventListener("submit", async (event) => {

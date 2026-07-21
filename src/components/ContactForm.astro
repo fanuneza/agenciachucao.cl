@@ -20,15 +20,24 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       name="nombre"
       autocomplete="name"
       placeholder="Nombre y apellido"
+      aria-describedby="err-nombre"
       required
     />
-    <span class="contact-form__error" id="err-nombre"></span>
+    <span class="contact-form__error" id="err-nombre" aria-live="polite"></span>
   </div>
 
   <div class="contact-form__group">
     <label class="field-label" for="clinica">Nombre de tu clínica</label>
-    <input class="form-field" type="text" id="clinica" name="clinica" placeholder="Clínica Dental..." required />
-    <span class="contact-form__error" id="err-clinica"></span>
+    <input
+      class="form-field"
+      type="text"
+      id="clinica"
+      name="clinica"
+      placeholder="Clínica Dental..."
+      aria-describedby="err-clinica"
+      required
+    />
+    <span class="contact-form__error" id="err-clinica" aria-live="polite"></span>
   </div>
 
   <div class="contact-form__group">
@@ -41,21 +50,28 @@ const web3Key = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       autocomplete="tel"
       inputmode="tel"
       placeholder="+56 9 1234 5678"
+      aria-describedby="err-phone"
       required
     />
-    <span class="contact-form__error" id="err-phone"></span>
+    <span class="contact-form__error" id="err-phone" aria-live="polite"></span>
   </div>
 
   <div class="contact-form__group">
     <label class="field-label" for="tratamiento">Tratamiento principal</label>
-    <select class="form-field contact-form__select" id="tratamiento" name="tratamiento" required>
+    <select
+      class="form-field contact-form__select"
+      id="tratamiento"
+      name="tratamiento"
+      aria-describedby="err-tratamiento"
+      required
+    >
       <option value="">Selecciona una opción…</option>
       <option value="Implantología">Implantología</option>
       <option value="Ortodoncia">Ortodoncia</option>
       <option value="Rehabilitación oral">Rehabilitación oral</option>
       <option value="Otro">Otro</option>
     </select>
-    <span class="contact-form__error" id="err-tratamiento"></span>
+    <span class="contact-form__error" id="err-tratamiento" aria-live="polite"></span>
   </div>
 
   <div id="form-status" class="contact-form__status" aria-live="polite"></div>
