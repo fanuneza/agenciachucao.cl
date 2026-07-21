@@ -2,11 +2,11 @@
   border-top: 0;
   background: var(--vermilion);
 }
-.audit-page__hero .tray {
+.section.dark.audit-page__hero .tray {
   color: var(--bone);
   border-bottom-color: rgba(242, 238, 230, 0.5);
 }
-.audit-page__hero .lede {
+.section.dark.audit-page__hero .lede {
   color: var(--bone);
 }
 .audit-page__lede {

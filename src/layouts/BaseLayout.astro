@@ -6,6 +6,8 @@ import CookieConsent from "@components/CookieConsent.astro";
 import IconSprite from "@components/IconSprite.astro";
 import LazyStyles from "@components/LazyStyles.astro";
 import "@styles/global.css";
+import montserrat400 from "@fontsource/montserrat/files/montserrat-latin-400-normal.woff2?url";
+import montserrat600 from "@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url";
 
 import { buildSchemaGraph, type JsonLdGraph, type JsonLdNode } from "@/utils/schema";
 
@@ -14,16 +16,22 @@ interface Props {
   description: string;
   image?: string;
   canonical?: string;
+  markdownUrl?: string;
   noindex?: boolean;
   schema?: JsonLdNode | JsonLdNode[] | JsonLdGraph;
 }
 
-const { title, description, image, canonical, noindex, schema } = Astro.props;
+const { title, description, image, canonical, markdownUrl, noindex, schema } = Astro.props;
 const siteUrl = "https://agenciachucao.cl";
 const defaultOgImage = "/images/og/og-image.webp";
 const ogImage = image || defaultOgImage;
 const absoluteOgImage = ogImage.startsWith("http") ? ogImage : `${siteUrl}${ogImage}`;
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).toString();
+const extraLinks = [
+  { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+  { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },
+  ...(markdownUrl ? [{ rel: "alternate", type: "text/markdown", href: markdownUrl }] : []),
+];
 
 const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
 const defaultSchema = buildSchemaGraph({
@@ -52,6 +60,8 @@ if (schema) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preload" href={montserrat400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={montserrat600} as="font" type="font/woff2" crossorigin />
 
     <script is:inline>
       // Arm reveal choreography before first paint. No JS / no parse => content
@@ -76,10 +86,7 @@ if (schema) {
       locale="es_CL"
       graph={finalSchema}
       twitter={{ card: "summary_large_image" }}
-      extraLinks={[
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },
-      ]}
+      extraLinks={extraLinks}
     />
 
     <meta name="theme-color" content="#f2eee6" />

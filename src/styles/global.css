@@ -220,39 +220,31 @@ em {
 }
 
 /* ── Reveal choreography ────────────────────────────────────
-   Armed only when `.js-reveal` is on <html> (set inline pre-paint, and never
-   under reduced motion). Without it, content renders in its final state. */
+   Content remains legible before activation; motion only refines its arrival. */
 /* Default flavor: a short confident rise. */
 .js-reveal [data-reveal] {
-  opacity: 0;
   transform: translateY(1.5rem);
-  transition:
-    opacity var(--dur-reveal) var(--ease-out-quart),
-    transform var(--dur-reveal) var(--ease-out-quart),
-    clip-path var(--dur-reveal) var(--ease-out-quart);
+  transition: transform var(--dur-reveal) var(--ease-out-quart);
   transition-delay: calc(var(--i, 0) * 90ms);
 }
 /* Flavor: lift from further, for hero-scale statements. */
 .js-reveal [data-reveal="rise"] {
   transform: translateY(2.75rem);
 }
-/* Flavor: a quiet fade, for supporting copy that shouldn't move. */
+/* Flavor: a quiet static arrival, for supporting copy that shouldn't move. */
 .js-reveal [data-reveal="fade"] {
   transform: none;
 }
-/* Flavor: a vertical wipe, for rules/dividers and framed panels. */
+/* Flavor: a static arrival, for rules/dividers and framed panels. */
 .js-reveal [data-reveal="wipe"] {
   transform: none;
-  clip-path: inset(0 0 100% 0);
 }
 /* Flavor: enter from the inline-start, for side-set list rows. */
 .js-reveal [data-reveal="slide"] {
   transform: translateX(-1.25rem);
 }
 .js-reveal [data-reveal].is-revealed {
-  opacity: 1;
   transform: none;
-  clip-path: inset(0 0 0 0);
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
@@ -266,11 +258,9 @@ em {
   html {
     scroll-behavior: auto;
   }
-  /* Belt-and-braces: never leave revealable content hidden. */
+  /* Motion-free users receive the final layout immediately. */
   .js-reveal [data-reveal] {
-    opacity: 1 !important;
     transform: none !important;
-    clip-path: none !important;
   }
 }
 

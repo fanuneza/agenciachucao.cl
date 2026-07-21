@@ -33,6 +33,7 @@ const schema = buildSchemaGraph({
   description={post.data.description}
   image={post.data.heroImage}
   canonical={postUrl}
+  markdownUrl={`/blog/${post.id}.md`}
   schema={schema}
 >
   <Fragment slot="head">

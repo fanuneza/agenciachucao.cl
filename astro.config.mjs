@@ -34,7 +34,7 @@ export default defineConfig({
         host: "agenciachucao.cl",
         siteUrl: "https://agenciachucao.cl",
       },
-      markdownAlternate: true,
+      markdownAlternate: false,
     }),
   ],
 });

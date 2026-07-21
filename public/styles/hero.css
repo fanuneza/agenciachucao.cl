@@ -26,7 +26,7 @@
   border-right: 1px solid;
   border-bottom: 1px solid;
 }
-.hero .tray {
+.section.dark.hero .tray {
   margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   padding-bottom: 1rem;
   color: var(--bone);
@@ -56,7 +56,10 @@
   hyphens: none;
   word-break: normal;
 }
-.hero__lede {
+.section.dark.hero .hero__headline em {
+  color: var(--white);
+}
+.section.dark.hero .hero__lede {
   max-width: 38ch;
   margin-top: 0;
   color: var(--bone);
